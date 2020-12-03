@@ -22,10 +22,8 @@ namespace BidCardCoin
     /// </summary>
     public partial class MainWindow
     {
-
-
         public static string onglet;
-        
+
         public MainWindow()
         {
             InitializeComponent();
@@ -35,7 +33,6 @@ namespace BidCardCoin
 
             body.Width = this.Width;
             nav.Height = this.Height;
-
 
             SubView.Children.Add(new Controlle_Test());
         }
@@ -53,7 +50,6 @@ namespace BidCardCoin
                 this.BorderThickness = new System.Windows.Thickness(1);
             }
         }
-
 
         private void SwitchState()
         {
