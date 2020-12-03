@@ -1,27 +1,29 @@
-﻿using MySql.Data.MySqlClient;
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using MySql.Data.MySqlClient;
 
-namespace BidCardCoin
+namespace bidCardCoin.DAL
 {
-    class DALConnection
+    class DALconnection
     {
         private static string server;
         private static string database;
         private static string uid;
         private static string password;
-        public static MySqlConnection connection;
+        private static MySqlConnection connection;
 
         public static MySqlConnection OpenConnection()
         {
-            if (connection == null) //  si la connexion est déjà ouverte, il ne la refera pas 
+            if (connection == null)
             {
-                server = "localhost";
-                database = "testvisualstudiob2";
-                uid = "root";
-                password = "";
-                string connectionString;
-                connectionString = "SERVER=" + server + ";" + "DATABASE=" +
-                database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
+                server = Environment.GetEnvironmentVariable("SERVER_ENVIRONMENT");
+                database = Environment.GetEnvironmentVariable("DATABASE_ENVIRONMENT");
+                uid = Environment.GetEnvironmentVariable("UID_ENVIRONMENT");
+                password = Environment.GetEnvironmentVariable("PASSWORD_ENVIRONMENT");
+                string connectionString = $"SERVER={server};DATABASE={database};UID={uid};PASSWORD={password};";
                 connection = new MySqlConnection(connectionString);
                 connection.Open();
             }

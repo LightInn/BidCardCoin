@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace bidCardCoin.DAL
+namespace bidCardCoin.ORM
 {
-    public class PersonneDAL
+    public class CommissaireORM
     {
     }
 }

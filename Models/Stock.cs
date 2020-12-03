@@ -5,10 +5,7 @@
         private string _idStock;
         private int _quantite;
         private Adresse _adresse;
-        
-        
-        
-        
+
         public Stock(string idStock, int quantite, Adresse adresse)
         {
             this._idStock = idStock;

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace bidCardCoin.DAL
+namespace bidCardCoin.DAO
 {
-    public class PersonneDAL
+    public class PaiementDAO
     {
     }
 }
