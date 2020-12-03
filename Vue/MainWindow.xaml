@@ -14,6 +14,7 @@
     <Grid Background="#202225">
 
         <!-- +++++++++++++++++++++++++++++++++++++++++++++++++ BAR DU HAUT +++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
         <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <DockPanel Name="Dpanel" Background="#202225" MaxHeight="150" VerticalAlignment="Top"
                        MouseDown="Window_MouseDown" Grid.ColumnSpan="2" Height="20">
@@ -44,12 +45,12 @@
                             Style="{DynamicResource ButtonStyleMenu}" Padding="1,-3,0,0" />
                     <StackPanel />
                 </DockPanel>
-
             </DockPanel>
+
+
             <!-- +++++++++++++++++++++++++++++++++++++++++++++++++ BAR DU HAUT +++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+            <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++ PAGE ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 
-
-            <!-- +++++++++++++++++++++++++++++++++++++++++++++++++ PAGE +++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 
             <DockPanel Name="body" Background="#202225">
 
@@ -63,11 +64,9 @@
                             <ImageBrush Stretch="UniformToFill"
                                         ImageSource="/ressources/img/logo.png" />
                         </Border.Background>
-                    </Border>
+                    </Border>   <!-- LOGO -->
 
 
-                    
-                    
                     <DockPanel
                         x:Name="nav"
 
@@ -76,11 +75,10 @@
                         Width="65"
                         Height="540">
 
-
                         <ListView Background="#202225" BorderThickness="0">
 
-
-                            <ListViewItem Padding="0" Style="{DynamicResource ListViewItemStyle}" Cursor="Hand">
+                            <ListViewItem Padding="0" Style="{DynamicResource ListViewItemStyle}" Cursor="Hand"
+                                          MouseDoubleClick="Tab_Achat">   <!-- ACHAT -->
                                 <Border BorderThickness="5" CornerRadius="100" Width="60" Height="60"
                                         ClipToBounds="True">
                                     <Border.Background>
@@ -90,7 +88,8 @@
                                 </Border>
                             </ListViewItem>
 
-                            <ListViewItem Padding="0" Style="{DynamicResource ListViewItemStyle}" Cursor="Hand">
+                            <ListViewItem Padding="0" Style="{DynamicResource ListViewItemStyle}" Cursor="Hand"
+                                          MouseDoubleClick="Tab_Solde">   <!-- SOLDE -->
                                 <Border BorderThickness="5" CornerRadius="100" Width="60" Height="60"
                                         ClipToBounds="True">
                                     <Border.Background>
@@ -101,8 +100,8 @@
                                 </Border>
                             </ListViewItem>
 
-
-                            <ListViewItem Padding="0" Style="{DynamicResource ListViewItemStyle}" Cursor="Hand">
+                            <ListViewItem Padding="0" Style="{DynamicResource ListViewItemStyle}" Cursor="Hand"
+                                          MouseDoubleClick="Tab_Wrench">    <!-- WRENCH -->
                                 <Border BorderThickness="5" CornerRadius="100" Width="60" Height="60"
                                         ClipToBounds="True">
                                     <Border.Background>
@@ -111,12 +110,10 @@
                                     </Border.Background>
                                 </Border>
                             </ListViewItem>
-
                         </ListView>
 
 
                     </DockPanel>  <!--  NAV BAR  -->
-
                 </StackPanel>
 
 
