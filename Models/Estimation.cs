@@ -17,7 +17,7 @@ namespace BidCardCoin.Models
             this._dateEstimation = dateEstimation;
             this._prixEstimation = prixEstimation;
             this._idEstimation = idEstimation;
-            _produit = produit;
+            this._produit = produit;
         }
     }
 }

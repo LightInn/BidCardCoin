@@ -9,10 +9,10 @@
 
         public Paiement(Utilisateur utilisateur, string typePaiement, bool validationPaiement, Lot lot)
         {
-            _utilisateur = utilisateur;
+            this._utilisateur = utilisateur;
             this._typePaiement = typePaiement;
             this._validationPaiement = validationPaiement;
-            _lot = lot;
+            this._lot = lot;
         }
     }
 }

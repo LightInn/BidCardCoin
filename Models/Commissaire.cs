@@ -8,7 +8,7 @@
         public Commissaire(string idCommissaire, Personne personne)
         {
             this._idCommissaire = idCommissaire;
-            _personne = personne;
+            this._personne = personne;
         }
     }
 }

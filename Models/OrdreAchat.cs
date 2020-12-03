@@ -14,11 +14,11 @@ namespace BidCardCoin.Models
         public OrdreAchat(string idOrdreAchat, Utilisateur utilisateur, bool autobot, double montantMax, DateTime dateCreation, Lot lot)
         {
             this._idOrdreAchat = idOrdreAchat;
-            _utilisateur = utilisateur;
+            this._utilisateur = utilisateur;
             this._autobot = autobot;
             this._montantMax = montantMax;
             this._dateCreation = dateCreation;
-            _lot = lot;
+            this._lot = lot;
         }
     }
 }

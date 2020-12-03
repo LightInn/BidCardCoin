@@ -9,7 +9,7 @@
         public Categorie(string idCategorie, Categorie categorie, string nomCategorie)
         {
             this._idCategorie = idCategorie;
-            _categorie = categorie;
+            this._categorie = categorie;
             this._nomCategorie = nomCategorie;
         }
     }
