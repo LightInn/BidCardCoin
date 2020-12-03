@@ -1,0 +1,110 @@
+﻿<Window x:Class="BidCardCoin.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BidCardCoin"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        SizeChanged="Window_SizeChanged"
+        ResizeMode="CanResizeWithGrip"
+        Title="MainWindow" Height="540" Width="960">
+
+    <Grid Background="#202225">
+
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <DockPanel Name="Dpanel" Background="#202225" MaxHeight="150" VerticalAlignment="Top"
+                       MouseDown="Window_MouseDown" Grid.ColumnSpan="2" Height="20">
+                <Border Padding="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Label Foreground="#DCDDDE" FontSize="12       " FontWeight="Bold" Margin="0"
+                           VerticalAlignment="Center" HorizontalContentAlignment="Center"
+                           VerticalContentAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                           ScrollViewer.HorizontalScrollBarVisibility="Hidden" Padding="0">
+                        BidCardCoin
+                    </Label>
+                </Border>
+                <DockPanel FlowDirection="RightToLeft">
+                    <Button x:Name="CloseButton" BorderThickness="0" Width="35" Background="#202225"
+                            Foreground="#DCDDDE" Click="ExitClick"
+                            KeyboardNavigation.IsTabStop="False" Style="{DynamicResource ButtonStyleExit}"
+                            Padding="1,-3,0,0">
+                        x
+                    </Button>
+                    <Button x:Name="MaximizeButton" BorderThickness="0" Width="35" Background="#202225"
+                            Foreground="#DCDDDE" Click="MaximizeClick"
+                            KeyboardNavigation.IsTabStop="False" FontWeight="Bold"
+                            Style="{DynamicResource ButtonStyleMenu}" Padding="1,-3,0,0">
+                        □
+                    </Button>
+                    <Button x:Name="MinimizeButton" BorderThickness="0" Width="35" Background="#202225"
+                            Foreground="#DCDDDE" Click="MinimizeWindow"
+                            KeyboardNavigation.IsTabStop="False" FontWeight="Bold" Content="-"
+                            Style="{DynamicResource ButtonStyleMenu}" Padding="1,-3,0,0" />
+                    <StackPanel />
+                </DockPanel>
+
+            </DockPanel>
+            <!--Dock Panel-->
+
+
+            <!-- +++++++++++++++++++++++++++++++++++++++++++++++++ PAGE +++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+            <DockPanel Name="body" Background="#202225">
+
+
+                <DockPanel
+                    x:Name="nav"
+
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Stretch"
+                    Width="65"
+                    Height="540">
+                    <ListView Background="#202225" BorderThickness="0">
+                        <ListViewItem Padding="0" Style="{DynamicResource ListViewItemStyle}" Cursor="Hand">
+                            <Border BorderThickness="5" CornerRadius="100" Width="60" Height="60" ClipToBounds="True">
+                                <Border.Background>
+                                    <ImageBrush Stretch="UniformToFill"
+                                                ImageSource="https://yt3.ggpht.com/a/AATXAJxHHP_h8bUovc1qC4c07sVXxVbp3gwDEg-iq8gbFQ=s900-c-k-c0x00ffffff-no-rj" />
+                                </Border.Background>
+                            </Border>
+                        </ListViewItem>
+
+                        <ListViewItem Padding="0" Style="{DynamicResource ListViewItemStyle}" Cursor="Hand">
+                            <Border BorderThickness="5" CornerRadius="100" Width="60" Height="60" ClipToBounds="True">
+                                <Border.Background>
+                                    <ImageBrush
+                                        Stretch="UniformToFill"
+                                        ImageSource="https://digitalneed.fr/wp-content/uploads/2014/10/twitter-logo.png" />
+                                </Border.Background>
+                            </Border>
+                        </ListViewItem>
+
+
+                        <ListViewItem Padding="0" Style="{DynamicResource ListViewItemStyle}" Cursor="Hand">
+                            <Border BorderThickness="5" CornerRadius="100" Width="60" Height="60" ClipToBounds="True">
+                                <Border.Background>
+                                    <ImageBrush Stretch="UniformToFill"
+                                                ImageSource="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/1200px-Instagram_logo_2016.svg.png" />
+                                </Border.Background>
+                            </Border>
+                        </ListViewItem>
+
+                    </ListView>
+
+
+                </DockPanel>
+
+
+                <DockPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                    <Border Background="#34373C" CornerRadius="8 0 0 0">
+                        <DockPanel Name="SubView" /> <!-- SUB VIEW -->
+                    </Border>
+                </DockPanel>
+            </DockPanel>
+            <!-- +++++++++++++++++++++++++++++++++++++++++++++++++ PAGE +++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+        </StackPanel>
+    </Grid>
+
+
+</Window>
