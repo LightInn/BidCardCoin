@@ -22,10 +22,8 @@ namespace BidCardCoin
     /// </summary>
     public partial class MainWindow
     {
-
-
         public static string onglet;
-        
+
         public MainWindow()
         {
             InitializeComponent();
@@ -35,9 +33,6 @@ namespace BidCardCoin
 
             body.Width = this.Width;
             nav.Height = this.Height;
-
-
-            SubView.Children.Add(new Controlle_Test());
         }
 
         public void Window_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -53,7 +48,6 @@ namespace BidCardCoin
                 this.BorderThickness = new System.Windows.Thickness(1);
             }
         }
-
 
         private void SwitchState()
         {
@@ -115,5 +109,36 @@ namespace BidCardCoin
         {
             Application.Current.Shutdown();
         }
+
+        /* ------------------------------------------------ TABS -----------------------------------------------------*/
+
+        private void Tab_Achat(object sender, MouseButtonEventArgs e)
+        {
+            if (SubView.Children.Count == 1)
+            {
+                SubView.Children.RemoveAt(0);
+            }
+
+            SubView.Children.Add(new AchatTabView());
+        }
+        private void Tab_Solde(object sender, MouseButtonEventArgs e)
+        {
+            if (SubView.Children.Count == 1)
+            {
+                SubView.Children.RemoveAt(0);
+            }
+
+            SubView.Children.Add(new SoldeTabView());
+        }
+        private void Tab_Wrench(object sender, MouseButtonEventArgs e)
+        {
+            if (SubView.Children.Count == 1)
+            {
+                SubView.Children.RemoveAt(0);
+            }
+
+            SubView.Children.Add(new WrenchTanView());
+        }
+
     }
 }

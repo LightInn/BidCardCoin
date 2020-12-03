@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "eC/jFsYfTAEV+z8sov9GwD1DcxhcirG8jwp9qUP7e3gC78ztaYZ84OxSlZRksC5z/ctvcJIn4LE+CckN+57CWg==",
+  "dgSpecHash": "DOyuieO3zI3HdIPjaICGYTF/63XDChAY1LpfJJWrsn1kX1+uWmllQedwQsTqgOzvxYUJYPp21isEa5m1NSOAvw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Breval Nouveau\\Nextcloud\\cours\\C#\\BidCardCoin\\BidCardCoin.csproj",
+  "projectFilePath": "C:\\Users\\Breval Nouveau\\Nextcloud\\Projects\\C#\\BidCardCoin\\BidCardCoin.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Breval Nouveau\\.nuget\\packages\\bouncycastle.netcore\\1.8.3\\bouncycastle.netcore.1.8.3.nupkg.sha512",
     "C:\\Users\\Breval Nouveau\\.nuget\\packages\\google.protobuf\\3.11.4\\google.protobuf.3.11.4.nupkg.sha512",

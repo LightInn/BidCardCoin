@@ -13,6 +13,14 @@
     <ItemGroup>
       <Folder Include="DAO" />
       <Folder Include="ORM" />
+      <None Remove="ressources\img\Solde.png" />
+      <Resource Include="ressources\img\Solde.png" />
+      <None Remove="ressources\img\logo.png" />
+      <Resource Include="ressources\img\logo.png" />
+      <None Remove="ressources\img\Achat.png" />
+      <Resource Include="ressources\img\Achat.png" />
+      <None Remove="ressources\img\Wrench.png" />
+      <Resource Include="ressources\img\Wrench.png" />
     </ItemGroup>
 
 </Project>
