@@ -2,9 +2,9 @@
 
 namespace BidCardCoin.Vue
 {
-    public partial class Controlle_Test : UserControl
+    public partial class AchatTabView : UserControl
     {
-        public Controlle_Test()
+        public AchatTabView()
         {
             InitializeComponent();
         }
