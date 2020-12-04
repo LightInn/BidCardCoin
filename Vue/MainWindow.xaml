@@ -9,17 +9,20 @@
         AllowsTransparency="True"
         SizeChanged="Window_SizeChanged"
         ResizeMode="CanResizeWithGrip"
-        Title="MainWindow" Height="540" Width="960">
+        Title="MainWindow" Height="850" Width="1200">
 
-    <Grid Background="#202225">
+    <Grid Background="#fff">
 
         <!-- +++++++++++++++++++++++++++++++++++++++++++++++++ BAR DU HAUT +++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-            <DockPanel Name="Dpanel" Background="#202225" MaxHeight="150" VerticalAlignment="Top"
-                       MouseDown="Window_MouseDown" Grid.ColumnSpan="2" Height="20">
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="TopBar">
+            <DockPanel Background="#202225" MaxHeight="150" VerticalAlignment="Top"
+                       MouseDown="Window_MouseDown" Grid.ColumnSpan="2" Height="35">
+                <DockPanel Width="20" />
+                <Image Source="/ressources/img/logo.png" Width="30" Height="30" />
                 <Border Padding="2" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Label Foreground="#DCDDDE" FontSize="12       " FontWeight="Bold" Margin="0"
+
+                    <Label Foreground="#DCDDDE" FontSize="15" FontWeight="Bold" Margin="0"
                            VerticalAlignment="Center" HorizontalContentAlignment="Center"
                            VerticalContentAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Hidden"
                            ScrollViewer.HorizontalScrollBarVisibility="Hidden" Padding="0">
@@ -57,14 +60,20 @@
                 <StackPanel
                     Orientation="Vertical">
 
+                    <Button Style="{DynamicResource ButtonNavStyle}" Padding="0" Cursor="Hand"
+                            Click="Tab_Home" MouseEnter="NavHoverEffectEnter" MouseLeave="NavHoverEffectExit">
+                        <Border BorderThickness="5" CornerRadius="100" Width="60" Height="60"
+                                ClipToBounds="True" Background="#393C43">
+                            <Rectangle Height="30" Width="30" VerticalAlignment="Center"
+                                       HorizontalAlignment="Center">
+                                <Rectangle.Fill>
+                                    <ImageBrush Stretch="UniformToFill"
+                                                ImageSource="/ressources/img/logo.png" />
+                                </Rectangle.Fill>
+                            </Rectangle>
 
-                    <Border BorderThickness="5" CornerRadius="100" Width="60" Height="60"
-                            ClipToBounds="True">
-                        <Border.Background>
-                            <ImageBrush Stretch="UniformToFill"
-                                        ImageSource="/ressources/img/logo.png" />
-                        </Border.Background>
-                    </Border>   <!-- LOGO -->
+                        </Border>
+                    </Button>   <!-- LOGO -->
 
 
                     <DockPanel
@@ -72,45 +81,60 @@
 
                         HorizontalAlignment="Left"
                         VerticalAlignment="Stretch"
-                        Width="65"
-                        Height="540">
+                        Width="60"
+                        Height="535">
 
-                        <ListView Background="#202225" BorderThickness="0">
 
-                            <ListViewItem Padding="0" Style="{DynamicResource ListViewItemStyle}" Cursor="Hand"
-                                          MouseDoubleClick="Tab_Achat">   <!-- ACHAT -->
+                        <StackPanel Background="#202225" HorizontalAlignment="Center"
+                                    VerticalAlignment="Center">
+
+                            <Button Style="{DynamicResource ButtonNavStyle}" Padding="0" Cursor="Hand"
+                                    Click="Tab_Achat" MouseEnter="NavHoverEffectEnter" MouseLeave="NavHoverEffectExit">
                                 <Border BorderThickness="5" CornerRadius="100" Width="60" Height="60"
-                                        ClipToBounds="True">
-                                    <Border.Background>
-                                        <ImageBrush Stretch="UniformToFill"
-                                                    ImageSource="/ressources/img/Achat.png" />
-                                    </Border.Background>
-                                </Border>
-                            </ListViewItem>
+                                        ClipToBounds="True" Background="#393C43">
+                                    <Rectangle Height="30" Width="30" VerticalAlignment="Center"
+                                               HorizontalAlignment="Center">
+                                        <Rectangle.Fill>
+                                            <ImageBrush Stretch="UniformToFill"
+                                                        ImageSource="/ressources/img/Achat.png" />
+                                        </Rectangle.Fill>
+                                    </Rectangle>
 
-                            <ListViewItem Padding="0" Style="{DynamicResource ListViewItemStyle}" Cursor="Hand"
-                                          MouseDoubleClick="Tab_Solde">   <!-- SOLDE -->
-                                <Border BorderThickness="5" CornerRadius="100" Width="60" Height="60"
-                                        ClipToBounds="True">
-                                    <Border.Background>
-                                        <ImageBrush
-                                            Stretch="UniformToFill"
-                                            ImageSource="/ressources/img/Solde.png" />
-                                    </Border.Background>
                                 </Border>
-                            </ListViewItem>
+                            </Button>   <!-- ACHAT -->
 
-                            <ListViewItem Padding="0" Style="{DynamicResource ListViewItemStyle}" Cursor="Hand"
-                                          MouseDoubleClick="Tab_Wrench">    <!-- WRENCH -->
+
+                            <Button Style="{DynamicResource ButtonNavStyle}" Padding="0" Cursor="Hand"
+                                    Click="Tab_Solde" MouseEnter="NavHoverEffectEnter" MouseLeave="NavHoverEffectExit">
                                 <Border BorderThickness="5" CornerRadius="100" Width="60" Height="60"
-                                        ClipToBounds="True">
-                                    <Border.Background>
-                                        <ImageBrush Stretch="UniformToFill"
-                                                    ImageSource="/ressources/img/Wrench.png" />
-                                    </Border.Background>
+                                        ClipToBounds="True" Background="#393C43">
+                                    <Rectangle Height="30" Width="30" VerticalAlignment="Center"
+                                               HorizontalAlignment="Center">
+                                        <Rectangle.Fill>
+                                            <ImageBrush Stretch="UniformToFill"
+                                                        ImageSource="/ressources/img/Solde.png" />
+                                        </Rectangle.Fill>
+                                    </Rectangle>
+
                                 </Border>
-                            </ListViewItem>
-                        </ListView>
+                            </Button>   <!-- SOLDE -->
+
+
+                            <Button Style="{DynamicResource ButtonNavStyle}" Padding="0" Cursor="Hand"
+                                    Click="Tab_Wrench" MouseEnter="NavHoverEffectEnter" MouseLeave="NavHoverEffectExit">
+                                <Border BorderThickness="5" CornerRadius="100" Width="60" Height="60"
+                                        ClipToBounds="True" Background="#393C43">
+                                    <Rectangle Height="30" Width="30" VerticalAlignment="Center"
+                                               HorizontalAlignment="Center">
+                                        <Rectangle.Fill>
+                                            <ImageBrush Stretch="UniformToFill"
+                                                        ImageSource="/ressources/img/Wrench.png" />
+                                        </Rectangle.Fill>
+                                    </Rectangle>
+
+                                </Border>
+                            </Button>   <!--  WRENCH -->
+                        </StackPanel>
 
 
                     </DockPanel>  <!--  NAV BAR  -->
