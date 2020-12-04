@@ -33,6 +33,8 @@ namespace BidCardCoin
 
             body.Width = this.Width;
             nav.Height = this.Height;
+
+            SubView.Children.Add(new HomeTabView());
         }
 
         public void Window_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -137,9 +139,9 @@ namespace BidCardCoin
                 SubView.Children.RemoveAt(0);
             }
 
-            SubView.Children.Add(new AchatTabView());
+            SubView.Children.Add(new HomeTabView());
         }
-        
+
         private void Tab_Achat(object sender, RoutedEventArgs e)
         {
             if (SubView.Children.Count == 1)
