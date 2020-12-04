@@ -10,7 +10,7 @@
         {
             this._idStock = idStock;
             this._quantite = quantite;
-            _adresse = adresse;
+            this._adresse = adresse;
         }
     }
 }

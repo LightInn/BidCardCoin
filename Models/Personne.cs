@@ -12,6 +12,7 @@ namespace BidCardCoin.Models
         protected string _password;
         protected string _telephoneMobile;
         protected string _telephoneFixe;
+        protected Adresse _adresse;
     }
     
 }
