@@ -7,8 +7,12 @@
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <TextBlock>
-            Et la c'est la cleF a mollette
-        </TextBlock>
+
+        <DockPanel>
+
+            <TextBlock FontSize="50" HorizontalAlignment="Center" VerticalAlignment="Center">
+                HELLO MICKEY MOUSE 
+            </TextBlock>
+        </DockPanel>
     </Grid>
 </UserControl>

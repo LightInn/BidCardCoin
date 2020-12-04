@@ -7,8 +7,11 @@
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <TextBlock>
-            BONJOUR
-        </TextBlock>
+        <DockPanel>
+
+            <TextBlock FontSize="50" HorizontalAlignment="Center" VerticalAlignment="Center">
+                HELLO WORLD
+            </TextBlock>
+        </DockPanel>
     </Grid>
 </UserControl>

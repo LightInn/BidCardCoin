@@ -7,8 +7,12 @@
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <TextBlock>
-            Ici c'est solde
-        </TextBlock>
+
+        <DockPanel>
+
+            <TextBlock FontSize="50" HorizontalAlignment="Center" VerticalAlignment="Center">
+                HELLO SAL*PE
+            </TextBlock>
+        </DockPanel>
     </Grid>
 </UserControl>
