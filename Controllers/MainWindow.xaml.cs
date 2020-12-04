@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -33,6 +34,8 @@ namespace BidCardCoin
 
             body.Width = this.Width;
             nav.Height = this.Height;
+
+            SubView.Children.Add(new HomeTabView());
         }
 
         public void Window_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -110,9 +113,37 @@ namespace BidCardCoin
             Application.Current.Shutdown();
         }
 
+        /* ------------------------------------------------ NAV -----------------------------------------------------*/
+
+
+        private void NavHoverEffectEnter(object o, MouseEventArgs mouseEventArgs)
+        {
+            var border = ((o as Button)?.Content as Border);
+            border.CornerRadius = new CornerRadius(10);
+            border.Background = (SolidColorBrush) new BrushConverter().ConvertFrom("#7289DA");
+        }
+
+        private void NavHoverEffectExit(object o, MouseEventArgs mouseEventArgs)
+        {
+            var border = ((o as Button)?.Content as Border);
+            border.CornerRadius = new CornerRadius(100);
+            border.Background = (SolidColorBrush) new BrushConverter().ConvertFrom("#393C43");
+        }
+
+
         /* ------------------------------------------------ TABS -----------------------------------------------------*/
 
-        private void Tab_Achat(object sender, MouseButtonEventArgs e)
+        private void Tab_Home(object sender, RoutedEventArgs e)
+        {
+            if (SubView.Children.Count == 1)
+            {
+                SubView.Children.RemoveAt(0);
+            }
+
+            SubView.Children.Add(new HomeTabView());
+        }
+
+        private void Tab_Achat(object sender, RoutedEventArgs e)
         {
             if (SubView.Children.Count == 1)
             {
@@ -121,7 +152,8 @@ namespace BidCardCoin
 
             SubView.Children.Add(new AchatTabView());
         }
-        private void Tab_Solde(object sender, MouseButtonEventArgs e)
+
+        private void Tab_Solde(object sender, RoutedEventArgs e)
         {
             if (SubView.Children.Count == 1)
             {
@@ -130,7 +162,8 @@ namespace BidCardCoin
 
             SubView.Children.Add(new SoldeTabView());
         }
-        private void Tab_Wrench(object sender, MouseButtonEventArgs e)
+
+        private void Tab_Wrench(object sender, RoutedEventArgs e)
         {
             if (SubView.Children.Count == 1)
             {
@@ -139,6 +172,5 @@ namespace BidCardCoin
 
             SubView.Children.Add(new WrenchTanView());
         }
-
     }
 }
