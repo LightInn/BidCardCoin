@@ -19,6 +19,7 @@
         <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD" />
         <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070" />
         <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#282B2E" />
+      
         <SolidColorBrush x:Key="Button.MouseOver.BackgroundExit" Color="#F04747" />
         <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#202225" />
         <SolidColorBrush x:Key="Button.Pressed.Background" Color="#202225" />
@@ -44,16 +45,7 @@
         <SolidColorBrush x:Key="Button.Disabled.Background1" Color="#202225"/>
         <SolidColorBrush x:Key="Button.Disabled.Border1" Color="#202225"/>
         <SolidColorBrush x:Key="Button.Disabled.Foreground1" Color="#202225"/>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+      
         <Style x:Key="ButtonNavStyle" TargetType="{x:Type Button}">
             <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual1}"/>
             <Setter Property="Background" Value="{StaticResource Button.Static.Background1}"/>
@@ -74,17 +66,7 @@
             </Setter>
         </Style>
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
         <Style x:Key="ButtonStyleExit" TargetType="{x:Type Button}">
             <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
             <Setter Property="Background" Value="{StaticResource Button.Static.Background}" />
