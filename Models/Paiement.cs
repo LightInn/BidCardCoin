@@ -2,13 +2,15 @@
 {
     public class Paiement
     {
+        private string _idPaiement;
         private Lot _lot;
         private Utilisateur _utilisateur;
         private string _typePaiement;
         private bool _validationPaiement;
 
-        public Paiement(Utilisateur utilisateur, string typePaiement, bool validationPaiement, Lot lot)
+        public Paiement(string idPaiement, Utilisateur utilisateur, string typePaiement, bool validationPaiement, Lot lot)
         {
+            this._idPaiement = idPaiement;
             this._utilisateur = utilisateur;
             this._typePaiement = typePaiement;
             this._validationPaiement = validationPaiement;
