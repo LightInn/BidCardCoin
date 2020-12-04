@@ -19,7 +19,8 @@
             <DockPanel Background="#202225" MaxHeight="150" VerticalAlignment="Top"
                        MouseDown="Window_MouseDown" Grid.ColumnSpan="2" Height="35">
                 <DockPanel Width="20" />
-                <Image Source="/ressources/img/logo.png" Width="30" Height="30" />
+                <Image Source="/ressources/img/logo.png" Width="30" Height="30"
+                       RenderOptions.BitmapScalingMode="HighQuality" />
                 <Border Padding="2" HorizontalAlignment="Center" VerticalAlignment="Center">
 
                     <Label Foreground="#DCDDDE" FontSize="15" FontWeight="Bold" Margin="0"
@@ -67,35 +68,31 @@
                             <Rectangle Height="30" Width="30" VerticalAlignment="Center"
                                        HorizontalAlignment="Center">
                                 <Rectangle.Fill>
-                                    <ImageBrush Stretch="UniformToFill"
+                                    <ImageBrush Stretch="UniformToFill" RenderOptions.BitmapScalingMode="HighQuality"
                                                 ImageSource="/ressources/img/logo.png" />
                                 </Rectangle.Fill>
                             </Rectangle>
-
                         </Border>
                     </Button>   <!-- LOGO -->
 
 
                     <DockPanel
-                        x:Name="nav"
-
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Stretch"
-                        Width="60"
-                        Height="535">
+                        x:Name="nav" HorizontalAlignment="Left"
+                        VerticalAlignment="Stretch" Width="60" Height="535">
 
 
-                        <StackPanel Background="#202225" HorizontalAlignment="Center"
-                                    VerticalAlignment="Center">
+
+                        <StackPanel Background="#202225" HorizontalAlignment="Center" VerticalAlignment="Center">
 
                             <Button Style="{DynamicResource ButtonNavStyle}" Padding="0" Cursor="Hand"
                                     Click="Tab_Achat" MouseEnter="NavHoverEffectEnter" MouseLeave="NavHoverEffectExit">
                                 <Border BorderThickness="5" CornerRadius="100" Width="60" Height="60"
                                         ClipToBounds="True" Background="#393C43">
-                                    <Rectangle Height="30" Width="30" VerticalAlignment="Center"
+                                    <Rectangle Height="34" Width="34" VerticalAlignment="Center"
                                                HorizontalAlignment="Center">
                                         <Rectangle.Fill>
                                             <ImageBrush Stretch="UniformToFill"
+                                                        RenderOptions.BitmapScalingMode="HighQuality"
                                                         ImageSource="/ressources/img/Achat.png" />
                                         </Rectangle.Fill>
                                     </Rectangle>
@@ -108,10 +105,11 @@
                                     Click="Tab_Solde" MouseEnter="NavHoverEffectEnter" MouseLeave="NavHoverEffectExit">
                                 <Border BorderThickness="5" CornerRadius="100" Width="60" Height="60"
                                         ClipToBounds="True" Background="#393C43">
-                                    <Rectangle Height="30" Width="30" VerticalAlignment="Center"
+                                    <Rectangle Height="34" Width="34" VerticalAlignment="Center"
                                                HorizontalAlignment="Center">
                                         <Rectangle.Fill>
                                             <ImageBrush Stretch="UniformToFill"
+                                                        RenderOptions.BitmapScalingMode="HighQuality"
                                                         ImageSource="/ressources/img/Solde.png" />
                                         </Rectangle.Fill>
                                     </Rectangle>
@@ -124,10 +122,11 @@
                                     Click="Tab_Wrench" MouseEnter="NavHoverEffectEnter" MouseLeave="NavHoverEffectExit">
                                 <Border BorderThickness="5" CornerRadius="100" Width="60" Height="60"
                                         ClipToBounds="True" Background="#393C43">
-                                    <Rectangle Height="30" Width="30" VerticalAlignment="Center"
+                                    <Rectangle Height="34" Width="34" VerticalAlignment="Center"
                                                HorizontalAlignment="Center">
                                         <Rectangle.Fill>
                                             <ImageBrush Stretch="UniformToFill"
+                                                        RenderOptions.BitmapScalingMode="HighQuality"
                                                         ImageSource="/ressources/img/Wrench.png" />
                                         </Rectangle.Fill>
                                     </Rectangle>
@@ -142,8 +141,14 @@
 
 
                 <DockPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                    <Border Background="#34373C" CornerRadius="8 0 0 0">
-                        <DockPanel Name="SubView" /> <!-- SUB VIEW -->
+                    <Border Background="#FFFFFF" CornerRadius="8 0 0 0">
+                        <DockPanel Name="SubView">
+
+                            <DockPanel.Background>
+                                <ImageBrush Stretch="Uniform" ImageSource="/ressources/img/logoFill.png"
+                                            AlignmentY="Center" AlignmentX="Right" />
+                            </DockPanel.Background>
+                        </DockPanel> <!-- SUB VIEW -->
                     </Border>
                 </DockPanel>
             </DockPanel>

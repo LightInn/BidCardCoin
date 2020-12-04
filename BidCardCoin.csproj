@@ -21,6 +21,10 @@
       <Resource Include="ressources\img\Achat.png" />
       <None Remove="ressources\img\Wrench.png" />
       <Resource Include="ressources\img\Wrench.png" />
+      <None Remove="ressources\img\logo_large.png" />
+      <Resource Include="ressources\img\logo_large.png" />
+      <None Remove="ressources\img\logoFill.png" />
+      <Resource Include="ressources\img\logoFill.png" />
     </ItemGroup>
 
 </Project>

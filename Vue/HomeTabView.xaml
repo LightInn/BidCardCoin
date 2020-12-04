@@ -11,12 +11,9 @@
 
         <DockPanel>
 
-            <Image HorizontalAlignment="Center" VerticalAlignment="Center" Source="/ressources/img/logo.png"
-                   Width="200" Height="200" />
-
-
+            <TextBlock FontSize="50" HorizontalAlignment="Center" VerticalAlignment="Center">
+                HELLO WORLD
+            </TextBlock>
         </DockPanel>
-
-
     </Grid>
 </UserControl>
