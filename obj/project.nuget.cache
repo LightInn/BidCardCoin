@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "DOyuieO3zI3HdIPjaICGYTF/63XDChAY1LpfJJWrsn1kX1+uWmllQedwQsTqgOzvxYUJYPp21isEa5m1NSOAvw==",
+  "dgSpecHash": "BxSbTTjBLGVWFItZnq4Lx0TyGq9LrWCxAN+Hp+L7/exupaSjmCyIAadwHuzBmDu8e9BDe7idM01jP8hb5Mzgbg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Breval Nouveau\\Nextcloud\\Projects\\C#\\BidCardCoin\\BidCardCoin.csproj",
   "expectedPackageFiles": [
@@ -16,6 +16,7 @@
     "C:\\Users\\Breval Nouveau\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
     "C:\\Users\\Breval Nouveau\\.nuget\\packages\\mysql.data\\8.0.22\\mysql.data.8.0.22.nupkg.sha512",
     "C:\\Users\\Breval Nouveau\\.nuget\\packages\\netstandard.library\\1.6.0\\netstandard.library.1.6.0.nupkg.sha512",
+    "C:\\Users\\Breval Nouveau\\.nuget\\packages\\npgsql\\5.0.0\\npgsql.5.0.0.nupkg.sha512",
     "C:\\Users\\Breval Nouveau\\.nuget\\packages\\runtime.native.system\\4.0.0\\runtime.native.system.4.0.0.nupkg.sha512",
     "C:\\Users\\Breval Nouveau\\.nuget\\packages\\runtime.native.system.io.compression\\4.1.0\\runtime.native.system.io.compression.4.1.0.nupkg.sha512",
     "C:\\Users\\Breval Nouveau\\.nuget\\packages\\runtime.native.system.net.http\\4.0.1\\runtime.native.system.net.http.4.0.1.nupkg.sha512",
@@ -60,6 +61,7 @@
     "C:\\Users\\Breval Nouveau\\.nuget\\packages\\system.reflection.typeextensions\\4.1.0\\system.reflection.typeextensions.4.1.0.nupkg.sha512",
     "C:\\Users\\Breval Nouveau\\.nuget\\packages\\system.resources.resourcemanager\\4.0.1\\system.resources.resourcemanager.4.0.1.nupkg.sha512",
     "C:\\Users\\Breval Nouveau\\.nuget\\packages\\system.runtime\\4.3.0\\system.runtime.4.3.0.nupkg.sha512",
+    "C:\\Users\\Breval Nouveau\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.6.0\\system.runtime.compilerservices.unsafe.4.6.0.nupkg.sha512",
     "C:\\Users\\Breval Nouveau\\.nuget\\packages\\system.runtime.extensions\\4.1.0\\system.runtime.extensions.4.1.0.nupkg.sha512",
     "C:\\Users\\Breval Nouveau\\.nuget\\packages\\system.runtime.handles\\4.0.1\\system.runtime.handles.4.0.1.nupkg.sha512",
     "C:\\Users\\Breval Nouveau\\.nuget\\packages\\system.runtime.interopservices\\4.1.0\\system.runtime.interopservices.4.1.0.nupkg.sha512",

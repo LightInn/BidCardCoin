@@ -16,5 +16,6 @@ namespace bidCardCoin.DAO
             this._idCommissaire = idCommissaire;
             this._personneId = personneId;
         }
+
     }
 }

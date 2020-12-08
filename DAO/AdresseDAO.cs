@@ -8,6 +8,7 @@ namespace bidCardCoin.DAO
 {
     public class AdresseDAO
     {
+
         private string _idAdresse;
         private string _pays;
         private string _region;
@@ -22,5 +23,6 @@ namespace bidCardCoin.DAO
             this._ville = ville;
             this._codePostal = codePostal;
         }
+
     }
 }
