@@ -8,5 +8,12 @@ namespace bidCardCoin.DAO
 {
     public class CommissaireDAO
     {
+        
+        
+        
+        
+        
+        
+        
     }
 }

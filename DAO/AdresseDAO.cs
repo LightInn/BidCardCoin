@@ -8,5 +8,11 @@ namespace bidCardCoin.DAO
 {
     public class AdresseDAO
     {
+        
+        
+        
+        
+        
+        
     }
 }

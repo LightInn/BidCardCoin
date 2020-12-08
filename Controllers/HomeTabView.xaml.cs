@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using bidCardCoin.DAL;
 
 namespace BidCardCoin.Vue
 {
@@ -7,6 +8,10 @@ namespace BidCardCoin.Vue
         public HomeTabView()
         {
             InitializeComponent();
+
+            DALconnection.OpenConnection();
+            
+
         }
     }
 }

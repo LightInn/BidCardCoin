@@ -4,18 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
+using Npgsql;
 
 namespace bidCardCoin.DAL
 {
-    class DALconnection
+    static class DALconnection
     {
         private static string server;
         private static string database;
         private static string uid;
         private static string password;
-        private static MySqlConnection connection;
+        private static NpgsqlConnection connection;
 
-        public static MySqlConnection OpenConnection()
+        public static NpgsqlConnection OpenConnection()
         {
             if (connection == null)
             {
@@ -23,10 +24,13 @@ namespace bidCardCoin.DAL
                 database = Environment.GetEnvironmentVariable("DATABASE_ENVIRONMENT");
                 uid = Environment.GetEnvironmentVariable("UID_ENVIRONMENT");
                 password = Environment.GetEnvironmentVariable("PASSWORD_ENVIRONMENT");
-                string connectionString = $"SERVER={server};DATABASE={database};UID={uid};PASSWORD={password};";
-                connection = new MySqlConnection(connectionString);
+                var connectionString = $"Host={server};Username={uid};Password={password};Database={database}";
+
+
+                connection = new NpgsqlConnection(connectionString);
                 connection.Open();
             }
+
             return connection;
         }
     }

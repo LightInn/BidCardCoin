@@ -8,17 +8,15 @@
     <Grid>
 
 
-        <StackPanel Margin="20">
+        <StackPanel Margin="20" >
             <TextBlock FontSize="20">BidCardCoin - Accueil</TextBlock>
             <DockPanel Margin="20" LastChildFill="False"  VerticalAlignment="Center" HorizontalAlignment="Center">
          
-                    <Border Margin="15" BorderBrush="Red" BorderThickness="1" Width="90" Height="120"></Border>
-           
-           
-                    <Border Margin="15" BorderBrush="Red" BorderThickness="1" Width="90" Height="120"></Border>
-       
+                <Border Margin="15" BorderBrush="Red" BorderThickness="1" Width="90" Height="120" ></Border>
+                
+                <Border Margin="15" BorderBrush="Red" BorderThickness="1" Width="90" Height="120"></Border>
               
-                    <Border Margin="15" BorderBrush="Red" BorderThickness="1" Width="90" Height="120"></Border>
+                <Border Margin="15" BorderBrush="Red" BorderThickness="1" Width="90" Height="120"></Border>
 
             </DockPanel>
             
