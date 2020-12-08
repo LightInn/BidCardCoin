@@ -6,16 +6,15 @@ namespace BidCardCoin.Models
     public class Utilisateur : Personne
     {
         private string _idUtilisateur;
-
         private bool _isSolvable;
         private bool _isRessortissant;
         private bool _identityExist;
         private List<string> _listeMotClef;
 
-        
+        // Todo version avec param optionnel 
         public Utilisateur(string idUtilisateur, bool isSolvable, bool isRessortissant, bool identityExist,
             List<string> listeMotClef, string idPersonne, string nom, string prenom, DateTime age, string email, 
-            string password, string telephoneMobile, string telephoneFixe)
+            string password, string telephoneMobile, string telephoneFixe, Adresse adresse)
         {
             this._idPersonne = idPersonne;
             this._nom = nom;
@@ -25,6 +24,8 @@ namespace BidCardCoin.Models
             this._password = password;
             this._telephoneMobile = telephoneMobile;
             this._telephoneFixe = telephoneFixe;
+            this._adresse = adresse;
+            
             this._idUtilisateur = idUtilisateur;
             this._isSolvable = isSolvable;
             this._isRessortissant = isRessortissant;
