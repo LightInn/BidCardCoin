@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -22,10 +23,8 @@ namespace BidCardCoin
     /// </summary>
     public partial class MainWindow
     {
-
-
         public static string onglet;
-        
+
         public MainWindow()
         {
             InitializeComponent();
@@ -36,8 +35,7 @@ namespace BidCardCoin
             body.Width = this.Width;
             nav.Height = this.Height;
 
-
-            SubView.Children.Add(new Controlle_Test());
+            SubView.Children.Add(new HomeTabView(this));
         }
 
         public void Window_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -53,7 +51,6 @@ namespace BidCardCoin
                 this.BorderThickness = new System.Windows.Thickness(1);
             }
         }
-
 
         private void SwitchState()
         {
@@ -114,6 +111,66 @@ namespace BidCardCoin
         private void ExitClick(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        /* ------------------------------------------------ NAV -----------------------------------------------------*/
+
+
+        private void NavHoverEffectEnter(object o, MouseEventArgs mouseEventArgs)
+        {
+            var border = ((o as Button)?.Content as Border);
+            border.CornerRadius = new CornerRadius(10);
+            border.Background = (SolidColorBrush) new BrushConverter().ConvertFrom("#7289DA");
+        }
+
+        private void NavHoverEffectExit(object o, MouseEventArgs mouseEventArgs)
+        {
+            var border = ((o as Button)?.Content as Border);
+            border.CornerRadius = new CornerRadius(100);
+            border.Background = (SolidColorBrush) new BrushConverter().ConvertFrom("#393C43");
+        }
+
+
+        /* ------------------------------------------------ TABS -----------------------------------------------------*/
+
+        public void Tab_Home(object sender, RoutedEventArgs e)
+        {
+            if (SubView.Children.Count == 1)
+            {
+                SubView.Children.RemoveAt(0);
+            }
+
+            SubView.Children.Add(new HomeTabView(this));
+        }
+
+        public void Tab_Achat(object sender, RoutedEventArgs e)
+        {
+            if (SubView.Children.Count == 1)
+            {
+                SubView.Children.RemoveAt(0);
+            }
+
+            SubView.Children.Add(new AchatTabView());
+        }
+
+        public void Tab_Solde(object sender, RoutedEventArgs e)
+        {
+            if (SubView.Children.Count == 1)
+            {
+                SubView.Children.RemoveAt(0);
+            }
+
+            SubView.Children.Add(new SoldeTabView());
+        }
+
+        public void Tab_Wrench(object sender, RoutedEventArgs e)
+        {
+            if (SubView.Children.Count == 1)
+            {
+                SubView.Children.RemoveAt(0);
+            }
+
+            SubView.Children.Add(new WrenchTanView());
         }
     }
 }

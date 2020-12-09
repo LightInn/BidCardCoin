@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Breval Nouveau\\Nextcloud\\cours\\C#\\BidCardCoin\\BidCardCoin.csproj": {}
+    "C:\\Users\\Breval Nouveau\\Nextcloud\\Projects\\C#\\BidCardCoin\\BidCardCoin.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Breval Nouveau\\Nextcloud\\cours\\C#\\BidCardCoin\\BidCardCoin.csproj": {
+    "C:\\Users\\Breval Nouveau\\Nextcloud\\Projects\\C#\\BidCardCoin\\BidCardCoin.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Breval Nouveau\\Nextcloud\\cours\\C#\\BidCardCoin\\BidCardCoin.csproj",
+        "projectUniqueName": "C:\\Users\\Breval Nouveau\\Nextcloud\\Projects\\C#\\BidCardCoin\\BidCardCoin.csproj",
         "projectName": "BidCardCoin",
-        "projectPath": "C:\\Users\\Breval Nouveau\\Nextcloud\\cours\\C#\\BidCardCoin\\BidCardCoin.csproj",
+        "projectPath": "C:\\Users\\Breval Nouveau\\Nextcloud\\Projects\\C#\\BidCardCoin\\BidCardCoin.csproj",
         "packagesPath": "C:\\Users\\Breval Nouveau\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Breval Nouveau\\Nextcloud\\cours\\C#\\BidCardCoin\\obj\\",
+        "outputPath": "C:\\Users\\Breval Nouveau\\Nextcloud\\Projects\\C#\\BidCardCoin\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Breval Nouveau\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -41,6 +41,10 @@
             "MySql.Data": {
               "target": "Package",
               "version": "[8.0.22, )"
+            },
+            "Npgsql": {
+              "target": "Package",
+              "version": "[5.0.0, )"
             }
           },
           "imports": [
