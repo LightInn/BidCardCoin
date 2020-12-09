@@ -8,5 +8,10 @@ namespace bidCardCoin.ORM
 {
     public class UtilisateurORM
     {
+        
+        
+        
+        
+        
     }
 }
