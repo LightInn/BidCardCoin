@@ -97,8 +97,7 @@ namespace bidCardCoin.DAL
             reader.Close();
             foreach (var adresseDao in liste)
                 liste.Add(new AdresseDAO(idAdresse, pays, region, ville, codePostal, adresse));
-            }
-
+            
             return liste;
         }
         
