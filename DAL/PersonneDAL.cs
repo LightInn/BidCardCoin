@@ -130,6 +130,16 @@ namespace bidCardCoin.DAL
             cmd.Parameters.AddWithValue("telephoneFixe", personne.TelephoneFixe);
 
             cmd.ExecuteNonQuery();
+
+            foreach (var adresse in personne.Adresses)
+            {
+                query =
+                    "INSERT INTO public.adressepersonne (\"personneId\",\"adresseId\") VALUES (:idPersonne, :adresseId)";
+                cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
+                cmd.Parameters.AddWithValue("idPersonne", personne.IdPersonne);
+                cmd.Parameters.AddWithValue("adresseId", adresse);
+                cmd.ExecuteNonQuery();
+            }
         }
 
 
@@ -155,6 +165,19 @@ namespace bidCardCoin.DAL
             cmd.Parameters.AddWithValue("telephoneFixe", personne.TelephoneFixe);
 
             cmd.ExecuteNonQuery();
+
+
+            foreach (var adresse in personne.Adresses)
+            {
+                query =
+                    "INSERT INTO public.adressepersonne (\"personneId\",\"adresseId\") VALUES (:idPersonne, :adresseId) ON conflict do UPDATE SET \"personneId\"  = :idPersonne, \"adresseId\" = :adresseId";
+
+
+                cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
+                cmd.Parameters.AddWithValue("idPersonne", personne.IdPersonne);
+                cmd.Parameters.AddWithValue("adresseId", adresse);
+                cmd.ExecuteNonQuery();
+            }
         }
 
 // DELETE
@@ -162,13 +185,13 @@ namespace bidCardCoin.DAL
         public static void DeletePersonne(string id)
         {
             // Supprimer Personne dans la bdd
-            
-            
-             var query = "DELETE FROM public.personne WHERE \"idPersonne\" = :id;";
 
-             var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
-             cmd.Parameters.AddWithValue("id", id);
-             cmd.ExecuteNonQuery();
+
+            var query = "DELETE FROM public.personne WHERE \"idPersonne\" = :id;";
+
+            var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
+            cmd.Parameters.AddWithValue("id", id);
+            cmd.ExecuteNonQuery();
         }
     }
 }
