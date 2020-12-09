@@ -8,5 +8,6 @@ namespace bidCardCoin.ORM
 {
     public class AdresseORM
     {
+        
     }
 }

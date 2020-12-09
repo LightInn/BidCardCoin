@@ -10,8 +10,7 @@ namespace BidCardCoin.Vue
             InitializeComponent();
 
             DALconnection.OpenConnection();
-            
-
+            var test = AdresseDAL.SelectAllAdresse();
         }
     }
 }

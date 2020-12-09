@@ -10,7 +10,7 @@ namespace bidCardCoin.DAL
     public class PhotoDAL
     {
         // SELECT
-
+/*
         static PhotoDAO SelectPhotoById(string id)
         {
             // Selectionné l'Photo a partir de l'id
@@ -45,5 +45,6 @@ namespace bidCardCoin.DAL
         {
             // Supprimer Photo dans la bdd
         }
+            */
     }
 }

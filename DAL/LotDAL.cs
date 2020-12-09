@@ -10,7 +10,7 @@ namespace bidCardCoin.DAL
     public class LotDAL
     {
         // SELECT
-
+/*
         static LotDAO SelectLotById(string id)
         {
             // Selectionné l'Lot a partir de l'id
@@ -45,5 +45,6 @@ namespace bidCardCoin.DAL
         {
             // Supprimer Lot dans la bdd
         }
+        */
     }
 }
