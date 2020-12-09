@@ -7,18 +7,20 @@ using bidCardCoin.DAO;
 
 namespace bidCardCoin.DAL
 {
-    public class CommissaireDAL
+    public static class CommissaireDAL
     {
         // SELECT
-/*
-        static CommissaireDAO SelectCommissaireById(string id)
+
+
+        public static CommissaireDAO SelectCommissaireById(string id)
+
         {
             // Selectionné l'Commissaire a partir de l'id
             return new CommissaireDAO();
         }
 
 
-        static List<CommissaireDAO> SelectAllCommissaire()
+        public static List<CommissaireDAO> SelectAllCommissaire()
         {
             // Selectionné tout les Commissaire dans la base de donnée
             return new List<CommissaireDAO>();
@@ -27,24 +29,32 @@ namespace bidCardCoin.DAL
 
 // INSERT
 
-        static void InsertNewCommissaire(CommissaireDAO Commissaire)
+        public static void InsertNewCommissaire(CommissaireDAO Commissaire)
         {
             // Inserer Commissaire dans la bdd
+
+
+            //     INSERT INTO public.commissaire (
+            //     "idCommissaire", "personneId"
+            // ) VALUES (
+            //     '33520d82-39f6-11eb-adc1-0242ac120002', 'c7f07ec8-39f2-11eb-adc1-0242ac120002')
+            // returning "idCommissaire";
+
         }
 
 // UPDATE
 
-        static void UpdateCommissaire(CommissaireDAO Commissaire)
+        public static void UpdateCommissaire(CommissaireDAO Commissaire)
         {
             // Mettre a jour Commissaire dans la bdd
         }
 
 // DELETE
 
-        static void DeleteCommissaire(string CommissaireId)
+        public static void DeleteCommissaire(string CommissaireId)
         {
             // Supprimer Commissaire dans la bdd
         }
-        */
+        
     }
 }

@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "BidCardCoin": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "PASSWORD_ENVIRONMENT": "dbpassword",
+        "SERVER_ENVIRONMENT": "aranea.me",
+        "UID_ENVIRONMENT": "dbuser",
+        "DATABASE_ENVIRONMENT": "bidcardcoin"
+      }
+    }
+  }
+}

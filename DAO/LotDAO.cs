@@ -13,6 +13,10 @@ namespace bidCardCoin.DAO
         private string _nomLot;
         private string _description;
 
+        public LotDAO()
+        {
+        }
+
         public LotDAO(string idLot, string nomLot, string description)
         {
             this._idLot = idLot;

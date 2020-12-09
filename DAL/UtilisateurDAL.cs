@@ -7,18 +7,20 @@ using bidCardCoin.DAO;
 
 namespace bidCardCoin.DAL
 {
-    public class UtilisateurDAL
+    public static class UtilisateurDAL
     {
         // SELECT
-/*
-        static UtilisateurDAO SelectUtilisateurById(string id)
+
+
+        public static UtilisateurDAO SelectUtilisateurById(string id)
+
         {
             // Selectionné l'Utilisateur a partir de l'id
             return new UtilisateurDAO();
         }
 
 
-        static List<UtilisateurDAO> SelectAllUtilisateur()
+        public static List<UtilisateurDAO> SelectAllUtilisateur()
         {
             // Selectionné tout les Utilisateur dans la base de donnée
             return new List<UtilisateurDAO>();
@@ -27,24 +29,24 @@ namespace bidCardCoin.DAL
 
 // INSERT
 
-        static void InsertNewUtilisateur(UtilisateurDAO Utilisateur)
+        public static void InsertNewUtilisateur(UtilisateurDAO Utilisateur)
         {
             // Inserer Utilisateur dans la bdd
         }
 
 // UPDATE
 
-        static void UpdateUtilisateur(UtilisateurDAO Utilisateur)
+        public static void UpdateUtilisateur(UtilisateurDAO Utilisateur)
         {
             // Mettre a jour Utilisateur dans la bdd
         }
 
 // DELETE
 
-        static void DeleteUtilisateur(string UtilisateurId)
+        public static void DeleteUtilisateur(string UtilisateurId)
         {
             // Supprimer Utilisateur dans la bdd
         }
-            */
+            
     }
 }

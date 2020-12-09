@@ -7,18 +7,19 @@ using bidCardCoin.DAO;
 
 namespace bidCardCoin.DAL
 {
-    public class CategorieDAL
+    public static  class CategorieDAL
     {
         // SELECT
-/*
-        static CategorieDAO SelectCategorieById(string id)
+
+        public static CategorieDAO SelectCategorieById(string id)
+
         {
             // Selectionné l'Categorie a partir de l'id
             return new CategorieDAO();
         }
 
 
-        static List<CategorieDAO> SelectAllCategorie()
+        public static List<CategorieDAO> SelectAllCategorie()
         {
             // Selectionné tout les Categorie dans la base de donnée
             return new List<CategorieDAO>();
@@ -27,25 +28,25 @@ namespace bidCardCoin.DAL
 
 // INSERT
 
-        static void InsertNewCategorie(CategorieDAO Categorie)
+        public static void InsertNewCategorie(CategorieDAO Categorie)
         {
             // Inserer Categorie dans la bdd
         }
 
 // UPDATE
 
-        static void UpdateCategorie(CategorieDAO Categorie)
+        public static void UpdateCategorie(CategorieDAO Categorie)
         {
             // Mettre a jour Categorie dans la bdd
         }
 
 // DELETE
 
-        static void DeleteCategorie(string CategorieId)
+        public static void DeleteCategorie(string CategorieId)
         {
             // Supprimer Categorie dans la bdd
         }
         
-        */
+        
     }
 }

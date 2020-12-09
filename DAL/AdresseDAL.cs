@@ -8,7 +8,7 @@ using Npgsql;
 
 namespace bidCardCoin.DAL
 {
-    public static class AdresseDAL
+     public static class AdresseDAL
     {
 // SELECT
 
@@ -54,6 +54,7 @@ namespace bidCardCoin.DAL
                 var codePostal = (string) reader["codePostal"];
                 var adresse = (string) reader["adresse"];
 
+
                 liste.Add(new AdresseDAO(idAdresse, pays, region, ville, codePostal, adresse));
             }
 
@@ -61,6 +62,7 @@ namespace bidCardCoin.DAL
         }
         
         // INSERT
+
         public static void InsertNewAdresse(AdresseDAO adresse)
         {
             // Inserer adresse dans la bdd
@@ -106,6 +108,8 @@ namespace bidCardCoin.DAL
         }
 
 // DELETE
+
+
         public static void DeleteAdresse(string adresseId)
         {
             // Supprimer adresse dans la bdd

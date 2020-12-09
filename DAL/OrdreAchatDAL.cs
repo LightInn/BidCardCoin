@@ -7,18 +7,20 @@ using bidCardCoin.DAO;
 
 namespace bidCardCoin.DAL
 {
-    public class OrdreAchatDAL
+    public static class OrdreAchatDAL
     {
         // SELECT
-/*
-        static OrdreAchatDAO SelectOrdreAchatById(string id)
+
+
+        public static OrdreAchatDAO SelectOrdreAchatById(string id)
+
         {
             // Selectionné l'OrdreAchat a partir de l'id
             return new OrdreAchatDAO();
         }
 
 
-        static List<OrdreAchatDAO> SelectAllOrdreAchat()
+        public static List<OrdreAchatDAO> SelectAllOrdreAchat()
         {
             // Selectionné tout les OrdreAchat dans la base de donnée
             return new List<OrdreAchatDAO>();
@@ -27,24 +29,24 @@ namespace bidCardCoin.DAL
 
 // INSERT
 
-        static void InsertNewOrdreAchat(OrdreAchatDAO OrdreAchat)
+        public static void InsertNewOrdreAchat(OrdreAchatDAO OrdreAchat)
         {
             // Inserer OrdreAchat dans la bdd
         }
 
 // UPDATE
 
-        static void UpdateOrdreAchat(OrdreAchatDAO OrdreAchat)
+        public static void UpdateOrdreAchat(OrdreAchatDAO OrdreAchat)
         {
             // Mettre a jour OrdreAchat dans la bdd
         }
 
 // DELETE
 
-        static void DeleteOrdreAchat(string OrdreAchatId)
+        public static void DeleteOrdreAchat(string OrdreAchatId)
         {
             // Supprimer OrdreAchat dans la bdd
         }
-        */
+        
     }
 }

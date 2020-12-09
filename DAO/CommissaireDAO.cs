@@ -11,6 +11,10 @@ namespace bidCardCoin.DAO
         private string _idCommissaire;
         private string _personneId;
 
+        public CommissaireDAO()
+        {
+        }
+
         public CommissaireDAO(string idCommissaire, string personneId)
         {
             this._idCommissaire = idCommissaire;

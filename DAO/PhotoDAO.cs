@@ -13,6 +13,10 @@ namespace bidCardCoin.DAO
         private string _fichierPhoto;
         private string _produitId;
 
+        public PhotoDAO()
+        {
+        }
+
         public PhotoDAO(string idPhoto, string fichierPhoto, string produitId)
         {
             this._idPhoto = idPhoto;

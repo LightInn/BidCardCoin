@@ -16,6 +16,10 @@ namespace bidCardCoin.DAO
         private string _dateEstimation;
         private double _prixEstimation;
 
+        public EstimationDAO()
+        {
+        }
+
         public EstimationDAO(string idEstimation, string produitId, string commissaireId, string dateEstimation, double prixEstimation)
         {
             this._idEstimation = idEstimation;

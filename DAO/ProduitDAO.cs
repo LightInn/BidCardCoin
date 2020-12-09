@@ -23,6 +23,10 @@ namespace bidCardCoin.DAO
         private string _enchereGagnanteId;
 
         // Sans enchere gagnante
+        public ProduitDAO()
+        {
+        }
+
         public ProduitDAO(string idProduit, string nomArtiste, string nomStyle, string nomProduit, double prixReserve, string referenceCatalogue, string descriptionProduit, bool isSend, string stockId, string utilisateurId, string lotId)
         {
             _idProduit = idProduit;
