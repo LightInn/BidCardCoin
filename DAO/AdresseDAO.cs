@@ -8,20 +8,25 @@ namespace bidCardCoin.DAO
 {
     public class AdresseDAO
     {
+        public string IdAdresse { get; }
+        public string Pays { get; }
+        public string Region { get; }
+        public string Ville { get; }
+        public string CodePostal { get; }
+        public string Adresse { get; }
 
-        private string _idAdresse;
-        private string _pays;
-        private string _region;
-        private string _ville;
-        private string _codePostal;
-
-        public AdresseDAO(string idAdresse, string pays, string region, string ville, string codePostal)
+        public AdresseDAO()
         {
-            this._idAdresse = idAdresse;
-            this._pays = pays;
-            this._region = region;
-            this._ville = ville;
-            this._codePostal = codePostal;
+            
+        }
+        public AdresseDAO(string idAdresse, string pays, string region, string ville, string codePostal, string adresse)
+        {
+            this.IdAdresse = idAdresse;
+            this.Pays = pays;
+            this.Region = region;
+            this.Ville = ville;
+            this.CodePostal = codePostal;
+            this.Adresse = adresse;
         }
 
     }

@@ -10,7 +10,7 @@ namespace bidCardCoin.DAL
     public class CommissaireDAL
     {
         // SELECT
-
+/*
         static CommissaireDAO SelectCommissaireById(string id)
         {
             // Selectionné l'Commissaire a partir de l'id
@@ -45,5 +45,6 @@ namespace bidCardCoin.DAL
         {
             // Supprimer Commissaire dans la bdd
         }
+        */
     }
 }

@@ -10,7 +10,7 @@ namespace bidCardCoin.DAL
     public class EnchereDAL
     {
         // SELECT
-
+/*
         static EnchereDAO SelectEnchereById(string id)
         {
             // Selectionné l'Enchere a partir de l'id
@@ -45,5 +45,6 @@ namespace bidCardCoin.DAL
         {
             // Supprimer Enchere dans la bdd
         }
+        */
     }
 }
