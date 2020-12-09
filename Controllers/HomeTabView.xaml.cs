@@ -1,14 +1,12 @@
-<<<<<<< HEAD
 using System;
-    ====== =
 using System.Collections.Generic;
-    >>>>>>> developement
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using bidCardCoin.DAL;
 using bidCardCoin.DAO;
+using bidCardCoin.ORM;
 
 namespace BidCardCoin.Vue
 {
@@ -23,9 +21,7 @@ namespace BidCardCoin.Vue
 
             DALconnection.OpenConnection();
 
-            EnchereDAL.InsertNewEnchere(new EnchereDAO("5e558c62-3a28-11eb-adc1-0242ac120002", 32.0, false,
-                DateTime.Now, "b98517be-e15f-407f-b37b-8dedf74497e2", "33520d82-39f6-11eb-adc1-0242ac120002",
-                null, "20ef2fcc-39f5-11eb-adc1-0242ac120002"));
+           var user  =  UtilisateurORM.getUtilisateurById("1e7e3090-39f4-11eb-adc1-0242ac120002");
 
 
             var test = EnchereDAL.SelectAllEnchere();

@@ -36,7 +36,7 @@ namespace bidCardCoin.DAL
                 var email = (string) reader["email"];
                 var password = (string) reader["password"];
                 var telephoneMobile = (string) reader["telephoneMobile"];
-                var telephoneFixe = (string) reader["telephoneFixe"];
+                var telephoneFixe = Convert.IsDBNull(reader["telephoneFixe"]) ? null : (string) reader["telephoneFixe"];
 
                 dao = new PersonneDAO(idPersonne, nom, prenom, age, email, password, telephoneMobile, telephoneFixe,
                     new List<string>());
