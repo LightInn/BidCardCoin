@@ -11,7 +11,9 @@ namespace bidCardCoin.DAL
     {
         // SELECT
 
+
         public static EstimationDAO SelectEstimationById(string id)
+
         {
             // Selectionné l'Estimation a partir de l'id
             return new EstimationDAO();
@@ -45,5 +47,7 @@ namespace bidCardCoin.DAL
         {
             // Supprimer Estimation dans la bdd
         }
+        
+
     }
 }

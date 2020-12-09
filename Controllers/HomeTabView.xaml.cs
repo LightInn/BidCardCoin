@@ -17,6 +17,7 @@ namespace BidCardCoin.Vue
 
             DALconnection.OpenConnection();
 
+
             var test = EnchereDAL.SelectAllEnchere();
         }
 
@@ -57,6 +58,7 @@ namespace BidCardCoin.Vue
         {           
             parent.SubView.Children.Add(new WrenchTanView());
             parent.SubView.Children.RemoveAt(0);
+
         }
     }
     

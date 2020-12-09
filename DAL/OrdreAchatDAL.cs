@@ -11,7 +11,9 @@ namespace bidCardCoin.DAL
     {
         // SELECT
 
+
         public static OrdreAchatDAO SelectOrdreAchatById(string id)
+
         {
             // Selectionné l'OrdreAchat a partir de l'id
             return new OrdreAchatDAO();
@@ -45,5 +47,6 @@ namespace bidCardCoin.DAL
         {
             // Supprimer OrdreAchat dans la bdd
         }
+        
     }
 }

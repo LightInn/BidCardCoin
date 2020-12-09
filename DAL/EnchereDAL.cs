@@ -10,9 +10,11 @@ namespace bidCardCoin.DAL
 {
     public static class EnchereDAL
     {
+
         // SELECT ---------------------------------------------------------------------
 
         public static EnchereDAO SelectEnchereById(string id)
+
         {
             // Selectionné l'Enchere a partir de l'id
 
@@ -133,5 +135,6 @@ namespace bidCardCoin.DAL
             cmd.Parameters.AddWithValue("id", id);
             cmd.ExecuteNonQuery();
         }
+        
     }
 }

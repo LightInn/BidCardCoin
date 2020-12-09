@@ -12,6 +12,7 @@ namespace bidCardCoin.DAL
         // SELECT
 
         public static CategorieDAO SelectCategorieById(string id)
+
         {
             // Selectionné l'Categorie a partir de l'id
             return new CategorieDAO();
@@ -45,5 +46,7 @@ namespace bidCardCoin.DAL
         {
             // Supprimer Categorie dans la bdd
         }
+        
+        
     }
 }

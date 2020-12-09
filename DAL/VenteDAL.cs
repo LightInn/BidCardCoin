@@ -11,7 +11,9 @@ namespace bidCardCoin.DAL
     {
         // SELECT
 
+
         public static VenteDAO SelectVenteById(string id)
+
         {
             // Selectionné l'Vente a partir de l'id
             return new VenteDAO();
@@ -45,5 +47,6 @@ namespace bidCardCoin.DAL
         {
             // Supprimer Vente dans la bdd
         }
+            
     }
 }

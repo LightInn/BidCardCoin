@@ -11,7 +11,9 @@ namespace bidCardCoin.DAL
     {
         // SELECT
 
+
         public static PersonneDAO SelectPersonneById(string id)
+
         {
             // Selectionné l'Personne a partir de l'id
             return new PersonneDAO();
@@ -56,5 +58,6 @@ namespace bidCardCoin.DAL
         {
             // Supprimer Personne dans la bdd
         }
+            
     }
 }

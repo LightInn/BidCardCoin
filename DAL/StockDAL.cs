@@ -12,6 +12,7 @@ namespace bidCardCoin.DAL
         // SELECT
 
         public static StockDAO SelectStockById(string id)
+
         {
             // Selectionné l'Stock a partir de l'id
             return new StockDAO();
@@ -45,5 +46,6 @@ namespace bidCardCoin.DAL
         {
             // Supprimer Stock dans la bdd
         }
+            
     }
 }

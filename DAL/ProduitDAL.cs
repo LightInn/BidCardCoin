@@ -11,7 +11,9 @@ namespace bidCardCoin.DAL
     {
         // SELECT
 
+
         public static ProduitDAO SelectProduitById(string id)
+
         {
             // Selectionné l'Produit a partir de l'id
             return new ProduitDAO();
@@ -45,5 +47,6 @@ namespace bidCardCoin.DAL
         {
             // Supprimer Produit dans la bdd
         }
+            
     }
 }

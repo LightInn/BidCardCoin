@@ -5,7 +5,6 @@ using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MySql.Data.MySqlClient;
 using Npgsql;
 
 namespace bidCardCoin.DAL

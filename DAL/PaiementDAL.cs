@@ -11,7 +11,9 @@ namespace bidCardCoin.DAL
     {
         // SELECT
 
+
         public static PaiementDAO SelectPaiementById(string id)
+
         {
             // Selectionné l'Paiement a partir de l'id
             return new PaiementDAO();
@@ -45,5 +47,6 @@ namespace bidCardCoin.DAL
         {
             // Supprimer Paiement dans la bdd
         }
+    
     }
 }

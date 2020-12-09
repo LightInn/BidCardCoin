@@ -11,7 +11,9 @@ namespace bidCardCoin.DAL
     {
         // SELECT
 
+
         public static CommissaireDAO SelectCommissaireById(string id)
+
         {
             // Selectionné l'Commissaire a partir de l'id
             return new CommissaireDAO();
@@ -53,5 +55,6 @@ namespace bidCardCoin.DAL
         {
             // Supprimer Commissaire dans la bdd
         }
+        
     }
 }
