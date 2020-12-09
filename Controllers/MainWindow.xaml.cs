@@ -35,7 +35,7 @@ namespace BidCardCoin
             body.Width = this.Width;
             nav.Height = this.Height;
 
-            SubView.Children.Add(new HomeTabView());
+            SubView.Children.Add(new HomeTabView(this));
         }
 
         public void Window_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -133,17 +133,17 @@ namespace BidCardCoin
 
         /* ------------------------------------------------ TABS -----------------------------------------------------*/
 
-        private void Tab_Home(object sender, RoutedEventArgs e)
+        public void Tab_Home(object sender, RoutedEventArgs e)
         {
             if (SubView.Children.Count == 1)
             {
                 SubView.Children.RemoveAt(0);
             }
 
-            SubView.Children.Add(new HomeTabView());
+            SubView.Children.Add(new HomeTabView(this));
         }
 
-        private void Tab_Achat(object sender, RoutedEventArgs e)
+        public void Tab_Achat(object sender, RoutedEventArgs e)
         {
             if (SubView.Children.Count == 1)
             {
@@ -153,7 +153,7 @@ namespace BidCardCoin
             SubView.Children.Add(new AchatTabView());
         }
 
-        private void Tab_Solde(object sender, RoutedEventArgs e)
+        public void Tab_Solde(object sender, RoutedEventArgs e)
         {
             if (SubView.Children.Count == 1)
             {
@@ -163,7 +163,7 @@ namespace BidCardCoin
             SubView.Children.Add(new SoldeTabView());
         }
 
-        private void Tab_Wrench(object sender, RoutedEventArgs e)
+        public void Tab_Wrench(object sender, RoutedEventArgs e)
         {
             if (SubView.Children.Count == 1)
             {

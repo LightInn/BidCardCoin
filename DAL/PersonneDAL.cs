@@ -7,18 +7,18 @@ using bidCardCoin.DAO;
 
 namespace bidCardCoin.DAL
 {
-    public class PersonneDAL
+    public static class PersonneDAL
     {
         // SELECT
 
-        static PersonneDAO SelectPersonneById(string id)
+        public static PersonneDAO SelectPersonneById(string id)
         {
             // Selectionné l'Personne a partir de l'id
             return new PersonneDAO();
         }
 
 
-        static List<PersonneDAO> SelectAllPersonne()
+        public static List<PersonneDAO> SelectAllPersonne()
         {
             // Selectionné tout les Personne dans la base de donnée
             return new List<PersonneDAO>();
@@ -27,21 +27,32 @@ namespace bidCardCoin.DAL
 
 // INSERT
 
-        static void InsertNewPersonne(PersonneDAO Personne)
+        public static void InsertNewPersonne(PersonneDAO Personne)
         {
             // Inserer Personne dans la bdd
+
+
+            //     INSERT INTO public.personne (
+            //     "idPersonne", "nom", "prenom", "age", "email",
+            //     "password", "telephoneMobile", "telephoneFixe"
+            // ) VALUES (
+            //     'f13d24de-39f2-11eb-adc1-0242ac120002', 'La Mineure', 'Lilou',
+            //     8, 'lilou.jesuisuneenfant@police.fr',
+            //     '12345678', '36 30',
+            //     null)
+            // returning "idPersonne";
         }
 
 // UPDATE
 
-        static void UpdatePersonne(PersonneDAO Personne)
+        public static void UpdatePersonne(PersonneDAO Personne)
         {
             // Mettre a jour Personne dans la bdd
         }
 
 // DELETE
 
-        static void DeletePersonne(string PersonneId)
+        public static void DeletePersonne(string PersonneId)
         {
             // Supprimer Personne dans la bdd
         }

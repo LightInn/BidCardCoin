@@ -7,18 +7,18 @@ using bidCardCoin.DAO;
 
 namespace bidCardCoin.DAL
 {
-    public class PhotoDAL
+    public static class PhotoDAL
     {
         // SELECT
 
-        static PhotoDAO SelectPhotoById(string id)
+        public static PhotoDAO SelectPhotoById(string id)
         {
             // Selectionné l'Photo a partir de l'id
             return new PhotoDAO();
         }
 
 
-        static List<PhotoDAO> SelectAllPhoto()
+        public static List<PhotoDAO> SelectAllPhoto()
         {
             // Selectionné tout les Photo dans la base de donnée
             return new List<PhotoDAO>();
@@ -27,21 +27,21 @@ namespace bidCardCoin.DAL
 
 // INSERT
 
-        static void InsertNewPhoto(PhotoDAO Photo)
+        public static void InsertNewPhoto(PhotoDAO Photo)
         {
             // Inserer Photo dans la bdd
         }
 
 // UPDATE
 
-        static void UpdatePhoto(PhotoDAO Photo)
+        public static void UpdatePhoto(PhotoDAO Photo)
         {
             // Mettre a jour Photo dans la bdd
         }
 
 // DELETE
 
-        static void DeletePhoto(string PhotoId)
+        public static void DeletePhoto(string PhotoId)
         {
             // Supprimer Photo dans la bdd
         }

@@ -12,6 +12,10 @@ namespace bidCardCoin.DAO
         private string _categorieId;
         private string _nomCategorie;
 
+        public CategorieDAO()
+        {
+        }
+
         public CategorieDAO(string idCategorie, string nomCategorie)
         {
             this._idCategorie = idCategorie;

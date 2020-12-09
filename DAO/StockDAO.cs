@@ -12,6 +12,10 @@ namespace bidCardCoin.DAO
         private int _quantite;
         private string _adresseId;
 
+        public StockDAO()
+        {
+        }
+
         public StockDAO(string idStock, int quantite, string adresseId)
         {
             this._idStock = idStock;

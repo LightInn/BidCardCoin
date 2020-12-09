@@ -7,18 +7,18 @@ using bidCardCoin.DAO;
 
 namespace bidCardCoin.DAL
 {
-    public class LotDAL
+    public static class LotDAL
     {
         // SELECT
 
-        static LotDAO SelectLotById(string id)
+        public static LotDAO SelectLotById(string id)
         {
             // Selectionné l'Lot a partir de l'id
             return new LotDAO();
         }
 
 
-        static List<LotDAO> SelectAllLot()
+        public static List<LotDAO> SelectAllLot()
         {
             // Selectionné tout les Lot dans la base de donnée
             return new List<LotDAO>();
@@ -27,21 +27,21 @@ namespace bidCardCoin.DAL
 
 // INSERT
 
-        static void InsertNewLot(LotDAO Lot)
+        public static void InsertNewLot(LotDAO Lot)
         {
             // Inserer Lot dans la bdd
         }
 
 // UPDATE
 
-        static void UpdateLot(LotDAO Lot)
+        public static void UpdateLot(LotDAO Lot)
         {
             // Mettre a jour Lot dans la bdd
         }
 
 // DELETE
 
-        static void DeleteLot(string LotId)
+        public static void DeleteLot(string LotId)
         {
             // Supprimer Lot dans la bdd
         }

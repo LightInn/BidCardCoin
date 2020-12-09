@@ -15,6 +15,10 @@ namespace bidCardCoin.DAO
         private string _ville;
         private string _codePostal;
 
+        public AdresseDAO()
+        {
+        }
+
         public AdresseDAO(string idAdresse, string pays, string region, string ville, string codePostal)
         {
             this._idAdresse = idAdresse;

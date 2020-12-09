@@ -7,18 +7,18 @@ using bidCardCoin.DAO;
 
 namespace bidCardCoin.DAL
 {
-    public class ProduitDAL
+    public static class ProduitDAL
     {
         // SELECT
 
-        static ProduitDAO SelectProduitById(string id)
+        public static ProduitDAO SelectProduitById(string id)
         {
             // Selectionné l'Produit a partir de l'id
             return new ProduitDAO();
         }
 
 
-        static List<ProduitDAO> SelectAllProduit()
+        public static List<ProduitDAO> SelectAllProduit()
         {
             // Selectionné tout les Produit dans la base de donnée
             return new List<ProduitDAO>();
@@ -27,21 +27,21 @@ namespace bidCardCoin.DAL
 
 // INSERT
 
-        static void InsertNewProduit(ProduitDAO Produit)
+        public static void InsertNewProduit(ProduitDAO Produit)
         {
             // Inserer Produit dans la bdd
         }
 
 // UPDATE
 
-        static void UpdateProduit(ProduitDAO Produit)
+        public static void UpdateProduit(ProduitDAO Produit)
         {
             // Mettre a jour Produit dans la bdd
         }
 
 // DELETE
 
-        static void DeleteProduit(string ProduitId)
+        public static void DeleteProduit(string ProduitId)
         {
             // Supprimer Produit dans la bdd
         }

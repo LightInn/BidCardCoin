@@ -16,6 +16,11 @@ namespace bidCardCoin.DAO
         private string _listeMotClef;
 
         // étranger
+
+        public UtilisateurDAO()
+        {
+        }
+
         public UtilisateurDAO(string idUtilisateur, string personneId, bool verifSolvable, bool verifRessortissant, bool verifIdentite, string listeMotClef)
         {
             this._idUtilisateur = idUtilisateur;

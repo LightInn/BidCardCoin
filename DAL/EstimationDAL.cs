@@ -7,18 +7,18 @@ using bidCardCoin.DAO;
 
 namespace bidCardCoin.DAL
 {
-    public class EstimationDAL
+    public static class EstimationDAL
     {
         // SELECT
 
-        static EstimationDAO SelectEstimationById(string id)
+        public static EstimationDAO SelectEstimationById(string id)
         {
             // Selectionné l'Estimation a partir de l'id
             return new EstimationDAO();
         }
 
 
-        static List<EstimationDAO> SelectAllEstimation()
+        public static List<EstimationDAO> SelectAllEstimation()
         {
             // Selectionné tout les Estimation dans la base de donnée
             return new List<EstimationDAO>();
@@ -27,21 +27,21 @@ namespace bidCardCoin.DAL
 
 // INSERT
 
-        static void InsertNewEstimation(EstimationDAO Estimation)
+        public static void InsertNewEstimation(EstimationDAO Estimation)
         {
             // Inserer Estimation dans la bdd
         }
 
 // UPDATE
 
-        static void UpdateEstimation(EstimationDAO Estimation)
+        public static void UpdateEstimation(EstimationDAO Estimation)
         {
             // Mettre a jour Estimation dans la bdd
         }
 
 // DELETE
 
-        static void DeleteEstimation(string EstimationId)
+        public static void DeleteEstimation(string EstimationId)
         {
             // Supprimer Estimation dans la bdd
         }
