@@ -14,6 +14,10 @@ namespace bidCardCoin.DAO
         private string _typePaiement;
         private bool _validationPaiement;
 
+        public PaiementDAO()
+        {
+        }
+
         public PaiementDAO(string idPaiement, string lotId, string utilisateurId, string typePaiement, bool validationPaiement)
         {
             _idPaiement = idPaiement;

@@ -13,6 +13,10 @@ namespace bidCardCoin.DAO
         private string _adresseId;
         private string _dateDebut;
 
+        public VenteDAO()
+        {
+        }
+
         public VenteDAO(string idVente, string produitId, string adresseId, string dateDebut)
         {
             this._idVente = idVente;

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,7 +25,7 @@ namespace bidCardCoin.DAL
                 database = Environment.GetEnvironmentVariable("DATABASE_ENVIRONMENT");
                 uid = Environment.GetEnvironmentVariable("UID_ENVIRONMENT");
                 password = Environment.GetEnvironmentVariable("PASSWORD_ENVIRONMENT");
-                var connectionString = $"Host={server};Username={uid};Password={password};Database={database}";
+                var connectionString = $"Host={server};Username={uid};Password={password};Database={database};Pooling=false";
 
 
                 connection = new NpgsqlConnection(connectionString);

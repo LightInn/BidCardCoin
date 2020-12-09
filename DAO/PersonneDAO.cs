@@ -17,6 +17,10 @@ namespace bidCardCoin.DAO
         private string _telephoneMobile;
         private string _telephoneFixe;
 
+        public PersonneDAO()
+        {
+        }
+
         public PersonneDAO(string idPersonne, string nom, string prenom, int age, string email, string password, string telephoneMobile, string telephoneFixe)
         {
             this._idPersonne = idPersonne;

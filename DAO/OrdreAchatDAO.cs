@@ -17,6 +17,10 @@ namespace bidCardCoin.DAO
         // private DateTime date;
         private string _date;
 
+        public OrdreAchatDAO()
+        {
+        }
+
         public OrdreAchatDAO(string idOrdreAchat, string utilisateurId, string lotId, bool informatiser, double montantMax, string date)
         {
             this._idOrdreAchat = idOrdreAchat;

@@ -8,7 +8,7 @@ using Npgsql;
 
 namespace bidCardCoin.DAL
 {
-    public static class AdresseDAL
+     public static class AdresseDAL
     {
         // SELECT LISTE PERSONNE ON ADRESSE BY ID
         public static List<string> SelectPersonneInAdressesById(string id)
@@ -93,18 +93,15 @@ namespace bidCardCoin.DAL
                 liste.Add(new AdresseDAO(idAdresse, pays, region, ville, codePostal, adresse,
                     new List<string>()));
             }
-
+          
             reader.Close();
-
             foreach (var adresseDao in liste)
-            {
-                adresseDao.ListePersonneId = SelectPersonneInAdressesById(adresseDao.Adresse);
+                liste.Add(new AdresseDAO(idAdresse, pays, region, ville, codePostal, adresse));
             }
-
 
             return liste;
         }
-
+        
         // INSERT & Update 
         public static void InsertOrAddNewAdresse(AdresseDAO adresse)
         {
