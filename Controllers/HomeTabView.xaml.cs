@@ -1,5 +1,7 @@
-﻿using System.Windows.Controls;
+﻿using System.Collections.Generic;
+using System.Windows.Controls;
 using bidCardCoin.DAL;
+using bidCardCoin.DAO;
 
 namespace BidCardCoin.Vue
 {
@@ -10,7 +12,7 @@ namespace BidCardCoin.Vue
             InitializeComponent();
 
             DALconnection.OpenConnection();
-            var test = AdresseDAL.SelectAllAdresse();
+
         }
     }
 }

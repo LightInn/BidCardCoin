@@ -14,12 +14,12 @@ namespace bidCardCoin.DAO
         public string Ville { get; }
         public string CodePostal { get; }
         public string Adresse { get; }
+        public List<string> ListePersonneId { get; set; }
 
         public AdresseDAO()
         {
-            
         }
-        public AdresseDAO(string idAdresse, string pays, string region, string ville, string codePostal, string adresse)
+        public AdresseDAO(string idAdresse, string pays, string region, string ville, string codePostal, string adresse, List<string> listePersonneId)
         {
             this.IdAdresse = idAdresse;
             this.Pays = pays;
@@ -27,6 +27,7 @@ namespace bidCardCoin.DAO
             this.Ville = ville;
             this.CodePostal = codePostal;
             this.Adresse = adresse;
+            this.ListePersonneId = listePersonneId;
         }
 
     }

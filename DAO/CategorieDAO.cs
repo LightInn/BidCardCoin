@@ -8,20 +8,24 @@ namespace bidCardCoin.DAO
 {
     public class CategorieDAO
     {
-        private string _idCategorie;
-        private string _categorieId;
-        private string _nomCategorie;
+        public string IdCategorie { get; }
+        public string CategorieId { get; }
+        public string NomCategorie { get; }
 
+        public CategorieDAO()
+        {
+            
+        }
         public CategorieDAO(string idCategorie, string nomCategorie)
         {
-            this._idCategorie = idCategorie;
-            this._nomCategorie = nomCategorie;
+            this.IdCategorie = idCategorie;
+            this.NomCategorie = nomCategorie;
         }
         public CategorieDAO(string idCategorie, string categorieId, string nomCategorie)
         {
-            this._idCategorie = idCategorie;
-            this._categorieId = categorieId;
-            this._nomCategorie = nomCategorie;
+            this.IdCategorie = idCategorie;
+            this.CategorieId = categorieId;
+            this.NomCategorie = nomCategorie;
         }
     }
 }
