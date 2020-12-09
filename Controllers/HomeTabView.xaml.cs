@@ -1,8 +1,11 @@
-﻿using System.Windows;
+
+using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using bidCardCoin.DAL;
+using bidCardCoin.DAO;
 
 namespace BidCardCoin.Vue
 {
@@ -16,6 +19,7 @@ namespace BidCardCoin.Vue
             InitializeComponent();
 
             DALconnection.OpenConnection();
+
 
 
             var test = EnchereDAL.SelectAllEnchere();
