@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using bidCardCoin.DAO;
-using Google.Protobuf.WellKnownTypes;
 using Npgsql;
 
 namespace bidCardCoin.DAL
@@ -80,7 +79,7 @@ where ordreAchat.""idOrdreAchat""=:idOrdreAchat";
             cmd.Parameters.AddWithValue("utilisateurId", ordreAchat.UtilisateurId);
             cmd.Parameters.AddWithValue("lotId", ordreAchat.LotId);
             cmd.Parameters.AddWithValue("montantMax", ordreAchat.MontantMax);
-            cmd.Parameters.AddWithValue("date", ordreAchat.Date.ToTimestamp());
+            cmd.Parameters.AddWithValue("date", ordreAchat.Date);
             cmd.Parameters.AddWithValue("informatiser", ordreAchat.Informatiser);
 
             cmd.ExecuteNonQuery();

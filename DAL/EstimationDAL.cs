@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using bidCardCoin.DAO;
-using Google.Protobuf.WellKnownTypes;
 using Npgsql;
 
 namespace bidCardCoin.DAL
@@ -76,7 +75,7 @@ where estimation.""idEstimation""=:idEstimation";
             cmd.Parameters.AddWithValue("idEstimation", estimation.IdEstimation);
             cmd.Parameters.AddWithValue("produitId", estimation.ProduitId);
             cmd.Parameters.AddWithValue("commissaireId", estimation.CommissaireId);
-            cmd.Parameters.AddWithValue("dateEstimation", estimation.DateEstimation.ToTimestamp());
+            cmd.Parameters.AddWithValue("dateEstimation", estimation.DateEstimation);
             cmd.Parameters.AddWithValue("prixEstimation", estimation.PrixEstimation);
             
             cmd.ExecuteNonQuery();
