@@ -56,6 +56,7 @@ namespace bidCardCoin.DAL
             }
 
             reader.Close();
+            dao.ChildReference = getChildReference(dao.IdPersonne);
 
             return dao;
         }
@@ -104,9 +105,19 @@ namespace bidCardCoin.DAL
                 }
 
                 reader.Close();
+                personneDao.ChildReference = getChildReference(personneDao.IdPersonne);
             }
 
             return liste;
+        }
+
+        public static string getChildReference(string id)
+        {
+            var query =
+                "select u.\"idUtilisateur\" from public.utilisateur as u, public.personne as p where p.\"idPersonne\" = u.\"personneId\" and p.\"idPersonne\" = :id";
+            var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
+            cmd.Parameters.AddWithValue("id", id);
+            return (string) cmd.ExecuteScalar();
         }
 
 
@@ -179,6 +190,7 @@ namespace bidCardCoin.DAL
                 cmd.ExecuteNonQuery();
             }
         }
+
 
 // DELETE
 

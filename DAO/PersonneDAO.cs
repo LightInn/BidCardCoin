@@ -17,6 +17,13 @@ namespace bidCardCoin.DAO
         private string _telephoneMobile;
         private string _telephoneFixe;
         private List<string> _adresses;
+        private string _childReference;
+
+        public string ChildReference
+        {
+            get => _childReference;
+            set => _childReference = value;
+        }
 
         public string IdPersonne
         {
