@@ -10,11 +10,7 @@ namespace bidCardCoin.DAO
     {
         public string IdStock { get; }
         public string AdresseId { get; }
-
-        public StockDAO()
-        {
-        }
-
+        
         public StockDAO()
         {
             
