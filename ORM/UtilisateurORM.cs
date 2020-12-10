@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using bidCardCoin.DAL;
 using bidCardCoin.DAO;
 using BidCardCoin.Models;
@@ -11,14 +7,14 @@ namespace bidCardCoin.ORM
 {
     public static class UtilisateurORM
     {
-        private static Dictionary<string, Utilisateur> _utilisateurDictionary = new Dictionary<string, Utilisateur>();
+        private static readonly Dictionary<string, Utilisateur> UtilisateurDictionary = new Dictionary<string, Utilisateur>();
 
         private static bool UtilisateurAlreadyInDictionary(string id)
         {
-            return _utilisateurDictionary.ContainsKey(id);
+            return UtilisateurDictionary.ContainsKey(id);
         }
 
-        public static void populateMTM(List<Utilisateur> users)
+        public static void PopulateMtm(List<Utilisateur> users)
         {
             // liste des utilisateurs qui on beusoin de se faire peupler (leurs liste adresses)
 
@@ -26,22 +22,21 @@ namespace bidCardCoin.ORM
             {
                 if (UtilisateurAlreadyInDictionary(user.IdUtilisateur))
                 {
-                    user.Adresses = _utilisateurDictionary[user.IdUtilisateur].Adresses;
+                    user.Adresses = UtilisateurDictionary[user.IdUtilisateur].Adresses;
                 }
                 else
                 {
                     GetUtilisateurById(user.IdUtilisateur);
-                    user.Adresses = _utilisateurDictionary[user.IdUtilisateur].Adresses;
+                    user.Adresses = UtilisateurDictionary[user.IdUtilisateur].Adresses;
                 }
             }
         }
-
 
         public static Utilisateur GetUtilisateurById(string id, bool initializer = true)
         {
             if (UtilisateurAlreadyInDictionary(id))
             {
-                return _utilisateurDictionary[id];
+                return UtilisateurDictionary[id];
             }
 
             UtilisateurDAO udao = UtilisateurDAL.SelectUtilisateurById(id);
@@ -51,9 +46,9 @@ namespace bidCardCoin.ORM
 
             if (initializer)
             {
-                foreach (var adresse_in_dao in pdao.Adresses)
+                foreach (var adresseInDAO in pdao.Adresses)
                 {
-                    Adresse adresse = AdresseORM.GetAdresseById(adresse_in_dao, false);
+                    Adresse adresse = AdresseORM.GetAdresseById(adresseInDAO, false);
                     listeAdresse.Add(adresse);
                 }
             }
@@ -65,37 +60,45 @@ namespace bidCardCoin.ORM
 
             if (initializer)
             {
-                _utilisateurDictionary[user.IdUtilisateur] = user;
+                UtilisateurDictionary[user.IdUtilisateur] = user;
                 AdresseORM.populateMTM(user.Adresses);
             }
 
             return user;
         }
 
-
-        public static List<Utilisateur> getAllUtilisateur()
+        public static List<Utilisateur> GetAllUtilisateur()
         {
             List<UtilisateurDAO> ludao = UtilisateurDAL.SelectAllUtilisateur();
             List<Utilisateur> users = new List<Utilisateur>();
-            
+
             foreach (var udao in ludao)
             {
                 users.Add(GetUtilisateurById(udao.IdUtilisateur));
             }
+
             return users;
         }
 
-
-        static void addUtilisateur(Utilisateur user)
+        static UtilisateurDAO UtilisateurToDao(Utilisateur user)
         {
+            return new UtilisateurDAO(user.IdUtilisateur, user.IdPersonne, user.IsSolvable, user.IsRessortissant,
+                user.IdentityExist, user.ListeMotClef);
         }
 
-        static void updateUtilisateur(Utilisateur user)
+        static void AddUtilisateur(Utilisateur user)
         {
+            UtilisateurDAL.InsertNewUtilisateur(UtilisateurToDao(user));
         }
 
-        static void deleteUtilisateur(Utilisateur user)
+        static void UpdateUtilisateur(Utilisateur user)
         {
+            UtilisateurDAL.UpdateUtilisateur(UtilisateurToDao(user));
+        }
+
+        static void DeleteUtilisateur(Utilisateur user)
+        {
+            UtilisateurDAL.DeleteUtilisateur(user.IdUtilisateur);
         }
     }
 }

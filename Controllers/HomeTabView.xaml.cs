@@ -21,7 +21,7 @@ namespace BidCardCoin.Vue
 
             DALconnection.OpenConnection();
 
-            var user = UtilisateurORM.getAllUtilisateur();
+            var user = UtilisateurORM.GetAllUtilisateur();
 
 
             var test = EnchereDAL.SelectAllEnchere();
