@@ -103,7 +103,8 @@ namespace bidCardCoin.DAL
         {
             // Inserer adresse dans la bdd
             var query =
-                @"INSERT INTO public.adresse values (:idAdresse,:pays,:region,:ville,:codePostal,:adresse) 
+                @"INSERT INTO public.adresse (""idAdresse"",""pays"",""region"",""ville"",""codePostal"",""adresse"") 
+values (:idAdresse,:pays,:region,:ville,:codePostal,:adresse) 
 ON CONFLICT ON CONSTRAINT pk_adresse DO UPDATE SET 
 ""idAdresse""=:idAdresse,
 ""pays""=:pays,

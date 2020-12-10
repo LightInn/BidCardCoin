@@ -86,6 +86,5 @@ where lot.""idLot""=:idLot";
                 cmd.ExecuteNonQuery();
             }
         }
-        
     }
 }
