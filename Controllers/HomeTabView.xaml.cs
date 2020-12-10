@@ -1,4 +1,4 @@
-
+using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
@@ -6,6 +6,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using bidCardCoin.DAL;
 using bidCardCoin.DAO;
+using bidCardCoin.ORM;
 
 namespace BidCardCoin.Vue
 {
@@ -20,6 +21,7 @@ namespace BidCardCoin.Vue
 
             DALconnection.OpenConnection();
 
+            var user = UtilisateurORM.getAllUtilisateur();
 
 
             var test = EnchereDAL.SelectAllEnchere();
@@ -44,7 +46,7 @@ namespace BidCardCoin.Vue
         }
 
         /* ------------------------------------------------ TABS -----------------------------------------------------*/
-        
+
 
         public void Tab_Achat(object sender, RoutedEventArgs e)
         {
@@ -59,19 +61,9 @@ namespace BidCardCoin.Vue
         }
 
         private void Tab_Wrench(object sender, RoutedEventArgs e)
-        {           
+        {
             parent.SubView.Children.Add(new WrenchTanView());
             parent.SubView.Children.RemoveAt(0);
-
         }
     }
-    
-    
-    
-    
-    
-    
-    
-    
-
 }

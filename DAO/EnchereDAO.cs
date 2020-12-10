@@ -74,8 +74,8 @@ namespace bidCardCoin.DAO
         }
         
         
-        // on cree une enchere avec l'ordre d'achat
-        public EnchereDAO(string idEnchere, double prixProposer, bool estAdjuger, DateTime dateHeureVente, string lotId, string commissaireId, string ordreAchatId)
+        // on cree une enchere 
+        public EnchereDAO(string idEnchere, double prixProposer, bool estAdjuger, DateTime dateHeureVente, string lotId, string commissaireId, string ordreAchatId,  string utilisateurId)
         {
             _idEnchere = idEnchere;
             _prixProposer = prixProposer;
@@ -84,22 +84,10 @@ namespace bidCardCoin.DAO
             _lotId = lotId;
             _commissaireId = commissaireId;
             _ordreAchatId = ordreAchatId;
-        }
-
-
-        // on cree une enchere avec l'utilisateur
-        
-
-        public EnchereDAO(string idEnchere,bool estAdjuger, double prixProposer, DateTime dateHeureVente, string lotId, string commissaireId, string utilisateurId)
-        {
-            _idEnchere = idEnchere;
-            _prixProposer = prixProposer;
-            _estAdjuger = estAdjuger;
-            _dateHeureVente = dateHeureVente;
-            _lotId = lotId;
-            _commissaireId = commissaireId;
             _utilisateurId = utilisateurId;
         }
+        
+        
 
     }
 }
