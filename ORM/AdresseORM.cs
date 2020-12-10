@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,45 +11,60 @@ namespace bidCardCoin.ORM
 {
     public class AdresseORM
     {
-        public static List<Personne> listeIdToListePersonne(List<string> listeId)
+        private static Dictionary<string, Adresse> _adressesDictionary = new Dictionary<string, Adresse>();
+
+        private static bool AdresseAlreadyInDictionary(string id)
         {
-            List<Personne> listePersonne = new List<Personne>();
-            foreach (var elem in listeId)
-            {
-                // vérifie dans la collection de personne, si la personne existe déjà, on la creer si ce n'est pas le cas
-                // puis on l'ajoute à la liste de personne
-                // todo voir ça
-                //listePersonne.Add(PersonneORM.getPersonneById(elem));
-            }
-            return listePersonne;
-        }
-        public static List<string> listePersonneToListeId(List<Personne> listePersonne)
-        {
-            List<string> listeId = new List<string>();
-            foreach (var elem in listeId)
-            {
-                // vérifie dans la collection de personne, si la personne existe déjà, on la creer si ce n'est pas le cas
-                // puis on l'ajoute à la liste de personne
-                // todo voir ça
-                //listePersonne.Add(PersonneORM.getPersonneById(elem));
-                //
-            }
-            return listeId;
-        }
-        
-        public static Adresse getAdresse(string idAdresse)
-        {
-            AdresseDAO adresseDao = AdresseDAL.SelectAdresseById(idAdresse);
-            Adresse adresse = new Adresse(adresseDao.IdAdresse,adresseDao.Pays, adresseDao.Region,
-                adresseDao.Ville,adresseDao.CodePostal,adresseDao.Adresse,new List<Personne>());
-            List<Personne> listePersonne = listeIdToListePersonne(adresseDao.ListePersonneId);
-            return adresse;
+            return _adressesDictionary.ContainsKey(id);
         }
 
-        public static void insertOrUpdateAdresse(Adresse adresse)
+        public static void populateMTM(List<Adresse> adresses)
         {
-            AdresseDAL.InsertOrAddNewAdresse(new AdresseDAO(adresse.IdAdresse,adresse.Pays,adresse.Region,adresse.Ville
-                ,adresse.CodePostal,adresse.AdresseNom,listePersonneToListeId(adresse.ListePersone)));
+            // liste des adresses qui on beusoin de se faire peupler (leurs liste utilisateurs)
+
+            foreach (var adresse in adresses)
+            {
+                if (AdresseAlreadyInDictionary(adresse.IdAdresse))
+                {
+                    adresse.Utilisateurs = _adressesDictionary[adresse.IdAdresse].Utilisateurs;
+                }
+                else
+                {
+                    GetAdresseById(adresse.IdAdresse);
+                    adresse.Utilisateurs = _adressesDictionary[adresse.IdAdresse].Utilisateurs;
+                }
+            }
+        }
+
+
+        public static Adresse GetAdresseById(string id, bool initializer = true)
+        {
+            AdresseDAO adao = AdresseDAL.SelectAdresseById(id);
+            List<Utilisateur> listeUsers = new List<Utilisateur>();
+
+            if (initializer)
+            {
+                foreach (var personneid in adao.ListePersonneId)
+                {
+                    Utilisateur user =
+                        UtilisateurORM.GetUtilisateurById(PersonneDAL.getChildReference(personneid), false);
+                    listeUsers.Add(user);
+                }
+            }
+
+
+            Adresse adresse = new Adresse(adao.IdAdresse, adao.Pays, adao.Region, adao.Ville, adao.CodePostal,
+                adao.Adresse, listeUsers);
+
+
+         
+            if (initializer)
+            {
+                _adressesDictionary[adresse.IdAdresse] = adresse;
+                UtilisateurORM.populateMTM(adresse.Utilisateurs);
+            }
+
+            return adresse;
         }
     }
 }

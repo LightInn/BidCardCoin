@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace BidCardCoin.Models
 {
@@ -8,7 +9,7 @@ namespace BidCardCoin.Models
 
         // Todo version avec param optionnel 
         public Commissaire(string idCommissaire, Personne personne, string idPersonne, string nom, string prenom,
-            DateTime age, string email, string password, string telephoneMobile, string telephoneFixe, Adresse adresse)
+            int age, string email, string password, string telephoneMobile, string telephoneFixe, List<Adresse> adresses)
         {
             this._idPersonne = idPersonne;
             this._nom = nom;
@@ -18,7 +19,7 @@ namespace BidCardCoin.Models
             this._password = password;
             this._telephoneMobile = telephoneMobile;
             this._telephoneFixe = telephoneFixe;
-            this._adresse = adresse;
+            this._adresses = adresses;
             
             this._idCommissaire = idCommissaire;
         }
