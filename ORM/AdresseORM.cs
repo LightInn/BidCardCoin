@@ -57,7 +57,6 @@ namespace bidCardCoin.ORM
                 adao.Adresse, listeUsers);
 
 
-         
             if (initializer)
             {
                 _adressesDictionary[adresse.IdAdresse] = adresse;
@@ -66,11 +65,40 @@ namespace bidCardCoin.ORM
 
             return adresse;
         }
+
+
+        public static List<Adresse> GetAllAdresse()
+        {
+            List<AdresseDAO> ladao = AdresseDAL.SelectAllAdresse();
+            List<Adresse> adresses = new List<Adresse>();
+
+            foreach (var adao in ladao)
+            {
+                adresses.Add(GetAdresseById(adao.IdAdresse));
+            }
+
+            return adresses;
+        }
+
+        static AdresseDAO AdresseToDao(Adresse adresse)
+        {
+            return new AdresseDAO(adresse.IdAdresse, adresse.Pays, adresse.Region, adresse.Ville, adresse.CodePostal,
+                adresse.AdresseNb, adresse.Utilisateurs.Select(user => user.IdUtilisateur).ToList());
+        }
+
+        static void AddAdresse(Adresse user)
+        {
+            AdresseDAL.InsertOrAddNewAdresse(AdresseToDao(user));
+        }
+
+        static void UpdateAdresse(Adresse user)
+        {
+            AdresseDAL.InsertOrAddNewAdresse(AdresseToDao(user));
+        }
+
+        static void DeleteAdresse(Adresse user)
+        {
+            AdresseDAL.DeleteAdresse(user.IdAdresse);
+        }
     }
-    
-    
-    
-    
-    
-    
 }
