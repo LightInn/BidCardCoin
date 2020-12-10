@@ -65,13 +65,9 @@ namespace bidCardCoin.DAL
                 adresseDao.ListePersonneId = SelectPersonneInAdressesById(id);
                 return adresseDao;
             }
-            else
-            {
-                return new AdresseDAO();
-            }
+            return new AdresseDAO();
         }
-
-
+        
         public static List<AdresseDAO> SelectAllAdresse()
         {
             // Selectionné tout les adresse dans la base de donnée
@@ -93,11 +89,12 @@ namespace bidCardCoin.DAL
                 liste.Add(new AdresseDAO(idAdresse, pays, region, ville, codePostal, adresse,
                     new List<string>()));
             }
-          
+            
             reader.Close();
             foreach (var adresseDao in liste)
-                liste.Add(new AdresseDAO(idAdresse, pays, region, ville, codePostal, adresse));
-            
+            {
+                adresseDao.ListePersonneId = SelectPersonneInAdressesById(adresseDao.IdAdresse);
+            }
             return liste;
         }
         

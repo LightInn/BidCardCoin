@@ -8,14 +8,14 @@ namespace bidCardCoin.DAO
 {
     public class PersonneDAO
     {
-        private string _idPersonne;
-        private string _nom;
-        private string _prenom;
-        private int _age;
-        private string _email;
-        private string _password;
-        private string _telephoneMobile;
-        private string _telephoneFixe;
+        public string IdPersonne { get; }
+        public string Nom { get; }
+        public string Prenom { get; }
+        public int Age { get; }
+        public string Email { get; }
+        public string Password { get; }
+        public string TelephoneMobile { get; }
+        public string TelephoneFixe { get; }
 
         public PersonneDAO()
         {
@@ -23,14 +23,14 @@ namespace bidCardCoin.DAO
 
         public PersonneDAO(string idPersonne, string nom, string prenom, int age, string email, string password, string telephoneMobile, string telephoneFixe)
         {
-            this._idPersonne = idPersonne;
-            this._nom = nom;
-            this._prenom = prenom;
-            this._age = age;
-            this._email = email;
-            this._password = password;
-            this._telephoneMobile = telephoneMobile;
-            this._telephoneFixe = telephoneFixe;
+            this.IdPersonne = idPersonne;
+            this.Nom = nom;
+            this.Prenom = prenom;
+            this.Age = age;
+            this.Email = email;
+            this.Password = password;
+            this.TelephoneMobile = telephoneMobile;
+            this.TelephoneFixe = telephoneFixe;
         }
     }
 }

@@ -16,11 +16,6 @@ namespace bidCardCoin.DAO
         {
             
         }
-        public CategorieDAO(string idCategorie, string nomCategorie)
-        {
-            this.IdCategorie = idCategorie;
-            this.NomCategorie = nomCategorie;
-        }
         public CategorieDAO(string idCategorie, string categorieId, string nomCategorie)
         {
             this.IdCategorie = idCategorie;
