@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using bidCardCoin.DAO;
+using BidCardCoin.Models;
 using Npgsql;
 
 namespace bidCardCoin.DAL
@@ -11,12 +12,15 @@ namespace bidCardCoin.DAL
     public static class PersonneDAL
     {
         // SELECT
+ 
 
 
         public static PersonneDAO SelectPersonneById(string id)
 
         {
             // Selectionné l'Personne a partir de l'id
+
+     
 
 
             PersonneDAO dao = new PersonneDAO();
