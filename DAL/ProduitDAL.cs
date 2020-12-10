@@ -28,14 +28,14 @@ namespace bidCardCoin.DAL
                 var idProduit = (string) reader["idProduit"];
                 var lotId = (string) reader["lotId"];
                 var utilisateurId = (string) reader["utilisateurId"];
-                var stockId = (string) reader["stockId"];
-                var enchereGagnanteId = (string) reader["enchereGagnanteId"];
-                var nomArtiste = (string) reader["nomArtiste"];
-                var nomStyle = (string) reader["nomStyle"];
-                var nomProduits = (string) reader["nomProduits"];
-                var prixReserve = (double) reader["prixReserve"];
-                var referenceCatalogue = (string) reader["referenceCatalogue"];
-                var descriptionProduit = (string) reader["descriptionProduit"];
+                var stockId = Convert.IsDBNull((string) reader["stockId"])? null :(string) reader["stockId"];
+                var enchereGagnanteId = Convert.IsDBNull((string) reader["enchereGagnanteId"])? null :(string) reader["enchereGagnanteId"];
+                var nomArtiste = Convert.IsDBNull((string) reader["nomArtiste"])? null :(string) reader["nomArtiste"];
+                var nomStyle = Convert.IsDBNull((string) reader["nomStyle"])? null :(string) reader["nomStyle"];
+                var nomProduits = Convert.IsDBNull((string) reader["nomProduits"])? null :(string) reader["nomProduits"];
+                var prixReserve = Convert.IsDBNull((double) reader["prixReserve"])? -1 :(double) reader["prixReserve"];
+                var referenceCatalogue = Convert.IsDBNull((string) reader["referenceCatalogue"])? null :(string) reader["referenceCatalogue"];
+                var descriptionProduit = Convert.IsDBNull((string) reader["descriptionProduit"])? null :(string) reader["descriptionProduit"];
                 var isSend = (bool) reader["isSend"];
                 
                 return new ProduitDAO(idProduit, lotId, utilisateurId,stockId,enchereGagnanteId,nomArtiste,nomStyle,nomProduits,prixReserve,referenceCatalogue,descriptionProduit,isSend);
@@ -59,14 +59,14 @@ namespace bidCardCoin.DAL
                 var idProduit = (string) reader["idProduit"];
                 var lotId = (string) reader["lotId"];
                 var utilisateurId = (string) reader["utilisateurId"];
-                var stockId = (string) reader["stockId"];
-                var enchereGagnanteId = (string) reader["enchereGagnanteId"];
-                var nomArtiste = (string) reader["nomArtiste"];
-                var nomStyle = (string) reader["nomStyle"];
-                var nomProduits = (string) reader["nomProduits"];
-                var prixReserve = (double) reader["prixReserve"];
-                var referenceCatalogue = (string) reader["referenceCatalogue"];
-                var descriptionProduit = (string) reader["descriptionProduit"];
+                var stockId = Convert.IsDBNull((string) reader["stockId"])? null :(string) reader["stockId"];
+                var enchereGagnanteId = Convert.IsDBNull((string) reader["enchereGagnanteId"])? null :(string) reader["enchereGagnanteId"];
+                var nomArtiste = Convert.IsDBNull((string) reader["nomArtiste"])? null :(string) reader["nomArtiste"];
+                var nomStyle = Convert.IsDBNull((string) reader["nomStyle"])? null :(string) reader["nomStyle"];
+                var nomProduits = Convert.IsDBNull((string) reader["nomProduits"])? null :(string) reader["nomProduits"];
+                var prixReserve = Convert.IsDBNull((double) reader["prixReserve"])? -1 :(double) reader["prixReserve"];
+                var referenceCatalogue = Convert.IsDBNull((string) reader["referenceCatalogue"])? null :(string) reader["referenceCatalogue"];
+                var descriptionProduit = Convert.IsDBNull((string) reader["descriptionProduit"])? null :(string) reader["descriptionProduit"];
                 var isSend = (bool) reader["isSend"];
                 
                 liste.Add(new ProduitDAO(idProduit, lotId, utilisateurId,stockId,enchereGagnanteId,nomArtiste,nomStyle,nomProduits,prixReserve,referenceCatalogue,descriptionProduit,isSend));

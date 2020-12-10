@@ -28,9 +28,9 @@ namespace bidCardCoin.DAL
                 var idUtilisateur = (string) reader["idUtilisateur"];
                 var personneId = (string) reader["personneId"];
                 var verifSolvable = (bool) reader["verifSolvable"];
-                var verifRessortissant = (bool) reader["verifRessortissant"];
-                var verifIdentite = (bool) reader["verifIdentite"];
-                var listeMotClef = (List<string>) (reader["listeMotClef"] as string).Split(";").ToList();
+                var verifRessortissant = Convert.IsDBNull((bool) reader["verifRessortissant"]);
+                var verifIdentite = Convert.IsDBNull((bool) reader["verifIdentite"]);
+                var listeMotClef = Convert.IsDBNull((List<string>) (reader["listeMotClef"] as string).Split(";").ToList())? null :(List<string>) (reader["listeMotClef"] as string).Split(";").ToList();
 
                 dao = new UtilisateurDAO(idUtilisateur, personneId, verifSolvable, verifRessortissant, verifIdentite,
                     listeMotClef);
@@ -57,9 +57,9 @@ namespace bidCardCoin.DAL
                 var idUtilisateur = (string) reader["idUtilisateur"];
                 var personneId = (string) reader["personneId"];
                 var verifSolvable = (bool) reader["verifSolvable"];
-                var verifRessortissant = (bool) reader["verifRessortissant"];
-                var verifIdentite = (bool) reader["verifIdentite"];
-                var listeMotClef = (List<string>) (reader["listeMotClef"] as string).Split(";").ToList();
+                var verifRessortissant = Convert.IsDBNull((bool) reader["verifRessortissant"]);
+                var verifIdentite = Convert.IsDBNull((bool) reader["verifIdentite"]);
+                var listeMotClef = Convert.IsDBNull((List<string>) (reader["listeMotClef"] as string).Split(";").ToList())? null :(List<string>) (reader["listeMotClef"] as string).Split(";").ToList();
 
                 liste.Add(new UtilisateurDAO(idUtilisateur, personneId, verifSolvable, verifRessortissant, verifIdentite,
                     listeMotClef));

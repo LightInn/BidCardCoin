@@ -25,7 +25,7 @@ namespace bidCardCoin.DAL
             {
                 // récup les paramètres principaux
                 var idCategorie = (string) reader["idCategorie"];
-                var categorieId = (string) reader["categorieId"];
+                var categorieId = Convert.IsDBNull((string) reader["categorieId"])? null : ((string) reader["categorieId"]);
                 var nomCategorie = (string) reader["nomCategorie"];
                 return new CategorieDAO(idCategorie, categorieId, nomCategorie);
             }
@@ -45,7 +45,7 @@ namespace bidCardCoin.DAL
             while (reader.Read())
             {
                 var idCategorie = (string) reader["idCategorie"];
-                var categorieId = (string) reader["categorieId"];
+                var categorieId = Convert.IsDBNull((string) reader["categorieId"])? null : ((string) reader["categorieId"]);
                 var nomCategorie = (string) reader["nomCategorie"];
 
                 liste.Add(new CategorieDAO(idCategorie, categorieId, nomCategorie));
