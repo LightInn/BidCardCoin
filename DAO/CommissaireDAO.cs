@@ -8,8 +8,8 @@ namespace bidCardCoin.DAO
 {
     public class CommissaireDAO
     {
-        private string _idCommissaire;
-        private string _personneId;
+        public string IdCommissaire { get; }
+        public string PersonneId { get; }
 
         public CommissaireDAO()
         {
@@ -17,8 +17,8 @@ namespace bidCardCoin.DAO
 
         public CommissaireDAO(string idCommissaire, string personneId)
         {
-            this._idCommissaire = idCommissaire;
-            this._personneId = personneId;
+            this.IdCommissaire = idCommissaire;
+            this.PersonneId = personneId;
         }
 
     }

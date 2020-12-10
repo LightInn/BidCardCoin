@@ -8,21 +8,21 @@ namespace bidCardCoin.DAO
 {
     public class VenteDAO
     {
-        private string _idVente;
-        private string _produitId;
-        private string _adresseId;
-        private string _dateDebut;
+        public string IdVente { get; }
+        public string ProduitId { get; }
+        public string AdresseId { get; }
+        public DateTime DateDebut { get; }
 
         public VenteDAO()
         {
         }
 
-        public VenteDAO(string idVente, string produitId, string adresseId, string dateDebut)
+        public VenteDAO(string idVente, string produitId, string adresseId, DateTime dateDebut)
         {
-            this._idVente = idVente;
-            this._produitId = produitId;
-            this._adresseId = adresseId;
-            this._dateDebut = dateDebut;
+            this.IdVente = idVente;
+            this.ProduitId = produitId;
+            this.AdresseId = adresseId;
+            this.DateDebut = dateDebut;
         }
     }
 }

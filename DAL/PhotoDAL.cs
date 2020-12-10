@@ -4,48 +4,89 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using bidCardCoin.DAO;
+using Google.Protobuf.WellKnownTypes;
+using Npgsql;
 
 namespace bidCardCoin.DAL
 {
     public static class PhotoDAL
     {
         // SELECT
-
-
         public static PhotoDAO SelectPhotoById(string id)
-
         {
-            // Selectionné l'Photo a partir de l'id
+            PhotoDAO photoDao = new PhotoDAO();
+            // Selectionne la photo a partir de l'id
+            var query =
+                "SELECT * FROM public.photo a where a.\"idPhoto\"= :idPhotoParam";
+            var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
+            cmd.Parameters.AddWithValue("idPhotoParam", id);
+
+            var reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                // récup les paramètres principaux
+                var idPhoto = (string) reader["idPhoto"];
+                var produitId = (string) reader["produitId"];
+                var fichierPhoto = (string) reader["fichierPhoto"];
+
+                return new PhotoDAO(idPhoto, produitId, fichierPhoto);
+            }
+
             return new PhotoDAO();
         }
 
-
         public static List<PhotoDAO> SelectAllPhoto()
         {
-            // Selectionné tout les Photo dans la base de donnée
-            return new List<PhotoDAO>();
+            // Selectionné tout les photo dans la base de donnée
+            List<PhotoDAO> liste = new List<PhotoDAO>();
+
+            var query = "SELECT * FROM public.photo ORDER BY \"idPhoto\"";
+            var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
+            var reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                var idPhoto = (string) reader["idPhoto"];
+                var produitId = (string) reader["produitId"];
+                var fichierPhoto = (string) reader["fichierPhoto"];
+
+                liste.Add(new PhotoDAO(idPhoto, produitId, fichierPhoto));
+            }
+
+            return liste;
         }
 
-
-// INSERT
-
-        public static void InsertNewPhoto(PhotoDAO Photo)
+        // INSERT & Update 
+        public static void InsertOrAddNewPhoto(PhotoDAO photo)
         {
-            // Inserer Photo dans la bdd
+            // Inserer photo dans la bdd
+            var query =
+                @"INSERT INTO public.photo (""idPhoto"",""produitId"",""fichierPhoto"") 
+values (:idPhoto,:produitId,:fichierPhoto) 
+ON CONFLICT ON CONSTRAINT pk_photo DO UPDATE SET ""idPhoto""=:idPhoto,
+""produitId""=:produitId,
+""fichierPhoto""=:fichierPhoto,
+where photo.""idPhoto""=:idPhoto";
+            var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
+            cmd.Parameters.AddWithValue("idPhoto", photo.IdPhoto);
+            cmd.Parameters.AddWithValue("produitId", photo.ProduitId);
+            cmd.Parameters.AddWithValue("fichierPhoto", photo.FichierPhoto);
+            
+            cmd.ExecuteNonQuery();
         }
 
-// UPDATE
-
-        public static void UpdatePhoto(PhotoDAO Photo)
+        // DELETE
+        public static void DeletePhoto(string photoId)
         {
-            // Mettre a jour Photo dans la bdd
-        }
-
-// DELETE
-
-        public static void DeletePhoto(string PhotoId)
-        {
-            // Supprimer Photo dans la bdd
+            // Supprimer photo dans la bdd
+            PhotoDAO dao = SelectPhotoById(photoId);
+            if (dao.IdPhoto != null)
+            {
+                var query = "DELETE FROM public.photo WHERE \"idPhoto\"= :idPhoto";
+                var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
+                cmd.Parameters.AddWithValue("idPhoto", photoId);
+                cmd.ExecuteNonQuery();
+            }
         }
             
     }

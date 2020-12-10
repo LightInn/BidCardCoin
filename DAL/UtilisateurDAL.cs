@@ -10,9 +10,6 @@ namespace bidCardCoin.DAL
 {
     public static class UtilisateurDAL
     {
-        // SELECT
-
-
         public static UtilisateurDAO SelectUtilisateurById(string id)
         {
             // Selectionné l'Utilisateur a partir de l'id
@@ -129,7 +126,7 @@ namespace bidCardCoin.DAL
              cmd.ExecuteNonQuery();
 
 
-}
+        }
     }
 }
 

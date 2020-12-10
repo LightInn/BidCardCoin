@@ -65,13 +65,9 @@ namespace bidCardCoin.DAL
                 adresseDao.ListePersonneId = SelectPersonneInAdressesById(id);
                 return adresseDao;
             }
-            else
-            {
-                return new AdresseDAO();
-            }
+            return new AdresseDAO();
         }
-
-
+        
         public static List<AdresseDAO> SelectAllAdresse()
         {
             // Selectionné tout les adresse dans la base de donnée
@@ -93,7 +89,7 @@ namespace bidCardCoin.DAL
                 liste.Add(new AdresseDAO(idAdresse, pays, region, ville, codePostal, adresse,
                     new List<string>()));
             }
-          
+            
             reader.Close();
             foreach (var adresseDao in liste)
             {
@@ -107,7 +103,8 @@ namespace bidCardCoin.DAL
         {
             // Inserer adresse dans la bdd
             var query =
-                @"INSERT INTO public.adresse values (:idAdresse,:pays,:region,:ville,:codePostal,:adresse) 
+                @"INSERT INTO public.adresse (""idAdresse"",""pays"",""region"",""ville"",""codePostal"",""adresse"") 
+values (:idAdresse,:pays,:region,:ville,:codePostal,:adresse) 
 ON CONFLICT ON CONSTRAINT pk_adresse DO UPDATE SET 
 ""idAdresse""=:idAdresse,
 ""pays""=:pays,
