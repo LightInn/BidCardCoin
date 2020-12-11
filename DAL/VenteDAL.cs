@@ -26,12 +26,12 @@ namespace bidCardCoin.DAL
             {
                 // récup les paramètres principaux
                 var idVente = (string) reader["idVente"];
-                var produitId = (string) reader["produitId"];
+                var lotId = (string) reader["lotId"];
                 var adresseId = (string) reader["adresseId"];
                 var dateDebut = (DateTime) reader["dateDebut"];
                 
                 
-                return new VenteDAO(idVente, produitId, adresseId,dateDebut);
+                return new VenteDAO(idVente, lotId, adresseId,dateDebut);
             }
 
             return new VenteDAO();
@@ -49,11 +49,11 @@ namespace bidCardCoin.DAL
             while (reader.Read())
             {
                 var idVente = (string) reader["idVente"];
-                var produitId = (string) reader["produitId"];
+                var lotId = (string) reader["lotId"];
                 var adresseId = (string) reader["adresseId"];
                 var dateDebut = (DateTime) reader["dateDebut"];
                 
-                liste.Add( new VenteDAO(idVente, produitId, adresseId,dateDebut));
+                liste.Add( new VenteDAO(idVente, lotId, adresseId,dateDebut));
             }
 
             return liste;
@@ -64,16 +64,16 @@ namespace bidCardCoin.DAL
         {
             // Inserer vente dans la bdd
             var query =
-                @"INSERT INTO public.vente (""idVente"",""produitId"",""adresseId"",""dateDebut"") 
-values (:idVente,:produitId,:commissaireId,:dateVente,:prixVente) 
+                @"INSERT INTO public.vente (""idVente"",""lotId"",""adresseId"",""dateDebut"") 
+values (:idVente,:lotId,:commissaireId,:dateVente,:prixVente) 
 ON CONFLICT ON CONSTRAINT pk_vente DO UPDATE SET ""idVente""=:idVente,
-""produitId""=:produitId,
+""lotId""=:lotId,
 ""adresseId""=:adresseId,
 ""dateDebut""=:dateDebut,
 where vente.""idVente""=:idVente";
             var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
             cmd.Parameters.AddWithValue("idVente", vente.IdVente);
-            cmd.Parameters.AddWithValue("produitId", vente.ProduitId);
+            cmd.Parameters.AddWithValue("lotId", vente.LotId);
             cmd.Parameters.AddWithValue("adresseId", vente.AdresseId);
             cmd.Parameters.AddWithValue("dateDebut", vente.DateDebut);
             

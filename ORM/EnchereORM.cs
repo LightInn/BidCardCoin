@@ -3,10 +3,92 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using bidCardCoin.DAL;
+using bidCardCoin.DAO;
+using BidCardCoin.Models;
 
 namespace bidCardCoin.ORM
 {
     public class EnchereORM
     {
+        private static Dictionary<string, Enchere> _encheresDictionary = new Dictionary<string, Enchere>();
+
+        private static bool EnchereAlreadyInDictionary(string id)
+        {
+            return _encheresDictionary.ContainsKey(id);
+        }
+
+        // todo -> liens vers un : Commissaire // Lot // Ordre OrdreAchatEnchere OU Utilisateur
+        public static void Populate(List<Enchere> encheres)
+        {
+            // liste des encheres qui on beusoin de se faire peupler (leurs liste utilisateurs)
+
+            foreach (var enchere in encheres)
+            {
+                if (!EnchereAlreadyInDictionary(enchere.IdEnchere))
+                {
+                    GetEnchereById(enchere.IdEnchere);
+                }
+
+                enchere.CommissaireEnchere = _encheresDictionary[enchere.IdEnchere].CommissaireEnchere;
+                enchere.LotEnchere = _encheresDictionary[enchere.IdEnchere].LotEnchere;
+                enchere.OrdreAchatEnchere = _encheresDictionary[enchere.IdEnchere].OrdreAchatEnchere;
+                enchere.UtilisateurEnchere = _encheresDictionary[enchere.IdEnchere].UtilisateurEnchere;
+            }
+        }
+
+        public static void Populate(Enchere enchere)
+        {
+            // liste des encheres qui on beusoin de se faire peupler (leurs liste utilisateurs)
+
+            if (!EnchereAlreadyInDictionary(enchere.IdEnchere))
+            {
+                GetEnchereById(enchere.IdEnchere);
+            }
+
+            enchere.CommissaireEnchere = _encheresDictionary[enchere.IdEnchere].CommissaireEnchere;
+            enchere.LotEnchere = _encheresDictionary[enchere.IdEnchere].LotEnchere;
+            enchere.OrdreAchatEnchere = _encheresDictionary[enchere.IdEnchere].OrdreAchatEnchere;
+            enchere.UtilisateurEnchere = _encheresDictionary[enchere.IdEnchere].UtilisateurEnchere;
+        }
+
+        public static Enchere GetEnchereById(string id, bool initializer = true)
+        {
+            EnchereDAO edao = EnchereDAL.SelectEnchereById(id);
+            Commissaire commissaireEnchere = new Commissaire();
+            Lot lotEnchere = new Lot();
+            OrdreAchat ordreAchatEnchere = new OrdreAchat();
+            Utilisateur utilisateurEnchere = new Utilisateur();
+
+
+            if (initializer)
+            {
+                commissaireEnchere =
+                    CommissaireORM.GetCommissaireById(
+                        CommissaireDAL.SelectCommissaireById(edao.CommissaireId).IdCommissaire, false);
+                lotEnchere = LotORM.GetLotById(LotDAL.SelectLotById(edao.LotId).IdLot, false);
+                ordreAchatEnchere =
+                    OrdreAchatORM.GetOrdreAchatById(OrdreAchatDAL.SelectOrdreAchatById(edao.OrdreAchatId).IdOrdreAchat,
+                        false);
+                utilisateurEnchere =
+                    UtilisateurORM.GetUtilisateurById(
+                        UtilisateurDAL.SelectUtilisateurById(edao.UtilisateurId).IdUtilisateur, false);
+            }
+
+            Enchere enchere = new Enchere(edao.IdEnchere, edao.PrixProposer, edao.EstAdjuger, edao.DateHeureVente,
+                ordreAchatEnchere, lotEnchere, commissaireEnchere, utilisateurEnchere);
+
+            if (initializer)
+            {
+                _encheresDictionary[enchere.IdEnchere] = enchere;
+
+                CommissaireORM.Populate(enchere.CommissaireEnchere);
+                LotORM.Populate(enchere.LotEnchere);
+                OrdreAchatORM.Populate(enchere.OrdreAchatEnchere);
+                UtilisateurORM.Populate(enchere.UtilisateurEnchere);
+            }
+
+            return enchere;
+        }
     }
 }
