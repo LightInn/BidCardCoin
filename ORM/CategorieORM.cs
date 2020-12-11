@@ -17,5 +17,21 @@ namespace bidCardCoin.ORM
             return _categoriesDictionary.ContainsKey(id);
         }
         // todo - bré est en train de le faire normalement
+        public static void Populate(List<Categorie> categories)
+        {
+            // todo
+        }
+        public static void Populate(Categorie categories)
+        {
+            // todo
+        }
+
+        public static Categorie GetCategorieById(string id, bool initializer = true)
+        {
+            // todo
+            Categorie categorie = new Categorie();
+
+            return categorie;
+        }
     }
 }

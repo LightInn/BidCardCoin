@@ -9,7 +9,7 @@ namespace bidCardCoin.DAO
     public class VenteDAO
     {
         public string IdVente { get; }
-        public string ProduitId { get; }
+        public string LotId { get; }
         public string AdresseId { get; }
         public DateTime DateDebut { get; }
 
@@ -17,10 +17,10 @@ namespace bidCardCoin.DAO
         {
         }
 
-        public VenteDAO(string idVente, string produitId, string adresseId, DateTime dateDebut)
+        public VenteDAO(string idVente, string lotId, string adresseId, DateTime dateDebut)
         {
             this.IdVente = idVente;
-            this.ProduitId = produitId;
+            this.LotId = lotId;
             this.AdresseId = adresseId;
             this.DateDebut = dateDebut;
         }

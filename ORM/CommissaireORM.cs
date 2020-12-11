@@ -15,5 +15,21 @@ namespace bidCardCoin.ORM
             return _commissairesDictionary.ContainsKey(id);
         }
         // todo - bré est en train de le faire normalement
+        public static void Populate(List<Commissaire> commissaires)
+        {
+            // todo
+        }
+        public static void Populate(Commissaire commissaire)
+        {
+            // todo
+        }
+
+        public static Commissaire GetCommissaireById(string id, bool initializer = true)
+        {
+            // todo
+            Commissaire commissaire = new Commissaire();
+
+            return commissaire;
+        }
     }
 }

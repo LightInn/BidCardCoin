@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using bidCardCoin.DAL;
+using bidCardCoin.DAO;
 using BidCardCoin.Models;
 
 namespace bidCardCoin.ORM
@@ -14,6 +16,23 @@ namespace bidCardCoin.ORM
         {
             return _lotsDictionary.ContainsKey(id);
         }
-        // todo -> liens vers des : produits
+        // todo -> liens vers des : lots
+        
+        public static void Populate(List<Lot> lots)
+        {
+            // todo
+        }
+        public static void Populate(Lot lot)
+        {
+            // todo
+        }
+
+        public static Lot GetLotById(string id, bool initializer = true)
+        {
+            // todo
+            Lot lot = new Lot();
+
+            return lot;
+        }
     }
 }

@@ -2,13 +2,14 @@
 {
     public class Stock
     {
-        private string _idStock;
-        private Adresse _adresse;
+        public string IdStock { get; }
+        public Adresse AdresseStock { get; set; }
 
+        public Stock(){}
         public Stock(string idStock, Adresse adresse)
         {
-            this._idStock = idStock;
-            this._adresse = adresse;
+            this.IdStock = idStock;
+            this.AdresseStock = adresse;
         }
     }
 }

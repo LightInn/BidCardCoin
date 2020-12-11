@@ -36,6 +36,17 @@ namespace bidCardCoin.ORM
             }
         }
 
+        public static void Populate(Utilisateur user)
+        {
+            // liste des utilisateurs qui on beusoin de se faire peupler (leurs liste adresses)
+            if (!UtilisateurAlreadyInDictionary(user.IdUtilisateur))
+            {
+                GetUtilisateurById(user.IdUtilisateur);
+            }
+            
+            user.Adresses = _utilisateurDictionary[user.IdUtilisateur].Adresses;
+        }
+
 
         public static Utilisateur GetUtilisateurById(string id, bool initializer = true)
         {
@@ -77,11 +88,12 @@ namespace bidCardCoin.ORM
         {
             List<UtilisateurDAO> ludao = UtilisateurDAL.SelectAllUtilisateur();
             List<Utilisateur> users = new List<Utilisateur>();
-            
+
             foreach (var udao in ludao)
             {
                 users.Add(GetUtilisateurById(udao.IdUtilisateur));
             }
+
             return users;
         }
 
