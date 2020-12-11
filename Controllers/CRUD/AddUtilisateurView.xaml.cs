@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Controls;
+using bidCardCoin.DAL;
 using BidCardCoin.Models;
 using bidCardCoin.ORM;
 
@@ -23,6 +24,7 @@ namespace BidCardCoin.Vue.CRUD
 
             _user = user ?? new Utilisateur(uuid, true, true, true, listeMotClef, idPersonne, "Nigga", "Andyounet", 55,
                 "email", "123456", "45", null, listeAdresses);
+            UtilisateurORM.AddUtilisateur(_user);
         }
     }
 }

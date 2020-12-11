@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using bidCardCoin.DAL;
 using bidCardCoin.DAO;
 using BidCardCoin.Models;
@@ -7,7 +8,8 @@ namespace bidCardCoin.ORM
 {
     public static class UtilisateurORM
     {
-        private static readonly Dictionary<string, Utilisateur> UtilisateurDictionary = new Dictionary<string, Utilisateur>();
+        private static readonly Dictionary<string, Utilisateur> UtilisateurDictionary =
+            new Dictionary<string, Utilisateur>();
 
         private static bool UtilisateurAlreadyInDictionary(string id)
         {
@@ -86,17 +88,26 @@ namespace bidCardCoin.ORM
                 user.IdentityExist, user.ListeMotClef);
         }
 
-        static void AddUtilisateur(Utilisateur user)
+        public static void AddUtilisateur(Utilisateur user)
         {
+            PersonneDAO test = PersonneDAL.SelectPersonneById(user.IdPersonne);
+            if (test.IdPersonne == null)
+            {
+                PersonneDAL.InsertNewPersonne(new PersonneDAO(user.IdPersonne, user.Nom, user.Prenom, user.Age,
+                    user.Email,
+                    user.Password, user.TelephoneMobile, user.TelephoneMobile,
+                    user.Adresses.Select(adress => adress.IdAdresse).ToList()));
+            }
+
             UtilisateurDAL.InsertNewUtilisateur(UtilisateurToDao(user));
         }
 
-        static void UpdateUtilisateur(Utilisateur user)
+        public static void UpdateUtilisateur(Utilisateur user)
         {
             UtilisateurDAL.UpdateUtilisateur(UtilisateurToDao(user));
         }
 
-        static void DeleteUtilisateur(Utilisateur user)
+        public static void DeleteUtilisateur(Utilisateur user)
         {
             UtilisateurDAL.DeleteUtilisateur(user.IdUtilisateur);
         }
