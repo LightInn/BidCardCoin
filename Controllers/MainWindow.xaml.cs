@@ -170,7 +170,7 @@ namespace BidCardCoin
                 SubView.Children.RemoveAt(0);
             }
 
-            SubView.Children.Add(new WrenchTanView());
+            SubView.Children.Add(new WrenchTanView(this));
         }
     }
 }

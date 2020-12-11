@@ -118,5 +118,10 @@ namespace BidCardCoin.Models
             this._identityExist = identityExist;
             this._listeMotClef = listeMotClef;
         }
+
+        public Utilisateur()
+        {
+            
+        }
     }
 }

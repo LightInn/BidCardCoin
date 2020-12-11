@@ -28,6 +28,30 @@
       <None Remove="ressources\img\logoFill.png" />
       <Resource Include="ressources\img\logoFill.png" />
       <None Remove="dossierFichierPartageAutre\**" />
+      <None Remove="ressources\CRUDimg\Adresse.png" />
+      <Resource Include="ressources\CRUDimg\Adresse.png" />
+      <None Remove="ressources\CRUDimg\Categorie.png" />
+      <Resource Include="ressources\CRUDimg\Categorie.png" />
+      <None Remove="ressources\CRUDimg\commissaire.png" />
+      <Resource Include="ressources\CRUDimg\commissaire.png" />
+      <None Remove="ressources\CRUDimg\enchere.png" />
+      <Resource Include="ressources\CRUDimg\enchere.png" />
+      <None Remove="ressources\CRUDimg\estimation.png" />
+      <Resource Include="ressources\CRUDimg\estimation.png" />
+      <None Remove="ressources\CRUDimg\lot.png" />
+      <Resource Include="ressources\CRUDimg\lot.png" />
+      <None Remove="ressources\CRUDimg\ordre-achat.png" />
+      <Resource Include="ressources\CRUDimg\ordre-achat.png" />
+      <None Remove="ressources\CRUDimg\paiement.png" />
+      <Resource Include="ressources\CRUDimg\paiement.png" />
+      <None Remove="ressources\CRUDimg\produit.png" />
+      <Resource Include="ressources\CRUDimg\produit.png" />
+      <None Remove="ressources\CRUDimg\stock.png" />
+      <Resource Include="ressources\CRUDimg\stock.png" />
+      <None Remove="ressources\CRUDimg\utilisateur.png" />
+      <Resource Include="ressources\CRUDimg\utilisateur.png" />
+      <None Remove="ressources\CRUDimg\vente.png" />
+      <Resource Include="ressources\CRUDimg\vente.png" />
     </ItemGroup>
 
     <ItemGroup>
