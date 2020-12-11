@@ -11,6 +11,8 @@ namespace bidCardCoin.DAO
         public string IdCategorie { get; }
         public string CategorieId { get; }
         public string NomCategorie { get; }
+        public IEnumerable<string> ListeCategorieId { get; set; }
+        public IEnumerable<string> ListeProduitId { get; set; }
 
         public CategorieDAO()
         {

@@ -27,6 +27,19 @@
       <Resource Include="ressources\img\logo_large.png" />
       <None Remove="ressources\img\logoFill.png" />
       <Resource Include="ressources\img\logoFill.png" />
+      <None Remove="dossierFichierPartageAutre\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="dossierFichierPartageAutre\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="dossierFichierPartageAutre\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Page Remove="dossierFichierPartageAutre\**" />
     </ItemGroup>
 
 </Project>

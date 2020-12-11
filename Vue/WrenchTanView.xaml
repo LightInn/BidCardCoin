@@ -9,10 +9,21 @@
     <Grid>
 
         <DockPanel>
+            <StackPanel>
+                <Button Height="170" Width="150" Style="{DynamicResource ButtonInvisible}"
+                        MouseEnter="NavHoverEffectEnter" MouseLeave="NavHoverEffectExit" Click="GRUD_adresse">
+                    <StackPanel >
+                        <Image Source="/ressources/img/logo.png" Width="80" Margin="0 35 0 0" />
+                        <Border CornerRadius="15" Background="#DE4F4E" Height="30" Margin="0 25 0 0" Width="140">
+                            <TextBlock FontStyle="Italic" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                       FontSize="15" Foreground="#F8F8F8">
+                                Adresse
+                            </TextBlock>
+                        </Border>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
 
-            <TextBlock FontSize="50" HorizontalAlignment="Center" VerticalAlignment="Center">
-                HELLO MICKEY MOUSE 
-            </TextBlock>
         </DockPanel>
     </Grid>
 </UserControl>

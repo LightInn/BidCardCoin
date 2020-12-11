@@ -11,14 +11,14 @@ namespace bidCardCoin.ORM
 {
     public class AdresseORM
     {
-        private static Dictionary<string, Adresse> _adressesDictionary = new Dictionary<string, Adresse>();
+        private static readonly Dictionary<string, Adresse> AdressesDictionary = new Dictionary<string, Adresse>();
 
         private static bool AdresseAlreadyInDictionary(string id)
         {
-            return _adressesDictionary.ContainsKey(id);
+            return AdressesDictionary.ContainsKey(id);
         }
 
-        public static void populateMTM(List<Adresse> adresses)
+        public static void PopulateMtm(List<Adresse> adresses)
         {
             // liste des adresses qui on beusoin de se faire peupler (leurs liste utilisateurs)
 
@@ -26,12 +26,12 @@ namespace bidCardCoin.ORM
             {
                 if (AdresseAlreadyInDictionary(adresse.IdAdresse))
                 {
-                    adresse.Utilisateurs = _adressesDictionary[adresse.IdAdresse].Utilisateurs;
+                    adresse.Utilisateurs = AdressesDictionary[adresse.IdAdresse].Utilisateurs;
                 }
                 else
                 {
                     GetAdresseById(adresse.IdAdresse);
-                    adresse.Utilisateurs = _adressesDictionary[adresse.IdAdresse].Utilisateurs;
+                    adresse.Utilisateurs = AdressesDictionary[adresse.IdAdresse].Utilisateurs;
                 }
             }
         }
@@ -59,7 +59,7 @@ namespace bidCardCoin.ORM
 
             if (initializer)
             {
-                _adressesDictionary[adresse.IdAdresse] = adresse;
+                AdressesDictionary[adresse.IdAdresse] = adresse;
                 UtilisateurORM.PopulateMtm(adresse.Utilisateurs);
             }
 
