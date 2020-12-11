@@ -8,18 +8,18 @@ namespace bidCardCoin.DAO
 {
     public class StockDAO
     {
-        private string _idStock;
-        private string _adresseId;
-
+        public string IdStock { get; }
+        public string AdresseId { get; }
+        
         public StockDAO()
         {
+            
         }
-
         public StockDAO(string idStock, string adresseId)
 
         {
-            this._idStock = idStock;
-            this._adresseId = adresseId;
+            this.IdStock = idStock;
+            this.AdresseId = adresseId;
         }
     }
 }

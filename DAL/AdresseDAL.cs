@@ -46,11 +46,11 @@ namespace bidCardCoin.DAL
             {
                 // récup les paramètres principaux
                 var idAdresse = (string) reader["idAdresse"];
-                var pays = (string) reader["pays"];
-                var region = (string) reader["region"];
-                var ville = (string) reader["ville"];
-                var codePostal = (string) reader["codePostal"];
-                var adresse = (string) reader["adresse"];
+                var pays = Convert.IsDBNull((string) reader["pays"])? null :(string) reader["pays"];
+                var region = Convert.IsDBNull((string) reader["region"])? null :(string) reader["region"];
+                var ville = Convert.IsDBNull((string) reader["ville"])? null :(string) reader["ville"];
+                var codePostal = Convert.IsDBNull((string) reader["codePostal"])? null :(string) reader["codePostal"];
+                var adresse = Convert.IsDBNull((string) reader["adresse"])? null :(string) reader["adresse"];
 
                 adresseDao = new AdresseDAO(idAdresse, pays, region, ville, codePostal, adresse,
                     new List<string>());
@@ -65,13 +65,9 @@ namespace bidCardCoin.DAL
                 adresseDao.ListePersonneId = SelectPersonneInAdressesById(id);
                 return adresseDao;
             }
-            else
-            {
-                return new AdresseDAO();
-            }
+            return new AdresseDAO();
         }
-
-
+        
         public static List<AdresseDAO> SelectAllAdresse()
         {
             // Selectionné tout les adresse dans la base de donnée
@@ -84,16 +80,16 @@ namespace bidCardCoin.DAL
             while (reader.Read())
             {
                 var idAdresse = (string) reader["idAdresse"];
-                var pays = (string) reader["pays"];
-                var region = (string) reader["region"];
-                var ville = (string) reader["ville"];
-                var codePostal = (string) reader["codePostal"];
-                var adresse = (string) reader["adresse"];
+                var pays = Convert.IsDBNull((string) reader["pays"])? null :(string) reader["pays"];
+                var region = Convert.IsDBNull((string) reader["region"])? null :(string) reader["region"];
+                var ville = Convert.IsDBNull((string) reader["ville"])? null :(string) reader["ville"];
+                var codePostal = Convert.IsDBNull((string) reader["codePostal"])? null :(string) reader["codePostal"];
+                var adresse = Convert.IsDBNull((string) reader["adresse"])? null :(string) reader["adresse"];
 
                 liste.Add(new AdresseDAO(idAdresse, pays, region, ville, codePostal, adresse,
                     new List<string>()));
             }
-          
+            
             reader.Close();
             foreach (var adresseDao in liste)
             {
@@ -107,7 +103,8 @@ namespace bidCardCoin.DAL
         {
             // Inserer adresse dans la bdd
             var query =
-                @"INSERT INTO public.adresse values (:idAdresse,:pays,:region,:ville,:codePostal,:adresse) 
+                @"INSERT INTO public.adresse (""idAdresse"",""pays"",""region"",""ville"",""codePostal"",""adresse"") 
+values (:idAdresse,:pays,:region,:ville,:codePostal,:adresse) 
 ON CONFLICT ON CONSTRAINT pk_adresse DO UPDATE SET 
 ""idAdresse""=:idAdresse,
 ""pays""=:pays,

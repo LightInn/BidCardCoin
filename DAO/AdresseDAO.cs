@@ -29,6 +29,7 @@ namespace bidCardCoin.DAO
             this.Adresse = adresse;
             this.ListePersonneId = listePersonneId;
         }
+        
 
     }
 }
