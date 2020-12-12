@@ -21,10 +21,10 @@ namespace BidCardCoin.Vue
 
             DALconnection.OpenConnection();
 
-            var user = UtilisateurORM.getAllUtilisateur();
+            // var user = UtilisateurORM.GetAllUtilisateur();
 
 
-            var test = EnchereDAL.SelectAllEnchere();
+            // var test = EnchereDAL.SelectAllEnchere();
         }
 
 
@@ -62,7 +62,7 @@ namespace BidCardCoin.Vue
 
         private void Tab_Wrench(object sender, RoutedEventArgs e)
         {
-            parent.SubView.Children.Add(new WrenchTanView());
+            parent.SubView.Children.Add(new WrenchTanView(parent));
             parent.SubView.Children.RemoveAt(0);
         }
     }

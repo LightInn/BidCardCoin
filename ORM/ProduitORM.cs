@@ -41,7 +41,7 @@ namespace bidCardCoin.ORM
         public static void Populate(Produit produit)
         {
             // liste des produits qui on beusoin de se faire peupler (leurs liste utilisateurs)
-            
+
             if (!ProduitAlreadyInDictionary(produit.IdProduit))
             {
                 GetProduitById(produit.IdProduit);
@@ -73,9 +73,10 @@ namespace bidCardCoin.ORM
                 stockProduit = StockORM.GetStockById(StockDAL.SelectStockById(pdao.StockId).IdStock, false);
                 enchereGagnante =
                     EnchereORM.GetEnchereById(EnchereDAL.SelectEnchereById(pdao.EnchereGagnanteId).IdEnchere, false);
-                categorieProduit =
-                    CategorieORM.GetCategorieById(CategorieDAL.SelectCategorieById(pdao.CategorieId).CategorieId,
-                        false);
+                //todo decomente ici
+                // categorieProduit =
+                //     CategorieORM.GetCategorieById(CategorieDAL.SelectCategorieById(pdao.CategorieId).CategorieId,
+                //         false);
             }
 
 
@@ -89,10 +90,14 @@ namespace bidCardCoin.ORM
                 _produitsDictionary[produit.IdProduit] = produit;
 
                 LotORM.Populate(produit.LotProduit);
-                UtilisateurORM.Populate(produit.UtilisateurProduit);
+                UtilisateurORM.Populate(new List<Utilisateur>(new []
+                {
+                    produit.UtilisateurProduit
+                }));
                 StockORM.Populate(produit.StockProduit);
                 EnchereORM.Populate(produit.EnchereGagnante);
-                CategorieORM.Populate(produit.CategorieProduit);
+                //todo decomenter ici
+                // CategorieORM.Populate(produit.CategorieProduit);
             }
 
             return produit;

@@ -72,7 +72,10 @@ namespace bidCardCoin.ORM
             {
                 _ordreAchatsDictionary[ordreAchat.IdOrdreAchat] = ordreAchat;
 
-                UtilisateurORM.Populate(ordreAchat.UtilisateurOrdreAchat);
+                UtilisateurORM.Populate(new List<Utilisateur>(new []
+                {
+                    ordreAchat.UtilisateurOrdreAchat
+                }));
                 LotORM.Populate(ordreAchat.LotOrdreAchat);
             }
 

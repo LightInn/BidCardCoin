@@ -72,7 +72,14 @@ namespace bidCardCoin.ORM
             {
                 _paiementsDictionary[paiement.IdPaiement] = paiement;
                 LotORM.Populate(paiement.LotPaiement);
-                UtilisateurORM.Populate(paiement.UtilisateurPaiement);
+                UtilisateurORM.Populate(new List<Utilisateur>(new []
+                {
+                    paiement.UtilisateurPaiement
+                }));
+                    
+                    
+                    
+                   
             }
 
             return paiement;

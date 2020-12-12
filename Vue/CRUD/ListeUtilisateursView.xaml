@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="BidCardCoin.Vue.CRUD.ListeUtilisateursView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:BidCardCoin.Vue.CRUD"
+             mc:Ignorable="d">
+    <Grid>
+        <DockPanel>
+            <DataGrid Name="ListeUtilisateursGrid" ItemsSource="{Binding}" AutoGenerateColumns="false"
+                      HorizontalAlignment="Left" Margin="200,0" Grid.ColumnSpan="2" BorderBrush="Black"
+                      Background="#CCCCCC" SelectionChanged="ListeUtilisateursGrid_SelectionChanged"
+                      ScrollViewer.CanContentScroll="True"
+                      ScrollViewer.VerticalScrollBarVisibility="Auto"
+                      ScrollViewer.HorizontalScrollBarVisibility="Auto">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="id" Binding="{Binding IdUtilisateur , Mode=OneWay}" />
+                    <DataGridTextColumn Header="prénom" Binding="{Binding Prenom}" />
+                    <DataGridTextColumn Header="nom"
+                                        Binding="{Binding Nom, Mode=TwoWay}" />
+                    <DataGridTextColumn Header="Email"
+                                        Binding="{Binding Email, Mode=OneWay}" />
+                    <DataGridTextColumn Header="Verifier"
+                                        Binding="{Binding IdentityExist, Mode=twoWay}" />
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <StackPanel>
+                <Button Style="{DynamicResource ButtonInvisible}" Click="AddUser">
+                    <Border CornerRadius="15" Width="30" Background="#DE4F4E">
+                        <TextBlock FontSize="40" Foreground="#ADDB31">+</TextBlock>
+                    </Border>
+
+                </Button>
+                <Button Style="{DynamicResource ButtonInvisible}">
+                    <Border CornerRadius="15" Width="30" Background="#DE4F4E">
+                        <TextBlock FontSize="40" Foreground="#F44336">x</TextBlock>
+                    </Border>
+                </Button>
+            </StackPanel>
+        </DockPanel>
+
+    </Grid>
+
+</UserControl>

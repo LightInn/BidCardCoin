@@ -85,7 +85,10 @@ namespace bidCardCoin.ORM
                 CommissaireORM.Populate(enchere.CommissaireEnchere);
                 LotORM.Populate(enchere.LotEnchere);
                 OrdreAchatORM.Populate(enchere.OrdreAchatEnchere);
-                UtilisateurORM.Populate(enchere.UtilisateurEnchere);
+                UtilisateurORM.Populate(new List<Utilisateur>(new[]
+                {
+                    enchere.UtilisateurEnchere
+                }));
             }
 
             return enchere;

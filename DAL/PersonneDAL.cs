@@ -12,15 +12,12 @@ namespace bidCardCoin.DAL
     public static class PersonneDAL
     {
         // SELECT
- 
 
 
         public static PersonneDAO SelectPersonneById(string id)
 
         {
             // Selectionné l'Personne a partir de l'id
-
-     
 
 
             PersonneDAO dao = new PersonneDAO();
@@ -60,7 +57,11 @@ namespace bidCardCoin.DAL
             }
 
             reader.Close();
-            dao.ChildReference = getChildReference(dao.IdPersonne);
+
+            if (dao.IdPersonne != null)
+            {
+                dao.ChildReference = getChildReference(dao.IdPersonne);
+            }
 
             return dao;
         }

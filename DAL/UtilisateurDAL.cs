@@ -75,7 +75,10 @@ namespace bidCardCoin.DAL
         public static void InsertNewUtilisateur(UtilisateurDAO utilisateur)
         {
             // Inserer Utilisateur dans la bdd
+            
 
+            
+            
 
             var query =
                 "INSERT INTO public.utilisateur (\"idUtilisateur\",\"personneId\", \"verifSolvable\", \"verifRessortissant\", \"verifIdentite\",\"listeMotClef\") VALUES(:idUtilisateur,:personneId, :verifSolvable, :verifRessortissant, :verifIdentite,:listeMotClef)";

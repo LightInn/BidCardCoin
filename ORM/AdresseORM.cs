@@ -11,14 +11,14 @@ namespace bidCardCoin.ORM
 {
     public class AdresseORM
     {
-        private static Dictionary<string, Adresse> _adressesDictionary = new Dictionary<string, Adresse>();
+        private static readonly Dictionary<string, Adresse> AdressesDictionary = new Dictionary<string, Adresse>();
 
         private static bool AdresseAlreadyInDictionary(string id)
         {
-            return _adressesDictionary.ContainsKey(id);
+            return AdressesDictionary.ContainsKey(id);
         }
 
-        public static void populateMTM(List<Adresse> adresses)
+        public static void PopulateMtm(List<Adresse> adresses)
         {
             // liste des adresses qui on beusoin de se faire peupler (leurs liste utilisateurs)
 
@@ -26,12 +26,12 @@ namespace bidCardCoin.ORM
             {
                 if (AdresseAlreadyInDictionary(adresse.IdAdresse))
                 {
-                    adresse.Utilisateurs = _adressesDictionary[adresse.IdAdresse].Utilisateurs;
+                    adresse.Utilisateurs = AdressesDictionary[adresse.IdAdresse].Utilisateurs;
                 }
                 else
                 { 
                     GetAdresseById(adresse.IdAdresse);
-                    adresse.Utilisateurs = _adressesDictionary[adresse.IdAdresse].Utilisateurs;
+                    adresse.Utilisateurs = AdressesDictionary[adresse.IdAdresse].Utilisateurs;
                 }
             }
         }
@@ -60,14 +60,48 @@ namespace bidCardCoin.ORM
                 adao.Adresse, listeUsers);
 
 
-         
             if (initializer)
             {
-                _adressesDictionary[adresse.IdAdresse] = adresse;
-                UtilisateurORM.populateMTM(adresse.Utilisateurs);
+                AdressesDictionary[adresse.IdAdresse] = adresse;
+                UtilisateurORM.Populate(adresse.Utilisateurs);
             }
 
             return adresse;
+        }
+
+
+        public static List<Adresse> GetAllAdresse()
+        {
+            List<AdresseDAO> ladao = AdresseDAL.SelectAllAdresse();
+            List<Adresse> adresses = new List<Adresse>();
+
+            foreach (var adao in ladao)
+            {
+                adresses.Add(GetAdresseById(adao.IdAdresse));
+            }
+
+            return adresses;
+        }
+
+        static AdresseDAO AdresseToDao(Adresse adresse)
+        {
+            return new AdresseDAO(adresse.IdAdresse, adresse.Pays, adresse.Region, adresse.Ville, adresse.CodePostal,
+                adresse.AdresseNb, adresse.Utilisateurs.Select(user => user.IdUtilisateur).ToList());
+        }
+
+        static void AddAdresse(Adresse user)
+        {
+            AdresseDAL.InsertOrAddNewAdresse(AdresseToDao(user));
+        }
+
+        static void UpdateAdresse(Adresse user)
+        {
+            AdresseDAL.InsertOrAddNewAdresse(AdresseToDao(user));
+        }
+
+        static void DeleteAdresse(Adresse user)
+        {
+            AdresseDAL.DeleteAdresse(user.IdAdresse);
         }
     }
 }
