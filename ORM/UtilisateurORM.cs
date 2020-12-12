@@ -16,21 +16,20 @@ namespace bidCardCoin.ORM
             return UtilisateurDictionary.ContainsKey(id);
         }
 
-        public static void PopulateMtm(List<Utilisateur> users)
+        public static void Populate(List<Utilisateur> users)
         {
             // liste des utilisateurs qui on beusoin de se faire peupler (leurs liste adresses)
 
             foreach (var user in users)
             {
-                if (UtilisateurAlreadyInDictionary(user.IdUtilisateur))
-                {
-                    user.Adresses = UtilisateurDictionary[user.IdUtilisateur].Adresses;
-                }
-                else
+                if (!UtilisateurAlreadyInDictionary(user.IdUtilisateur))
                 {
                     GetUtilisateurById(user.IdUtilisateur);
-                    user.Adresses = UtilisateurDictionary[user.IdUtilisateur].Adresses;
                 }
+            
+               
+                    user.Adresses = UtilisateurDictionary[user.IdUtilisateur].Adresses;
+                
             }
         }
 

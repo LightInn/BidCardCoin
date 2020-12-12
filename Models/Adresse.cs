@@ -56,6 +56,9 @@ namespace BidCardCoin.Models
         private string _adresse;
         private List<Utilisateur> _utilisateurs;
 
+        public Adresse()
+        {
+        }
         public Adresse(string idAdresse, string pays, string region, string ville, string codePostal, string adresse, List<Utilisateur> users)
         {
             this._idAdresse = idAdresse;

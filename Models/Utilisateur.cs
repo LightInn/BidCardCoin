@@ -95,9 +95,9 @@ namespace BidCardCoin.Models
         private bool _isRessortissant;
         private bool _identityExist;
         private List<string> _listeMotClef;
-        
 
-        // Todo version avec param optionnel 
+
+ 
         public Utilisateur(string idUtilisateur, bool isSolvable, bool isRessortissant, bool identityExist,
             List<string> listeMotClef, string idPersonne, string nom, string prenom, int age, string email,
             string password, string telephoneMobile, string telephoneFixe, List<Adresse> adresses)

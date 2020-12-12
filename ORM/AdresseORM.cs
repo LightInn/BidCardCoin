@@ -29,13 +29,16 @@ namespace bidCardCoin.ORM
                     adresse.Utilisateurs = AdressesDictionary[adresse.IdAdresse].Utilisateurs;
                 }
                 else
-                {
+                { 
                     GetAdresseById(adresse.IdAdresse);
                     adresse.Utilisateurs = AdressesDictionary[adresse.IdAdresse].Utilisateurs;
                 }
             }
         }
-
+        public static void Populate(Adresse adresse)
+        {
+            // todo
+        }
 
         public static Adresse GetAdresseById(string id, bool initializer = true)
         {
@@ -60,7 +63,7 @@ namespace bidCardCoin.ORM
             if (initializer)
             {
                 AdressesDictionary[adresse.IdAdresse] = adresse;
-                UtilisateurORM.PopulateMtm(adresse.Utilisateurs);
+                UtilisateurORM.Populate(adresse.Utilisateurs);
             }
 
             return adresse;
