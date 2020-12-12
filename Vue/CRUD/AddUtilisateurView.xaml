@@ -4,24 +4,90 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:BidCardCoin.Vue.CRUD"
-             mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid Name="grigrid" Height="300" Margin="0,0,0.300,0" VerticalAlignment="Top">
+             mc:Ignorable="d">
+    <Grid Name="grigrid" Margin="0,0,0.300,0" VerticalAlignment="Top">
         <StackPanel>
-            <Label Content="nom" />
-            <TextBox Name="nomTextBox" Text="{Binding NomProperty, Mode=TwoWay}"
-                     Height="20" />
-            <Label Content="prenom" />
-            <TextBox Name="prenomTextBox" Text="{Binding PrenomProperty, Mode=TwoWay}"
-                     Height="20" Margin="0,0,0.300,0" />
-            <Button x:Name="nomPrenomButton2" Content="{Binding ConcatProperty, Mode=OneWay}"
-                    BorderBrush="#FF545454"
-                    BorderThickness="5,5,5,1" Height="35" Margin="0,5,206.333,0"
-                    HorizontalAlignment="Right" Width="427" RenderTransformOrigin="0.5,2.31"
-            />
-            <Label Content="Age : " />
-            <TextBox Name="txtAge" Text="{Binding AgeProperty, Mode=OneWay}" />
+            <DockPanel>
+                <StackPanel>
+                    <Label Content="Nom" FontSize="20" Foreground="#F8F8F8" />
+                    <TextBox Name="InputNom" Height="20" />
+                </StackPanel>
+                <StackPanel>
+                    <Label Content="Prénom" FontSize="20" Foreground="#F8F8F8" />
+                    <TextBox Name="InputPrenom" Height="20" Margin="0,0,0.300,0" />
+                </StackPanel>
+            </DockPanel>
 
+
+            <DockPanel>
+
+                <Label Content="Age : " FontSize="20" Foreground="#F8F8F8" />
+                <TextBox Name="InputAge" />
+            </DockPanel>
+
+
+            <DockPanel>
+                <StackPanel>
+                    <Label Content="Email" FontSize="20" Foreground="#F8F8F8" />
+                    <TextBox Name="InputEmail" Height="20" />
+                </StackPanel>
+                <StackPanel>
+                    <Label Content="Mot de passe" FontSize="20" Foreground="#F8F8F8" />
+                    <PasswordBox Name="InputPassword" Height="20" Margin="0,0,0.300,0" />
+                </StackPanel>
+            </DockPanel>
+
+            <DockPanel>
+                <StackPanel>
+                    <Label Content="Tel. Mobile" FontSize="20" Foreground="#F8F8F8" />
+                    <TextBox Name="InputMobile" Height="20" />
+                </StackPanel>
+                <StackPanel>
+                    <Label Content="Tel. Fixe" FontSize="20" Foreground="#F8F8F8" />
+                    <TextBox Name="InputFixe" Height="20" Margin="0,0,0.300,0" />
+                </StackPanel>
+            </DockPanel>
+
+
+            <DockPanel>
+                <StackPanel>
+                    <Label Content="Identité Verifié" FontSize="20" Foreground="#F8F8F8" />
+                    <CheckBox Name="InputIdentity" Height="20" Margin="0,0,0.300,0" />
+                </StackPanel>
+
+                <StackPanel>
+                    <Label Content="Solvabilité Verifié" FontSize="20" Foreground="#F8F8F8" />
+                    <CheckBox Name="InputSolvable" Height="20" Margin="0,0,0.300,0" />
+                </StackPanel>
+
+                <StackPanel>
+                    <Label Content="Ressortissant" FontSize="20" Foreground="#F8F8F8" />
+                    <CheckBox Name="InputRessortissant" Height="20" Margin="0,0,0.300,0" />
+                </StackPanel>
+            </DockPanel>
+
+
+            <Label Content="Liste de mots clef (seperare par des ';' sans espaces )" FontSize="20"
+                   Foreground="#F8F8F8" />
+            <TextBox Name="InputMotsClefs" Height="20" Margin="0,0,0.300,0" />
+
+
+            <Label Content="Liste d'adresses" FontSize="20"
+                   Foreground="#F8F8F8" />
+            <TextBox Name="InputAdresses" Height="20" Margin="0,0,0.300,0" />
+
+
+            <DockPanel>
+                <Button Click="CreateNewUtilisateur">
+                    <Border
+                        CornerRadius="8" Background="Aqua">
+                        <TextBlock>
+                            Ajouter Utilisateur
+                        </TextBlock>
+                    </Border>
+                </Button>
+                <Button>Anuller</Button>
+            </DockPanel>
         </StackPanel>
     </Grid>
 
