@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
@@ -7,47 +8,43 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using BidCardCoin.Models;
 using bidCardCoin.ORM;
+using Microsoft.VisualBasic;
 
 //todo Hyper Chiant :  Passer en mode select si on transmet une liste
 
 namespace BidCardCoin.Vue.CRUD
 {
-    public partial class ListeUtilisateursView : UserControl
+    public partial class ListeMotsClefsView : UserControl
     {
         private string _selectedId;
-        private Utilisateur _contextUtilisateur;
-        private ObservableCollection<Utilisateur> _utilisateurs;
+        private List<string> _motsClefs;
 
 
-        public ListeUtilisateursView()
+        public ListeMotsClefsView( List<string> listeMotsClefs)
         {
             InitializeComponent();
        
-            _utilisateurs = new ObservableCollection<Utilisateur>(UtilisateurORM.GetAllUtilisateur());
-            _contextUtilisateur = new Utilisateur();
+            _motsClefs =listeMotsClefs;
             GenerateDataList();
         }
 
         private void GenerateDataList()
         {
-            
-            
-            ListeUtilisateursGrid.ItemsSource = _utilisateurs;
-            
-
+            ListeMotsClefsGrid.ItemsSource = _motsClefs;
         }
 
-        private void ListeUtilisateursGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ListeMotsClefsGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
         }
 
-        private void AddUser(object sender, RoutedEventArgs e)
+        private void AddMotClef(object sender, RoutedEventArgs e)
         {
 
+            String newMotClef = "";
             Window window = new Window
             {
-                Title = "Ajouter un utilisateur",
-                Content =  new AddUtilisateurView(),
+                Title = "Ajouter un Mot Clef",
+                Content =  new AddMotClefView(newMotClef),
                 SizeToContent = SizeToContent.WidthAndHeight,
                 ResizeMode = ResizeMode.NoResize,
                 Background = (SolidColorBrush) new BrushConverter().ConvertFrom("#393C43"),
@@ -55,7 +52,13 @@ namespace BidCardCoin.Vue.CRUD
                 
             };
             window.ShowDialog();
+            _motsClefs.Add(newMotClef);
+            GenerateDataList();
+        }
 
+        private void RemoveMotClef(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }

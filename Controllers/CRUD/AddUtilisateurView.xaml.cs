@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using bidCardCoin.DAL;
 using BidCardCoin.Models;
 using bidCardCoin.ORM;
@@ -29,8 +31,26 @@ namespace BidCardCoin.Vue.CRUD
         {
             var uuid = Guid.NewGuid().ToString();
             var idPersonne = Guid.NewGuid().ToString();
-            List<string> listeMotClef = new List<string>(new[] {"carte", "pokemon"});
             List<Adresse> listeAdresses = new List<Adresse>();
+            
+            
+            
+            List<string> listeMotClef = new List<string>();
+          
+            
+            Window window = new Window
+            {
+                Title = "Liste des mots Clefs",
+                Content =  new ListeMotsClefsView(listeMotClef),
+                SizeToContent = SizeToContent.WidthAndHeight,
+                ResizeMode = ResizeMode.NoResize,
+                Background = (SolidColorBrush) new BrushConverter().ConvertFrom("#393C43"),
+                Icon = new BitmapImage(new Uri("pack://application:,,,/ressources/CRUDimg/utilisateur.png", UriKind.RelativeOrAbsolute)),
+                
+            };
+            window.ShowDialog();
+            
+            
             
             _user.IdUtilisateur = uuid;
             _user.IdPersonne = idPersonne;
@@ -44,12 +64,17 @@ namespace BidCardCoin.Vue.CRUD
             _user.IsRessortissant = InputRessortissant.IsChecked ?? false;
             _user.TelephoneFixe = InputFixe.Text;
             _user.TelephoneMobile = InputMobile.Text;
-             _user.ListeMotClef = listeMotClef;
-             _user.Adresses = listeAdresses;
+            _user.ListeMotClef = listeMotClef;
+            _user.Adresses = listeAdresses;
 
 
              UtilisateurORM.AddUtilisateur(_user);
             
+        }
+
+        private void Cancel(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }
