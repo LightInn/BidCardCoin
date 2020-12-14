@@ -72,17 +72,27 @@ namespace bidCardCoin.ORM
             {
                 _paiementsDictionary[paiement.IdPaiement] = paiement;
                 LotORM.Populate(paiement.LotPaiement);
-                UtilisateurORM.Populate(new List<Utilisateur>(new []
+                UtilisateurORM.Populate(new List<Utilisateur>(new[]
                 {
                     paiement.UtilisateurPaiement
                 }));
-                    
-                    
-                    
-                   
             }
 
             return paiement;
         }
+
+        public static List<Paiement> GetAllPaiement()
+        {
+            List<PaiementDAO> lpdao = PaiementDAL.SelectAllPaiement();
+            List<Paiement> paiements = new List<Paiement>();
+
+            foreach (var pdao in lpdao)
+            {
+                paiements.Add(GetPaiementById(pdao.IdPaiement));
+            }
+
+            return paiements;
+        }
+        
     }
 }

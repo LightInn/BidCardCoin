@@ -16,7 +16,7 @@ namespace bidCardCoin.DAL
             LotDAO lotDao = new LotDAO();
             // Selectionne la lot a partir de l'id
             var query =
-                "SELECT * FROM public.lot a where a.\"idLot\"= :idLotParam";
+                "SELECT * FROM public.lot a where a.\"idLot\"=:idLotParam";
             var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
             cmd.Parameters.AddWithValue("idLotParam", id);
 
@@ -27,10 +27,10 @@ namespace bidCardCoin.DAL
                 var idLot = (string) reader["idLot"];
                 var nomLot = (string) reader["nomLot"];
                 var description = Convert.IsDBNull((string) reader["description"])? null :(string) reader["description"];
-                return new LotDAO(idLot, nomLot, description);
+                lotDao = new LotDAO(idLot, nomLot, description);
             }
-            
-            return new LotDAO();
+            reader.Close();
+            return lotDao;
         }
 
         public static List<LotDAO> SelectAllLot()
@@ -50,7 +50,7 @@ namespace bidCardCoin.DAL
 
                 liste.Add(new LotDAO(idLot, nomLot, description));
             }
-
+            reader.Close();
             return liste;
         }
 
@@ -80,7 +80,7 @@ where lot.""idLot""=:idLot";
             LotDAO dao = SelectLotById(lotId);
             if (dao.IdLot != null)
             {
-                var query = "DELETE FROM public.lot WHERE \"idLot\"= :idLot";
+                var query = "DELETE FROM public.lot WHERE \"idLot\"=:idLot";
                 var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
                 cmd.Parameters.AddWithValue("idLot", lotId);
                 cmd.ExecuteNonQuery();

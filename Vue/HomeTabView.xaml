@@ -18,7 +18,7 @@
                             Background="#393C43">
                         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
                             <TextBlock  VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25" Foreground="AntiqueWhite">
-                                Achat
+                                OrdreAchatEnchere
                             </TextBlock>
                             <Image Margin="50" Height="100" Source="/ressources/img/Achat.png" />
                         </StackPanel>

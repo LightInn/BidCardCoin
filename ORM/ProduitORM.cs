@@ -102,5 +102,18 @@ namespace bidCardCoin.ORM
 
             return produit;
         }
+        
+        public static List<Produit> GetAllProduit()
+        {
+            List<ProduitDAO> lpdao = ProduitDAL.SelectAllProduit();
+            List<Produit> produits = new List<Produit>();
+
+            foreach (var pdao in lpdao)
+            {
+                produits.Add(GetProduitById(pdao.IdProduit));
+            }
+
+            return produits;
+        }
     }
 }

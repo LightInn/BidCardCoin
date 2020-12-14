@@ -64,15 +64,18 @@ namespace bidCardCoin.ORM
             if (initializer)
             {
                 commissaireEnchere =
-                    CommissaireORM.GetCommissaireById(
-                        CommissaireDAL.SelectCommissaireById(edao.CommissaireId).IdCommissaire, false);
-                lotEnchere = LotORM.GetLotById(LotDAL.SelectLotById(edao.LotId).IdLot, false);
-                ordreAchatEnchere =
-                    OrdreAchatORM.GetOrdreAchatById(OrdreAchatDAL.SelectOrdreAchatById(edao.OrdreAchatId).IdOrdreAchat,
-                        false);
-                utilisateurEnchere =
-                    UtilisateurORM.GetUtilisateurById(
-                        UtilisateurDAL.SelectUtilisateurById(edao.UtilisateurId).IdUtilisateur, false);
+                    CommissaireORM.GetCommissaireById(edao.CommissaireId, false);
+                lotEnchere = LotORM.GetLotById(edao.LotId, false);
+                if (edao.OrdreAchatId != null)
+                {
+                    ordreAchatEnchere =
+                        OrdreAchatORM.GetOrdreAchatById(edao.OrdreAchatId, false);
+                }
+                if (edao.UtilisateurId != null)
+                {
+                    utilisateurEnchere =
+                        UtilisateurORM.GetUtilisateurById(edao.UtilisateurId, false);
+                }
             }
 
             Enchere enchere = new Enchere(edao.IdEnchere, edao.PrixProposer, edao.EstAdjuger, edao.DateHeureVente,
@@ -82,7 +85,10 @@ namespace bidCardCoin.ORM
             {
                 _encheresDictionary[enchere.IdEnchere] = enchere;
 
-                CommissaireORM.Populate(enchere.CommissaireEnchere);
+                CommissaireORM.Populate(new List<Commissaire>(new[]
+                {
+                    enchere.CommissaireEnchere
+                }));
                 LotORM.Populate(enchere.LotEnchere);
                 OrdreAchatORM.Populate(enchere.OrdreAchatEnchere);
                 UtilisateurORM.Populate(new List<Utilisateur>(new[]
@@ -92,6 +98,19 @@ namespace bidCardCoin.ORM
             }
 
             return enchere;
+        }
+
+        public static List<Enchere> GetAllEnchere()
+        {
+            List<EnchereDAO> ledao = EnchereDAL.SelectAllEnchere();
+            List<Enchere> encheres = new List<Enchere>();
+
+            foreach (var edao in ledao)
+            {
+                encheres.Add(GetEnchereById(edao.IdEnchere));
+            }
+
+            return encheres;
         }
     }
 }

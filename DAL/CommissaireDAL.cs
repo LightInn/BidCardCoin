@@ -17,7 +17,7 @@ namespace bidCardCoin.DAL
             CommissaireDAO commissaireDao = new CommissaireDAO();
             // Selectionne la commissaire a partir de l'id
             var query =
-                "SELECT * FROM public.commissaire a where a.\"idCommissaire\"= :idCommissaireParam";
+                "SELECT * FROM public.commissaire a where a.\"idCommissaire\"=:idCommissaireParam";
             var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
             cmd.Parameters.AddWithValue("idCommissaireParam", id);
 
@@ -27,11 +27,10 @@ namespace bidCardCoin.DAL
                 // récup les paramètres principaux
                 var idCommissaire = (string) reader["idCommissaire"];
                 var personneId = (string) reader["personneId"];
-
-                return new CommissaireDAO(idCommissaire, personneId);
+                commissaireDao = new CommissaireDAO(idCommissaire, personneId);
             }
-
-            return new CommissaireDAO();
+            reader.Close();
+            return commissaireDao;
         }
 
         public static List<CommissaireDAO> SelectAllCommissaire()
@@ -50,7 +49,7 @@ namespace bidCardCoin.DAL
 
                 liste.Add(new CommissaireDAO(idCommissaire, personneId));
             }
-
+            reader.Close();
             return liste;
         }
 
@@ -78,7 +77,7 @@ where commissaire.""idCommissaire""=:idCommissaire";
             CommissaireDAO dao = SelectCommissaireById(commissaireId);
             if (dao.IdCommissaire != null)
             {
-                var query = "DELETE FROM public.commissaire WHERE \"idCommissaire\"= :idCommissaire";
+                var query = "DELETE FROM public.commissaire WHERE \"idCommissaire\"=:idCommissaire";
                 var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
                 cmd.Parameters.AddWithValue("idCommissaire", commissaireId);
                 cmd.ExecuteNonQuery();

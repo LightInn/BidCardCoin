@@ -17,7 +17,7 @@ namespace bidCardCoin.DAL
             ProduitDAO produitDao = new ProduitDAO();
             // Selectionne la produit a partir de l'id
             var query =
-                "SELECT * FROM public.produit a where a.\"idProduit\"= :idProduitParam";
+                "SELECT * FROM public.produit a where a.\"idProduit\"=:idProduitParam";
             var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
             cmd.Parameters.AddWithValue("idProduitParam", id);
 
@@ -40,10 +40,10 @@ namespace bidCardCoin.DAL
                 var isSend = (bool) reader["isSend"];
                 var photoId = Convert.IsDBNull((string) reader["photoId"])? null :(string) reader["photoId"];
                 
-                return new ProduitDAO(idProduit, lotId, utilisateurId,stockId,enchereGagnanteId,categorieId,nomArtiste,nomStyle,nomProduits,prixReserve,referenceCatalogue,descriptionProduit,isSend,photoId);
+                produitDao = new ProduitDAO(idProduit, lotId, utilisateurId,stockId,enchereGagnanteId,categorieId,nomArtiste,nomStyle,nomProduits,prixReserve,referenceCatalogue,descriptionProduit,isSend,photoId);
             }
-
-            return new ProduitDAO();
+            reader.Close();
+            return produitDao;
         }
 
         public static List<ProduitDAO> SelectAllProduit()
@@ -75,7 +75,7 @@ namespace bidCardCoin.DAL
 
                 liste.Add(new ProduitDAO(idProduit, lotId, utilisateurId,stockId,enchereGagnanteId,categorieId,nomArtiste,nomStyle,nomProduits,prixReserve,referenceCatalogue,descriptionProduit,isSend,photoId));
             }
-
+            reader.Close();
             return liste;
         }
 
@@ -127,7 +127,7 @@ where produit.""idProduit""=:idProduit";
             ProduitDAO dao = SelectProduitById(produitId);
             if (dao.IdProduit != null)
             {
-                var query = "DELETE FROM public.produit WHERE \"idProduit\"= :idProduit";
+                var query = "DELETE FROM public.produit WHERE \"idProduit\"=:idProduit";
                 var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
                 cmd.Parameters.AddWithValue("idProduit", produitId);
                 cmd.ExecuteNonQuery();

@@ -15,7 +15,7 @@ namespace bidCardCoin.DAL
         {
             // récup la liste des personnes
             var query =
-                "SELECT * FROM public.adressepersonne ap where ap.\"adresseId\"= :idAdresseParam";
+                "SELECT * FROM public.adressepersonne ap where ap.\"adresseId\"=:idAdresseParam";
             var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
             cmd.Parameters.AddWithValue("idAdresseParam", id);
 
@@ -37,7 +37,7 @@ namespace bidCardCoin.DAL
             AdresseDAO adresseDao = new AdresseDAO();
             // Selectionne l'adresse a partir de l'id
             var query =
-                "SELECT * FROM public.adresse a where a.\"idAdresse\"= :idAdresseParam order by a.\"idAdresse\" desc";
+                "SELECT * FROM public.adresse a where a.\"idAdresse\"=:idAdresseParam order by a.\"idAdresse\" desc";
             var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
             cmd.Parameters.AddWithValue("idAdresseParam", id);
 
@@ -51,7 +51,7 @@ namespace bidCardCoin.DAL
                 var ville = Convert.IsDBNull((string) reader["ville"])? null :(string) reader["ville"];
                 var codePostal = Convert.IsDBNull((string) reader["codePostal"])? null :(string) reader["codePostal"];
                 var adresse = Convert.IsDBNull((string) reader["adresse"])? null :(string) reader["adresse"];
-
+                reader.Close();
                 adresseDao = new AdresseDAO(idAdresse, pays, region, ville, codePostal, adresse,
                     new List<string>());
             }
@@ -95,6 +95,7 @@ namespace bidCardCoin.DAL
             {
                 adresseDao.ListePersonneId = SelectPersonneInAdressesById(adresseDao.IdAdresse);
             }
+            reader.Close();
             return liste;
         }
         
@@ -132,6 +133,7 @@ ON CONFLICT ON CONSTRAINT pk_adressepersonne DO NOTHING";
                 cmd.Parameters.AddWithValue("idPersonne", elemPersonneId);
                 cmd.ExecuteNonQuery();
             }
+            
         }
 
 // DELETE
@@ -141,7 +143,7 @@ ON CONFLICT ON CONSTRAINT pk_adressepersonne DO NOTHING";
             AdresseDAO dao = SelectAdresseById(adresseId);
             if (dao.IdAdresse != null)
             {
-                var query = "DELETE FROM public.adresse WHERE \"idAdresse\"= :idAdresse";
+                var query = "DELETE FROM public.adresse WHERE \"idAdresse\"=:idAdresse";
                 var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
                 cmd.Parameters.AddWithValue("idAdresse", adresseId);
                 cmd.ExecuteNonQuery();

@@ -52,7 +52,7 @@ namespace bidCardCoin.ORM
 
         public static OrdreAchat GetOrdreAchatById(string id, bool initializer = true)
         {
-            OrdreAchatDAO pdao = OrdreAchatDAL.SelectOrdreAchatById(id);
+            OrdreAchatDAO odao = OrdreAchatDAL.SelectOrdreAchatById(id);
             Lot lotOrdreAchat = new Lot();
             Utilisateur utilisateurOrdreAchat = new Utilisateur();
 
@@ -61,8 +61,8 @@ namespace bidCardCoin.ORM
             {
                 utilisateurOrdreAchat =
                     UtilisateurORM.GetUtilisateurById(
-                        UtilisateurDAL.SelectUtilisateurById(pdao.UtilisateurId).IdUtilisateur, false);
-                lotOrdreAchat = LotORM.GetLotById(LotDAL.SelectLotById(pdao.LotId).IdLot, false);
+                        UtilisateurDAL.SelectUtilisateurById(odao.UtilisateurId).IdUtilisateur, false);
+                lotOrdreAchat = LotORM.GetLotById(LotDAL.SelectLotById(odao.LotId).IdLot, false);
             }
 
 
@@ -80,6 +80,19 @@ namespace bidCardCoin.ORM
             }
 
             return ordreAchat;
+        }
+        
+        public static List<OrdreAchat> GetAllOrdreAchat()
+        {
+            List<OrdreAchatDAO> lodao = OrdreAchatDAL.SelectAllOrdreAchat();
+            List<OrdreAchat> ordreAchats = new List<OrdreAchat>();
+
+            foreach (var odao in lodao)
+            {
+                ordreAchats.Add(GetOrdreAchatById(odao.IdOrdreAchat));
+            }
+
+            return ordreAchats;
         }
     }
 }

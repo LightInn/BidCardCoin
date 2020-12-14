@@ -19,7 +19,7 @@ namespace bidCardCoin.DAL
 
             EnchereDAO dao = new EnchereDAO();
 
-            var query = "SELECT * FROM public.enchere  where \"idEnchere\" = :id";
+            var query = "SELECT * FROM public.enchere  where \"idEnchere\" =:id";
             var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
             cmd.Parameters.AddWithValue("id", id);
             var reader = cmd.ExecuteReader();

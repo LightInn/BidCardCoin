@@ -72,12 +72,28 @@ namespace bidCardCoin.ORM
             if (initializer)
             {
                 _estimationsDictionary[estimation.IdEstimation] = estimation;
-
-                CommissaireORM.Populate(estimation.CommissaireEstimation);
+                
+                CommissaireORM.Populate(new List<Commissaire>(new[]
+                {
+                    estimation.CommissaireEstimation
+                }));
                 ProduitORM.Populate(estimation.ProduitEstimation);
             }
 
             return estimation;
+        }
+        
+        public static List<Estimation> GetAllEstimation()
+        {
+            List<EstimationDAO> ledao = EstimationDAL.SelectAllEstimation();
+            List<Estimation> estimations = new List<Estimation>();
+
+            foreach (var edao in ledao)
+            {
+                estimations.Add(GetEstimationById(edao.IdEstimation));
+            }
+
+            return estimations;
         }
     }
 }

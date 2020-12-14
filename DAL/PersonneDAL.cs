@@ -12,21 +12,16 @@ namespace bidCardCoin.DAL
     public static class PersonneDAL
     {
         // SELECT
-
-
         public static PersonneDAO SelectPersonneById(string id)
 
         {
             // Selectionné l'Personne a partir de l'id
-
-
             PersonneDAO dao = new PersonneDAO();
 
-            var query = "SELECT * FROM public.personne  where \"idPersonne\" = :id";
+            var query = "SELECT * FROM public.personne  where \"idPersonne\" =:id";
             var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
             cmd.Parameters.AddWithValue("id", id);
             var reader = cmd.ExecuteReader();
-
 
             while (reader.Read())
             {
@@ -36,7 +31,7 @@ namespace bidCardCoin.DAL
                 var age = (int) reader["age"];
                 var email = (string) reader["email"];
                 var password = (string) reader["password"];
-                var telephoneMobile = (string) reader["telephoneMobile"];
+                var telephoneMobile = Convert.IsDBNull(reader["telephoneMobile"]) ? null : (string) reader["telephoneMobile"];
                 var telephoneFixe = Convert.IsDBNull(reader["telephoneFixe"]) ? null : (string) reader["telephoneFixe"];
 
                 dao = new PersonneDAO(idPersonne, nom, prenom, age, email, password, telephoneMobile, telephoneFixe,
@@ -46,7 +41,7 @@ namespace bidCardCoin.DAL
             reader.Close();
 
             query =
-                "SELECT \"adresseId\" FROM public.personne as p, public.adressepersonne as ap  where ap.\"personneId\" = p.\"idPersonne\" and p.\"idPersonne\" = :id";
+                "SELECT \"adresseId\" FROM public.personne as p, public.adressepersonne as ap  where ap.\"personneId\" = p.\"idPersonne\" and p.\"idPersonne\" =:id";
             cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
             cmd.Parameters.AddWithValue("id", id);
             reader = cmd.ExecuteReader();
@@ -99,7 +94,7 @@ namespace bidCardCoin.DAL
             foreach (var personneDao in liste)
             {
                 query =
-                    "SELECT \"adresseId\" FROM public.personne as p, public.adressepersonne as ap  where ap.\"personneId\" = p.\"idPersonne\" and p.\"idPersonne\" = :id";
+                    "SELECT \"adresseId\" FROM public.personne as p, public.adressepersonne as ap  where ap.\"personneId\" = p.\"idPersonne\" and p.\"idPersonne\" =:id";
                 cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
                 cmd.Parameters.AddWithValue("id", personneDao.IdPersonne);
                 reader = cmd.ExecuteReader();
@@ -119,7 +114,7 @@ namespace bidCardCoin.DAL
         public static string getChildReference(string id)
         {
             var query =
-                "select u.\"idUtilisateur\" from public.utilisateur as u, public.personne as p where p.\"idPersonne\" = u.\"personneId\" and p.\"idPersonne\" = :id";
+                "select u.\"idUtilisateur\" from public.utilisateur as u, public.personne as p where p.\"idPersonne\" = u.\"personneId\" and p.\"idPersonne\" =:id";
             var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
             cmd.Parameters.AddWithValue("id", id);
             return (string) cmd.ExecuteScalar();
@@ -167,7 +162,7 @@ namespace bidCardCoin.DAL
 
 
             var query =
-                "UPDATE public.personne SET \"idPersonne\" = :idPersonne,\"nom\"= :nom, \"prenom\" = :prenom, \"age\"= :age, \"email\"= :email,\"password\"= :password, \"telephoneMobile\"= :telephoneMobile, \"telephoneFixe\"= :telephoneFixe where \"idPersonne\"  = :idPersonne";
+                "UPDATE public.personne SET \"idPersonne\" =:idPersonne,\"nom\"=:nom, \"prenom\" =:prenom, \"age\"=:age, \"email\"=:email,\"password\"=:password, \"telephoneMobile\"=:telephoneMobile, \"telephoneFixe\"=:telephoneFixe where \"idPersonne\"  =:idPersonne";
 
 
             var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
@@ -186,7 +181,7 @@ namespace bidCardCoin.DAL
             foreach (var adresse in personne.Adresses)
             {
                 query =
-                    "INSERT INTO public.adressepersonne (\"personneId\",\"adresseId\") VALUES (:idPersonne, :adresseId) ON conflict do UPDATE SET \"personneId\"  = :idPersonne, \"adresseId\" = :adresseId";
+                    "INSERT INTO public.adressepersonne (\"personneId\",\"adresseId\") VALUES (:idPersonne, :adresseId) ON conflict do UPDATE SET \"personneId\"  =:idPersonne, \"adresseId\" =:adresseId";
 
 
                 cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
@@ -204,7 +199,7 @@ namespace bidCardCoin.DAL
             // Supprimer Personne dans la bdd
 
 
-            var query = "DELETE FROM public.personne WHERE \"idPersonne\" = :id;";
+            var query = "DELETE FROM public.personne WHERE \"idPersonne\" =:id;";
 
             var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
             cmd.Parameters.AddWithValue("id", id);

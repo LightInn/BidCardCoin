@@ -34,5 +34,18 @@ namespace bidCardCoin.ORM
 
             return lot;
         }
+        
+        public static List<Lot> GetAllLot()
+        {
+            List<LotDAO> lldao = LotDAL.SelectAllLot();
+            List<Lot> lots = new List<Lot>();
+
+            foreach (var ldao in lldao)
+            {
+                lots.Add(GetLotById(ldao.IdLot));
+            }
+
+            return lots;
+        }
     }
 }
