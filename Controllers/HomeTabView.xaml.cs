@@ -27,6 +27,7 @@ namespace BidCardCoin.Vue
             // var test = EnchereDAL.SelectAllEnchere();
             // var user = EnchereORM.GetAllEnchere();
             var user = EnchereORM.GetEnchereById("enchere1");
+            var test=1;
         }
 
 

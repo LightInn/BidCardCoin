@@ -46,12 +46,11 @@ namespace bidCardCoin.DAL
             {
                 // récup les paramètres principaux
                 var idAdresse = (string) reader["idAdresse"];
-                var pays = Convert.IsDBNull((string) reader["pays"])? null :(string) reader["pays"];
-                var region = Convert.IsDBNull((string) reader["region"])? null :(string) reader["region"];
-                var ville = Convert.IsDBNull((string) reader["ville"])? null :(string) reader["ville"];
-                var codePostal = Convert.IsDBNull((string) reader["codePostal"])? null :(string) reader["codePostal"];
-                var adresse = Convert.IsDBNull((string) reader["adresse"])? null :(string) reader["adresse"];
-                reader.Close();
+                var pays = Convert.IsDBNull(reader["pays"])? null :(string) reader["pays"];
+                var region = Convert.IsDBNull(reader["region"])? null :(string) reader["region"];
+                var ville = Convert.IsDBNull(reader["ville"])? null :(string) reader["ville"];
+                var codePostal = Convert.IsDBNull(reader["codePostal"])? null :(string) reader["codePostal"];
+                var adresse = Convert.IsDBNull(reader["adresse"])? null :(string) reader["adresse"];
                 adresseDao = new AdresseDAO(idAdresse, pays, region, ville, codePostal, adresse,
                     new List<string>());
             }
@@ -80,11 +79,11 @@ namespace bidCardCoin.DAL
             while (reader.Read())
             {
                 var idAdresse = (string) reader["idAdresse"];
-                var pays = Convert.IsDBNull((string) reader["pays"])? null :(string) reader["pays"];
-                var region = Convert.IsDBNull((string) reader["region"])? null :(string) reader["region"];
-                var ville = Convert.IsDBNull((string) reader["ville"])? null :(string) reader["ville"];
-                var codePostal = Convert.IsDBNull((string) reader["codePostal"])? null :(string) reader["codePostal"];
-                var adresse = Convert.IsDBNull((string) reader["adresse"])? null :(string) reader["adresse"];
+                var pays = Convert.IsDBNull(reader["pays"])? null :(string) reader["pays"];
+                var region = Convert.IsDBNull(reader["region"])? null :(string) reader["region"];
+                var ville = Convert.IsDBNull(reader["ville"])? null :(string) reader["ville"];
+                var codePostal = Convert.IsDBNull(reader["codePostal"])? String.Empty : (string) reader["codePostal"];
+                var adresse = Convert.IsDBNull(reader["adresse"])? null :(string) reader["adresse"];
 
                 liste.Add(new AdresseDAO(idAdresse, pays, region, ville, codePostal, adresse,
                     new List<string>()));

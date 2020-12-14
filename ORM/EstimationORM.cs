@@ -35,7 +35,7 @@ namespace bidCardCoin.ORM
                 estimation.ProduitEstimation = _estimationsDictionary[estimation.IdEstimation].ProduitEstimation;
             }
         }
-
+        
         public static void Populate(Estimation estimation)
         {
             // liste des estimations qui on beusoin de se faire peupler (leurs liste utilisateurs)
@@ -54,8 +54,7 @@ namespace bidCardCoin.ORM
             EstimationDAO edao = EstimationDAL.SelectEstimationById(id);
             Commissaire commissaireEstimation = new Commissaire();
             Produit produitEstimation = new Produit();
-
-
+            
             if (initializer)
             {
                 commissaireEstimation =

@@ -4,9 +4,9 @@ namespace BidCardCoin.Models
 {
     public class Lot
     {
-        public string IdLot { get; }
-        public string NomLot { get; }
-        public string Description { get; }
+        public string IdLot { get; set; }
+        public string NomLot { get; set; }
+        public string Description { get; set; }
         public List<Produit> ListeProduit { get; set; }
 
         public Lot()

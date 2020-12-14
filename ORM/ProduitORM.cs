@@ -83,7 +83,7 @@ namespace bidCardCoin.ORM
             Produit produit = new Produit(pdao.IdProduit, lotProduit, utilisateurProduit, stockProduit, enchereGagnante,
                 categorieProduit
                 , pdao.NomArtiste, pdao.NomStyle, pdao.NomProduit, pdao.PrixReserve, pdao.ReferenceCatalogue,
-                pdao.DescriptionProduit, pdao.PhotoId, pdao.IsSend);
+                pdao.DescriptionProduit, pdao.IsSend);
 
             if (initializer)
             {

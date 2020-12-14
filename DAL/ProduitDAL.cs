@@ -28,21 +28,49 @@ namespace bidCardCoin.DAL
                 var idProduit = (string) reader["idProduit"];
                 var lotId = (string) reader["lotId"];
                 var utilisateurId = (string) reader["utilisateurId"];
-                var stockId = Convert.IsDBNull((string) reader["stockId"])? null :(string) reader["stockId"];
-                var enchereGagnanteId = Convert.IsDBNull((string) reader["enchereGagnanteId"])? null :(string) reader["enchereGagnanteId"];
-                var categorieId = Convert.IsDBNull((string) reader["categorieId"])? null :(string) reader["categorieId"];
-                var nomArtiste = Convert.IsDBNull((string) reader["nomArtiste"])? null :(string) reader["nomArtiste"];
-                var nomStyle = Convert.IsDBNull((string) reader["nomStyle"])? null :(string) reader["nomStyle"];
-                var nomProduits = Convert.IsDBNull((string) reader["nomProduits"])? null :(string) reader["nomProduits"];
-                var prixReserve = Convert.IsDBNull((double) reader["prixReserve"])? -1 :(double) reader["prixReserve"];
-                var referenceCatalogue = Convert.IsDBNull((string) reader["referenceCatalogue"])? null :(string) reader["referenceCatalogue"];
-                var descriptionProduit = Convert.IsDBNull((string) reader["descriptionProduit"])? null :(string) reader["descriptionProduit"];
+                var stockId = Convert.IsDBNull(reader["stockId"]) ? null : (string) reader["stockId"];
+                var enchereGagnanteId = Convert.IsDBNull(reader["enchereGagnanteId"])
+                    ? null
+                    : (string) reader["enchereGagnanteId"];
+                var nomArtiste = Convert.IsDBNull(reader["nomArtiste"]) ? null : (string) reader["nomArtiste"];
+                var nomStyle = Convert.IsDBNull(reader["nomStyle"]) ? null : (string) reader["nomStyle"];
+                var nomProduits = Convert.IsDBNull(reader["nomProduits"])
+                    ? null
+                    : (string) reader["nomProduits"];
+                var prixReserve = Convert.IsDBNull((double) reader["prixReserve"])
+                    ? -1
+                    : (double) reader["prixReserve"];
+                var referenceCatalogue = Convert.IsDBNull(reader["referenceCatalogue"])
+                    ? null
+                    : (string) reader["referenceCatalogue"];
+                var descriptionProduit = Convert.IsDBNull(reader["descriptionProduit"])
+                    ? null
+                    : (string) reader["descriptionProduit"];
                 var isSend = (bool) reader["isSend"];
-                var photoId = Convert.IsDBNull((string) reader["photoId"])? null :(string) reader["photoId"];
-                
-                produitDao = new ProduitDAO(idProduit, lotId, utilisateurId,stockId,enchereGagnanteId,categorieId,nomArtiste,nomStyle,nomProduits,prixReserve,referenceCatalogue,descriptionProduit,isSend,photoId);
+
+                produitDao = new ProduitDAO(idProduit, lotId, utilisateurId, stockId, enchereGagnanteId,
+                    new List<string>(),
+                    nomArtiste, nomStyle, nomProduits, prixReserve, referenceCatalogue, descriptionProduit, isSend);
             }
+
             reader.Close();
+
+            query =
+                "SELECT \"categorieId\" FROM public.categorie as c, public.categorieproduit as cp  where cp.\"produitId\" = c.\"idProduit\" and c.\"idProduit\" =:id";
+            cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
+            cmd.Parameters.AddWithValue("id", produitDao.IdProduit);
+            reader = cmd.ExecuteReader();
+            List<string> produitlisteDao = new List<string>();
+            while (reader.Read())
+            {
+                var categorie = (string) reader["categorieId"];
+                produitlisteDao.Add(categorie);
+            }
+
+            produitDao.CategorieId = produitlisteDao;
+            reader.Close();
+
+
             return produitDao;
         }
 
@@ -61,21 +89,50 @@ namespace bidCardCoin.DAL
                 var idProduit = (string) reader["idProduit"];
                 var lotId = (string) reader["lotId"];
                 var utilisateurId = (string) reader["utilisateurId"];
-                var stockId = Convert.IsDBNull((string) reader["stockId"])? null :(string) reader["stockId"];
-                var enchereGagnanteId = Convert.IsDBNull((string) reader["enchereGagnanteId"])? null :(string) reader["enchereGagnanteId"];
-                var categorieId = Convert.IsDBNull((string) reader["categorieId"])? null :(string) reader["categorieId"];
-                var nomArtiste = Convert.IsDBNull((string) reader["nomArtiste"])? null :(string) reader["nomArtiste"];
-                var nomStyle = Convert.IsDBNull((string) reader["nomStyle"])? null :(string) reader["nomStyle"];
-                var nomProduits = Convert.IsDBNull((string) reader["nomProduits"])? null :(string) reader["nomProduits"];
-                var prixReserve = Convert.IsDBNull((double) reader["prixReserve"])? -1 :(double) reader["prixReserve"];
-                var referenceCatalogue = Convert.IsDBNull((string) reader["referenceCatalogue"])? null :(string) reader["referenceCatalogue"];
-                var descriptionProduit = Convert.IsDBNull((string) reader["descriptionProduit"])? null :(string) reader["descriptionProduit"];
+                var stockId = Convert.IsDBNull(reader["stockId"]) ? null : (string) reader["stockId"];
+                var enchereGagnanteId = Convert.IsDBNull(reader["enchereGagnanteId"])? String.Empty : (string) reader["enchereGagnanteId"];
+                var nomArtiste = Convert.IsDBNull(reader["nomArtiste"]) ? null : (string) reader["nomArtiste"];
+                var nomStyle = Convert.IsDBNull(reader["nomStyle"]) ? null : (string) reader["nomStyle"];
+                var nomProduits = Convert.IsDBNull(reader["nomProduits"])
+                    ? null
+                    : (string) reader["nomProduits"];
+                var prixReserve = Convert.IsDBNull((double) reader["prixReserve"])
+                    ? -1
+                    : (double) reader["prixReserve"];
+                var referenceCatalogue = Convert.IsDBNull(reader["referenceCatalogue"])
+                    ? null
+                    : (string) reader["referenceCatalogue"];
+                var descriptionProduit = Convert.IsDBNull(reader["descriptionProduit"])
+                    ? null
+                    : (string) reader["descriptionProduit"];
                 var isSend = (bool) reader["isSend"];
-                var photoId = Convert.IsDBNull((string) reader["photoId"])? null :(string) reader["photoId"];
+                // var photoId = Convert.IsDBNull(reader["photoId"]) ? null : (string) reader["photoId"];
 
-                liste.Add(new ProduitDAO(idProduit, lotId, utilisateurId,stockId,enchereGagnanteId,categorieId,nomArtiste,nomStyle,nomProduits,prixReserve,referenceCatalogue,descriptionProduit,isSend,photoId));
+                liste.Add(new ProduitDAO(idProduit, lotId, utilisateurId, stockId, enchereGagnanteId,
+                    new List<string>(),
+                    nomArtiste, nomStyle, nomProduits, prixReserve, referenceCatalogue, descriptionProduit, isSend));
             }
+
             reader.Close();
+
+            foreach (var produitDao in liste)
+            {
+                query =
+                    "SELECT \"categorieId\" FROM public.categorie as c, public.categorieproduit as cp  where cp.\"produitId\" = c.\"idProduit\" and c.\"idProduit\" =:id";
+                cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
+                cmd.Parameters.AddWithValue("id", produitDao.IdProduit);
+                reader = cmd.ExecuteReader();
+                List<string> produitlisteDao = new List<string>();
+                while (reader.Read())
+                {
+                    var categorie = (string) reader["categorieId"];
+                    produitlisteDao.Add(categorie);
+                }
+
+                produitDao.CategorieId = produitlisteDao;
+                reader.Close();
+            }
+
             return liste;
         }
 
@@ -84,14 +141,13 @@ namespace bidCardCoin.DAL
         {
             // Inserer produit dans la bdd
             var query =
-                @"INSERT INTO public.produit (""idProduit"",""lotId"",""utilisateurId"",""stockId"",""enchereGagnanteId"",""categorieId"",""nomArtiste"",""nomStyle"",""nomProduits"",""prixReserve"",""referenceCatalogue"",""descriptionProduit"",""isSend"",""photoId"") 
-values (:idProduit,:lotId,:utilisateurId,:stockId,:enchereGagnanteId,:categorieId,:nomArtiste,:nomStyle,:nomProduits,:prixReserve,:referenceCatalogue,:descriptionProduit,:isSend,:photoId) 
+                @"INSERT INTO public.produit (""idProduit"",""lotId"",""utilisateurId"",""stockId"",""enchereGagnanteId"",""nomArtiste"",""nomStyle"",""nomProduits"",""prixReserve"",""referenceCatalogue"",""descriptionProduit"",""isSend"") 
+values (:idProduit,:lotId,:utilisateurId,:stockId,:enchereGagnanteId,:nomArtiste,:nomStyle,:nomProduits,:prixReserve,:referenceCatalogue,:descriptionProduit,:isSend) 
 ON CONFLICT ON CONSTRAINT pk_produit DO UPDATE SET ""idProduit""=:idProduit,
 ""lotId""=:lotId,
 ""utilisateurId""=:utilisateurId,
 ""stockId""=:stockId,
 ""enchereGagnanteId""=:enchereGagnanteId,
-""categorieId""=:categorieId,
 ""nomArtiste""=:nomArtiste,
 ""nomStyle""=:nomStyle,
 ""nomProduits""=:nomProduits,
@@ -99,7 +155,6 @@ ON CONFLICT ON CONSTRAINT pk_produit DO UPDATE SET ""idProduit""=:idProduit,
 ""referenceCatalogue""=:referenceCatalogue,
 ""descriptionProduit""=:descriptionProduit,
 ""isSend""=:isSend,
-""photoId""=:photoId,
 where produit.""idProduit""=:idProduit";
             var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
             cmd.Parameters.AddWithValue("idProduit", produit.IdProduit);
@@ -107,7 +162,6 @@ where produit.""idProduit""=:idProduit";
             cmd.Parameters.AddWithValue("utilisateurId", produit.UtilisateurId);
             cmd.Parameters.AddWithValue("stockId", produit.StockId);
             cmd.Parameters.AddWithValue("enchereGagnanteId", produit.EnchereGagnanteId);
-            cmd.Parameters.AddWithValue("categorieId", produit.CategorieId);
             cmd.Parameters.AddWithValue("nomArtiste", produit.NomArtiste);
             cmd.Parameters.AddWithValue("nomStyle", produit.NomStyle);
             cmd.Parameters.AddWithValue("nomProduits", produit.NomProduit);
@@ -115,8 +169,22 @@ where produit.""idProduit""=:idProduit";
             cmd.Parameters.AddWithValue("referenceCatalogue", produit.ReferenceCatalogue);
             cmd.Parameters.AddWithValue("descriptionProduit", produit.DescriptionProduit);
             cmd.Parameters.AddWithValue("isSend", produit.IsSend);
-            cmd.Parameters.AddWithValue("photoId", produit.PhotoId);
-            
+            // cmd.Parameters.AddWithValue("photoId", produit.PhotoId);
+
+            foreach (var categorie in produit.CategorieId)
+            {
+                query =
+                    @"INSERT INTO public.produit (""categorieId"",""lotId"") 
+values (:categorieId,:produitId) 
+ON CONFLICT ON CONSTRAINT pk_produit DO UPDATE SET ""produitId""=:produitId,
+""categorieId""=:categorieId,
+where produit.""produitId""=:produitId";
+                cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
+                cmd.Parameters.AddWithValue("categorieId", categorie);
+                cmd.Parameters.AddWithValue("produitId", produit.IdProduit);
+                cmd.ExecuteNonQuery();
+            }
+
             cmd.ExecuteNonQuery();
         }
 
@@ -133,6 +201,5 @@ where produit.""idProduit""=:idProduit";
                 cmd.ExecuteNonQuery();
             }
         }
-            
     }
 }

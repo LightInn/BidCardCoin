@@ -71,6 +71,7 @@ namespace bidCardCoin.ORM
                     ordreAchatEnchere =
                         OrdreAchatORM.GetOrdreAchatById(edao.OrdreAchatId, false);
                 }
+
                 if (edao.UtilisateurId != null)
                 {
                     utilisateurEnchere =
@@ -90,11 +91,17 @@ namespace bidCardCoin.ORM
                     enchere.CommissaireEnchere
                 }));
                 LotORM.Populate(enchere.LotEnchere);
-                OrdreAchatORM.Populate(enchere.OrdreAchatEnchere);
-                UtilisateurORM.Populate(new List<Utilisateur>(new[]
+                if (edao.OrdreAchatId != null)
                 {
-                    enchere.UtilisateurEnchere
-                }));
+                    OrdreAchatORM.Populate(enchere.OrdreAchatEnchere);
+                }
+                if (edao.UtilisateurId != null)
+                {
+                    UtilisateurORM.Populate(new List<Utilisateur>(new[]
+                    {
+                        enchere.UtilisateurEnchere
+                    }));
+                }
             }
 
             return enchere;

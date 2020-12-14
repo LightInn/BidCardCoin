@@ -26,7 +26,7 @@ namespace bidCardCoin.DAL
                 // récup les paramètres principaux
                 var idLot = (string) reader["idLot"];
                 var nomLot = (string) reader["nomLot"];
-                var description = Convert.IsDBNull((string) reader["description"])? null :(string) reader["description"];
+                var description = Convert.IsDBNull(reader["description"])? null :(string) reader["description"];
                 lotDao = new LotDAO(idLot, nomLot, description);
             }
             reader.Close();
@@ -46,7 +46,7 @@ namespace bidCardCoin.DAL
             {
                 var idLot = (string) reader["idLot"];
                 var nomLot = (string) reader["nomLot"];
-                var description = Convert.IsDBNull((string) reader["description"])? null :(string) reader["description"];
+                var description = Convert.IsDBNull(reader["description"])? null :(string) reader["description"];
 
                 liste.Add(new LotDAO(idLot, nomLot, description));
             }
