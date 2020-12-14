@@ -13,17 +13,19 @@ namespace BidCardCoin.Vue.CRUD
     public partial class AddUtilisateurView : UserControl
     {
         private Utilisateur _user;
+        private List<string> _listeMotClef;
+        private Window _win;
 
-        public AddUtilisateurView(Utilisateur user = null)
+        public AddUtilisateurView(Window win = null, Utilisateur user = null)
         {
-            _user = user;
+          
+           
+
             InitializeComponent();
+            _win = win;
 
-
-    
-
-            _user = user ??  new Utilisateur();
-            
+            _user = user ?? new Utilisateur();
+            _listeMotClef = new List<string>();
         }
 
 
@@ -32,31 +34,13 @@ namespace BidCardCoin.Vue.CRUD
             var uuid = Guid.NewGuid().ToString();
             var idPersonne = Guid.NewGuid().ToString();
             List<Adresse> listeAdresses = new List<Adresse>();
-            
-            
-            
-            List<string> listeMotClef = new List<string>();
-          
-            
-            Window window = new Window
-            {
-                Title = "Liste des mots Clefs",
-                Content =  new ListeMotsClefsView(listeMotClef),
-                SizeToContent = SizeToContent.WidthAndHeight,
-                ResizeMode = ResizeMode.NoResize,
-                Background = (SolidColorBrush) new BrushConverter().ConvertFrom("#393C43"),
-                Icon = new BitmapImage(new Uri("pack://application:,,,/ressources/CRUDimg/utilisateur.png", UriKind.RelativeOrAbsolute)),
-                
-            };
-            window.ShowDialog();
-            
-            
-            
+
+
             _user.IdUtilisateur = uuid;
             _user.IdPersonne = idPersonne;
             _user.Nom = InputNom.Text;
             _user.Prenom = InputPrenom.Text;
-            _user.Age = int.TryParse(InputAge.Text,out _)?int.Parse(InputAge.Text):20;
+            _user.Age = int.TryParse(InputAge.Text, out _) ? int.Parse(InputAge.Text) : 20;
             _user.Email = InputEmail.Text;
             _user.Password = InputPassword.Password;
             _user.IdentityExist = InputIdentity.IsChecked ?? false;
@@ -64,17 +48,37 @@ namespace BidCardCoin.Vue.CRUD
             _user.IsRessortissant = InputRessortissant.IsChecked ?? false;
             _user.TelephoneFixe = InputFixe.Text;
             _user.TelephoneMobile = InputMobile.Text;
-            _user.ListeMotClef = listeMotClef;
+            _user.ListeMotClef = _listeMotClef;
             _user.Adresses = listeAdresses;
 
 
-             UtilisateurORM.AddUtilisateur(_user);
-            
+            UtilisateurORM.AddUtilisateur(_user);
+            _win.Close();
         }
 
         private void Cancel(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            _win.Close();
+        }
+
+        private void ViewMotsClefs(object sender, RoutedEventArgs e)
+        {
+            Window window = new Window
+            {
+                Title = "Liste des mots Clefs",
+
+                SizeToContent = SizeToContent.WidthAndHeight,
+                ResizeMode = ResizeMode.NoResize,
+                Background = (SolidColorBrush) new BrushConverter().ConvertFrom("#393C43"),
+                Icon = new BitmapImage(new Uri("pack://application:,,,/ressources/CRUDimg/utilisateur.png",
+                    UriKind.RelativeOrAbsolute)),
+            };
+            window.Content = new ListeMotsClefsView(window, _listeMotClef);
+            window.ShowDialog();
+            
+            
+            Console.WriteLine(_listeMotClef);
+            
         }
     }
 }

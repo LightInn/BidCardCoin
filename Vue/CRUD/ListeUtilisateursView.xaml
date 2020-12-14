@@ -8,7 +8,7 @@
     <Grid>
         <DockPanel>
             <DataGrid Name="ListeUtilisateursGrid" ItemsSource="{Binding}" AutoGenerateColumns="false"
-                      HorizontalAlignment="Left" Margin="200,0" Grid.ColumnSpan="2" BorderBrush="Black"
+                      HorizontalAlignment="Left" BorderBrush="Black"
                       Background="#CCCCCC" SelectionChanged="ListeUtilisateursGrid_SelectionChanged"
                       ScrollViewer.CanContentScroll="True"
                       ScrollViewer.VerticalScrollBarVisibility="Auto"

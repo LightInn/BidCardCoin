@@ -66,11 +66,18 @@
                 </StackPanel>
             </DockPanel>
 
-
-            <Label Content="Liste de mots clef (seperare par des ';' sans espaces )" FontSize="20"
+<DockPanel>
+            <Label Content="Liste de mots clef" FontSize="20"
                    Foreground="#F8F8F8" />
-            <TextBox Name="InputMotsClefs" Height="20" Margin="0,0,0.300,0" Width="150" />
-
+            <Button Click="ViewMotsClefs" Margin="15" Style="{DynamicResource ButtonInvisible}">
+                <Border
+                    CornerRadius="8" Background="Gold">
+                    <TextBlock Width="150" Height="80">
+                        voire/edité
+                    </TextBlock>
+                </Border>
+            </Button>
+</DockPanel>
 
             <Label Content="Liste d'adresses" FontSize="20"
                    Foreground="#F8F8F8" />

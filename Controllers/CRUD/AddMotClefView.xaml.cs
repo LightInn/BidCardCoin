@@ -10,18 +10,23 @@ namespace BidCardCoin.Vue.CRUD
 {
     public partial class AddMotClefView : UserControl
     {
-        private string _motClef;
+        private List<string> _motsClefs;
+        private Window _win;
 
-        public AddMotClefView(string motclef = null)
+        public AddMotClefView(Window win,List<string> listMot)
         {
+            
             InitializeComponent();
-            _motClef = motclef ?? "";
+            _motsClefs = listMot;
+            _win = win;
+            
         }
 
 
         private void CreateMotClef(object sender, RoutedEventArgs e)
         {
-            _motClef = InputMotClef.Text;
+            _motsClefs.Add(InputMotClef.Text);
+            _win.Close();
         }
     }
 }

@@ -20,17 +20,19 @@ namespace BidCardCoin.Vue.CRUD
         private List<string> _motsClefs;
 
 
-        public ListeMotsClefsView( List<string> listeMotsClefs)
+        public ListeMotsClefsView(Window win = null, List<string> listeMotsClefs = null)
         {
             InitializeComponent();
-       
-            _motsClefs =listeMotsClefs;
+
+            _motsClefs = listeMotsClefs;
             GenerateDataList();
         }
+
 
         private void GenerateDataList()
         {
             ListeMotsClefsGrid.ItemsSource = _motsClefs;
+            MotsClefsListBox.ItemsSource = _motsClefs;
         }
 
         private void ListeMotsClefsGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -39,20 +41,18 @@ namespace BidCardCoin.Vue.CRUD
 
         private void AddMotClef(object sender, RoutedEventArgs e)
         {
-
             String newMotClef = "";
             Window window = new Window
             {
                 Title = "Ajouter un Mot Clef",
-                Content =  new AddMotClefView(newMotClef),
                 SizeToContent = SizeToContent.WidthAndHeight,
                 ResizeMode = ResizeMode.NoResize,
                 Background = (SolidColorBrush) new BrushConverter().ConvertFrom("#393C43"),
-                Icon = new BitmapImage(new Uri("pack://application:,,,/ressources/CRUDimg/utilisateur.png", UriKind.RelativeOrAbsolute)),
-                
+                Icon = new BitmapImage(new Uri("pack://application:,,,/ressources/CRUDimg/utilisateur.png",
+                    UriKind.RelativeOrAbsolute)),
             };
+            window.Content = new AddMotClefView(window,_motsClefs);
             window.ShowDialog();
-            _motsClefs.Add(newMotClef);
             GenerateDataList();
         }
 
