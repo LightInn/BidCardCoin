@@ -18,7 +18,7 @@ namespace bidCardCoin.ORM
             return AdressesDictionary.ContainsKey(id);
         }
 
-        public static void PopulateMtm(List<Adresse> adresses)
+        public static void Populate(List<Adresse> adresses)
         {
             // liste des adresses qui on beusoin de se faire peupler (leurs liste utilisateurs)
 
@@ -35,10 +35,7 @@ namespace bidCardCoin.ORM
                 }
             }
         }
-        public static void Populate(Adresse adresse)
-        {
-            // todo
-        }
+
 
         public static Adresse GetAdresseById(string id, bool initializer = true)
         {
@@ -89,17 +86,17 @@ namespace bidCardCoin.ORM
                 adresse.AdresseNb, adresse.Utilisateurs.Select(user => user.IdUtilisateur).ToList());
         }
 
-        static void AddAdresse(Adresse user)
+      public  static void AddAdresse(Adresse user)
         {
             AdresseDAL.InsertOrAddNewAdresse(AdresseToDao(user));
         }
 
-        static void UpdateAdresse(Adresse user)
+       public static void UpdateAdresse(Adresse user)
         {
             AdresseDAL.InsertOrAddNewAdresse(AdresseToDao(user));
         }
 
-        static void DeleteAdresse(Adresse user)
+        public static void DeleteAdresse(Adresse user)
         {
             AdresseDAL.DeleteAdresse(user.IdAdresse);
         }

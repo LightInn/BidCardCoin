@@ -4,55 +4,58 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using bidCardCoin.DAL;
 using BidCardCoin.Models;
 using bidCardCoin.ORM;
 
 namespace BidCardCoin.Vue.CRUD
 {
-    public partial class AddUtilisateurView : UserControl
+    public partial class AddAdresseView : UserControl
     {
-        private Utilisateur _user;
+        private Adresse _adresse;
         private List<string> _listeMotClef;
         private Window _win;
 
-        public AddUtilisateurView(Window win = null, Utilisateur user = null)
+        public AddAdresseView(Window win = null, Adresse user = null)
         {
-          
-           
-
             InitializeComponent();
             _win = win;
 
-            _user = user ?? new Utilisateur();
+            _adresse = user ?? new Adresse();
             _listeMotClef = new List<string>();
         }
 
 
-        private void CreateNewUtilisateur(object sender, RoutedEventArgs e)
+        private void CreateNewAdresse(object sender, RoutedEventArgs e)
         {
             var uuid = Guid.NewGuid().ToString();
-            var idPersonne = Guid.NewGuid().ToString();
-            List<Adresse> listeAdresses = new List<Adresse>();
+            
 
 
-            _user.IdUtilisateur = uuid;
-            _user.IdPersonne = idPersonne;
-            _user.Nom = InputNom.Text;
-            _user.Prenom = InputPrenom.Text;
-            _user.Age = int.TryParse(InputAge.Text, out _) ? int.Parse(InputAge.Text) : 20;
-            _user.Email = InputEmail.Text;
-            _user.Password = InputPassword.Password;
-            _user.IdentityExist = InputIdentity.IsChecked ?? false;
-            _user.IsSolvable = InputSolvable.IsChecked ?? false;
-            _user.IsRessortissant = InputRessortissant.IsChecked ?? false;
-            _user.TelephoneFixe = InputFixe.Text;
-            _user.TelephoneMobile = InputMobile.Text;
-            _user.ListeMotClef = _listeMotClef;
-            _user.Adresses = listeAdresses;
+            _adresse.IdAdresse = uuid;
+            _adresse.Pays = InputPays.Text;
+            _adresse.Region = InputRegion.Text;
+            _adresse.Ville = InputVille.Text;
+            _adresse.CodePostal = InputCodePostal.Text;
+            _adresse.AdresseNb = InputAdresse.Text;
+            _adresse.Utilisateurs = new List<Utilisateur>();
+            
+            // _adresse.Utilisateurs = InputPassword;
+            
+            
+
+            
+            
+            
+            // _adresse.IdentityExist = InputIdentity.IsChecked ?? false;
+            // _adresse.IsSolvable = InputSolvable.IsChecked ?? false;
+            // _adresse.IsRessortissant = InputRessortissant.IsChecked ?? false;
+            // _adresse.TelephoneFixe = InputFixe.Text;
+            // _adresse.TelephoneMobile = InputMobile.Text;
+            // _adresse.ListeMotClef = _listeMotClef;
+            // _adresse.Adresses = listeAdresses;
 
 
-            UtilisateurORM.AddUtilisateur(_user);
+            AdresseORM.AddAdresse(_adresse);
             _win.Close();
         }
 
@@ -75,10 +78,9 @@ namespace BidCardCoin.Vue.CRUD
             };
             window.Content = new ListeMotsClefsView(window, _listeMotClef);
             window.ShowDialog();
-            
-            
+
+
             Console.WriteLine(_listeMotClef);
-            
         }
     }
 }

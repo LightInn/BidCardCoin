@@ -62,7 +62,7 @@ namespace bidCardCoin.ORM
             if (initializer)
             {
                 UtilisateurDictionary[user.IdUtilisateur] = user;
-                AdresseORM.PopulateMtm(user.Adresses);
+                AdresseORM.Populate(user.Adresses);
             }
 
             return user;

@@ -62,7 +62,7 @@ namespace bidCardCoin.ORM
             if (initializer)
             {
                 _stocksDictionary[stock.IdStock] = stock;
-                AdresseORM.Populate(stock.AdresseStock);
+                AdresseORM.Populate(new List<Adresse>(new []{stock.AdresseStock}));
             }
 
             return stock;

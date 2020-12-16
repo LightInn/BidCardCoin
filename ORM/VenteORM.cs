@@ -68,7 +68,7 @@ namespace bidCardCoin.ORM
             {
                 _ventesDictionary[vente.IdVente] = vente;
                 LotORM.Populate(vente.LotVente);
-                AdresseORM.Populate(vente.AdresseVente);
+                AdresseORM.Populate(new List<Adresse>(new[] {vente.AdresseVente}));
             }
 
             return vente;
