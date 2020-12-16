@@ -4,10 +4,10 @@ namespace BidCardCoin.Models
 {
     public class Enchere
     {
-        public string IdEnchere { get; }
-        public double PrixProposer { get; }
-        public bool IsAdjuger { get; }
-        public DateTime DateHeureVente { get; }
+        public string IdEnchere { get; set; }
+        public double PrixProposer { get; set; }
+        public bool IsAdjuger { get; set; }
+        public DateTime DateHeureVente { get; set; }
         public OrdreAchat OrdreAchatEnchere { get; set; }
         public Lot LotEnchere { get; set; }
         public Commissaire CommissaireEnchere { get; set; }

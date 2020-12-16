@@ -95,7 +95,7 @@ namespace BidCardCoin.Vue
         
         public void GRUD_encheres(object sender, RoutedEventArgs e)
         {
-            parent.SubView.Children.Add(new AchatTabView());
+            parent.SubView.Children.Add(new ListeEncheresView());
             parent.SubView.Children.RemoveAt(0);
         }
         

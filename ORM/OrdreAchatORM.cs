@@ -61,9 +61,8 @@ namespace bidCardCoin.ORM
             if (initializer)
             {
                 utilisateurOrdreAchat =
-                    UtilisateurORM.GetUtilisateurById(
-                        UtilisateurDAL.SelectUtilisateurById(odao.UtilisateurId).IdUtilisateur, false);
-                lotOrdreAchat = LotORM.GetLotById(LotDAL.SelectLotById(odao.LotId).IdLot, false);
+                    UtilisateurORM.GetUtilisateurById(odao.UtilisateurId, false);
+                lotOrdreAchat = LotORM.GetLotById(odao.LotId, false);
             }
             
             ordreAchat = new OrdreAchat(id,utilisateurOrdreAchat,lotOrdreAchat,odao.Informatiser,odao.MontantMax,odao.Date);

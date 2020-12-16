@@ -152,7 +152,7 @@ namespace bidCardCoin.DAL
         {
             // Supprimer Enchere dans la bdd
 
-            var query = "DELETE FROM public.adresse WHERE \"idAdresse\" = @id;";
+            var query = "DELETE FROM public.enchere WHERE \"idEnchere\" = :id;";
 
             var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
             cmd.Parameters.AddWithValue("id", id);
