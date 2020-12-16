@@ -14,7 +14,7 @@ namespace bidCardCoin.DAO
         public string UtilisateurId { get; }
         public string StockId { get; }
         public string EnchereGagnanteId { get; }
-        public string CategorieId { get; }
+        public List<string> CategorieId { get; set; }
         public string NomArtiste { get; }
         public string NomStyle { get; }
         public string NomProduit { get; }
@@ -22,13 +22,13 @@ namespace bidCardCoin.DAO
         public string ReferenceCatalogue { get; }
         public string DescriptionProduit { get; }
         public bool IsSend { get; }
-        public string PhotoId { get; }
+        // public string PhotoId { get; }
 
         public ProduitDAO()
         {
             
         }
-        public ProduitDAO(string idProduit, string lotId, string utilisateurId, string stockId, string enchereGagnanteId,string categorieId, string nomArtiste, string nomStyle, string nomProduit, double prixReserve, string referenceCatalogue, string descriptionProduit, bool isSend, string photoId)
+        public ProduitDAO(string idProduit, string lotId, string utilisateurId, string stockId, string enchereGagnanteId,List<string> categorieId, string nomArtiste, string nomStyle, string nomProduit, double prixReserve, string referenceCatalogue, string descriptionProduit, bool isSend)
         {
             IdProduit = idProduit;
             LotId = lotId;
@@ -43,7 +43,7 @@ namespace bidCardCoin.DAO
             ReferenceCatalogue = referenceCatalogue;
             DescriptionProduit = descriptionProduit;
             IsSend = isSend;
-            this.PhotoId = photoId;
+            // this.PhotoId = photoId;
         }
     }
 }

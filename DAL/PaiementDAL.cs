@@ -17,7 +17,7 @@ namespace bidCardCoin.DAL
             PaiementDAO paiementDao = new PaiementDAO();
             // Selectionne la paiement a partir de l'id
             var query =
-                "SELECT * FROM public.paiement a where a.\"idPaiement\"= :idPaiementParam";
+                "SELECT * FROM public.paiement a where a.\"idPaiement\"=:idPaiementParam";
             var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
             cmd.Parameters.AddWithValue("idPaiementParam", id);
 
@@ -30,10 +30,10 @@ namespace bidCardCoin.DAL
                 var lotId = (string) reader["lotId"];
                 var typePaiement = (string) reader["typePaiement"];
                 var validationPaiement = (bool) reader["validationPaiement"];
-                return new PaiementDAO(idPaiement, lotId, utilisateurId,typePaiement,validationPaiement);
+                paiementDao = new PaiementDAO(idPaiement, lotId, utilisateurId,typePaiement,validationPaiement);
             }
-
-            return new PaiementDAO();
+            reader.Close();
+            return paiementDao;
         }
 
         public static List<PaiementDAO> SelectAllPaiement()
@@ -55,7 +55,7 @@ namespace bidCardCoin.DAL
 
                 liste.Add(new PaiementDAO(idPaiement, lotId, utilisateurId,typePaiement,validationPaiement));
             }
-
+            reader.Close();
             return liste;
         }
 
@@ -89,7 +89,7 @@ where paiement.""idPaiement""=:idPaiement";
             PaiementDAO dao = SelectPaiementById(paiementId);
             if (dao.IdPaiement != null)
             {
-                var query = "DELETE FROM public.paiement WHERE \"idPaiement\"= :idPaiement";
+                var query = "DELETE FROM public.paiement WHERE \"idPaiement\"=:idPaiement";
                 var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
                 cmd.Parameters.AddWithValue("idPaiement", paiementId);
                 cmd.ExecuteNonQuery();

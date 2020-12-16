@@ -16,7 +16,7 @@ namespace bidCardCoin.DAL
             OrdreAchatDAO ordreAchatDao = new OrdreAchatDAO();
             // Selectionne la ordreAchat a partir de l'id
             var query =
-                "SELECT * FROM public.ordreAchat a where a.\"idOrdreAchat\"= :idOrdreAchatParam";
+                "SELECT * FROM public.ordreAchat a where a.\"idOrdreAchat\"=:idOrdreAchatParam";
             var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
             cmd.Parameters.AddWithValue("idOrdreAchatParam", id);
 
@@ -30,10 +30,10 @@ namespace bidCardCoin.DAL
                 var montantMax = (double) reader["montantMax"];
                 var date = (DateTime) reader["date"];
                 var informatiser = (bool) reader["informatiser"];
-                return new OrdreAchatDAO(idOrdreAchat,utilisateurId,lotId,informatiser,montantMax,date);
+                ordreAchatDao = new OrdreAchatDAO(idOrdreAchat,utilisateurId,lotId,informatiser,montantMax,date);
             }
-
-            return new OrdreAchatDAO();
+            reader.Close();
+            return ordreAchatDao;
         }
 
         public static List<OrdreAchatDAO> SelectAllOrdreAchat()
@@ -56,7 +56,7 @@ namespace bidCardCoin.DAL
 
                 liste.Add(new OrdreAchatDAO(idOrdreAchat,utilisateurId,lotId,informatiser,montantMax,date));
             }
-
+            reader.Close();
             return liste;
         }
 
@@ -92,7 +92,7 @@ where ordreAchat.""idOrdreAchat""=:idOrdreAchat";
             OrdreAchatDAO dao = SelectOrdreAchatById(ordreAchatId);
             if (dao.IdOrdreAchat != null)
             {
-                var query = "DELETE FROM public.ordreAchat WHERE \"idOrdreAchat\"= :idOrdreAchat";
+                var query = "DELETE FROM public.ordreAchat WHERE \"idOrdreAchat\"=:idOrdreAchat";
                 var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
                 cmd.Parameters.AddWithValue("idOrdreAchat", ordreAchatId);
                 cmd.ExecuteNonQuery();

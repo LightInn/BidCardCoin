@@ -6,6 +6,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using bidCardCoin.DAL;
 using bidCardCoin.DAO;
+using BidCardCoin.Models;
 using bidCardCoin.ORM;
 
 namespace BidCardCoin.Vue
@@ -25,6 +26,14 @@ namespace BidCardCoin.Vue
 
 
             // var test = EnchereDAL.SelectAllEnchere();
+            // var user = EnchereORM.GetAllEnchere();
+            // var user = EnchereORM.GetEnchereById("enchere1");
+            // OrdreAchat ordreAchat = OrdreAchatORM.GetOrdreAchatById("ordreAchat1");
+            // Lot lot = LotORM.GetLotById("lot1");
+            // Commissaire commissaire = CommissaireORM.GetCommissaireById("commissaire1");
+            //
+            // Enchere enchere = new Enchere("EnchereTestPOUEEEEET", 10.1, false, DateTime.Now, ordreAchat,lot,commissaire, new Utilisateur());
+            // EnchereORM.InsertOrAddNewEnchere(enchere);
         }
 
 

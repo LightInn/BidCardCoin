@@ -20,19 +20,79 @@ namespace bidCardCoin.ORM
         
         public static void Populate(List<Lot> lots)
         {
-            // todo
+            // liste des ordreAchats qui on beusoin de se faire peupler (leurs liste utilisateurs)
+
+            foreach (var lot in lots)
+            {
+                if (!LotAlreadyInDictionary(lot.IdLot))
+                {
+                    GetLotById(lot.IdLot);
+                }
+
+                lot.IdLot = _lotsDictionary[lot.IdLot].IdLot;
+                lot.Description = _lotsDictionary[lot.IdLot].Description;
+                lot.NomLot = _lotsDictionary[lot.IdLot].NomLot;
+                lot.ListeProduit = _lotsDictionary[lot.IdLot].ListeProduit;
+            }
         }
+
         public static void Populate(Lot lot)
         {
-            // todo
+            // liste des ordreAchats qui on beusoin de se faire peupler (leurs liste utilisateurs)
+
+
+            if (!LotAlreadyInDictionary(lot.IdLot))
+            {
+                GetLotById(lot.IdLot);
+            }
+
+            lot.IdLot = _lotsDictionary[lot.IdLot].IdLot;
+            lot.Description = _lotsDictionary[lot.IdLot].Description;
+            lot.NomLot = _lotsDictionary[lot.IdLot].NomLot;
+            lot.ListeProduit = _lotsDictionary[lot.IdLot].ListeProduit;
         }
 
         public static Lot GetLotById(string id, bool initializer = true)
         {
-            // todo
             Lot lot = new Lot();
 
+            LotDAO ldao = LotDAL.SelectLotById(id);
+            List<Produit> lproduit = new List<Produit>();
+
+            if (initializer)
+            {
+                List<Produit> produits = ProduitORM.GetAllProduit();
+                foreach (var produit in produits)
+                {
+                    if (produit.LotProduit.IdLot == id)
+                    {
+                        lproduit.Add(produit);
+                    }
+                }
+            }
+            
+            lot = new Lot(id,ldao.NomLot,ldao.Description,lproduit);
+            
+            if (initializer)
+            {
+                _lotsDictionary[lot.IdLot] = lot;
+                ProduitORM.Populate(lproduit);
+            }
+
             return lot;
+        }
+        
+        public static List<Lot> GetAllLots()
+        {
+            List<LotDAO> lldao = LotDAL.SelectAllLot();
+            List<Lot> lots = new List<Lot>();
+
+            foreach (var ldao in lldao)
+            {
+                lots.Add(GetLotById(ldao.IdLot));
+            }
+
+            return lots;
         }
     }
 }

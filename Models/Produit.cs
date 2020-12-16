@@ -16,14 +16,13 @@ namespace BidCardCoin.Models
         public double PrixReserve { get; }
         public string ReferenceCatalogue { get; }
         public string Description { get; }
-        public string Photo { get; }
         public bool IsSend { get; }
 
         public Produit()
         {
             
         }
-        public Produit(string idProduit, Lot lotProduit, Utilisateur utilisateurProduit, Stock stockProduit, Enchere enchereGagnante, Categorie categorieProduit, string nomArtiste, string nomStyle, string nomProduit, double prixReserve, string referenceCatalogue, string description, string photo, bool isSend)
+        public Produit(string idProduit, Lot lotProduit, Utilisateur utilisateurProduit, Stock stockProduit, Enchere enchereGagnante, Categorie categorieProduit, string nomArtiste, string nomStyle, string nomProduit, double prixReserve, string referenceCatalogue, string description, bool isSend)
         {
             IdProduit = idProduit;
             LotProduit = lotProduit;
@@ -37,7 +36,6 @@ namespace BidCardCoin.Models
             PrixReserve = prixReserve;
             ReferenceCatalogue = referenceCatalogue;
             Description = description;
-            Photo = photo;
             IsSend = isSend;
         }
     }

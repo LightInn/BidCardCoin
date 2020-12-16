@@ -17,7 +17,7 @@ namespace bidCardCoin.DAL
             StockDAO stockDao = new StockDAO();
             // Selectionne la stock a partir de l'id
             var query =
-                "SELECT * FROM public.stock a where a.\"idStock\"= :idStockParam";
+                "SELECT * FROM public.stock a where a.\"idStock\"=:idStockParam";
             var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
             cmd.Parameters.AddWithValue("idStockParam", id);
 
@@ -28,10 +28,10 @@ namespace bidCardCoin.DAL
                 var idStock = (string) reader["idStock"];
                 var adresseId = (string) reader["adresseId"];
 
-                return new StockDAO(idStock, adresseId);
+                stockDao = new StockDAO(idStock, adresseId);
             }
-
-            return new StockDAO();
+            reader.Close();
+            return stockDao;
         }
 
         public static List<StockDAO> SelectAllStock()
@@ -50,7 +50,7 @@ namespace bidCardCoin.DAL
 
                 liste.Add(new StockDAO(idStock, adresseId));
             }
-
+            reader.Close();
             return liste;
         }
 
@@ -78,7 +78,7 @@ where stock.""idStock""=:idStock";
             StockDAO dao = SelectStockById(stockId);
             if (dao.IdStock != null)
             {
-                var query = "DELETE FROM public.stock WHERE \"idStock\"= :idStock";
+                var query = "DELETE FROM public.stock WHERE \"idStock\"=:idStock";
                 var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
                 cmd.Parameters.AddWithValue("idStock", stockId);
                 cmd.ExecuteNonQuery();

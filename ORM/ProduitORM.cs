@@ -17,7 +17,7 @@ namespace bidCardCoin.ORM
         {
             return _produitsDictionary.ContainsKey(id);
         }
-        // todo -> liens vers un : Lot // Utilisateur // Stock // Enchere
+        // todo -> CATEGORIE PAS ENCORE FAITE
 
         public static void Populate(List<Produit> produits)
         {
@@ -83,14 +83,14 @@ namespace bidCardCoin.ORM
             Produit produit = new Produit(pdao.IdProduit, lotProduit, utilisateurProduit, stockProduit, enchereGagnante,
                 categorieProduit
                 , pdao.NomArtiste, pdao.NomStyle, pdao.NomProduit, pdao.PrixReserve, pdao.ReferenceCatalogue,
-                pdao.DescriptionProduit, pdao.PhotoId, pdao.IsSend);
+                pdao.DescriptionProduit, pdao.IsSend);
 
             if (initializer)
             {
                 _produitsDictionary[produit.IdProduit] = produit;
 
                 LotORM.Populate(produit.LotProduit);
-                UtilisateurORM.Populate(new List<Utilisateur>(new []
+                UtilisateurORM.Populate(new List<Utilisateur>(new[]
                 {
                     produit.UtilisateurProduit
                 }));
@@ -100,6 +100,33 @@ namespace bidCardCoin.ORM
                 // CategorieORM.Populate(produit.CategorieProduit);
             }
 
+            return produit;
+        }
+
+        public static List<Produit> GetAllProduit()
+        {
+            List<ProduitDAO> lpdao = ProduitDAL.SelectAllProduit();
+            List<Produit> produits = new List<Produit>();
+
+            foreach (var pdao in lpdao)
+            {
+                produits.Add(produitDaoToProduit(pdao));
+            }
+
+            return produits;
+        }
+
+        public static Produit produitDaoToProduit(ProduitDAO produitDao)
+        {
+            Produit produit = new Produit(produitDao.IdProduit,
+                LotORM.GetLotById(produitDao.LotId, false),
+                UtilisateurORM.GetUtilisateurById(produitDao.UtilisateurId, false),
+                StockORM.GetStockById(produitDao.StockId, false),
+                EnchereORM.GetEnchereById(produitDao.EnchereGagnanteId, false),
+                new Categorie()
+                , produitDao.NomArtiste, produitDao.NomStyle, produitDao.NomProduit, produitDao.PrixReserve,
+                produitDao.ReferenceCatalogue,
+                produitDao.DescriptionProduit, produitDao.IsSend);
             return produit;
         }
     }

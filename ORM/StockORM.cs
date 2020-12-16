@@ -37,7 +37,7 @@ namespace bidCardCoin.ORM
         public static void Populate(Stock stock)
         {
             // liste des stocks qui on beusoin de se faire peupler (leurs liste utilisateurs)
-            
+
             if (!StockAlreadyInDictionary(stock.IdStock))
             {
                 GetStockById(stock.IdStock);
@@ -66,6 +66,19 @@ namespace bidCardCoin.ORM
             }
 
             return stock;
+        }
+
+        public static List<Stock> GetAllStock()
+        {
+            List<StockDAO> lsdao = StockDAL.SelectAllStock();
+            List<Stock> stocks = new List<Stock>();
+
+            foreach (var sdao in lsdao)
+            {
+                stocks.Add(GetStockById(sdao.IdStock));
+            }
+
+            return stocks;
         }
     }
 }

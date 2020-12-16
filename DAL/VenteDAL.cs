@@ -17,7 +17,7 @@ namespace bidCardCoin.DAL
             VenteDAO venteDao = new VenteDAO();
             // Selectionne la vente a partir de l'id
             var query =
-                "SELECT * FROM public.vente a where a.\"idVente\"= :idVenteParam";
+                "SELECT * FROM public.vente a where a.\"idVente\"=:idVenteParam";
             var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
             cmd.Parameters.AddWithValue("idVenteParam", id);
 
@@ -29,12 +29,12 @@ namespace bidCardCoin.DAL
                 var lotId = (string) reader["lotId"];
                 var adresseId = (string) reader["adresseId"];
                 var dateDebut = (DateTime) reader["dateDebut"];
-                
-                
-                return new VenteDAO(idVente, lotId, adresseId,dateDebut);
+
+                venteDao = new VenteDAO(idVente, lotId, adresseId, dateDebut);
             }
 
-            return new VenteDAO();
+            reader.Close();
+            return venteDao;
         }
 
         public static List<VenteDAO> SelectAllVente()
@@ -52,10 +52,10 @@ namespace bidCardCoin.DAL
                 var lotId = (string) reader["lotId"];
                 var adresseId = (string) reader["adresseId"];
                 var dateDebut = (DateTime) reader["dateDebut"];
-                
-                liste.Add( new VenteDAO(idVente, lotId, adresseId,dateDebut));
-            }
 
+                liste.Add(new VenteDAO(idVente, lotId, adresseId, dateDebut));
+            }
+            reader.Close();
             return liste;
         }
 
@@ -76,7 +76,7 @@ where vente.""idVente""=:idVente";
             cmd.Parameters.AddWithValue("lotId", vente.LotId);
             cmd.Parameters.AddWithValue("adresseId", vente.AdresseId);
             cmd.Parameters.AddWithValue("dateDebut", vente.DateDebut);
-            
+
             cmd.ExecuteNonQuery();
         }
 
@@ -87,12 +87,11 @@ where vente.""idVente""=:idVente";
             VenteDAO dao = SelectVenteById(venteId);
             if (dao.IdVente != null)
             {
-                var query = "DELETE FROM public.vente WHERE \"idVente\"= :idVente";
+                var query = "DELETE FROM public.vente WHERE \"idVente\"=:idVente";
                 var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
                 cmd.Parameters.AddWithValue("idVente", venteId);
                 cmd.ExecuteNonQuery();
             }
         }
-            
     }
 }
