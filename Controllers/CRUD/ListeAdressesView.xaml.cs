@@ -20,15 +20,15 @@ namespace BidCardCoin.Vue.CRUD
 
         public ListeAdressesView(Window win = null, List<Adresse> adresses = null)
         {
-           
             InitializeComponent();
-            
-            
+
+
             _selectedAdresses = adresses;
             if (_selectedAdresses == null)
             {
                 selectMode.Visibility = Visibility.Collapsed;
             }
+
 
             _adressess = new ObservableCollection<Adresse>(AdresseORM.GetAllAdresse());
             _contextAdresse = new Adresse();
@@ -39,6 +39,14 @@ namespace BidCardCoin.Vue.CRUD
         private void GenerateDataList()
         {
             ListeAdressesGrid.ItemsSource = _adressess;
+
+            if (_selectedAdresses != null)
+            {
+                foreach (var selectedAdress in _selectedAdresses)
+                {
+                    ListeAdressesGrid.SelectedItems.Add(ListeAdressesGrid.Items[_adressess.IndexOf(_adressess.First(adress => adress.IdAdresse == selectedAdress.IdAdresse))]);
+                }
+            }
         }
 
         private void ListeAdressesGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -76,6 +84,7 @@ namespace BidCardCoin.Vue.CRUD
         {
             if (ListeAdressesGrid.SelectedIndex != -1)
             {
+                _selectedAdresses.Clear();
                 foreach (var adress in new List<Adresse>(ListeAdressesGrid.SelectedItems.Cast<Adresse>()))
                 {
                     _selectedAdresses.Add(adress);

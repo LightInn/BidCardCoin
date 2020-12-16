@@ -181,7 +181,7 @@ namespace bidCardCoin.DAL
             foreach (var adresse in personne.Adresses)
             {
                 query =
-                    "INSERT INTO public.adressepersonne (\"personneId\",\"adresseId\") VALUES (:idPersonne, :adresseId) ON conflict do UPDATE SET \"personneId\"  =:idPersonne, \"adresseId\" =:adresseId";
+                    "INSERT INTO public.adressepersonne (\"personneId\",\"adresseId\") VALUES (:idPersonne, :adresseId) ON conflict on constraint  pk_adressepersonne do UPDATE SET \"personneId\"  =:idPersonne, \"adresseId\" =:adresseId";
 
 
                 cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
