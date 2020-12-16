@@ -28,5 +28,10 @@ namespace BidCardCoin.Vue.CRUD
             _motsClefs.Add(InputMotClef.Text);
             _win.Close();
         }
+
+        private void Cancel(object sender, RoutedEventArgs e)
+        {
+            _win.Close();
+        }
     }
 }

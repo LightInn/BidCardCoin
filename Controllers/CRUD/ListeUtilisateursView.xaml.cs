@@ -17,6 +17,7 @@ namespace BidCardCoin.Vue.CRUD
     {
         private string _selectedId;
         private Utilisateur _contextUtilisateur;
+
         private ObservableCollection<Utilisateur> _utilisateurs;
         // private ObservableCollection<Adresse> _adresses;
 
@@ -34,7 +35,7 @@ namespace BidCardCoin.Vue.CRUD
                 selectMode.Visibility = Visibility.Collapsed;
             }
 
-            
+
             _utilisateurs = new ObservableCollection<Utilisateur>(UtilisateurORM.GetAllUtilisateur());
             _contextUtilisateur = new Utilisateur();
             GenerateDataList();
@@ -85,7 +86,12 @@ namespace BidCardCoin.Vue.CRUD
 
         private void SelectUser(object sender, RoutedEventArgs e)
         {
-            Utilisateur user = (Utilisateur)sender;
+            throw new NotImplementedException();
+        }
+
+        private void EditUser(object sender, RoutedEventArgs e)
+        {
+            Utilisateur selectedUser = _utilisateurs[ListeUtilisateursGrid.SelectedIndex];
 
             Window window = new Window
             {
@@ -96,7 +102,7 @@ namespace BidCardCoin.Vue.CRUD
                 Icon = new BitmapImage(new Uri("pack://application:,,,/ressources/CRUDimg/utilisateur.png",
                     UriKind.RelativeOrAbsolute)),
             };
-            window.Content = new EditUtilisateurView(window, user);
+            window.Content = new EditUtilisateurView(window, selectedUser);
             window.ShowDialog();
         }
     }
