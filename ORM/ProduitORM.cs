@@ -17,7 +17,7 @@ namespace bidCardCoin.ORM
         {
             return _produitsDictionary.ContainsKey(id);
         }
-        // todo -> liens vers un : Lot // Utilisateur // Stock // Enchere
+        // todo -> CATEGORIE PAS ENCORE FAITE
 
         public static void Populate(List<Produit> produits)
         {
@@ -90,7 +90,7 @@ namespace bidCardCoin.ORM
                 _produitsDictionary[produit.IdProduit] = produit;
 
                 LotORM.Populate(produit.LotProduit);
-                UtilisateurORM.Populate(new List<Utilisateur>(new []
+                UtilisateurORM.Populate(new List<Utilisateur>(new[]
                 {
                     produit.UtilisateurProduit
                 }));
@@ -102,7 +102,7 @@ namespace bidCardCoin.ORM
 
             return produit;
         }
-        
+
         public static List<Produit> GetAllProduit()
         {
             List<ProduitDAO> lpdao = ProduitDAL.SelectAllProduit();
@@ -110,10 +110,24 @@ namespace bidCardCoin.ORM
 
             foreach (var pdao in lpdao)
             {
-                produits.Add(GetProduitById(pdao.IdProduit));
+                produits.Add(produitDaoToProduit(pdao));
             }
 
             return produits;
+        }
+
+        public static Produit produitDaoToProduit(ProduitDAO produitDao)
+        {
+            Produit produit = new Produit(produitDao.IdProduit,
+                LotORM.GetLotById(produitDao.LotId, false),
+                UtilisateurORM.GetUtilisateurById(produitDao.UtilisateurId, false),
+                StockORM.GetStockById(produitDao.StockId, false),
+                EnchereORM.GetEnchereById(produitDao.EnchereGagnanteId, false),
+                new Categorie()
+                , produitDao.NomArtiste, produitDao.NomStyle, produitDao.NomProduit, produitDao.PrixReserve,
+                produitDao.ReferenceCatalogue,
+                produitDao.DescriptionProduit, produitDao.IsSend);
+            return produit;
         }
     }
 }

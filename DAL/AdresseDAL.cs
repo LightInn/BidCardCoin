@@ -50,7 +50,7 @@ namespace bidCardCoin.DAL
                 var region = Convert.IsDBNull(reader["region"])? null :(string) reader["region"];
                 var ville = Convert.IsDBNull(reader["ville"])? null :(string) reader["ville"];
                 var codePostal = Convert.IsDBNull(reader["codePostal"])? null :(string) reader["codePostal"];
-                var adresse = Convert.IsDBNull(reader["adresse"])? null :(string) reader["adresse"];
+                var adresse = Convert.IsDBNull(reader["adresseNom"])? null :(string) reader["adresseNom"];
                 adresseDao = new AdresseDAO(idAdresse, pays, region, ville, codePostal, adresse,
                     new List<string>());
             }

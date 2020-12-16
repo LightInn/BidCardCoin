@@ -54,9 +54,9 @@ namespace bidCardCoin.DAL
             }
 
             reader.Close();
-
+            
             query =
-                "SELECT \"categorieId\" FROM public.categorie as c, public.categorieproduit as cp  where cp.\"produitId\" = c.\"idProduit\" and c.\"idProduit\" =:id";
+                "SELECT categorieproduit.\"categorieId\" FROM public.categorie, public.categorieproduit  where categorie.\"idCategorie\" = categorieproduit.\"categorieId\" and categorieproduit.\"produitId\" =:id";
             cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
             cmd.Parameters.AddWithValue("id", produitDao.IdProduit);
             reader = cmd.ExecuteReader();
@@ -66,7 +66,7 @@ namespace bidCardCoin.DAL
                 var categorie = (string) reader["categorieId"];
                 produitlisteDao.Add(categorie);
             }
-
+            
             produitDao.CategorieId = produitlisteDao;
             reader.Close();
 
@@ -90,7 +90,9 @@ namespace bidCardCoin.DAL
                 var lotId = (string) reader["lotId"];
                 var utilisateurId = (string) reader["utilisateurId"];
                 var stockId = Convert.IsDBNull(reader["stockId"]) ? null : (string) reader["stockId"];
-                var enchereGagnanteId = Convert.IsDBNull(reader["enchereGagnanteId"])? String.Empty : (string) reader["enchereGagnanteId"];
+                var enchereGagnanteId = Convert.IsDBNull(reader["enchereGagnanteId"])
+                    ? String.Empty
+                    : (string) reader["enchereGagnanteId"];
                 var nomArtiste = Convert.IsDBNull(reader["nomArtiste"]) ? null : (string) reader["nomArtiste"];
                 var nomStyle = Convert.IsDBNull(reader["nomStyle"]) ? null : (string) reader["nomStyle"];
                 var nomProduits = Convert.IsDBNull(reader["nomProduits"])
@@ -118,7 +120,7 @@ namespace bidCardCoin.DAL
             foreach (var produitDao in liste)
             {
                 query =
-                    "SELECT \"categorieId\" FROM public.categorie as c, public.categorieproduit as cp  where cp.\"produitId\" = c.\"idProduit\" and c.\"idProduit\" =:id";
+                    "SELECT categorieproduit.\"categorieId\" FROM public.categorie, public.categorieproduit  where categorie.\"idCategorie\" = categorieproduit.\"categorieId\" and categorieproduit.\"produitId\" =:id";
                 cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
                 cmd.Parameters.AddWithValue("id", produitDao.IdProduit);
                 reader = cmd.ExecuteReader();
