@@ -1,12 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace BidCardCoin.Models
 {
     public class Commissaire : Personne
     {
+        // Todo version avec param optionnel 
+        public Commissaire()
+        {
+        }
+
+        public Commissaire(string idCommissaire, string idPersonne, string nom, string prenom,
+            int age, string email, string password, string telephoneMobile, string telephoneFixe,
+            List<Adresse> adresses)
+        {
+            IdCommissaire = idCommissaire;
+            _idPersonne = idPersonne;
+            _nom = nom;
+            _prenom = prenom;
+            _age = age;
+            _email = email;
+            _password = password;
+            _telephoneMobile = telephoneMobile;
+            _telephoneFixe = telephoneFixe;
+            _adresses = adresses;
+        }
+
         public string IdCommissaire { get; set; }
-        
+
         public string IdPersonne
         {
             get => _idPersonne;
@@ -59,27 +79,6 @@ namespace BidCardCoin.Models
         {
             get => _adresses;
             set => _adresses = value;
-        }
-        
-        // Todo version avec param optionnel 
-        public Commissaire()
-        {
-            
-        }
-        
-        public Commissaire(string idCommissaire, string idPersonne, string nom, string prenom,
-            int age, string email, string password, string telephoneMobile, string telephoneFixe, List<Adresse> adresses)
-        {
-            IdCommissaire = idCommissaire;
-            _idPersonne = idPersonne;
-            _nom = nom;
-            _prenom = prenom;
-            _age = age;
-            _email = email;
-            _password = password;
-            _telephoneMobile = telephoneMobile;
-            _telephoneFixe = telephoneFixe;
-            _adresses = adresses;
         }
     }
 }

@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using bidCardCoin.DAL;
 using bidCardCoin.DAO;
 using BidCardCoin.Models;
@@ -33,7 +30,7 @@ namespace bidCardCoin.ORM
         //
         //     return commissaire;
         // }
-        
+
         private static readonly Dictionary<string, Commissaire> CommissaireDictionary =
             new Dictionary<string, Commissaire>();
 
@@ -48,38 +45,29 @@ namespace bidCardCoin.ORM
 
             foreach (var user in users)
             {
-                if (!CommissaireAlreadyInDictionary(user.IdCommissaire))
-                {
-                    GetCommissaireById(user.IdCommissaire);
-                }
-                
+                if (!CommissaireAlreadyInDictionary(user.IdCommissaire)) GetCommissaireById(user.IdCommissaire);
+
                 user.Adresses = CommissaireDictionary[user.IdCommissaire].Adresses;
-                
             }
         }
 
         public static Commissaire GetCommissaireById(string id, bool initializer = true)
         {
-            if (CommissaireAlreadyInDictionary(id))
-            {
-                return CommissaireDictionary[id];
-            }
+            if (CommissaireAlreadyInDictionary(id)) return CommissaireDictionary[id];
 
-            CommissaireDAO cdao = CommissaireDAL.SelectCommissaireById(id);
-            PersonneDAO pdao = PersonneDAL.SelectPersonneById(cdao.PersonneId);
+            var cdao = CommissaireDAL.SelectCommissaireById(id);
+            var pdao = PersonneDAL.SelectPersonneById(cdao.PersonneId);
 
-            List<Adresse> listeAdresse = new List<Adresse>();
+            var listeAdresse = new List<Adresse>();
 
             if (initializer)
-            {
                 foreach (var adresseInDAO in pdao.Adresses)
                 {
-                    Adresse adresse = AdresseORM.GetAdresseById(adresseInDAO, false);
+                    var adresse = AdresseORM.GetAdresseById(adresseInDAO, false);
                     listeAdresse.Add(adresse);
                 }
-            }
 
-            Commissaire user = new Commissaire(cdao.IdCommissaire, pdao.IdPersonne, pdao.Nom, pdao.Prenom, pdao.Age, pdao.Email,
+            var user = new Commissaire(cdao.IdCommissaire, pdao.IdPersonne, pdao.Nom, pdao.Prenom, pdao.Age, pdao.Email,
                 pdao.Password, pdao.TelephoneMobile, pdao.TelephoneFixe, listeAdresse);
 
 
@@ -94,32 +82,27 @@ namespace bidCardCoin.ORM
 
         public static List<Commissaire> GetAllCommissaire()
         {
-            List<CommissaireDAO> ludao = CommissaireDAL.SelectAllCommissaire();
-            List<Commissaire> users = new List<Commissaire>();
+            var ludao = CommissaireDAL.SelectAllCommissaire();
+            var users = new List<Commissaire>();
 
-            foreach (var udao in ludao)
-            {
-                users.Add(GetCommissaireById(udao.IdCommissaire));
-            }
+            foreach (var udao in ludao) users.Add(GetCommissaireById(udao.IdCommissaire));
 
             return users;
         }
 
-        static CommissaireDAO CommissaireToDao(Commissaire user)
+        private static CommissaireDAO CommissaireToDao(Commissaire user)
         {
             return new CommissaireDAO(user.IdCommissaire, user.IdPersonne);
         }
 
         public static void AddOrUpdateCommissaire(Commissaire user)
         {
-            PersonneDAO test = PersonneDAL.SelectPersonneById(user.IdPersonne);
+            var test = PersonneDAL.SelectPersonneById(user.IdPersonne);
             if (test.IdPersonne == null)
-            {
                 PersonneDAL.InsertNewPersonne(new PersonneDAO(user.IdPersonne, user.Nom, user.Prenom, user.Age,
                     user.Email,
                     user.Password, user.TelephoneMobile, user.TelephoneMobile,
                     user.Adresses.Select(adress => adress.IdAdresse).ToList()));
-            }
 
             CommissaireDAL.InsertOrAddNewCommissaire(CommissaireToDao(user));
         }

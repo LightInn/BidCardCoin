@@ -11,9 +11,9 @@ namespace BidCardCoin.Vue.CRUD
 {
     public partial class AddAdresseView : UserControl
     {
-        private Adresse _adresse;
-        private List<string> _listeMotClef;
-        private Window _win;
+        private readonly Adresse _adresse;
+        private readonly List<string> _listeMotClef;
+        private readonly Window _win;
 
 
         public AddAdresseView(Window win = null, Adresse user = null)
@@ -28,21 +28,20 @@ namespace BidCardCoin.Vue.CRUD
 
         private void CreateNewAdresse(object sender, RoutedEventArgs e)
         {
-            
-                var uuid = Guid.NewGuid().ToString();
+            var uuid = Guid.NewGuid().ToString();
 
-                _adresse.IdAdresse = uuid;
-                _adresse.Pays = InputPays.Text;
-                _adresse.Region = InputRegion.Text;
-                _adresse.Ville = InputVille.Text;
-                _adresse.CodePostal = InputCodePostal.Text;
-                _adresse.AdresseNb = InputAdresse.Text;
-                _adresse.Utilisateurs = new List<Utilisateur>();
+            _adresse.IdAdresse = uuid;
+            _adresse.Pays = InputPays.Text;
+            _adresse.Region = InputRegion.Text;
+            _adresse.Ville = InputVille.Text;
+            _adresse.CodePostal = InputCodePostal.Text;
+            _adresse.AdresseNb = InputAdresse.Text;
+            _adresse.Utilisateurs = new List<Utilisateur>();
 
-                AdresseORM.AddAdresse(_adresse);
+            AdresseORM.AddAdresse(_adresse);
 
 
-                _win.Close();
+            _win.Close();
         }
 
         private void Cancel(object sender, RoutedEventArgs e)
@@ -52,7 +51,7 @@ namespace BidCardCoin.Vue.CRUD
 
         private void ViewMotsClefs(object sender, RoutedEventArgs e)
         {
-            Window window = new Window
+            var window = new Window
             {
                 Title = "Liste des mots Clefs",
 
@@ -60,7 +59,7 @@ namespace BidCardCoin.Vue.CRUD
                 ResizeMode = ResizeMode.NoResize,
                 Background = (SolidColorBrush) new BrushConverter().ConvertFrom("#393C43"),
                 Icon = new BitmapImage(new Uri("pack://application:,,,/ressources/CRUDimg/utilisateur.png",
-                    UriKind.RelativeOrAbsolute)),
+                    UriKind.RelativeOrAbsolute))
             };
             window.Content = new ListeMotsClefsView(window, _listeMotClef);
             window.ShowDialog();

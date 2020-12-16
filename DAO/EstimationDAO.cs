@@ -1,13 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace bidCardCoin.DAO
 {
     public class EstimationDAO
     {
+        public EstimationDAO()
+        {
+        }
+
+        public EstimationDAO(string idEstimation, string produitId, string commissaireId, DateTime dateEstimation,
+            double prixEstimation)
+        {
+            IdEstimation = idEstimation;
+            ProduitId = produitId;
+            CommissaireId = commissaireId;
+            DateEstimation = dateEstimation;
+            PrixEstimation = prixEstimation;
+        }
+
         public string IdEstimation { get; }
         public string ProduitId { get; }
 
@@ -17,19 +27,5 @@ namespace bidCardCoin.DAO
         // private DateTime dateEstimation;
         public DateTime DateEstimation { get; }
         public double PrixEstimation { get; }
-
-        public EstimationDAO()
-        {
-            
-        }
-
-        public EstimationDAO(string idEstimation, string produitId, string commissaireId, DateTime dateEstimation, double prixEstimation)
-        {
-            this.IdEstimation = idEstimation;
-            this.ProduitId = produitId;
-            this.CommissaireId = commissaireId;
-            this.DateEstimation = dateEstimation;
-            this.PrixEstimation = prixEstimation;
-        }
     }
 }

@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using bidCardCoin.DAO;
-using Google.Protobuf.WellKnownTypes;
 using Npgsql;
 
 namespace bidCardCoin.DAL
@@ -14,7 +10,7 @@ namespace bidCardCoin.DAL
         // SELECT
         public static ProduitDAO SelectProduitById(string id)
         {
-            ProduitDAO produitDao = new ProduitDAO();
+            var produitDao = new ProduitDAO();
             // Selectionne la produit a partir de l'id
             var query =
                 "SELECT * FROM public.produit a where a.\"idProduit\"=:idProduitParam";
@@ -54,19 +50,19 @@ namespace bidCardCoin.DAL
             }
 
             reader.Close();
-            
+
             query =
                 "SELECT categorieproduit.\"categorieId\" FROM public.categorie, public.categorieproduit  where categorie.\"idCategorie\" = categorieproduit.\"categorieId\" and categorieproduit.\"produitId\" =:id";
             cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
             cmd.Parameters.AddWithValue("id", produitDao.IdProduit);
             reader = cmd.ExecuteReader();
-            List<string> produitlisteDao = new List<string>();
+            var produitlisteDao = new List<string>();
             while (reader.Read())
             {
                 var categorie = (string) reader["categorieId"];
                 produitlisteDao.Add(categorie);
             }
-            
+
             produitDao.CategorieId = produitlisteDao;
             reader.Close();
 
@@ -77,7 +73,7 @@ namespace bidCardCoin.DAL
         public static List<ProduitDAO> SelectAllProduit()
         {
             // Selectionné tout les produit dans la base de donnée
-            List<ProduitDAO> liste = new List<ProduitDAO>();
+            var liste = new List<ProduitDAO>();
 
             var query = "SELECT * FROM public.produit ORDER BY \"idProduit\"";
             var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
@@ -91,7 +87,7 @@ namespace bidCardCoin.DAL
                 var utilisateurId = (string) reader["utilisateurId"];
                 var stockId = Convert.IsDBNull(reader["stockId"]) ? null : (string) reader["stockId"];
                 var enchereGagnanteId = Convert.IsDBNull(reader["enchereGagnanteId"])
-                    ? String.Empty
+                    ? string.Empty
                     : (string) reader["enchereGagnanteId"];
                 var nomArtiste = Convert.IsDBNull(reader["nomArtiste"]) ? null : (string) reader["nomArtiste"];
                 var nomStyle = Convert.IsDBNull(reader["nomStyle"]) ? null : (string) reader["nomStyle"];
@@ -124,7 +120,7 @@ namespace bidCardCoin.DAL
                 cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
                 cmd.Parameters.AddWithValue("id", produitDao.IdProduit);
                 reader = cmd.ExecuteReader();
-                List<string> produitlisteDao = new List<string>();
+                var produitlisteDao = new List<string>();
                 while (reader.Read())
                 {
                     var categorie = (string) reader["categorieId"];
@@ -194,7 +190,7 @@ where produit.""produitId""=:produitId";
         public static void DeleteProduit(string produitId)
         {
             // Supprimer produit dans la bdd
-            ProduitDAO dao = SelectProduitById(produitId);
+            var dao = SelectProduitById(produitId);
             if (dao.IdProduit != null)
             {
                 var query = "DELETE FROM public.produit WHERE \"idProduit\"=:idProduit";

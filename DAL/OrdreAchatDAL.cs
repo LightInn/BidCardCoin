@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using bidCardCoin.DAO;
 using Npgsql;
 
@@ -13,7 +10,7 @@ namespace bidCardCoin.DAL
         // SELECT
         public static OrdreAchatDAO SelectOrdreAchatById(string id)
         {
-            OrdreAchatDAO ordreAchatDao = new OrdreAchatDAO();
+            var ordreAchatDao = new OrdreAchatDAO();
             // Selectionne la ordreAchat a partir de l'id
             var query =
                 "SELECT * FROM public.ordreAchat a where a.\"idOrdreAchat\"=:idOrdreAchatParam";
@@ -30,8 +27,9 @@ namespace bidCardCoin.DAL
                 var montantMax = (double) reader["montantMax"];
                 var date = (DateTime) reader["date"];
                 var informatiser = (bool) reader["informatiser"];
-                ordreAchatDao = new OrdreAchatDAO(idOrdreAchat,utilisateurId,lotId,informatiser,montantMax,date);
+                ordreAchatDao = new OrdreAchatDAO(idOrdreAchat, utilisateurId, lotId, informatiser, montantMax, date);
             }
+
             reader.Close();
             return ordreAchatDao;
         }
@@ -39,7 +37,7 @@ namespace bidCardCoin.DAL
         public static List<OrdreAchatDAO> SelectAllOrdreAchat()
         {
             // Selectionné tout les ordreAchat dans la base de donnée
-            List<OrdreAchatDAO> liste = new List<OrdreAchatDAO>();
+            var liste = new List<OrdreAchatDAO>();
 
             var query = "SELECT * FROM public.ordreAchat ORDER BY \"idOrdreAchat\"";
             var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
@@ -54,8 +52,9 @@ namespace bidCardCoin.DAL
                 var date = (DateTime) reader["date"];
                 var informatiser = (bool) reader["informatiser"];
 
-                liste.Add(new OrdreAchatDAO(idOrdreAchat,utilisateurId,lotId,informatiser,montantMax,date));
+                liste.Add(new OrdreAchatDAO(idOrdreAchat, utilisateurId, lotId, informatiser, montantMax, date));
             }
+
             reader.Close();
             return liste;
         }
@@ -89,7 +88,7 @@ where ordreAchat.""idOrdreAchat""=:idOrdreAchat";
         public static void DeleteOrdreAchat(string ordreAchatId)
         {
             // Supprimer ordreAchat dans la bdd
-            OrdreAchatDAO dao = SelectOrdreAchatById(ordreAchatId);
+            var dao = SelectOrdreAchatById(ordreAchatId);
             if (dao.IdOrdreAchat != null)
             {
                 var query = "DELETE FROM public.ordreAchat WHERE \"idOrdreAchat\"=:idOrdreAchat";

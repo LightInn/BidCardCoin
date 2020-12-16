@@ -12,9 +12,9 @@ namespace BidCardCoin.Vue.CRUD
 {
     public partial class EditEnchereView : UserControl
     {
-        private Enchere _enchere;
-        private Window _win;
+        private readonly Enchere _enchere;
         private Utilisateur _utilisateur;
+        private readonly Window _win;
 
         public EditEnchereView(Window win = null, Enchere enchere = null)
         {
@@ -23,22 +23,17 @@ namespace BidCardCoin.Vue.CRUD
             GenerateControle();
             _win = win;
             _utilisateur = _enchere.UtilisateurEnchere;
-           
         }
 
-        void GenerateControle()
+        private void GenerateControle()
         {
             InputPrixProposer.Text = _enchere.PrixProposer.ToString();
             InputIsAdjuger.IsChecked = _enchere.IsAdjuger;
             InputDateHeureVente.SelectedDate = _enchere.DateHeureVente;
             if (_enchere.UtilisateurEnchere == null)
-            {
                 InputOrdreAchat.Text = "ordreAchat1";
-            }
             else
-            {
                 _utilisateur = _enchere.UtilisateurEnchere;
-            }
 
             InputLotId.Text = "lot1";
             InputCommissaireId.Text = "commissaire1";
@@ -56,38 +51,22 @@ namespace BidCardCoin.Vue.CRUD
                 _enchere.DateHeureVente = InputDateHeureVente.SelectedDate ?? DateTime.Now;
 
 
-                if (_utilisateur == null)
-                {
-                    InputOrdreAchat.Text = "ordreAchat1";
-                }
+                if (_utilisateur == null) InputOrdreAchat.Text = "ordreAchat1";
 
 
-                if (string.IsNullOrEmpty(InputLotId.Text))
-                {
-                    InputLotId.Text = "lot1";
-                }
+                if (string.IsNullOrEmpty(InputLotId.Text)) InputLotId.Text = "lot1";
 
-                if (string.IsNullOrEmpty(InputCommissaireId.Text))
-                {
-                    InputCommissaireId.Text = "commissaire1";
-                }
+                if (string.IsNullOrEmpty(InputCommissaireId.Text)) InputCommissaireId.Text = "commissaire1";
 
 
                 // Donc ça c'est bon
                 if (!string.IsNullOrEmpty(InputOrdreAchat.Text))
-                {
                     _enchere.OrdreAchatEnchere = OrdreAchatORM.GetOrdreAchatById(InputOrdreAchat.Text);
-                }
 
-                if (!string.IsNullOrEmpty(InputLotId.Text))
-                {
-                    _enchere.LotEnchere = LotORM.GetLotById(InputLotId.Text);
-                }
+                if (!string.IsNullOrEmpty(InputLotId.Text)) _enchere.LotEnchere = LotORM.GetLotById(InputLotId.Text);
 
                 if (!string.IsNullOrEmpty(InputCommissaireId.Text))
-                {
                     _enchere.CommissaireEnchere = CommissaireORM.GetCommissaireById(InputCommissaireId.Text);
-                }
 
 
                 _enchere.UtilisateurEnchere = _utilisateur;
@@ -110,14 +89,11 @@ namespace BidCardCoin.Vue.CRUD
 
         private void SelectUtilisateur(object sender, RoutedEventArgs e)
         {
-            List<Utilisateur> userstemp = new List<Utilisateur>();
-            if (_utilisateur != null)
-            {
-                userstemp.Add(_utilisateur);
-            }
+            var userstemp = new List<Utilisateur>();
+            if (_utilisateur != null) userstemp.Add(_utilisateur);
 
 
-            Window window = new Window
+            var window = new Window
             {
                 Title = "Selectioner un utilisateur",
 
@@ -125,16 +101,13 @@ namespace BidCardCoin.Vue.CRUD
                 ResizeMode = ResizeMode.NoResize,
                 Background = (SolidColorBrush) new BrushConverter().ConvertFrom("#393C43"),
                 Icon = new BitmapImage(new Uri("pack://application:,,,/ressources/CRUDimg/utilisateur.png",
-                    UriKind.RelativeOrAbsolute)),
+                    UriKind.RelativeOrAbsolute))
             };
 
             window.Content = new ListeUtilisateursView(window, userstemp);
             window.ShowDialog();
 
-            if (userstemp.Count > 0)
-            {
-                _utilisateur = userstemp.First();
-            }
+            if (userstemp.Count > 0) _utilisateur = userstemp.First();
         }
     }
 }

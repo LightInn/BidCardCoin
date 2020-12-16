@@ -1,19 +1,15 @@
-using System;
-using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using bidCardCoin.DAL;
-using bidCardCoin.DAO;
-using BidCardCoin.Models;
 using bidCardCoin.ORM;
 
 namespace BidCardCoin.Vue
 {
     public partial class HomeTabView : UserControl
     {
-        private MainWindow parent;
+        private readonly MainWindow parent;
 
         public HomeTabView(MainWindow parent)
         {
@@ -34,20 +30,21 @@ namespace BidCardCoin.Vue
             //
             // Enchere enchere = new Enchere("EnchereTestPOUEEEEET", 10.1, false, DateTime.Now, ordreAchat,lot,commissaire, new Utilisateur());
             // EnchereORM.InsertOrAddNewEnchere(enchere);
-            List<Enchere> list = EnchereORM.GetAllEnchere();
+            var list = EnchereORM.GetAllEnchere();
             var i = 1;
         }
+
         /* ------------------------------------------------ NAV -----------------------------------------------------*/
         private void NavHoverEffectEnter(object o, MouseEventArgs mouseEventArgs)
         {
-            var border = ((o as Button)?.Content as Border);
+            var border = (o as Button)?.Content as Border;
             border.CornerRadius = new CornerRadius(12);
             border.Background = (SolidColorBrush) new BrushConverter().ConvertFrom("#7289DA");
         }
 
         private void NavHoverEffectExit(object o, MouseEventArgs mouseEventArgs)
         {
-            var border = ((o as Button)?.Content as Border);
+            var border = (o as Button)?.Content as Border;
             border.CornerRadius = new CornerRadius(8);
             border.Background = (SolidColorBrush) new BrushConverter().ConvertFrom("#393C43");
         }

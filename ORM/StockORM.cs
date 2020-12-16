@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using bidCardCoin.DAL;
-using bidCardCoin.DAO;
 using BidCardCoin.Models;
 
 namespace bidCardCoin.ORM
 {
     public class StockORM
     {
-        private static Dictionary<string, Stock> _stocksDictionary = new Dictionary<string, Stock>();
+        private static readonly Dictionary<string, Stock> _stocksDictionary = new Dictionary<string, Stock>();
 
         private static bool StockAlreadyInDictionary(string id)
         {
@@ -25,10 +20,7 @@ namespace bidCardCoin.ORM
 
             foreach (var stock in stocks)
             {
-                if (!StockAlreadyInDictionary(stock.IdStock))
-                {
-                    GetStockById(stock.IdStock);
-                }
+                if (!StockAlreadyInDictionary(stock.IdStock)) GetStockById(stock.IdStock);
 
                 stock.AdresseStock = _stocksDictionary[stock.IdStock].AdresseStock;
             }
@@ -38,31 +30,26 @@ namespace bidCardCoin.ORM
         {
             // liste des stocks qui on beusoin de se faire peupler (leurs liste utilisateurs)
 
-            if (!StockAlreadyInDictionary(stock.IdStock))
-            {
-                GetStockById(stock.IdStock);
-            }
+            if (!StockAlreadyInDictionary(stock.IdStock)) GetStockById(stock.IdStock);
 
             stock.AdresseStock = _stocksDictionary[stock.IdStock].AdresseStock;
         }
 
         public static Stock GetStockById(string id, bool initializer = true)
         {
-            StockDAO sdao = StockDAL.SelectStockById(id);
-            Adresse adresseStock = new Adresse();
+            var sdao = StockDAL.SelectStockById(id);
+            var adresseStock = new Adresse();
 
             if (initializer)
-            {
                 adresseStock = AdresseORM.GetAdresseById(AdresseDAL.SelectAdresseById(sdao.AdresseId).IdAdresse, false);
-            }
 
 
-            Stock stock = new Stock(sdao.IdStock, adresseStock);
+            var stock = new Stock(sdao.IdStock, adresseStock);
 
             if (initializer)
             {
                 _stocksDictionary[stock.IdStock] = stock;
-                AdresseORM.Populate(new List<Adresse>(new []{stock.AdresseStock}));
+                AdresseORM.Populate(new List<Adresse>(new[] {stock.AdresseStock}));
             }
 
             return stock;
@@ -70,13 +57,10 @@ namespace bidCardCoin.ORM
 
         public static List<Stock> GetAllStock()
         {
-            List<StockDAO> lsdao = StockDAL.SelectAllStock();
-            List<Stock> stocks = new List<Stock>();
+            var lsdao = StockDAL.SelectAllStock();
+            var stocks = new List<Stock>();
 
-            foreach (var sdao in lsdao)
-            {
-                stocks.Add(GetStockById(sdao.IdStock));
-            }
+            foreach (var sdao in lsdao) stocks.Add(GetStockById(sdao.IdStock));
 
             return stocks;
         }

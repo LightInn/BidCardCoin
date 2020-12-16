@@ -1,10 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using bidCardCoin.DAO;
-using BidCardCoin.Models;
 using Npgsql;
 
 namespace bidCardCoin.DAL
@@ -16,7 +12,7 @@ namespace bidCardCoin.DAL
 
         {
             // Selectionné l'Personne a partir de l'id
-            PersonneDAO dao = new PersonneDAO();
+            var dao = new PersonneDAO();
 
             var query = "SELECT * FROM public.personne  where \"idPersonne\" =:id";
             var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
@@ -31,7 +27,9 @@ namespace bidCardCoin.DAL
                 var age = (int) reader["age"];
                 var email = (string) reader["email"];
                 var password = (string) reader["password"];
-                var telephoneMobile = Convert.IsDBNull(reader["telephoneMobile"]) ? null : (string) reader["telephoneMobile"];
+                var telephoneMobile = Convert.IsDBNull(reader["telephoneMobile"])
+                    ? null
+                    : (string) reader["telephoneMobile"];
                 var telephoneFixe = Convert.IsDBNull(reader["telephoneFixe"]) ? null : (string) reader["telephoneFixe"];
 
                 dao = new PersonneDAO(idPersonne, nom, prenom, age, email, password, telephoneMobile, telephoneFixe,
@@ -53,10 +51,7 @@ namespace bidCardCoin.DAL
 
             reader.Close();
 
-            if (dao.IdPersonne != null)
-            {
-                dao.ChildReference = getChildReference(dao.IdPersonne);
-            }
+            if (dao.IdPersonne != null) dao.ChildReference = getChildReference(dao.IdPersonne);
 
             return dao;
         }
@@ -67,7 +62,7 @@ namespace bidCardCoin.DAL
             // Selectionné tout les Personne dans la base de donnée
 
 
-            List<PersonneDAO> liste = new List<PersonneDAO>();
+            var liste = new List<PersonneDAO>();
 
             var query = "SELECT * FROM public.personne";
             var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());

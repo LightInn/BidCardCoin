@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using bidCardCoin.DAO;
-using Google.Protobuf.WellKnownTypes;
 using Npgsql;
 
 namespace bidCardCoin.DAL
 {
-    public static  class PaiementDAL
+    public static class PaiementDAL
     {
 // SELECT
         public static PaiementDAO SelectPaiementById(string id)
         {
-            PaiementDAO paiementDao = new PaiementDAO();
+            var paiementDao = new PaiementDAO();
             // Selectionne la paiement a partir de l'id
             var query =
                 "SELECT * FROM public.paiement a where a.\"idPaiement\"=:idPaiementParam";
@@ -30,8 +25,9 @@ namespace bidCardCoin.DAL
                 var lotId = (string) reader["lotId"];
                 var typePaiement = (string) reader["typePaiement"];
                 var validationPaiement = (bool) reader["validationPaiement"];
-                paiementDao = new PaiementDAO(idPaiement, lotId, utilisateurId,typePaiement,validationPaiement);
+                paiementDao = new PaiementDAO(idPaiement, lotId, utilisateurId, typePaiement, validationPaiement);
             }
+
             reader.Close();
             return paiementDao;
         }
@@ -39,7 +35,7 @@ namespace bidCardCoin.DAL
         public static List<PaiementDAO> SelectAllPaiement()
         {
             // Selectionné tout les paiement dans la base de donnée
-            List<PaiementDAO> liste = new List<PaiementDAO>();
+            var liste = new List<PaiementDAO>();
 
             var query = "SELECT * FROM public.paiement ORDER BY \"idPaiement\"";
             var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
@@ -53,8 +49,9 @@ namespace bidCardCoin.DAL
                 var typePaiement = (string) reader["typePaiement"];
                 var validationPaiement = (bool) reader["validationPaiement"];
 
-                liste.Add(new PaiementDAO(idPaiement, lotId, utilisateurId,typePaiement,validationPaiement));
+                liste.Add(new PaiementDAO(idPaiement, lotId, utilisateurId, typePaiement, validationPaiement));
             }
+
             reader.Close();
             return liste;
         }
@@ -86,7 +83,7 @@ where paiement.""idPaiement""=:idPaiement";
         public static void DeletePaiement(string paiementId)
         {
             // Supprimer paiement dans la bdd
-            PaiementDAO dao = SelectPaiementById(paiementId);
+            var dao = SelectPaiementById(paiementId);
             if (dao.IdPaiement != null)
             {
                 var query = "DELETE FROM public.paiement WHERE \"idPaiement\"=:idPaiement";

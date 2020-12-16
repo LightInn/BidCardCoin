@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:BidCardCoin.Vue.CRUD"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
@@ -43,7 +42,7 @@
 
                 <Button Click="Cancel" Margin="15" Style="{DynamicResource ButtonInvisible}">
                     <Border HorizontalAlignment="Center"
-                        CornerRadius="8" Background="#DE4F4E">
+                            CornerRadius="8" Background="#DE4F4E">
                         <TextBlock Width="170" Foreground="#F8F8F8" FontSize="15" HorizontalAlignment="Center">Annuler</TextBlock>
                     </Border>
                 </Button>
@@ -57,7 +56,7 @@
                     </Border>
                 </Button>
 
-               
+
             </DockPanel>
         </StackPanel>
     </Grid>

@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:BidCardCoin.Vue.CRUD"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
@@ -41,34 +40,40 @@
                 </DataGrid.CellStyle>
 
                 <DataGrid.Columns>
-                    
-                    <DataGridTextColumn Header="Prix Proposer" Binding="{Binding PrixProposer , Mode=TwoWay}" MinWidth="100" />
-                    <DataGridTextColumn Header="Date vente" Binding="{Binding DateHeureVente , Mode=TwoWay}" MinWidth="100"/>
-                    <DataGridTextColumn Header="est adjuger" Binding="{Binding IsAdjuger , Mode=TwoWay}" MinWidth="100"/>
 
-                    <DataGridTextColumn Header="Commissaire" Binding="{Binding  CommissaireEnchere.Prenom, Mode=TwoWay}" MinWidth="100"/>
-                    <DataGridTextColumn Header="Lot" Binding="{Binding LotEnchere.NomLot , Mode=TwoWay}" MinWidth="100"/>
-                    <DataGridTextColumn Header="Ordre Achat" Binding="{Binding OrdreAchatEnchere.IdOrdreAchat , Mode=OneWay}" MinWidth="100"/>
-                    <DataGridTextColumn Header="Utilisateur" Binding="{Binding UtilisateurEnchere.Prenom , Mode=TwoWay}" MinWidth="100"/>
+                    <DataGridTextColumn Header="Prix Proposer" Binding="{Binding PrixProposer , Mode=TwoWay}"
+                                        MinWidth="100" />
+                    <DataGridTextColumn Header="Date vente" Binding="{Binding DateHeureVente , Mode=TwoWay}"
+                                        MinWidth="100" />
+                    <DataGridTextColumn Header="est adjuger" Binding="{Binding IsAdjuger , Mode=TwoWay}" MinWidth="100" />
+
+                    <DataGridTextColumn Header="Commissaire"
+                                        Binding="{Binding  CommissaireEnchere.Prenom, Mode=TwoWay}" MinWidth="100" />
+                    <DataGridTextColumn Header="Lot" Binding="{Binding LotEnchere.NomLot , Mode=TwoWay}" MinWidth="100" />
+                    <DataGridTextColumn Header="Ordre Achat"
+                                        Binding="{Binding OrdreAchatEnchere.IdOrdreAchat , Mode=OneWay}" MinWidth="100" />
+                    <DataGridTextColumn Header="Utilisateur"
+                                        Binding="{Binding UtilisateurEnchere.Prenom , Mode=TwoWay}" MinWidth="100" />
                 </DataGrid.Columns>
             </DataGrid>
 
 
-
-
             <StackPanel>
 
-                <Button Style="{DynamicResource ButtonInvisible}" Click="AddEnchere" VerticalAlignment="Center" Margin="15">
+                <Button Style="{DynamicResource ButtonInvisible}" Click="AddEnchere" VerticalAlignment="Center"
+                        Margin="15">
                     <Border CornerRadius="15" Width="150" Background="#3E3E42" VerticalAlignment="Center">
-                        <TextBlock FontSize="25" Foreground="#249181" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        Ajouter
+                        <TextBlock FontSize="25" Foreground="#249181" HorizontalAlignment="Center"
+                                   VerticalAlignment="Center">
+                            Ajouter
                         </TextBlock>
                     </Border>
 
                 </Button>
                 <Button Style="{DynamicResource ButtonInvisible}" Click="DeleteEnchere" Margin="15">
                     <Border CornerRadius="15" Width="150" Background="#3E3E42">
-                        <TextBlock FontSize="25" Foreground="#DE4F4E" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock FontSize="25" Foreground="#DE4F4E" HorizontalAlignment="Center"
+                                   VerticalAlignment="Center">
                             supprimer
                         </TextBlock>
                     </Border>
@@ -77,30 +82,27 @@
 
                 <Button Name="selectMode" Style="{DynamicResource ButtonInvisible}" Click="SelectEnchere" Margin="15">
                     <Border CornerRadius="15" Width="150" Background="#3E3E42">
-                        <TextBlock FontSize="25" Foreground="#007ACC"  HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock FontSize="25" Foreground="#007ACC" HorizontalAlignment="Center"
+                                   VerticalAlignment="Center">
                             Selectioner
                         </TextBlock>
                     </Border>
                 </Button>
-                
-                
-                
+
+
                 <Button Name="editMode" Style="{DynamicResource ButtonInvisible}" Click="EditEnchere" Margin="15">
                     <Border CornerRadius="15" Width="150" Background="#3E3E42">
-                        <TextBlock FontSize="25" Foreground="#007ACC"  HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock FontSize="25" Foreground="#007ACC" HorizontalAlignment="Center"
+                                   VerticalAlignment="Center">
                             Modifier
 
                         </TextBlock>
                     </Border>
                 </Button>
-                
+
             </StackPanel>
 
-            
-            
-            
-            
-     
+
         </DockPanel>
 
     </Grid>

@@ -1,8 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using bidCardCoin.DAO;
 using Npgsql;
 
@@ -13,7 +10,7 @@ namespace bidCardCoin.DAL
         // SELECT
         public static CategorieDAO SelectCategorieById(string id)
         {
-            CategorieDAO categorieDao = new CategorieDAO();
+            var categorieDao = new CategorieDAO();
             // Selectionne la categorie a partir de l'id
             var query =
                 "SELECT * FROM public.categorie a where a.\"idCategorie\"=:idCategorieParam";
@@ -25,10 +22,11 @@ namespace bidCardCoin.DAL
             {
                 // récup les paramètres principaux
                 var idCategorie = (string) reader["idCategorie"];
-                var categorieId = Convert.IsDBNull(reader["categorieId"])? null : ((string) reader["categorieId"]);
+                var categorieId = Convert.IsDBNull(reader["categorieId"]) ? null : (string) reader["categorieId"];
                 var nomCategorie = (string) reader["nomCategorie"];
                 categorieDao = new CategorieDAO(idCategorie, categorieId, nomCategorie);
             }
+
             reader.Close();
 
             return categorieDao;
@@ -37,7 +35,7 @@ namespace bidCardCoin.DAL
         public static List<CategorieDAO> SelectAllCategorie()
         {
             // Selectionné tout les categorie dans la base de donnée
-            List<CategorieDAO> liste = new List<CategorieDAO>();
+            var liste = new List<CategorieDAO>();
 
             var query = "SELECT * FROM public.categorie ORDER BY \"idCategorie\"";
             var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
@@ -46,11 +44,12 @@ namespace bidCardCoin.DAL
             while (reader.Read())
             {
                 var idCategorie = (string) reader["idCategorie"];
-                var categorieId = Convert.IsDBNull(reader["categorieId"])? null : ((string) reader["categorieId"]);
+                var categorieId = Convert.IsDBNull(reader["categorieId"]) ? null : (string) reader["categorieId"];
                 var nomCategorie = (string) reader["nomCategorie"];
 
                 liste.Add(new CategorieDAO(idCategorie, categorieId, nomCategorie));
             }
+
             reader.Close();
             return liste;
         }
@@ -78,7 +77,7 @@ where categorie.""idCategorie""=:idCategorie";
         public static void DeleteCategorie(string categorieId)
         {
             // Supprimer categorie dans la bdd
-            CategorieDAO dao = SelectCategorieById(categorieId);
+            var dao = SelectCategorieById(categorieId);
             if (dao.IdCategorie != null)
             {
                 var query = "DELETE FROM public.categorie WHERE \"idCategorie\"=:idCategorie";

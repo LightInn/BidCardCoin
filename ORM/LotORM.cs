@@ -1,33 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using bidCardCoin.DAL;
-using bidCardCoin.DAO;
 using BidCardCoin.Models;
 
 namespace bidCardCoin.ORM
 {
     public class LotORM
     {
-        private static Dictionary<string, Lot> _lotsDictionary = new Dictionary<string, Lot>();
+        private static readonly Dictionary<string, Lot> _lotsDictionary = new Dictionary<string, Lot>();
+
         private static bool LotAlreadyInDictionary(string id)
         {
             return _lotsDictionary.ContainsKey(id);
         }
         // todo -> liens vers des : lots
-        
+
         public static void Populate(List<Lot> lots)
         {
             // liste des ordreAchats qui on beusoin de se faire peupler (leurs liste utilisateurs)
 
             foreach (var lot in lots)
             {
-                if (!LotAlreadyInDictionary(lot.IdLot))
-                {
-                    GetLotById(lot.IdLot);
-                }
+                if (!LotAlreadyInDictionary(lot.IdLot)) GetLotById(lot.IdLot);
 
                 lot.IdLot = _lotsDictionary[lot.IdLot].IdLot;
                 lot.Description = _lotsDictionary[lot.IdLot].Description;
@@ -41,10 +34,7 @@ namespace bidCardCoin.ORM
             // liste des ordreAchats qui on beusoin de se faire peupler (leurs liste utilisateurs)
 
 
-            if (!LotAlreadyInDictionary(lot.IdLot))
-            {
-                GetLotById(lot.IdLot);
-            }
+            if (!LotAlreadyInDictionary(lot.IdLot)) GetLotById(lot.IdLot);
 
             lot.IdLot = _lotsDictionary[lot.IdLot].IdLot;
             lot.Description = _lotsDictionary[lot.IdLot].Description;
@@ -54,25 +44,21 @@ namespace bidCardCoin.ORM
 
         public static Lot GetLotById(string id, bool initializer = true)
         {
-            Lot lot = new Lot();
+            var lot = new Lot();
 
-            LotDAO ldao = LotDAL.SelectLotById(id);
-            List<Produit> lproduit = new List<Produit>();
+            var ldao = LotDAL.SelectLotById(id);
+            var lproduit = new List<Produit>();
 
             if (initializer)
             {
-                List<Produit> produits = ProduitORM.GetAllProduit();
+                var produits = ProduitORM.GetAllProduit();
                 foreach (var produit in produits)
-                {
                     if (produit.LotProduit.IdLot == id)
-                    {
                         lproduit.Add(produit);
-                    }
-                }
             }
-            
-            lot = new Lot(id,ldao.NomLot,ldao.Description,lproduit);
-            
+
+            lot = new Lot(id, ldao.NomLot, ldao.Description, lproduit);
+
             if (initializer)
             {
                 _lotsDictionary[lot.IdLot] = lot;
@@ -81,16 +67,13 @@ namespace bidCardCoin.ORM
 
             return lot;
         }
-        
+
         public static List<Lot> GetAllLots()
         {
-            List<LotDAO> lldao = LotDAL.SelectAllLot();
-            List<Lot> lots = new List<Lot>();
+            var lldao = LotDAL.SelectAllLot();
+            var lots = new List<Lot>();
 
-            foreach (var ldao in lldao)
-            {
-                lots.Add(GetLotById(ldao.IdLot));
-            }
+            foreach (var ldao in lldao) lots.Add(GetLotById(ldao.IdLot));
 
             return lots;
         }

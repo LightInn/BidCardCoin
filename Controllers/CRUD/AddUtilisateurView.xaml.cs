@@ -4,7 +4,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using bidCardCoin.DAL;
 using BidCardCoin.Models;
 using bidCardCoin.ORM;
 
@@ -12,10 +11,10 @@ namespace BidCardCoin.Vue.CRUD
 {
     public partial class AddUtilisateurView : UserControl
     {
-        private Utilisateur _user;
-        private List<string> _listeMotClef;
-        private Window _win;
-        List<Adresse> _listeAdresses;
+        private readonly List<Adresse> _listeAdresses;
+        private readonly List<string> _listeMotClef;
+        private readonly Utilisateur _user;
+        private readonly Window _win;
 
         public AddUtilisateurView(Window win = null, Utilisateur user = null)
         {
@@ -27,8 +26,6 @@ namespace BidCardCoin.Vue.CRUD
             _listeAdresses = new List<Adresse>();
         }
 
-        
-        
 
         private void CreateNewUtilisateur(object sender, RoutedEventArgs e)
         {
@@ -61,8 +58,6 @@ namespace BidCardCoin.Vue.CRUD
             {
                 MessageBox.Show("Veulliez completer tout les champs");
             }
-
-         
         }
 
         private void Cancel(object sender, RoutedEventArgs e)
@@ -72,7 +67,7 @@ namespace BidCardCoin.Vue.CRUD
 
         private void ViewMotsClefs(object sender, RoutedEventArgs e)
         {
-            Window window = new Window
+            var window = new Window
             {
                 Title = "Selection adresses",
 
@@ -80,7 +75,7 @@ namespace BidCardCoin.Vue.CRUD
                 ResizeMode = ResizeMode.NoResize,
                 Background = (SolidColorBrush) new BrushConverter().ConvertFrom("#393C43"),
                 Icon = new BitmapImage(new Uri("pack://application:,,,/ressources/CRUDimg/adresse.png",
-                    UriKind.RelativeOrAbsolute)),
+                    UriKind.RelativeOrAbsolute))
             };
             window.Content = new ListeMotsClefsView(window, _listeMotClef);
             window.ShowDialog();
@@ -88,7 +83,7 @@ namespace BidCardCoin.Vue.CRUD
 
         private void SelectAdresses(object sender, RoutedEventArgs e)
         {
-            Window window = new Window
+            var window = new Window
             {
                 Title = "Liste des mots Clefs",
 
@@ -96,7 +91,7 @@ namespace BidCardCoin.Vue.CRUD
                 ResizeMode = ResizeMode.NoResize,
                 Background = (SolidColorBrush) new BrushConverter().ConvertFrom("#393C43"),
                 Icon = new BitmapImage(new Uri("pack://application:,,,/ressources/CRUDimg/utilisateur.png",
-                    UriKind.RelativeOrAbsolute)),
+                    UriKind.RelativeOrAbsolute))
             };
 
             window.Content = new ListeAdressesView(window, _listeAdresses);

@@ -1,18 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using bidCardCoin.DAL;
-using bidCardCoin.DAO;
-using BidCardCoin.Models;
-
-namespace bidCardCoin.ORM
+﻿namespace bidCardCoin.ORM
 {
     public class CategorieORM
     {
-
-
         // private static readonly Dictionary<string, Categorie>
         //     CategoriesDictionary = new Dictionary<string, Categorie>();
         //

@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using bidCardCoin.DAO;
-using Google.Protobuf.WellKnownTypes;
 using Npgsql;
 
 namespace bidCardCoin.DAL
@@ -14,7 +9,7 @@ namespace bidCardCoin.DAL
         // SELECT
         public static PhotoDAO SelectPhotoById(string id)
         {
-            PhotoDAO photoDao = new PhotoDAO();
+            var photoDao = new PhotoDAO();
             // Selectionne la photo a partir de l'id
             var query =
                 "SELECT * FROM public.photo a where a.\"idPhoto\"=:idPhotoParam";
@@ -31,6 +26,7 @@ namespace bidCardCoin.DAL
 
                 photoDao = new PhotoDAO(idPhoto, produitId, fichierPhoto);
             }
+
             reader.Close();
             return photoDao;
         }
@@ -38,7 +34,7 @@ namespace bidCardCoin.DAL
         public static List<PhotoDAO> SelectAllPhoto()
         {
             // Selectionné tout les photo dans la base de donnée
-            List<PhotoDAO> liste = new List<PhotoDAO>();
+            var liste = new List<PhotoDAO>();
 
             var query = "SELECT * FROM public.photo ORDER BY \"idPhoto\"";
             var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
@@ -52,6 +48,7 @@ namespace bidCardCoin.DAL
 
                 liste.Add(new PhotoDAO(idPhoto, produitId, fichierPhoto));
             }
+
             reader.Close();
             return liste;
         }
@@ -71,7 +68,7 @@ where photo.""idPhoto""=:idPhoto";
             cmd.Parameters.AddWithValue("idPhoto", photo.IdPhoto);
             cmd.Parameters.AddWithValue("produitId", photo.ProduitId);
             cmd.Parameters.AddWithValue("fichierPhoto", photo.FichierPhoto);
-            
+
             cmd.ExecuteNonQuery();
         }
 
@@ -79,7 +76,7 @@ where photo.""idPhoto""=:idPhoto";
         public static void DeletePhoto(string photoId)
         {
             // Supprimer photo dans la bdd
-            PhotoDAO dao = SelectPhotoById(photoId);
+            var dao = SelectPhotoById(photoId);
             if (dao.IdPhoto != null)
             {
                 var query = "DELETE FROM public.photo WHERE \"idPhoto\"=:idPhoto";
@@ -88,6 +85,5 @@ where photo.""idPhoto""=:idPhoto";
                 cmd.ExecuteNonQuery();
             }
         }
-            
     }
 }

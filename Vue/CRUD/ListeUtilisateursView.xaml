@@ -3,10 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:BidCardCoin.Vue.CRUD"
-             xmlns:models="clr-namespace:BidCardCoin.Models"
              mc:Ignorable="d">
-    
+
     <Grid>
 
         <DockPanel>
@@ -53,12 +51,13 @@
                     <DataGridComboBoxColumn x:Name="ComboBoxColumnAdresse" Header="Adresse(s) de l'utilisateur"
                                             SelectedValueBinding="{Binding Adresses, Mode=TwoWay}" Width="170" />
 
-                    <DataGridCheckBoxColumn Header="Verifier" IsThreeState="True"  Binding="{Binding IdentityExist, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    <DataGridCheckBoxColumn Header="Verifier" IsThreeState="True"
+                                            Binding="{Binding IdentityExist, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                             Width="170" />
 
 
                 </DataGrid.Columns>
-                
+
                 <!-- <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Path=Adresses}"> -->
                 <!--     <DataGrid.Columns> -->
                 <!--         <DataGridComboBoxColumn Header="Title" SelectedItemBinding="{Binding Adresses}"> -->

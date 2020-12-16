@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using bidCardCoin.DAO;
 using Npgsql;
 
@@ -17,7 +14,7 @@ namespace bidCardCoin.DAL
         {
             // Selectionné l'Enchere a partir de l'id
 
-            EnchereDAO dao = new EnchereDAO();
+            var dao = new EnchereDAO();
 
             var query = "SELECT * FROM public.enchere  where \"idEnchere\" =:id";
             var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
@@ -51,7 +48,7 @@ namespace bidCardCoin.DAL
         public static List<EnchereDAO> SelectAllEnchere()
         {
             // Selectionné tout les Enchere dans la base de donnée
-            List<EnchereDAO> liste = new List<EnchereDAO>();
+            var liste = new List<EnchereDAO>();
 
 
             var query = "SELECT * FROM public.enchere ORDER BY \"idEnchere\"";

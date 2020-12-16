@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using bidCardCoin.DAO;
-using Google.Protobuf.WellKnownTypes;
 using Npgsql;
 
 namespace bidCardCoin.DAL
@@ -14,7 +9,7 @@ namespace bidCardCoin.DAL
         // SELECT
         public static StockDAO SelectStockById(string id)
         {
-            StockDAO stockDao = new StockDAO();
+            var stockDao = new StockDAO();
             // Selectionne la stock a partir de l'id
             var query =
                 "SELECT * FROM public.stock a where a.\"idStock\"=:idStockParam";
@@ -30,6 +25,7 @@ namespace bidCardCoin.DAL
 
                 stockDao = new StockDAO(idStock, adresseId);
             }
+
             reader.Close();
             return stockDao;
         }
@@ -37,7 +33,7 @@ namespace bidCardCoin.DAL
         public static List<StockDAO> SelectAllStock()
         {
             // Selectionné tout les stock dans la base de donnée
-            List<StockDAO> liste = new List<StockDAO>();
+            var liste = new List<StockDAO>();
 
             var query = "SELECT * FROM public.stock ORDER BY \"idStock\"";
             var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
@@ -50,6 +46,7 @@ namespace bidCardCoin.DAL
 
                 liste.Add(new StockDAO(idStock, adresseId));
             }
+
             reader.Close();
             return liste;
         }
@@ -67,7 +64,7 @@ where stock.""idStock""=:idStock";
             var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
             cmd.Parameters.AddWithValue("idStock", stock.IdStock);
             cmd.Parameters.AddWithValue("adresseId", stock.AdresseId);
-            
+
             cmd.ExecuteNonQuery();
         }
 
@@ -75,7 +72,7 @@ where stock.""idStock""=:idStock";
         public static void DeleteStock(string stockId)
         {
             // Supprimer stock dans la bdd
-            StockDAO dao = SelectStockById(stockId);
+            var dao = SelectStockById(stockId);
             if (dao.IdStock != null)
             {
                 var query = "DELETE FROM public.stock WHERE \"idStock\"=:idStock";

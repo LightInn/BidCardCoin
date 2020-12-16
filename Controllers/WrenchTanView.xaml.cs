@@ -8,23 +8,20 @@ namespace BidCardCoin.Vue
 {
     public partial class WrenchTanView : UserControl
     {
-        private MainWindow parent;
+        private readonly MainWindow parent;
 
         public WrenchTanView(MainWindow parent)
         {
             this.parent = parent;
             InitializeComponent();
-            
-            
-            
         }
-        
+
         /* ------------------------------------------------ NAV -----------------------------------------------------*/
- 
+
 
         private void NavHoverEffectEnter(object o, MouseEventArgs mouseEventArgs)
         {
-            var border = ((o as Button)?.Content as Border);
+            var border = (o as Button)?.Content as Border;
             border.Background = (SolidColorBrush) new BrushConverter().ConvertFrom("#F8F8F8");
             border.CornerRadius = new CornerRadius(8);
             border.BorderThickness = new Thickness(5);
@@ -34,7 +31,7 @@ namespace BidCardCoin.Vue
 
         private void NavHoverEffectExit(object o, MouseEventArgs mouseEventArgs)
         {
-            var border = ((o as Button)?.Content as Border);
+            var border = (o as Button)?.Content as Border;
             border.Background = new SolidColorBrush();
             border.CornerRadius = new CornerRadius(0);
             border.BorderThickness = new Thickness(0);

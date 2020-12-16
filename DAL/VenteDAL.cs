@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using bidCardCoin.DAO;
-using Google.Protobuf.WellKnownTypes;
 using Npgsql;
 
 namespace bidCardCoin.DAL
@@ -14,7 +10,7 @@ namespace bidCardCoin.DAL
         // SELECT
         public static VenteDAO SelectVenteById(string id)
         {
-            VenteDAO venteDao = new VenteDAO();
+            var venteDao = new VenteDAO();
             // Selectionne la vente a partir de l'id
             var query =
                 "SELECT * FROM public.vente a where a.\"idVente\"=:idVenteParam";
@@ -40,7 +36,7 @@ namespace bidCardCoin.DAL
         public static List<VenteDAO> SelectAllVente()
         {
             // Selectionné tout les vente dans la base de donnée
-            List<VenteDAO> liste = new List<VenteDAO>();
+            var liste = new List<VenteDAO>();
 
             var query = "SELECT * FROM public.vente ORDER BY \"idVente\"";
             var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
@@ -55,6 +51,7 @@ namespace bidCardCoin.DAL
 
                 liste.Add(new VenteDAO(idVente, lotId, adresseId, dateDebut));
             }
+
             reader.Close();
             return liste;
         }
@@ -84,7 +81,7 @@ where vente.""idVente""=:idVente";
         public static void DeleteVente(string venteId)
         {
             // Supprimer vente dans la bdd
-            VenteDAO dao = SelectVenteById(venteId);
+            var dao = SelectVenteById(venteId);
             if (dao.IdVente != null)
             {
                 var query = "DELETE FROM public.vente WHERE \"idVente\"=:idVente";

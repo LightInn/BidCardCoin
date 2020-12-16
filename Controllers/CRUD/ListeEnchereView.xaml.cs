@@ -13,59 +13,48 @@ namespace BidCardCoin.Vue.CRUD
 {
     public partial class ListeEncheresView : UserControl
     {
-        private string _selectedId;
         private Enchere _contextEnchere;
-        private ObservableCollection<Enchere> _encheres;
+        private readonly ObservableCollection<Enchere> _encheres;
         private List<Enchere> _selectedEncheres;
+        private string _selectedId;
 
 
-        public ListeEncheresView(Window win = null,List<Enchere> selectedEncheres = null)
+        public ListeEncheresView(Window win = null, List<Enchere> selectedEncheres = null)
         {
             InitializeComponent();
 
             _selectedEncheres = selectedEncheres;
 
-            if (selectedEncheres == null)
-            {
-                selectMode.Visibility = Visibility.Collapsed;
-            }
-            
-            
-            
+            if (selectedEncheres == null) selectMode.Visibility = Visibility.Collapsed;
+
+
             _encheres = new ObservableCollection<Enchere>(EnchereORM.GetAllEnchere());
             _contextEnchere = new Enchere();
             GenerateDataList();
-            
         }
 
         private void GenerateDataList()
         {
             ListeEncheresGrid.ItemsSource = _encheres;
-            
-            
         }
-
 
 
         private void AddEnchere(object sender, RoutedEventArgs e)
         {
-            Enchere newEnchere = new Enchere();
+            var newEnchere = new Enchere();
 
-            Window window = new Window
+            var window = new Window
             {
                 Title = "Ajouter une Enchere",
                 SizeToContent = SizeToContent.WidthAndHeight,
                 ResizeMode = ResizeMode.NoResize,
                 Background = (SolidColorBrush) new BrushConverter().ConvertFrom("#393C43"),
                 Icon = new BitmapImage(new Uri("pack://application:,,,/ressources/CRUDimg/enchere.png",
-                    UriKind.RelativeOrAbsolute)),
+                    UriKind.RelativeOrAbsolute))
             };
             window.Content = new AddEnchereView(window, newEnchere);
             window.ShowDialog();
-            if (newEnchere.IdEnchere != null)
-            {
-                _encheres.Add(newEnchere);
-            }
+            if (newEnchere.IdEnchere != null) _encheres.Add(newEnchere);
         }
 
         private void DeleteEnchere(object sender, RoutedEventArgs e)
@@ -84,20 +73,19 @@ namespace BidCardCoin.Vue.CRUD
 
         private void EditEnchere(object sender, RoutedEventArgs e)
         {
-            Enchere selectedEnchere = _encheres[ListeEncheresGrid.SelectedIndex];
+            var selectedEnchere = _encheres[ListeEncheresGrid.SelectedIndex];
 
-            Window window = new Window
+            var window = new Window
             {
                 Title = "Ajouter une Enchere",
                 SizeToContent = SizeToContent.WidthAndHeight,
                 ResizeMode = ResizeMode.NoResize,
                 Background = (SolidColorBrush) new BrushConverter().ConvertFrom("#393C43"),
                 Icon = new BitmapImage(new Uri("pack://application:,,,/ressources/CRUDimg/enchere.png",
-                    UriKind.RelativeOrAbsolute)),
+                    UriKind.RelativeOrAbsolute))
             };
             window.Content = new EditEnchereView(window, selectedEnchere);
             window.ShowDialog();
-           
         }
     }
 }

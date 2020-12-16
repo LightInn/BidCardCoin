@@ -22,10 +22,7 @@ namespace bidCardCoin.ORM
 
             foreach (var user in users)
             {
-                if (!UtilisateurAlreadyInDictionary(user.IdUtilisateur))
-                {
-                    GetUtilisateurById(user.IdUtilisateur);
-                }
+                if (!UtilisateurAlreadyInDictionary(user.IdUtilisateur)) GetUtilisateurById(user.IdUtilisateur);
 
 
                 user.Adresses = UtilisateurDictionary[user.IdUtilisateur].Adresses;
@@ -34,26 +31,21 @@ namespace bidCardCoin.ORM
 
         public static Utilisateur GetUtilisateurById(string id, bool initializer = true)
         {
-            if (UtilisateurAlreadyInDictionary(id))
-            {
-                return UtilisateurDictionary[id];
-            }
+            if (UtilisateurAlreadyInDictionary(id)) return UtilisateurDictionary[id];
 
-            UtilisateurDAO udao = UtilisateurDAL.SelectUtilisateurById(id);
-            PersonneDAO pdao = PersonneDAL.SelectPersonneById(udao.PersonneId);
+            var udao = UtilisateurDAL.SelectUtilisateurById(id);
+            var pdao = PersonneDAL.SelectPersonneById(udao.PersonneId);
 
-            List<Adresse> listeAdresse = new List<Adresse>();
+            var listeAdresse = new List<Adresse>();
 
             if (initializer)
-            {
                 foreach (var adresseInDAO in pdao.Adresses)
                 {
-                    Adresse adresse = AdresseORM.GetAdresseById(adresseInDAO, false);
+                    var adresse = AdresseORM.GetAdresseById(adresseInDAO, false);
                     listeAdresse.Add(adresse);
                 }
-            }
 
-            Utilisateur user = new Utilisateur(udao.IdUtilisateur, udao.VerifSolvable, udao.VerifRessortissant,
+            var user = new Utilisateur(udao.IdUtilisateur, udao.VerifSolvable, udao.VerifRessortissant,
                 udao.VerifIdentite, udao.ListeMotClef, pdao.IdPersonne, pdao.Nom, pdao.Prenom, pdao.Age, pdao.Email,
                 pdao.Password, pdao.TelephoneMobile, pdao.TelephoneFixe, listeAdresse);
 
@@ -69,25 +61,22 @@ namespace bidCardCoin.ORM
 
         public static List<Utilisateur> GetAllUtilisateur()
         {
-            List<UtilisateurDAO> ludao = UtilisateurDAL.SelectAllUtilisateur();
-            List<Utilisateur> users = new List<Utilisateur>();
+            var ludao = UtilisateurDAL.SelectAllUtilisateur();
+            var users = new List<Utilisateur>();
 
-            foreach (var udao in ludao)
-            {
-                users.Add(GetUtilisateurById(udao.IdUtilisateur));
-            }
+            foreach (var udao in ludao) users.Add(GetUtilisateurById(udao.IdUtilisateur));
 
             return users;
         }
 
-        static UtilisateurDAO UtilisateurToDao(Utilisateur user)
+        private static UtilisateurDAO UtilisateurToDao(Utilisateur user)
         {
             return new UtilisateurDAO(user.IdUtilisateur, user.IdPersonne, user.IsSolvable, user.IsRessortissant,
                 user.IdentityExist, user.ListeMotClef);
         }
 
 
-        static PersonneDAO UtilisateurToPersonneDao(Utilisateur user)
+        private static PersonneDAO UtilisateurToPersonneDao(Utilisateur user)
         {
             return new PersonneDAO(user.IdPersonne, user.Nom, user.Prenom, user.Age, user.Email, user.Password,
                 user.TelephoneMobile, user.TelephoneFixe, user.Adresses.Select(adress => adress.IdAdresse).ToList());
@@ -95,11 +84,8 @@ namespace bidCardCoin.ORM
 
         public static void AddUtilisateur(Utilisateur user)
         {
-            PersonneDAO test = PersonneDAL.SelectPersonneById(user.IdPersonne);
-            if (test.IdPersonne == null)
-            {
-                PersonneDAL.InsertNewPersonne(UtilisateurToPersonneDao(user));
-            }
+            var test = PersonneDAL.SelectPersonneById(user.IdPersonne);
+            if (test.IdPersonne == null) PersonneDAL.InsertNewPersonne(UtilisateurToPersonneDao(user));
 
             UtilisateurDAL.InsertNewUtilisateur(UtilisateurToDao(user));
         }

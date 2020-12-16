@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using bidCardCoin.DAL;
 using bidCardCoin.DAO;
 using BidCardCoin.Models;
@@ -11,7 +7,7 @@ namespace bidCardCoin.ORM
 {
     public class ProduitORM
     {
-        private static Dictionary<string, Produit> _produitsDictionary = new Dictionary<string, Produit>();
+        private static readonly Dictionary<string, Produit> _produitsDictionary = new Dictionary<string, Produit>();
 
         private static bool ProduitAlreadyInDictionary(string id)
         {
@@ -25,10 +21,7 @@ namespace bidCardCoin.ORM
 
             foreach (var produit in produits)
             {
-                if (!ProduitAlreadyInDictionary(produit.IdProduit))
-                {
-                    GetProduitById(produit.IdProduit);
-                }
+                if (!ProduitAlreadyInDictionary(produit.IdProduit)) GetProduitById(produit.IdProduit);
 
                 produit.LotProduit = _produitsDictionary[produit.IdProduit].LotProduit;
                 produit.UtilisateurProduit = _produitsDictionary[produit.IdProduit].UtilisateurProduit;
@@ -42,10 +35,7 @@ namespace bidCardCoin.ORM
         {
             // liste des produits qui on beusoin de se faire peupler (leurs liste utilisateurs)
 
-            if (!ProduitAlreadyInDictionary(produit.IdProduit))
-            {
-                GetProduitById(produit.IdProduit);
-            }
+            if (!ProduitAlreadyInDictionary(produit.IdProduit)) GetProduitById(produit.IdProduit);
 
             produit.LotProduit = _produitsDictionary[produit.IdProduit].LotProduit;
             produit.UtilisateurProduit = _produitsDictionary[produit.IdProduit].UtilisateurProduit;
@@ -56,12 +46,12 @@ namespace bidCardCoin.ORM
 
         public static Produit GetProduitById(string id, bool initializer = true)
         {
-            ProduitDAO pdao = ProduitDAL.SelectProduitById(id);
-            Lot lotProduit = new Lot();
-            Utilisateur utilisateurProduit = new Utilisateur();
-            Stock stockProduit = new Stock();
-            Enchere enchereGagnante = new Enchere();
-            Categorie categorieProduit = new Categorie();
+            var pdao = ProduitDAL.SelectProduitById(id);
+            var lotProduit = new Lot();
+            var utilisateurProduit = new Utilisateur();
+            var stockProduit = new Stock();
+            var enchereGagnante = new Enchere();
+            var categorieProduit = new Categorie();
 
 
             if (initializer)
@@ -71,10 +61,8 @@ namespace bidCardCoin.ORM
                     UtilisateurORM.GetUtilisateurById(pdao.UtilisateurId, false);
                 stockProduit = StockORM.GetStockById(pdao.StockId, false);
                 if (!string.IsNullOrEmpty(pdao.EnchereGagnanteId))
-                {
                     enchereGagnante =
                         EnchereORM.GetEnchereById(pdao.EnchereGagnanteId, false);
-                }
 
                 //todo decomente ici
                 // categorieProduit =
@@ -83,7 +71,7 @@ namespace bidCardCoin.ORM
             }
 
 
-            Produit produit = new Produit(pdao.IdProduit, lotProduit, utilisateurProduit, stockProduit, enchereGagnante,
+            var produit = new Produit(pdao.IdProduit, lotProduit, utilisateurProduit, stockProduit, enchereGagnante,
                 categorieProduit
                 , pdao.NomArtiste, pdao.NomStyle, pdao.NomProduit, pdao.PrixReserve, pdao.ReferenceCatalogue,
                 pdao.DescriptionProduit, pdao.IsSend);
@@ -99,9 +87,7 @@ namespace bidCardCoin.ORM
                 }));
                 StockORM.Populate(produit.StockProduit);
                 if (!string.IsNullOrEmpty(produit.EnchereGagnante.IdEnchere))
-                {
                     EnchereORM.Populate(produit.EnchereGagnante);
-                }
 
                 //todo decomenter ici
                 // CategorieORM.Populate(produit.CategorieProduit);
@@ -112,20 +98,17 @@ namespace bidCardCoin.ORM
 
         public static List<Produit> GetAllProduit()
         {
-            List<ProduitDAO> lpdao = ProduitDAL.SelectAllProduit();
-            List<Produit> produits = new List<Produit>();
+            var lpdao = ProduitDAL.SelectAllProduit();
+            var produits = new List<Produit>();
 
-            foreach (var pdao in lpdao)
-            {
-                produits.Add(produitDaoToProduit(pdao));
-            }
+            foreach (var pdao in lpdao) produits.Add(produitDaoToProduit(pdao));
 
             return produits;
         }
 
         public static Produit produitDaoToProduit(ProduitDAO produitDao)
         {
-            Produit produit = new Produit(produitDao.IdProduit,
+            var produit = new Produit(produitDao.IdProduit,
                 LotORM.GetLotById(produitDao.LotId, false),
                 UtilisateurORM.GetUtilisateurById(produitDao.UtilisateurId, false),
                 StockORM.GetStockById(produitDao.StockId, false),

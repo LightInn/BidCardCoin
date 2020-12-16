@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using bidCardCoin.DAO;
 using Npgsql;
 
@@ -13,7 +10,7 @@ namespace bidCardCoin.DAL
         // SELECT
         public static LotDAO SelectLotById(string id)
         {
-            LotDAO lotDao = new LotDAO();
+            var lotDao = new LotDAO();
             // Selectionne la lot a partir de l'id
             var query =
                 "SELECT * FROM public.lot a where a.\"idLot\"=:idLotParam";
@@ -26,9 +23,10 @@ namespace bidCardCoin.DAL
                 // récup les paramètres principaux
                 var idLot = (string) reader["idLot"];
                 var nomLot = (string) reader["nomLot"];
-                var description = Convert.IsDBNull(reader["description"])? null :(string) reader["description"];
+                var description = Convert.IsDBNull(reader["description"]) ? null : (string) reader["description"];
                 lotDao = new LotDAO(idLot, nomLot, description);
             }
+
             reader.Close();
             return lotDao;
         }
@@ -36,7 +34,7 @@ namespace bidCardCoin.DAL
         public static List<LotDAO> SelectAllLot()
         {
             // Selectionné tout les lot dans la base de donnée
-            List<LotDAO> liste = new List<LotDAO>();
+            var liste = new List<LotDAO>();
 
             var query = "SELECT * FROM public.lot ORDER BY \"idLot\"";
             var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
@@ -46,10 +44,11 @@ namespace bidCardCoin.DAL
             {
                 var idLot = (string) reader["idLot"];
                 var nomLot = (string) reader["nomLot"];
-                var description = Convert.IsDBNull(reader["description"])? null :(string) reader["description"];
+                var description = Convert.IsDBNull(reader["description"]) ? null : (string) reader["description"];
 
                 liste.Add(new LotDAO(idLot, nomLot, description));
             }
+
             reader.Close();
             return liste;
         }
@@ -77,7 +76,7 @@ where lot.""idLot""=:idLot";
         public static void DeleteLot(string lotId)
         {
             // Supprimer lot dans la bdd
-            LotDAO dao = SelectLotById(lotId);
+            var dao = SelectLotById(lotId);
             if (dao.IdLot != null)
             {
                 var query = "DELETE FROM public.lot WHERE \"idLot\"=:idLot";

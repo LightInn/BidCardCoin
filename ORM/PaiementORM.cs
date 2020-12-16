@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using bidCardCoin.DAL;
-using bidCardCoin.DAO;
 using BidCardCoin.Models;
 
 namespace bidCardCoin.ORM
 {
     public class PaiementORM
     {
-        private static Dictionary<string, Paiement> _paiementsDictionary = new Dictionary<string, Paiement>();
+        private static readonly Dictionary<string, Paiement> _paiementsDictionary = new Dictionary<string, Paiement>();
 
         private static bool PaiementAlreadyInDictionary(string id)
         {
@@ -25,10 +20,7 @@ namespace bidCardCoin.ORM
 
             foreach (var paiement in paiements)
             {
-                if (!PaiementAlreadyInDictionary(paiement.IdPaiement))
-                {
-                    GetPaiementById(paiement.IdPaiement);
-                }
+                if (!PaiementAlreadyInDictionary(paiement.IdPaiement)) GetPaiementById(paiement.IdPaiement);
 
                 paiement.UtilisateurPaiement = _paiementsDictionary[paiement.IdPaiement].UtilisateurPaiement;
                 paiement.LotPaiement = _paiementsDictionary[paiement.IdPaiement].LotPaiement;
@@ -40,10 +32,7 @@ namespace bidCardCoin.ORM
             // liste des paiements qui on beusoin de se faire peupler (leurs liste utilisateurs)
 
 
-            if (!PaiementAlreadyInDictionary(paiement.IdPaiement))
-            {
-                GetPaiementById(paiement.IdPaiement);
-            }
+            if (!PaiementAlreadyInDictionary(paiement.IdPaiement)) GetPaiementById(paiement.IdPaiement);
 
             paiement.UtilisateurPaiement = _paiementsDictionary[paiement.IdPaiement].UtilisateurPaiement;
             paiement.LotPaiement = _paiementsDictionary[paiement.IdPaiement].LotPaiement;
@@ -51,9 +40,9 @@ namespace bidCardCoin.ORM
 
         public static Paiement GetPaiementById(string id, bool initializer = true)
         {
-            PaiementDAO pdao = PaiementDAL.SelectPaiementById(id);
-            Utilisateur utilisateurPaiement = new Utilisateur();
-            Lot lotPaiement = new Lot();
+            var pdao = PaiementDAL.SelectPaiementById(id);
+            var utilisateurPaiement = new Utilisateur();
+            var lotPaiement = new Lot();
 
 
             if (initializer)
@@ -65,7 +54,7 @@ namespace bidCardCoin.ORM
             }
 
 
-            Paiement paiement = new Paiement(pdao.IdPaiement, utilisateurPaiement, pdao.TypePaiement,
+            var paiement = new Paiement(pdao.IdPaiement, utilisateurPaiement, pdao.TypePaiement,
                 pdao.ValidationPaiement, lotPaiement);
 
             if (initializer)
@@ -83,16 +72,12 @@ namespace bidCardCoin.ORM
 
         public static List<Paiement> GetAllPaiement()
         {
-            List<PaiementDAO> lpdao = PaiementDAL.SelectAllPaiement();
-            List<Paiement> paiements = new List<Paiement>();
+            var lpdao = PaiementDAL.SelectAllPaiement();
+            var paiements = new List<Paiement>();
 
-            foreach (var pdao in lpdao)
-            {
-                paiements.Add(GetPaiementById(pdao.IdPaiement));
-            }
+            foreach (var pdao in lpdao) paiements.Add(GetPaiementById(pdao.IdPaiement));
 
             return paiements;
         }
-        
     }
 }

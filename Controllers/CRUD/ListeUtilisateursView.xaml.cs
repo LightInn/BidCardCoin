@@ -15,13 +15,14 @@ namespace BidCardCoin.Vue.CRUD
 {
     public partial class ListeUtilisateursView : UserControl
     {
-        private string _selectedId;
         private Utilisateur _contextUtilisateur;
 
-        private ObservableCollection<Utilisateur> _utilisateurs;
+        private string _selectedId;
         // private ObservableCollection<Adresse> _adresses;
 
-        private List<Utilisateur> _selectedUsers;
+        private readonly List<Utilisateur> _selectedUsers;
+
+        private readonly ObservableCollection<Utilisateur> _utilisateurs;
 
 
         public ListeUtilisateursView(Window win = null, List<Utilisateur> selectedUsers = null)
@@ -30,10 +31,7 @@ namespace BidCardCoin.Vue.CRUD
 
 
             _selectedUsers = selectedUsers;
-            if (selectedUsers == null)
-            {
-                selectMode.Visibility = Visibility.Collapsed;
-            }
+            if (selectedUsers == null) selectMode.Visibility = Visibility.Collapsed;
 
 
             _utilisateurs = new ObservableCollection<Utilisateur>(UtilisateurORM.GetAllUtilisateur());
@@ -47,35 +45,28 @@ namespace BidCardCoin.Vue.CRUD
             ListeUtilisateursGrid.ItemsSource = _utilisateurs;
 
             if (_selectedUsers != null)
-            {
                 foreach (var selectedUser in _selectedUsers)
-                {
                     ListeUtilisateursGrid.SelectedItems.Add(ListeUtilisateursGrid.Items[
                         _utilisateurs.IndexOf(_utilisateurs.First(user =>
                             user.IdUtilisateur == selectedUser.IdUtilisateur))]);
-                }
-            }
         }
 
         private void AddUser(object sender, RoutedEventArgs e)
         {
-            Utilisateur newUser = new Utilisateur();
+            var newUser = new Utilisateur();
 
-            Window window = new Window
+            var window = new Window
             {
                 Title = "Ajouter un utilisateur",
                 SizeToContent = SizeToContent.WidthAndHeight,
                 ResizeMode = ResizeMode.NoResize,
                 Background = (SolidColorBrush) new BrushConverter().ConvertFrom("#393C43"),
                 Icon = new BitmapImage(new Uri("pack://application:,,,/ressources/CRUDimg/utilisateur.png",
-                    UriKind.RelativeOrAbsolute)),
+                    UriKind.RelativeOrAbsolute))
             };
             window.Content = new AddUtilisateurView(window, newUser);
             window.ShowDialog();
-            if (newUser.IdUtilisateur != null)
-            {
-                _utilisateurs.Add(newUser);
-            }
+            if (newUser.IdUtilisateur != null) _utilisateurs.Add(newUser);
         }
 
         private void DeleteUser(object sender, RoutedEventArgs e)
@@ -93,24 +84,22 @@ namespace BidCardCoin.Vue.CRUD
             {
                 _selectedUsers.Clear();
                 foreach (var user in new List<Utilisateur>(ListeUtilisateursGrid.SelectedItems.Cast<Utilisateur>()))
-                {
                     _selectedUsers.Add(user);
-                }
             }
         }
 
         private void EditUser(object sender, RoutedEventArgs e)
         {
-            Utilisateur selectedUser = _utilisateurs[ListeUtilisateursGrid.SelectedIndex];
+            var selectedUser = _utilisateurs[ListeUtilisateursGrid.SelectedIndex];
 
-            Window window = new Window
+            var window = new Window
             {
                 Title = "Modifier un utilisateur",
                 SizeToContent = SizeToContent.WidthAndHeight,
                 ResizeMode = ResizeMode.NoResize,
                 Background = (SolidColorBrush) new BrushConverter().ConvertFrom("#393C43"),
                 Icon = new BitmapImage(new Uri("pack://application:,,,/ressources/CRUDimg/utilisateur.png",
-                    UriKind.RelativeOrAbsolute)),
+                    UriKind.RelativeOrAbsolute))
             };
             window.Content = new EditUtilisateurView(window, selectedUser);
             window.ShowDialog();

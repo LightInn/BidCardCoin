@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using bidCardCoin.DAO;
 using Npgsql;
 
@@ -13,7 +11,7 @@ namespace bidCardCoin.DAL
         public static UtilisateurDAO SelectUtilisateurById(string id)
         {
             // Selectionné l'Utilisateur a partir de l'id
-            UtilisateurDAO dao = new UtilisateurDAO();
+            var dao = new UtilisateurDAO();
 
             var query = "SELECT * FROM public.utilisateur  where \"idUtilisateur\" =:id";
             var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
@@ -28,7 +26,10 @@ namespace bidCardCoin.DAL
                 var verifSolvable = (bool) reader["verifSolvable"];
                 var verifRessortissant = Convert.IsDBNull((bool) reader["verifRessortissant"]);
                 var verifIdentite = Convert.IsDBNull((bool) reader["verifIdentite"]);
-                var listeMotClef = Convert.IsDBNull((List<string>) (reader["listeMotClef"] as string).Split(";").ToList())? null :(List<string>) (reader["listeMotClef"] as string).Split(";").ToList();
+                var listeMotClef =
+                    Convert.IsDBNull((List<string>) (reader["listeMotClef"] as string).Split(";").ToList())
+                        ? null
+                        : (List<string>) (reader["listeMotClef"] as string).Split(";").ToList();
 
                 dao = new UtilisateurDAO(idUtilisateur, personneId, verifSolvable, verifRessortissant, verifIdentite,
                     listeMotClef);
@@ -44,7 +45,7 @@ namespace bidCardCoin.DAL
             // Selectionné tout les Utilisateur dans la base de donnée
 
 
-            List<UtilisateurDAO> liste = new List<UtilisateurDAO>();
+            var liste = new List<UtilisateurDAO>();
 
             var query = "SELECT * FROM public.utilisateur";
             var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
@@ -57,9 +58,13 @@ namespace bidCardCoin.DAL
                 var verifSolvable = (bool) reader["verifSolvable"];
                 var verifRessortissant = Convert.IsDBNull((bool) reader["verifRessortissant"]);
                 var verifIdentite = Convert.IsDBNull((bool) reader["verifIdentite"]);
-                var listeMotClef = Convert.IsDBNull((List<string>) (reader["listeMotClef"] as string).Split(";").ToList())? null :(List<string>) (reader["listeMotClef"] as string).Split(";").ToList();
+                var listeMotClef =
+                    Convert.IsDBNull((List<string>) (reader["listeMotClef"] as string).Split(";").ToList())
+                        ? null
+                        : (List<string>) (reader["listeMotClef"] as string).Split(";").ToList();
 
-                liste.Add(new UtilisateurDAO(idUtilisateur, personneId, verifSolvable, verifRessortissant, verifIdentite,
+                liste.Add(new UtilisateurDAO(idUtilisateur, personneId, verifSolvable, verifRessortissant,
+                    verifIdentite,
                     listeMotClef));
             }
 
@@ -73,10 +78,7 @@ namespace bidCardCoin.DAL
         public static void InsertNewUtilisateur(UtilisateurDAO utilisateur)
         {
             // Inserer Utilisateur dans la bdd
-            
 
-            
-            
 
             var query =
                 "INSERT INTO public.utilisateur (\"idUtilisateur\",\"personneId\", \"verifSolvable\", \"verifRessortissant\", \"verifIdentite\",\"listeMotClef\") VALUES(:idUtilisateur,:personneId, :verifSolvable, :verifRessortissant, :verifIdentite,:listeMotClef)";
@@ -88,7 +90,7 @@ namespace bidCardCoin.DAL
             cmd.Parameters.AddWithValue("verifSolvable", utilisateur.VerifSolvable);
             cmd.Parameters.AddWithValue("verifRessortissant", utilisateur.VerifRessortissant);
             cmd.Parameters.AddWithValue("verifIdentite", utilisateur.VerifIdentite);
-            cmd.Parameters.AddWithValue("listeMotClef", String.Join(";", utilisateur.ListeMotClef));
+            cmd.Parameters.AddWithValue("listeMotClef", string.Join(";", utilisateur.ListeMotClef));
 
             cmd.ExecuteNonQuery();
         }
@@ -109,7 +111,7 @@ namespace bidCardCoin.DAL
             cmd.Parameters.AddWithValue("verifSolvable", utilisateur.VerifSolvable);
             cmd.Parameters.AddWithValue("verifRessortissant", utilisateur.VerifRessortissant);
             cmd.Parameters.AddWithValue("verifIdentite", utilisateur.VerifIdentite);
-            cmd.Parameters.AddWithValue("listeMotClef", String.Join(";", utilisateur.ListeMotClef));
+            cmd.Parameters.AddWithValue("listeMotClef", string.Join(";", utilisateur.ListeMotClef));
 
             cmd.ExecuteNonQuery();
         }
@@ -119,15 +121,12 @@ namespace bidCardCoin.DAL
         public static void DeleteUtilisateur(string id)
         {
             // Supprimer Utilisateur dans la bdd
-          
-             var query = "DELETE FROM public.utilisateur WHERE \"idUtilisateur\" =:id;";
 
-             var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
-             cmd.Parameters.AddWithValue("id", id);
-             cmd.ExecuteNonQuery();
+            var query = "DELETE FROM public.utilisateur WHERE \"idUtilisateur\" =:id;";
 
-
+            var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
+            cmd.Parameters.AddWithValue("id", id);
+            cmd.ExecuteNonQuery();
         }
     }
 }
-

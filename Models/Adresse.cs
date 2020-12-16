@@ -8,8 +8,30 @@ namespace BidCardCoin.Models
 {
     public class Adresse : INotifyPropertyChanged
     {
+        private string _adresse;
+        private string _codePostal;
         private string _idAdresse;
         private string _pays;
+
+        private string _region;
+        private List<Utilisateur> _utilisateurs;
+        private string _ville;
+
+        public Adresse()
+        {
+        }
+
+        public Adresse(string idAdresse, string pays, string region, string ville, string codePostal, string adresse,
+            List<Utilisateur> users)
+        {
+            _idAdresse = idAdresse;
+            _pays = pays;
+            _region = region;
+            _ville = ville;
+            _codePostal = codePostal;
+            _adresse = adresse;
+            _utilisateurs = users;
+        }
 
         public string IdAdresse
         {
@@ -82,34 +104,12 @@ namespace BidCardCoin.Models
             }
         }
 
-        private string _region;
-        private string _ville;
-        private string _codePostal;
-        private string _adresse;
-        private List<Utilisateur> _utilisateurs;
-
-        public Adresse()
-        {
-        }
-
-        public Adresse(string idAdresse, string pays, string region, string ville, string codePostal, string adresse,
-            List<Utilisateur> users)
-        {
-            this._idAdresse = idAdresse;
-            this._pays = pays;
-            this._region = region;
-            this._ville = ville;
-            this._codePostal = codePostal;
-            this._adresse = adresse;
-            this._utilisateurs = users;
-        }
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            PropertyChangedEventHandler handler = PropertyChanged;
+            var handler = PropertyChanged;
             if (handler != null)
             {
                 handler(this, new PropertyChangedEventArgs(propertyName));

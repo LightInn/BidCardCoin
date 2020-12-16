@@ -4,6 +4,23 @@ namespace BidCardCoin.Models
 {
     public class Enchere
     {
+        public Enchere()
+        {
+        }
+
+        public Enchere(string idEnchere, double prixProposer, bool isAdjuger, DateTime dateHeureVente,
+            OrdreAchat ordreOrdreAchatEnchere, Lot lot, Commissaire commissaire, Utilisateur utilisateur)
+        {
+            IdEnchere = idEnchere;
+            PrixProposer = prixProposer;
+            IsAdjuger = isAdjuger;
+            DateHeureVente = dateHeureVente;
+            OrdreAchatEnchere = ordreOrdreAchatEnchere;
+            LotEnchere = lot;
+            CommissaireEnchere = commissaire;
+            UtilisateurEnchere = utilisateur;
+        }
+
         public string IdEnchere { get; set; }
         public double PrixProposer { get; set; }
         public bool IsAdjuger { get; set; }
@@ -12,23 +29,5 @@ namespace BidCardCoin.Models
         public Lot LotEnchere { get; set; }
         public Commissaire CommissaireEnchere { get; set; }
         public Utilisateur UtilisateurEnchere { get; set; }
-
-        public Enchere()
-        {
-            
-        }
-        public Enchere(string idEnchere, double prixProposer, bool isAdjuger, DateTime dateHeureVente,
-            OrdreAchat ordreOrdreAchatEnchere, Lot lot, Commissaire commissaire, Utilisateur utilisateur)
-        {
-            this.IdEnchere = idEnchere;
-            this.PrixProposer = prixProposer;
-            this.IsAdjuger = isAdjuger;
-            this.DateHeureVente = dateHeureVente;
-            this.OrdreAchatEnchere = ordreOrdreAchatEnchere;
-            this.LotEnchere = lot;
-            this.CommissaireEnchere = commissaire;
-            this.UtilisateurEnchere = utilisateur;
-        }
-        
     }
 }

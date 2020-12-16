@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:BidCardCoin.Vue.CRUD"
              mc:Ignorable="d">
     <Grid>
         <DockPanel>
@@ -18,26 +17,27 @@
             </ListBox>
 
 
-
             <StackPanel>
-                <Button Style="{DynamicResource ButtonInvisible}" Click="AddMotClef" VerticalAlignment="Center" Margin="15">
+                <Button Style="{DynamicResource ButtonInvisible}" Click="AddMotClef" VerticalAlignment="Center"
+                        Margin="15">
                     <Border CornerRadius="15" Width="150" Background="#202225" VerticalAlignment="Center">
-                        <TextBlock FontSize="25" Foreground="#249181" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        Ajouter
+                        <TextBlock FontSize="25" Foreground="#249181" HorizontalAlignment="Center"
+                                   VerticalAlignment="Center">
+                            Ajouter
                         </TextBlock>
                     </Border>
 
                 </Button>
                 <Button Style="{DynamicResource ButtonInvisible}" Click="RemoveMotClef" Margin="15">
                     <Border CornerRadius="15" Width="150" Background="#202225">
-                        <TextBlock FontSize="25" Foreground="#DE4F4E" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock FontSize="25" Foreground="#DE4F4E" HorizontalAlignment="Center"
+                                   VerticalAlignment="Center">
                             supprimer
                         </TextBlock>
                     </Border>
                 </Button>
 
 
-              
             </StackPanel>
 
 

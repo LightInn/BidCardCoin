@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using bidCardCoin.DAO;
 using Npgsql;
 
@@ -34,7 +31,7 @@ namespace bidCardCoin.DAL
         // SELECT
         public static AdresseDAO SelectAdresseById(string id)
         {
-            AdresseDAO adresseDao = new AdresseDAO();
+            var adresseDao = new AdresseDAO();
             // Selectionne l'adresse a partir de l'id
             var query =
                 "SELECT * FROM public.adresse a where a.\"idAdresse\"=:idAdresseParam order by a.\"idAdresse\" desc";
@@ -72,7 +69,7 @@ namespace bidCardCoin.DAL
         public static List<AdresseDAO> SelectAllAdresse()
         {
             // Selectionné tout les adresse dans la base de donnée
-            List<AdresseDAO> liste = new List<AdresseDAO>();
+            var liste = new List<AdresseDAO>();
 
             var query = "SELECT * FROM public.adresse ORDER BY \"idAdresse\"";
             var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
@@ -95,9 +92,7 @@ namespace bidCardCoin.DAL
 
             reader.Close();
             foreach (var adresseDao in liste)
-            {
                 adresseDao.ListePersonneId = SelectPersonneInAdressesById(adresseDao.IdAdresse);
-            }
 
             reader.Close();
 
@@ -134,7 +129,7 @@ namespace bidCardCoin.DAL
         public static void DeleteAdresse(string adresseId)
         {
             // Supprimer adresse dans la bdd
-            AdresseDAO dao = SelectAdresseById(adresseId);
+            var dao = SelectAdresseById(adresseId);
             if (dao.IdAdresse != null)
             {
                 var query = "DELETE FROM public.adresse WHERE \"idAdresse\"=:idAdresse";

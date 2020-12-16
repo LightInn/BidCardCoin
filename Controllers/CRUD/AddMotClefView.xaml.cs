@@ -1,25 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using bidCardCoin.DAL;
-using BidCardCoin.Models;
-using bidCardCoin.ORM;
 
 namespace BidCardCoin.Vue.CRUD
 {
     public partial class AddMotClefView : UserControl
     {
-        private List<string> _motsClefs;
-        private Window _win;
+        private readonly List<string> _motsClefs;
+        private readonly Window _win;
 
-        public AddMotClefView(Window win,List<string> listMot)
+        public AddMotClefView(Window win, List<string> listMot)
         {
-            
             InitializeComponent();
             _motsClefs = listMot;
             _win = win;
-            
         }
 
 

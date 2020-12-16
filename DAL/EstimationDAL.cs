@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using bidCardCoin.DAO;
 using Npgsql;
 
@@ -13,7 +10,7 @@ namespace bidCardCoin.DAL
         // SELECT
         public static EstimationDAO SelectEstimationById(string id)
         {
-            EstimationDAO estimationDao = new EstimationDAO();
+            var estimationDao = new EstimationDAO();
             // Selectionne la estimation a partir de l'id
             var query =
                 "SELECT * FROM public.estimation a where a.\"idEstimation\"=:idEstimationParam";
@@ -29,8 +26,10 @@ namespace bidCardCoin.DAL
                 var commissaireId = (string) reader["commissaireId"];
                 var dateEstimation = (DateTime) reader["dateEstimation"];
                 var prixEstimation = (double) reader["prixEstimation"];
-                estimationDao = new EstimationDAO(idEstimation, produitId, commissaireId,dateEstimation,prixEstimation);
+                estimationDao =
+                    new EstimationDAO(idEstimation, produitId, commissaireId, dateEstimation, prixEstimation);
             }
+
             reader.Close();
             return estimationDao;
         }
@@ -38,7 +37,7 @@ namespace bidCardCoin.DAL
         public static List<EstimationDAO> SelectAllEstimation()
         {
             // Selectionné tout les estimation dans la base de donnée
-            List<EstimationDAO> liste = new List<EstimationDAO>();
+            var liste = new List<EstimationDAO>();
 
             var query = "SELECT * FROM public.estimation ORDER BY \"idEstimation\"";
             var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
@@ -52,8 +51,9 @@ namespace bidCardCoin.DAL
                 var dateEstimation = (DateTime) reader["dateEstimation"];
                 var prixEstimation = (double) reader["prixEstimation"];
 
-                liste.Add(new EstimationDAO(idEstimation, produitId, commissaireId,dateEstimation,prixEstimation));
+                liste.Add(new EstimationDAO(idEstimation, produitId, commissaireId, dateEstimation, prixEstimation));
             }
+
             reader.Close();
             return liste;
         }
@@ -77,7 +77,7 @@ where estimation.""idEstimation""=:idEstimation";
             cmd.Parameters.AddWithValue("commissaireId", estimation.CommissaireId);
             cmd.Parameters.AddWithValue("dateEstimation", estimation.DateEstimation);
             cmd.Parameters.AddWithValue("prixEstimation", estimation.PrixEstimation);
-            
+
             cmd.ExecuteNonQuery();
         }
 
@@ -85,7 +85,7 @@ where estimation.""idEstimation""=:idEstimation";
         public static void DeleteEstimation(string estimationId)
         {
             // Supprimer estimation dans la bdd
-            EstimationDAO dao = SelectEstimationById(estimationId);
+            var dao = SelectEstimationById(estimationId);
             if (dao.IdEstimation != null)
             {
                 var query = "DELETE FROM public.estimation WHERE \"idEstimation\"=:idEstimation";

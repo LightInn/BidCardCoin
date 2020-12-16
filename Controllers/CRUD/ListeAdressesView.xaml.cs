@@ -13,10 +13,10 @@ namespace BidCardCoin.Vue.CRUD
 {
     public partial class ListeAdressesView : UserControl
     {
-        private string _selectedId;
+        private readonly ObservableCollection<Adresse> _adressess;
         private Adresse _contextAdresse;
-        private ObservableCollection<Adresse> _adressess;
-        private List<Adresse> _selectedAdresses;
+        private readonly List<Adresse> _selectedAdresses;
+        private string _selectedId;
 
         public ListeAdressesView(Window win = null, List<Adresse> adresses = null)
         {
@@ -24,10 +24,7 @@ namespace BidCardCoin.Vue.CRUD
 
 
             _selectedAdresses = adresses;
-            if (_selectedAdresses == null)
-            {
-                selectMode.Visibility = Visibility.Collapsed;
-            }
+            if (_selectedAdresses == null) selectMode.Visibility = Visibility.Collapsed;
 
 
             _adressess = new ObservableCollection<Adresse>(AdresseORM.GetAllAdresse());
@@ -41,12 +38,9 @@ namespace BidCardCoin.Vue.CRUD
             ListeAdressesGrid.ItemsSource = _adressess;
 
             if (_selectedAdresses != null)
-            {
                 foreach (var selectedAdress in _selectedAdresses)
-                {
-                    ListeAdressesGrid.SelectedItems.Add(ListeAdressesGrid.Items[_adressess.IndexOf(_adressess.First(adress => adress.IdAdresse == selectedAdress.IdAdresse))]);
-                }
-            }
+                    ListeAdressesGrid.SelectedItems.Add(ListeAdressesGrid.Items[
+                        _adressess.IndexOf(_adressess.First(adress => adress.IdAdresse == selectedAdress.IdAdresse))]);
         }
 
         private void ListeAdressesGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -55,16 +49,16 @@ namespace BidCardCoin.Vue.CRUD
 
         private void AddAdresse(object sender, RoutedEventArgs e)
         {
-            Adresse newAdresse = new Adresse();
+            var newAdresse = new Adresse();
 
-            Window window = new Window
+            var window = new Window
             {
                 Title = "Ajouter une Adresse",
                 SizeToContent = SizeToContent.WidthAndHeight,
                 ResizeMode = ResizeMode.NoResize,
                 Background = (SolidColorBrush) new BrushConverter().ConvertFrom("#393C43"),
                 Icon = new BitmapImage(new Uri("pack://application:,,,/ressources/CRUDimg/utilisateur.png",
-                    UriKind.RelativeOrAbsolute)),
+                    UriKind.RelativeOrAbsolute))
             };
             window.Content = new AddAdresseView(window, newAdresse);
             window.ShowDialog();
@@ -86,9 +80,7 @@ namespace BidCardCoin.Vue.CRUD
             {
                 _selectedAdresses.Clear();
                 foreach (var adress in new List<Adresse>(ListeAdressesGrid.SelectedItems.Cast<Adresse>()))
-                {
                     _selectedAdresses.Add(adress);
-                }
             }
         }
     }

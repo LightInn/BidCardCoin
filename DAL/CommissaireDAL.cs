@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using bidCardCoin.DAO;
-using Google.Protobuf.WellKnownTypes;
 using Npgsql;
 
 namespace bidCardCoin.DAL
@@ -14,7 +9,7 @@ namespace bidCardCoin.DAL
         // SELECT
         public static CommissaireDAO SelectCommissaireById(string id)
         {
-            CommissaireDAO commissaireDao = new CommissaireDAO();
+            var commissaireDao = new CommissaireDAO();
             // Selectionne la commissaire a partir de l'id
             var query =
                 "SELECT * FROM public.commissaire a where a.\"idCommissaire\"=:idCommissaireParam";
@@ -29,6 +24,7 @@ namespace bidCardCoin.DAL
                 var personneId = (string) reader["personneId"];
                 commissaireDao = new CommissaireDAO(idCommissaire, personneId);
             }
+
             reader.Close();
             return commissaireDao;
         }
@@ -36,7 +32,7 @@ namespace bidCardCoin.DAL
         public static List<CommissaireDAO> SelectAllCommissaire()
         {
             // Selectionné tout les commissaire dans la base de donnée
-            List<CommissaireDAO> liste = new List<CommissaireDAO>();
+            var liste = new List<CommissaireDAO>();
 
             var query = "SELECT * FROM public.commissaire ORDER BY \"idCommissaire\"";
             var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
@@ -49,6 +45,7 @@ namespace bidCardCoin.DAL
 
                 liste.Add(new CommissaireDAO(idCommissaire, personneId));
             }
+
             reader.Close();
             return liste;
         }
@@ -74,7 +71,7 @@ where commissaire.""idCommissaire""=:idCommissaire";
         public static void DeleteCommissaire(string commissaireId)
         {
             // Supprimer commissaire dans la bdd
-            CommissaireDAO dao = SelectCommissaireById(commissaireId);
+            var dao = SelectCommissaireById(commissaireId);
             if (dao.IdCommissaire != null)
             {
                 var query = "DELETE FROM public.commissaire WHERE \"idCommissaire\"=:idCommissaire";
