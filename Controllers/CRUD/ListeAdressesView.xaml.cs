@@ -30,8 +30,6 @@ namespace BidCardCoin.Vue.CRUD
                 selectMode.Visibility = Visibility.Collapsed;
             }
 
-           
-
             _adressess = new ObservableCollection<Adresse>(AdresseORM.GetAllAdresse());
             _contextAdresse = new Adresse();
 

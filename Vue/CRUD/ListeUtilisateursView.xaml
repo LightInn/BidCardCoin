@@ -118,6 +118,15 @@
                         </TextBlock>
                     </Border>
                 </Button>
+                
+                <Button Name="EditMode" Style="{DynamicResource ButtonInvisible}" Click="SelectUser" Margin="15">
+                    <Border CornerRadius="15" Width="150" Background="#3E3E42">
+                        <TextBlock FontSize="25" Foreground="#007ACC" HorizontalAlignment="Center"
+                                   VerticalAlignment="Center">
+                            Selectioner
+                        </TextBlock>
+                    </Border>
+                </Button>
             </StackPanel>
 
 
