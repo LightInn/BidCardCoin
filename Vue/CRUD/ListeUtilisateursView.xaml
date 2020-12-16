@@ -49,11 +49,12 @@
                     <DataGridTextColumn Header="Email"
                                         Binding="{Binding Email, Mode=TwoWay}" Width="170" />
                     <DataGridTextColumn Header="Age" Binding="{Binding Age , Mode=TwoWay}" Width="170" />
-                    <DataGridTextColumn Header="Verifier"
-                                        Binding="{Binding IdentityExist, Mode=TwoWay}" Width="170" />
 
                     <DataGridComboBoxColumn x:Name="ComboBoxColumnAdresse" Header="Adresse(s) de l'utilisateur"
                                             SelectedValueBinding="{Binding Adresses, Mode=TwoWay}" Width="170" />
+
+                    <DataGridCheckBoxColumn Header="Verifier" IsThreeState="True"  Binding="{Binding IdentityExist, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                            Width="170" />
 
 
                 </DataGrid.Columns>

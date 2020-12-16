@@ -27,6 +27,8 @@ namespace BidCardCoin.Vue.CRUD
             _listeAdresses = new List<Adresse>();
         }
 
+        
+        
 
         private void CreateNewUtilisateur(object sender, RoutedEventArgs e)
         {
