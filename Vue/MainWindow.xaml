@@ -141,7 +141,7 @@
 
 
                 <DockPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                    <Border Background="#FFFFFF" CornerRadius="8 0 0 0">
+                    <Border Background="#F8F8F8" CornerRadius="8 0 0 0">
                         <DockPanel Name="SubView">
 
                             <DockPanel.Background>

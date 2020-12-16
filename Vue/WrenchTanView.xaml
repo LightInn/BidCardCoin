@@ -13,41 +13,53 @@
                     <Button Height="170" Width="150" Style="{DynamicResource ButtonInvisible}"
                             MouseEnter="NavHoverEffectEnter" MouseLeave="NavHoverEffectExit" Click="GRUD_adresses"
                             Cursor="Hand">
-                        <StackPanel>
-                            <Image Source="/ressources/CRUDimg/Adresse.png" Width="80" Margin="0 35 0 0" />
-                            <Border CornerRadius="15" Background="#DE4F4E" Height="30" Margin="0 25 0 0" Width="140">
-                                <TextBlock FontStyle="Italic" HorizontalAlignment="Center" VerticalAlignment="Center"
-                                           FontSize="15" Foreground="#F8F8F8">
-                                    Adresses
-                                </TextBlock>
-                            </Border>
-                        </StackPanel>
+                        <Border>
+                            <StackPanel>
+                                <Image Source="/ressources/CRUDimg/Adresse.png" Width="80" Margin="0 35 0 0" />
+                                <Border CornerRadius="15" Background="#DE4F4E" Height="30" Margin="0 25 0 0"
+                                        Width="140">
+                                    <TextBlock FontStyle="Italic" HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               FontSize="15" Foreground="#F8F8F8">
+                                        Adresses
+                                    </TextBlock>
+                                </Border>
+                            </StackPanel>
+                        </Border>
                     </Button>
                     <Button Height="170" Width="150" Style="{DynamicResource ButtonInvisible}"
                             MouseEnter="NavHoverEffectEnter" MouseLeave="NavHoverEffectExit" Click="GRUD_utilisateurs"
                             Cursor="Hand">
-                        <StackPanel>
-                            <Image Source="/ressources/CRUDimg/utilisateur.png" Width="80" Margin="0 35 0 0" />
-                            <Border CornerRadius="15" Background="#DE4F4E" Height="30" Margin="0 25 0 0" Width="140">
-                                <TextBlock FontStyle="Italic" HorizontalAlignment="Center" VerticalAlignment="Center"
-                                           FontSize="15" Foreground="#F8F8F8">
-                                    Utilisateurs
-                                </TextBlock>
-                            </Border>
-                        </StackPanel>
+                        <Border>
+                            <StackPanel>
+                                <Image Source="/ressources/CRUDimg/utilisateur.png" Width="80" Margin="0 35 0 0" />
+                                <Border CornerRadius="15" Background="#DE4F4E" Height="30" Margin="0 25 0 0"
+                                        Width="140">
+                                    <TextBlock FontStyle="Italic" HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               FontSize="15" Foreground="#F8F8F8">
+                                        Utilisateurs
+                                    </TextBlock>
+                                </Border>
+                            </StackPanel>
+                        </Border>
                     </Button>
                     <Button Height="170" Width="150" Style="{DynamicResource ButtonInvisible}"
                             MouseEnter="NavHoverEffectEnter" MouseLeave="NavHoverEffectExit" Click="GRUD_stocks"
                             Cursor="Hand">
-                        <StackPanel>
-                            <Image Source="/ressources/CRUDimg/stock.png" Width="80" Margin="0 35 0 0" />
-                            <Border CornerRadius="15" Background="#DE4F4E" Height="30" Margin="0 25 0 0" Width="140">
-                                <TextBlock FontStyle="Italic" HorizontalAlignment="Center" VerticalAlignment="Center"
-                                           FontSize="15" Foreground="#F8F8F8">
-                                    Stocks
-                                </TextBlock>
-                            </Border>
-                        </StackPanel>
+                        <Border>
+                            <StackPanel>
+                                <Image Source="/ressources/CRUDimg/stock.png" Width="80" Margin="0 35 0 0" />
+                                <Border CornerRadius="15" Background="#DE4F4E" Height="30" Margin="0 25 0 0"
+                                        Width="140">
+                                    <TextBlock FontStyle="Italic" HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               FontSize="15" Foreground="#F8F8F8">
+                                        Stocks
+                                    </TextBlock>
+                                </Border>
+                            </StackPanel>
+                        </Border>
                     </Button>
                 </StackPanel>
 
@@ -56,41 +68,53 @@
                     <Button Height="170" Width="150" Style="{DynamicResource ButtonInvisible}"
                             MouseEnter="NavHoverEffectEnter" MouseLeave="NavHoverEffectExit" Click="GRUD_categories"
                             Cursor="Hand">
-                        <StackPanel>
-                            <Image Source="/ressources/CRUDimg/Categorie.png" Width="80" Margin="0 35 0 0" />
-                            <Border CornerRadius="15" Background="#DE4F4E" Height="30" Margin="0 25 0 0" Width="140">
-                                <TextBlock FontStyle="Italic" HorizontalAlignment="Center" VerticalAlignment="Center"
-                                           FontSize="15" Foreground="#F8F8F8">
-                                    Categories
-                                </TextBlock>
-                            </Border>
-                        </StackPanel>
+                        <Border>
+                            <StackPanel>
+                                <Image Source="/ressources/CRUDimg/Categorie.png" Width="80" Margin="0 35 0 0" />
+                                <Border CornerRadius="15" Background="#DE4F4E" Height="30" Margin="0 25 0 0"
+                                        Width="140">
+                                    <TextBlock FontStyle="Italic" HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               FontSize="15" Foreground="#F8F8F8">
+                                        Categories
+                                    </TextBlock>
+                                </Border>
+                            </StackPanel>
+                        </Border>
                     </Button>
                     <Button Height="170" Width="150" Style="{DynamicResource ButtonInvisible}"
                             MouseEnter="NavHoverEffectEnter" MouseLeave="NavHoverEffectExit" Click="GRUD_commissaires"
                             Cursor="Hand">
-                        <StackPanel>
-                            <Image Source="/ressources/CRUDimg/commissaire.png" Width="80" Margin="0 35 0 0" />
-                            <Border CornerRadius="15" Background="#DE4F4E" Height="30" Margin="0 25 0 0" Width="140">
-                                <TextBlock FontStyle="Italic" HorizontalAlignment="Center" VerticalAlignment="Center"
-                                           FontSize="15" Foreground="#F8F8F8">
-                                    Commissaires
-                                </TextBlock>
-                            </Border>
-                        </StackPanel>
+                        <Border>
+                            <StackPanel>
+                                <Image Source="/ressources/CRUDimg/commissaire.png" Width="80" Margin="0 35 0 0" />
+                                <Border CornerRadius="15" Background="#DE4F4E" Height="30" Margin="0 25 0 0"
+                                        Width="140">
+                                    <TextBlock FontStyle="Italic" HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               FontSize="15" Foreground="#F8F8F8">
+                                        Commissaires
+                                    </TextBlock>
+                                </Border>
+                            </StackPanel>
+                        </Border>
                     </Button>
                     <Button Height="170" Width="150" Style="{DynamicResource ButtonInvisible}"
                             MouseEnter="NavHoverEffectEnter" MouseLeave="NavHoverEffectExit" Click="GRUD_estimations"
                             Cursor="Hand">
-                        <StackPanel>
-                            <Image Source="/ressources/CRUDimg/estimation.png" Width="80" Margin="0 35 0 0" />
-                            <Border CornerRadius="15" Background="#DE4F4E" Height="30" Margin="0 25 0 0" Width="140">
-                                <TextBlock FontStyle="Italic" HorizontalAlignment="Center" VerticalAlignment="Center"
-                                           FontSize="15" Foreground="#F8F8F8">
-                                    Estimations
-                                </TextBlock>
-                            </Border>
-                        </StackPanel>
+                        <Border>
+                            <StackPanel>
+                                <Image Source="/ressources/CRUDimg/estimation.png" Width="80" Margin="0 35 0 0" />
+                                <Border CornerRadius="15" Background="#DE4F4E" Height="30" Margin="0 25 0 0"
+                                        Width="140">
+                                    <TextBlock FontStyle="Italic" HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               FontSize="15" Foreground="#F8F8F8">
+                                        Estimations
+                                    </TextBlock>
+                                </Border>
+                            </StackPanel>
+                        </Border>
                     </Button>
                 </StackPanel>
 
@@ -98,41 +122,53 @@
                     <Button Height="170" Width="150" Style="{DynamicResource ButtonInvisible}"
                             MouseEnter="NavHoverEffectEnter" MouseLeave="NavHoverEffectExit" Click="GRUD_ordresAchats"
                             Cursor="Hand">
-                        <StackPanel>
-                            <Image Source="/ressources/CRUDimg/ordre-achat.png" Width="80" Margin="0 35 0 0" />
-                            <Border CornerRadius="15" Background="#DE4F4E" Height="30" Margin="0 25 0 0" Width="140">
-                                <TextBlock FontStyle="Italic" HorizontalAlignment="Center" VerticalAlignment="Center"
-                                           FontSize="15" Foreground="#F8F8F8">
-                                    Ordres Achats
-                                </TextBlock>
-                            </Border>
-                        </StackPanel>
+                        <Border>
+                            <StackPanel>
+                                <Image Source="/ressources/CRUDimg/ordre-achat.png" Width="80" Margin="0 35 0 0" />
+                                <Border CornerRadius="15" Background="#DE4F4E" Height="30" Margin="0 25 0 0"
+                                        Width="140">
+                                    <TextBlock FontStyle="Italic" HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               FontSize="15" Foreground="#F8F8F8">
+                                        Ordres Achats
+                                    </TextBlock>
+                                </Border>
+                            </StackPanel>
+                        </Border>
                     </Button>
                     <Button Height="170" Width="150" Style="{DynamicResource ButtonInvisible}"
                             MouseEnter="NavHoverEffectEnter" MouseLeave="NavHoverEffectExit" Click="GRUD_produits"
                             Cursor="Hand">
-                        <StackPanel>
-                            <Image Source="/ressources/CRUDimg/produit.png" Width="80" Margin="0 35 0 0" />
-                            <Border CornerRadius="15" Background="#DE4F4E" Height="30" Margin="0 25 0 0" Width="140">
-                                <TextBlock FontStyle="Italic" HorizontalAlignment="Center" VerticalAlignment="Center"
-                                           FontSize="15" Foreground="#F8F8F8">
-                                    Produits
-                                </TextBlock>
-                            </Border>
-                        </StackPanel>
+                        <Border>
+                            <StackPanel>
+                                <Image Source="/ressources/CRUDimg/produit.png" Width="80" Margin="0 35 0 0" />
+                                <Border CornerRadius="15" Background="#DE4F4E" Height="30" Margin="0 25 0 0"
+                                        Width="140">
+                                    <TextBlock FontStyle="Italic" HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               FontSize="15" Foreground="#F8F8F8">
+                                        Produits
+                                    </TextBlock>
+                                </Border>
+                            </StackPanel>
+                        </Border>
                     </Button>
                     <Button Height="170" Width="150" Style="{DynamicResource ButtonInvisible}"
                             MouseEnter="NavHoverEffectEnter" MouseLeave="NavHoverEffectExit" Click="GRUD_lots"
                             Cursor="Hand">
-                        <StackPanel>
-                            <Image Source="/ressources/CRUDimg/lot.png" Width="80" Margin="0 35 0 0" />
-                            <Border CornerRadius="15" Background="#DE4F4E" Height="30" Margin="0 25 0 0" Width="140">
-                                <TextBlock FontStyle="Italic" HorizontalAlignment="Center" VerticalAlignment="Center"
-                                           FontSize="15" Foreground="#F8F8F8">
-                                    Lots
-                                </TextBlock>
-                            </Border>
-                        </StackPanel>
+                        <Border>
+                            <StackPanel>
+                                <Image Source="/ressources/CRUDimg/lot.png" Width="80" Margin="0 35 0 0" />
+                                <Border CornerRadius="15" Background="#DE4F4E" Height="30" Margin="0 25 0 0"
+                                        Width="140">
+                                    <TextBlock FontStyle="Italic" HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               FontSize="15" Foreground="#F8F8F8">
+                                        Lots
+                                    </TextBlock>
+                                </Border>
+                            </StackPanel>
+                        </Border>
                     </Button>
                 </StackPanel>
 
@@ -141,41 +177,53 @@
                     <Button Height="170" Width="150" Style="{DynamicResource ButtonInvisible}"
                             MouseEnter="NavHoverEffectEnter" MouseLeave="NavHoverEffectExit" Click="GRUD_paiement"
                             Cursor="Hand">
-                        <StackPanel>
-                            <Image Source="/ressources/CRUDimg/paiement.png" Width="80" Margin="0 35 0 0" />
-                            <Border CornerRadius="15" Background="#DE4F4E" Height="30" Margin="0 25 0 0" Width="140">
-                                <TextBlock FontStyle="Italic" HorizontalAlignment="Center" VerticalAlignment="Center"
-                                           FontSize="15" Foreground="#F8F8F8">
-                                    Paiements
-                                </TextBlock>
-                            </Border>
-                        </StackPanel>
+                        <Border>
+                            <StackPanel>
+                                <Image Source="/ressources/CRUDimg/paiement.png" Width="80" Margin="0 35 0 0" />
+                                <Border CornerRadius="15" Background="#DE4F4E" Height="30" Margin="0 25 0 0"
+                                        Width="140">
+                                    <TextBlock FontStyle="Italic" HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               FontSize="15" Foreground="#F8F8F8">
+                                        Paiements
+                                    </TextBlock>
+                                </Border>
+                            </StackPanel>
+                        </Border>
                     </Button>
                     <Button Height="170" Width="150" Style="{DynamicResource ButtonInvisible}"
                             MouseEnter="NavHoverEffectEnter" MouseLeave="NavHoverEffectExit" Click="GRUD_encheres"
                             Cursor="Hand">
-                        <StackPanel>
-                            <Image Source="/ressources/CRUDimg/enchere.png" Width="80" Margin="0 35 0 0" />
-                            <Border CornerRadius="15" Background="#DE4F4E" Height="30" Margin="0 25 0 0" Width="140">
-                                <TextBlock FontStyle="Italic" HorizontalAlignment="Center" VerticalAlignment="Center"
-                                           FontSize="15" Foreground="#F8F8F8">
-                                    Encheres
-                                </TextBlock>
-                            </Border>
-                        </StackPanel>
+                        <Border>
+                            <StackPanel>
+                                <Image Source="/ressources/CRUDimg/enchere.png" Width="80" Margin="0 35 0 0" />
+                                <Border CornerRadius="15" Background="#DE4F4E" Height="30" Margin="0 25 0 0"
+                                        Width="140">
+                                    <TextBlock FontStyle="Italic" HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               FontSize="15" Foreground="#F8F8F8">
+                                        Encheres
+                                    </TextBlock>
+                                </Border>
+                            </StackPanel>
+                        </Border>
                     </Button>
                     <Button Height="170" Width="150" Style="{DynamicResource ButtonInvisible}"
                             MouseEnter="NavHoverEffectEnter" MouseLeave="NavHoverEffectExit" Click="GRUD_ventes"
                             Cursor="Hand">
-                        <StackPanel>
-                            <Image Source="/ressources/CRUDimg/vente.png" Width="80" Margin="0 35 0 0" />
-                            <Border CornerRadius="15" Background="#DE4F4E" Height="30" Margin="0 25 0 0" Width="140">
-                                <TextBlock FontStyle="Italic" HorizontalAlignment="Center" VerticalAlignment="Center"
-                                           FontSize="15" Foreground="#F8F8F8">
-                                    Ventes
-                                </TextBlock>
-                            </Border>
-                        </StackPanel>
+                        <Border>
+                            <StackPanel>
+                                <Image Source="/ressources/CRUDimg/vente.png" Width="80" Margin="0 35 0 0" />
+                                <Border CornerRadius="15" Background="#DE4F4E" Height="30" Margin="0 25 0 0"
+                                        Width="140">
+                                    <TextBlock FontStyle="Italic" HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               FontSize="15" Foreground="#F8F8F8">
+                                        Ventes
+                                    </TextBlock>
+                                </Border>
+                            </StackPanel>
+                        </Border>
                     </Button>
                 </StackPanel>
             </DockPanel>

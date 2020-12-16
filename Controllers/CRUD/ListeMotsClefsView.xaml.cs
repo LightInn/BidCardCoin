@@ -18,6 +18,7 @@ namespace BidCardCoin.Vue.CRUD
     {
         private string _selectedId;
         private List<string> _motsClefs;
+        private ObservableCollection<string> _motsClefsObs;
 
 
         public ListeMotsClefsView(Window win = null, List<string> listeMotsClefs = null)
@@ -25,13 +26,15 @@ namespace BidCardCoin.Vue.CRUD
             InitializeComponent();
 
             _motsClefs = listeMotsClefs;
+            _motsClefsObs = new ObservableCollection<string>( listeMotsClefs);
+
             GenerateDataList();
         }
 
 
         private void GenerateDataList()
         {
-            MotsClefsListBox.ItemsSource = _motsClefs;
+            MotsClefsListBox.ItemsSource = _motsClefsObs;
         }
 
         private void ListeMotsClefsGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -52,7 +55,13 @@ namespace BidCardCoin.Vue.CRUD
             };
             window.Content = new AddMotClefView(window, _motsClefs);
             window.ShowDialog();
-            GenerateDataList();
+
+            _motsClefs.Add(newMotClef);
+            _motsClefsObs.Add(newMotClef);
+          
+
+
+
         }
 
         private void RemoveMotClef(object sender, RoutedEventArgs e)
