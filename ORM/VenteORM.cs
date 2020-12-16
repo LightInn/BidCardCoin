@@ -73,5 +73,18 @@ namespace bidCardCoin.ORM
 
             return vente;
         }
+        
+        public static List<Vente> GetAllVente()
+        {
+            List<VenteDAO> lvdao = VenteDAL.SelectAllVente();
+            List<Vente> ventes = new List<Vente>();
+
+            foreach (var vdao in lvdao)
+            {
+                ventes.Add(GetVenteById(vdao.IdVente));
+            }
+
+            return ventes;
+        }
     }
 }

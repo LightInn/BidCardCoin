@@ -16,7 +16,7 @@ namespace bidCardCoin.DAL
             CategorieDAO categorieDao = new CategorieDAO();
             // Selectionne la categorie a partir de l'id
             var query =
-                "SELECT * FROM public.categorie a where a.\"idCategorie\"= :idCategorieParam";
+                "SELECT * FROM public.categorie a where a.\"idCategorie\"=:idCategorieParam";
             var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
             cmd.Parameters.AddWithValue("idCategorieParam", id);
 
@@ -25,12 +25,13 @@ namespace bidCardCoin.DAL
             {
                 // récup les paramètres principaux
                 var idCategorie = (string) reader["idCategorie"];
-                var categorieId = Convert.IsDBNull((string) reader["categorieId"])? null : ((string) reader["categorieId"]);
+                var categorieId = Convert.IsDBNull(reader["categorieId"])? null : ((string) reader["categorieId"]);
                 var nomCategorie = (string) reader["nomCategorie"];
-                return new CategorieDAO(idCategorie, categorieId, nomCategorie);
+                categorieDao = new CategorieDAO(idCategorie, categorieId, nomCategorie);
             }
+            reader.Close();
 
-            return new CategorieDAO();
+            return categorieDao;
         }
 
         public static List<CategorieDAO> SelectAllCategorie()
@@ -45,12 +46,12 @@ namespace bidCardCoin.DAL
             while (reader.Read())
             {
                 var idCategorie = (string) reader["idCategorie"];
-                var categorieId = Convert.IsDBNull((string) reader["categorieId"])? null : ((string) reader["categorieId"]);
+                var categorieId = Convert.IsDBNull(reader["categorieId"])? null : ((string) reader["categorieId"]);
                 var nomCategorie = (string) reader["nomCategorie"];
 
                 liste.Add(new CategorieDAO(idCategorie, categorieId, nomCategorie));
             }
-
+            reader.Close();
             return liste;
         }
 
@@ -80,7 +81,7 @@ where categorie.""idCategorie""=:idCategorie";
             CategorieDAO dao = SelectCategorieById(categorieId);
             if (dao.IdCategorie != null)
             {
-                var query = "DELETE FROM public.categorie WHERE \"idCategorie\"= :idCategorie";
+                var query = "DELETE FROM public.categorie WHERE \"idCategorie\"=:idCategorie";
                 var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
                 cmd.Parameters.AddWithValue("idCategorie", categorieId);
                 cmd.ExecuteNonQuery();

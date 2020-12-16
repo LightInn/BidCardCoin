@@ -13,11 +13,9 @@ namespace bidCardCoin.DAL
         public static UtilisateurDAO SelectUtilisateurById(string id)
         {
             // Selectionné l'Utilisateur a partir de l'id
-
-
             UtilisateurDAO dao = new UtilisateurDAO();
 
-            var query = "SELECT * FROM public.utilisateur  where \"idUtilisateur\" = :id";
+            var query = "SELECT * FROM public.utilisateur  where \"idUtilisateur\" =:id";
             var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
             cmd.Parameters.AddWithValue("id", id);
             var reader = cmd.ExecuteReader();
@@ -103,7 +101,7 @@ namespace bidCardCoin.DAL
 
 
             var query =
-                "UPDATE public.utilisateur SET \"idUtilisateur\" = :idUtilisateur ,\"personneId\" = :personneId  , \"verifSolvable\" = :verifSolvable , \"verifRessortissant\" = :verifRessortissant , \"verifIdentite\" = :verifIdentite ,\"listeMotClef\" = :listeMotClef  where \"idUtilisateur\"  = :idUtilisateur";
+                "UPDATE public.utilisateur SET \"idUtilisateur\" =:idUtilisateur ,\"personneId\" =:personneId  , \"verifSolvable\" =:verifSolvable , \"verifRessortissant\" =:verifRessortissant , \"verifIdentite\" =:verifIdentite ,\"listeMotClef\" =:listeMotClef  where \"idUtilisateur\"  =:idUtilisateur";
             var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
 
             cmd.Parameters.AddWithValue("idUtilisateur", utilisateur.IdUtilisateur);
@@ -122,7 +120,7 @@ namespace bidCardCoin.DAL
         {
             // Supprimer Utilisateur dans la bdd
           
-             var query = "DELETE FROM public.utilisateur WHERE \"idUtilisateur\" = :id;";
+             var query = "DELETE FROM public.utilisateur WHERE \"idUtilisateur\" =:id;";
 
              var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
              cmd.Parameters.AddWithValue("id", id);

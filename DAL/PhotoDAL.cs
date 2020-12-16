@@ -17,7 +17,7 @@ namespace bidCardCoin.DAL
             PhotoDAO photoDao = new PhotoDAO();
             // Selectionne la photo a partir de l'id
             var query =
-                "SELECT * FROM public.photo a where a.\"idPhoto\"= :idPhotoParam";
+                "SELECT * FROM public.photo a where a.\"idPhoto\"=:idPhotoParam";
             var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
             cmd.Parameters.AddWithValue("idPhotoParam", id);
 
@@ -29,10 +29,10 @@ namespace bidCardCoin.DAL
                 var produitId = (string) reader["produitId"];
                 var fichierPhoto = (string) reader["fichierPhoto"];
 
-                return new PhotoDAO(idPhoto, produitId, fichierPhoto);
+                photoDao = new PhotoDAO(idPhoto, produitId, fichierPhoto);
             }
-
-            return new PhotoDAO();
+            reader.Close();
+            return photoDao;
         }
 
         public static List<PhotoDAO> SelectAllPhoto()
@@ -52,7 +52,7 @@ namespace bidCardCoin.DAL
 
                 liste.Add(new PhotoDAO(idPhoto, produitId, fichierPhoto));
             }
-
+            reader.Close();
             return liste;
         }
 
@@ -82,7 +82,7 @@ where photo.""idPhoto""=:idPhoto";
             PhotoDAO dao = SelectPhotoById(photoId);
             if (dao.IdPhoto != null)
             {
-                var query = "DELETE FROM public.photo WHERE \"idPhoto\"= :idPhoto";
+                var query = "DELETE FROM public.photo WHERE \"idPhoto\"=:idPhoto";
                 var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
                 cmd.Parameters.AddWithValue("idPhoto", photoId);
                 cmd.ExecuteNonQuery();

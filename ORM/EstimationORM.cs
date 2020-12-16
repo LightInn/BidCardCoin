@@ -35,7 +35,7 @@ namespace bidCardCoin.ORM
                 estimation.ProduitEstimation = _estimationsDictionary[estimation.IdEstimation].ProduitEstimation;
             }
         }
-
+        
         public static void Populate(Estimation estimation)
         {
             // liste des estimations qui on beusoin de se faire peupler (leurs liste utilisateurs)
@@ -54,8 +54,7 @@ namespace bidCardCoin.ORM
             EstimationDAO edao = EstimationDAL.SelectEstimationById(id);
             Commissaire commissaireEstimation = new Commissaire();
             Produit produitEstimation = new Produit();
-
-
+            
             if (initializer)
             {
                 commissaireEstimation =
@@ -72,12 +71,28 @@ namespace bidCardCoin.ORM
             if (initializer)
             {
                 _estimationsDictionary[estimation.IdEstimation] = estimation;
-
-                CommissaireORM.Populate(estimation.CommissaireEstimation);
+                
+                CommissaireORM.Populate(new List<Commissaire>(new[]
+                {
+                    estimation.CommissaireEstimation
+                }));
                 ProduitORM.Populate(estimation.ProduitEstimation);
             }
 
             return estimation;
+        }
+        
+        public static List<Estimation> GetAllEstimation()
+        {
+            List<EstimationDAO> ledao = EstimationDAL.SelectAllEstimation();
+            List<Estimation> estimations = new List<Estimation>();
+
+            foreach (var edao in ledao)
+            {
+                estimations.Add(GetEstimationById(edao.IdEstimation));
+            }
+
+            return estimations;
         }
     }
 }

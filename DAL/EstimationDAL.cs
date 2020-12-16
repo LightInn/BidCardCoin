@@ -16,7 +16,7 @@ namespace bidCardCoin.DAL
             EstimationDAO estimationDao = new EstimationDAO();
             // Selectionne la estimation a partir de l'id
             var query =
-                "SELECT * FROM public.estimation a where a.\"idEstimation\"= :idEstimationParam";
+                "SELECT * FROM public.estimation a where a.\"idEstimation\"=:idEstimationParam";
             var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
             cmd.Parameters.AddWithValue("idEstimationParam", id);
 
@@ -29,10 +29,10 @@ namespace bidCardCoin.DAL
                 var commissaireId = (string) reader["commissaireId"];
                 var dateEstimation = (DateTime) reader["dateEstimation"];
                 var prixEstimation = (double) reader["prixEstimation"];
-                return new EstimationDAO(idEstimation, produitId, commissaireId,dateEstimation,prixEstimation);
+                estimationDao = new EstimationDAO(idEstimation, produitId, commissaireId,dateEstimation,prixEstimation);
             }
-
-            return new EstimationDAO();
+            reader.Close();
+            return estimationDao;
         }
 
         public static List<EstimationDAO> SelectAllEstimation()
@@ -54,7 +54,7 @@ namespace bidCardCoin.DAL
 
                 liste.Add(new EstimationDAO(idEstimation, produitId, commissaireId,dateEstimation,prixEstimation));
             }
-
+            reader.Close();
             return liste;
         }
 
@@ -88,7 +88,7 @@ where estimation.""idEstimation""=:idEstimation";
             EstimationDAO dao = SelectEstimationById(estimationId);
             if (dao.IdEstimation != null)
             {
-                var query = "DELETE FROM public.estimation WHERE \"idEstimation\"= :idEstimation";
+                var query = "DELETE FROM public.estimation WHERE \"idEstimation\"=:idEstimation";
                 var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
                 cmd.Parameters.AddWithValue("idEstimation", estimationId);
                 cmd.ExecuteNonQuery();
