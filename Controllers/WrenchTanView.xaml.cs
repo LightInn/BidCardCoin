@@ -36,7 +36,7 @@ namespace BidCardCoin.Vue
 
         public void GRUD_adresses(object sender, RoutedEventArgs e)
         {
-            parent.SubView.Children.Add(new AchatTabView());
+            parent.SubView.Children.Add(new ListeAdressesView());
             parent.SubView.Children.RemoveAt(0);
         }
         public void GRUD_utilisateurs(object sender, RoutedEventArgs e)

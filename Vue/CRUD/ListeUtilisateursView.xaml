@@ -9,7 +9,7 @@
         <DockPanel>
             <DataGrid Name="ListeUtilisateursGrid" ItemsSource="{Binding}" AutoGenerateColumns="false"
                       HorizontalAlignment="Left" BorderBrush="Black"
-                      Background="#CCCCCC" SelectionChanged="ListeUtilisateursGrid_SelectionChanged"
+                      Background="#CCCCCC"
                       ScrollViewer.CanContentScroll="True"
                       ScrollViewer.VerticalScrollBarVisibility="Auto"
                       ScrollViewer.HorizontalScrollBarVisibility="Auto">
@@ -32,7 +32,7 @@
                     </Border>
 
                 </Button>
-                <Button Style="{DynamicResource ButtonInvisible}">
+                <Button Style="{DynamicResource ButtonInvisible}" Click="DeleteUser">
                     <Border CornerRadius="15" Width="30" Background="#DE4F4E">
                         <TextBlock FontSize="40" Foreground="#F44336">x</TextBlock>
                     </Border>

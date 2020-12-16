@@ -33,7 +33,7 @@
                     </Border>
 
                 </Button>
-                <Button Style="{DynamicResource ButtonInvisible}">
+                <Button Style="{DynamicResource ButtonInvisible}" Click="DeleteAdresse">
                     <Border CornerRadius="15" Width="30" Background="#DE4F4E">
                         <TextBlock FontSize="40" Foreground="#F44336">x</TextBlock>
                     </Border>

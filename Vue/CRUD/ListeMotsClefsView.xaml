@@ -7,13 +7,6 @@
              mc:Ignorable="d">
     <Grid>
         <DockPanel>
-            <DataGrid Name="ListeMotsClefsGrid" ItemsSource="{Binding}" AutoGenerateColumns="true"
-                      HorizontalAlignment="Left" Margin="0" Grid.ColumnSpan="2" BorderBrush="Black"
-                      Background="#CCCCCC" SelectionChanged="ListeMotsClefsGrid_SelectionChanged"
-                      ScrollViewer.CanContentScroll="True"
-                      ScrollViewer.VerticalScrollBarVisibility="Auto"
-                      ScrollViewer.HorizontalScrollBarVisibility="Auto" />
-
             <ListBox Name="MotsClefsListBox" Margin="20" ItemsSource="{Binding }">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
@@ -23,15 +16,15 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-            
+
             <ItemsControl ItemsSource="{Binding _motsClefs }">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding}"/>
+                        <TextBlock Text="{Binding}" />
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
-            
+
 
             <StackPanel>
                 <Button Style="{DynamicResource ButtonInvisible}" Click="AddMotClef">

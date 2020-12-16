@@ -31,7 +31,6 @@ namespace BidCardCoin.Vue.CRUD
 
         private void GenerateDataList()
         {
-            ListeMotsClefsGrid.ItemsSource = _motsClefs;
             MotsClefsListBox.ItemsSource = _motsClefs;
         }
 
@@ -51,14 +50,17 @@ namespace BidCardCoin.Vue.CRUD
                 Icon = new BitmapImage(new Uri("pack://application:,,,/ressources/CRUDimg/utilisateur.png",
                     UriKind.RelativeOrAbsolute)),
             };
-            window.Content = new AddMotClefView(window,_motsClefs);
+            window.Content = new AddMotClefView(window, _motsClefs);
             window.ShowDialog();
             GenerateDataList();
         }
 
         private void RemoveMotClef(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            if (MotsClefsListBox.SelectedIndex >= 0 && MotsClefsListBox.SelectedIndex < _motsClefs.Count)
+            {
+                _motsClefs.RemoveAt(MotsClefsListBox.SelectedIndex);
+            }
         }
     }
 }

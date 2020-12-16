@@ -37,6 +37,8 @@ namespace BidCardCoin.Vue.CRUD
             _adresse.Ville = InputVille.Text;
             _adresse.CodePostal = InputCodePostal.Text;
             _adresse.AdresseNb = InputAdresse.Text;
+            _adresse.Utilisateurs = new List<Utilisateur>();
+            
             // _adresse.Utilisateurs = InputPassword;
             
             

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -49,6 +50,16 @@ namespace BidCardCoin.Vue.CRUD
             };
             window.Content = new AddAdresseView(window, newAdresse);
             window.ShowDialog();
+            _adressess.Add(newAdresse);
+        }
+
+        private void DeleteAdresse(object sender, RoutedEventArgs e)
+        {
+            if (ListeAdressesGrid.SelectedIndex >= 0 && ListeAdressesGrid.SelectedIndex < _adressess.Count)
+            {
+                AdresseORM.DeleteAdresse(_adressess.ElementAt(ListeAdressesGrid.SelectedIndex));
+                _adressess.RemoveAt(ListeAdressesGrid.SelectedIndex);
+            }
         }
     }
 }

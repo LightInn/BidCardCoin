@@ -8,7 +8,7 @@ using Npgsql;
 
 namespace bidCardCoin.DAL
 {
-     public static class AdresseDAL
+    public static class AdresseDAL
     {
         // SELECT LISTE PERSONNE ON ADRESSE BY ID
         public static List<string> SelectPersonneInAdressesById(string id)
@@ -46,11 +46,11 @@ namespace bidCardCoin.DAL
             {
                 // récup les paramètres principaux
                 var idAdresse = (string) reader["idAdresse"];
-                var pays = Convert.IsDBNull((string) reader["pays"])? null :(string) reader["pays"];
-                var region = Convert.IsDBNull((string) reader["region"])? null :(string) reader["region"];
-                var ville = Convert.IsDBNull((string) reader["ville"])? null :(string) reader["ville"];
-                var codePostal = Convert.IsDBNull((string) reader["codePostal"])? null :(string) reader["codePostal"];
-                var adresse = Convert.IsDBNull((string) reader["adresse"])? null :(string) reader["adresse"];
+                var pays = Convert.IsDBNull((string) reader["pays"]) ? null : (string) reader["pays"];
+                var region = Convert.IsDBNull((string) reader["region"]) ? null : (string) reader["region"];
+                var ville = Convert.IsDBNull((string) reader["ville"]) ? null : (string) reader["ville"];
+                var codePostal = Convert.IsDBNull((string) reader["codePostal"]) ? null : (string) reader["codePostal"];
+                var adresse = Convert.IsDBNull((string) reader["adresseNom"]) ? null : (string) reader["adresseNom"];
 
                 adresseDao = new AdresseDAO(idAdresse, pays, region, ville, codePostal, adresse,
                     new List<string>());
@@ -65,9 +65,10 @@ namespace bidCardCoin.DAL
                 adresseDao.ListePersonneId = SelectPersonneInAdressesById(id);
                 return adresseDao;
             }
+
             return new AdresseDAO();
         }
-        
+
         public static List<AdresseDAO> SelectAllAdresse()
         {
             // Selectionné tout les adresse dans la base de donnée
@@ -80,53 +81,44 @@ namespace bidCardCoin.DAL
             while (reader.Read())
             {
                 var idAdresse = (string) reader["idAdresse"];
-                var pays = Convert.IsDBNull((string) reader["pays"])? null :(string) reader["pays"];
-                var region = Convert.IsDBNull((string) reader["region"])? null :(string) reader["region"];
-                var ville = Convert.IsDBNull((string) reader["ville"])? null :(string) reader["ville"];
-                var codePostal = Convert.IsDBNull((string) reader["codePostal"])? null :(string) reader["codePostal"];
-                var adresse = Convert.IsDBNull((string) reader["adresse"])? null :(string) reader["adresse"];
+                var pays = Convert.IsDBNull((string) reader["pays"]) ? null : (string) reader["pays"];
+                var region = Convert.IsDBNull((string) reader["region"]) ? null : (string) reader["region"];
+                var ville = Convert.IsDBNull((string) reader["ville"]) ? null : (string) reader["ville"];
+                var codePostal = Convert.IsDBNull((string) reader["codePostal"]) ? null : (string) reader["codePostal"];
+                var adresse = Convert.IsDBNull((string) reader["adresseNom"]) ? null : (string) reader["adresseNom"];
 
                 liste.Add(new AdresseDAO(idAdresse, pays, region, ville, codePostal, adresse,
                     new List<string>()));
             }
-            
+
             reader.Close();
             foreach (var adresseDao in liste)
             {
                 adresseDao.ListePersonneId = SelectPersonneInAdressesById(adresseDao.IdAdresse);
             }
+
             return liste;
         }
-        
+
         // INSERT & Update 
         public static void InsertOrAddNewAdresse(AdresseDAO adresse)
         {
             // Inserer adresse dans la bdd
             var query =
-                @"INSERT INTO public.adresse (""idAdresse"",""pays"",""region"",""ville"",""codePostal"",""adresse"") 
-values (:idAdresse,:pays,:region,:ville,:codePostal,:adresse) 
-ON CONFLICT ON CONSTRAINT pk_adresse DO UPDATE SET 
-""idAdresse""=:idAdresse,
-""pays""=:pays,
-""region""=:region,
-""ville""=:ville,
-""codePostal""=:codePostal,
-""adresse""=:adresse
-where adresse.""idAdresse""=:idAdresse";
+                "INSERT INTO public.adresse (\"idAdresse\",\"pays\",\"region\",\"ville\",\"codePostal\", \"adresseNom\" ) values (:idAdresse,:pays,:region,:ville,:codePostal,:adresseNom) ON CONFLICT ON CONSTRAINT pk_adresse DO UPDATE SET  \"idAdresse\"=:idAdresse,  \"pays\"=:pays,  \"region\"=:region,  \"ville\"=:ville,  \"codePostal\"=:codePostal,  \"adresseNom\"=:adresseNom where adresse.\"idAdresse\"=:idAdresse ";
             var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
             cmd.Parameters.AddWithValue("idAdresse", adresse.IdAdresse);
             cmd.Parameters.AddWithValue("pays", adresse.Pays);
             cmd.Parameters.AddWithValue("region", adresse.Region);
             cmd.Parameters.AddWithValue("ville", adresse.Ville);
             cmd.Parameters.AddWithValue("codePostal", adresse.CodePostal);
-            cmd.Parameters.AddWithValue("adresse", adresse.Adresse);
+            cmd.Parameters.AddWithValue("adresseNom", adresse.Adresse);
             cmd.ExecuteNonQuery();
 
             foreach (var elemPersonneId in adresse.ListePersonneId)
             {
                 query =
-                    @"INSERT INTO public.adressepersonne values (:idAdresse,:idPersonne) 
-ON CONFLICT ON CONSTRAINT pk_adressepersonne DO NOTHING";
+                    "INSERT INTO public.adressepersonne values (:idAdresse,:idPersonne) ON CONFLICT  DO NOTHING";
                 cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
                 cmd.Parameters.AddWithValue("idAdresse", adresse.IdAdresse);
                 cmd.Parameters.AddWithValue("idPersonne", elemPersonneId);
