@@ -25,17 +25,14 @@ namespace BidCardCoin.Vue.CRUD
         public ListeUtilisateursView(Window win = null, List<Utilisateur> selectedUsers = null)
         {
             InitializeComponent();
-            
-            
-            
-            
+
+
             _selectedUsers = selectedUsers;
             if (selectedUsers == null)
             {
                 selectMode.Visibility = Visibility.Collapsed;
             }
 
-           
 
             _utilisateurs = new ObservableCollection<Utilisateur>(UtilisateurORM.GetAllUtilisateur());
             _contextUtilisateur = new Utilisateur();
@@ -62,8 +59,10 @@ namespace BidCardCoin.Vue.CRUD
             };
             window.Content = new AddUtilisateurView(window, newUser);
             window.ShowDialog();
-
-            _utilisateurs.Add(newUser);
+            if (newUser.IdUtilisateur != null)
+            {
+                _utilisateurs.Add(newUser);
+            }
         }
 
         private void DeleteUser(object sender, RoutedEventArgs e)

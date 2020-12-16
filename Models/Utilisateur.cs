@@ -17,7 +17,7 @@ namespace BidCardCoin.Models
             set
             {
                 _idUtilisateur = value;
-                OnPropertyChanged("IdUtilisateur");
+                OnPropertyChanged();
             }
         }
 
@@ -27,7 +27,7 @@ namespace BidCardCoin.Models
             set
             {
                 _isSolvable = value;
-                OnPropertyChanged("IsSolvable");
+                OnPropertyChanged();
             }
         }
 
@@ -37,7 +37,7 @@ namespace BidCardCoin.Models
             set
             {
                 _isRessortissant = value;
-                OnPropertyChanged("IsRessortissant");
+                OnPropertyChanged();
             }
         }
 
@@ -47,7 +47,7 @@ namespace BidCardCoin.Models
             set
             {
                 _identityExist = value;
-                OnPropertyChanged("IdentityExist");
+                OnPropertyChanged();
             }
         }
 
@@ -57,7 +57,7 @@ namespace BidCardCoin.Models
             set
             {
                 _listeMotClef = value;
-                OnPropertyChanged("ListeMotClef");
+                OnPropertyChanged();
             }
         }
 
@@ -67,7 +67,7 @@ namespace BidCardCoin.Models
             set
             {
                 _idPersonne = value;
-                OnPropertyChanged("IdPersonne");
+                OnPropertyChanged();
             }
         }
 
@@ -77,7 +77,7 @@ namespace BidCardCoin.Models
             set
             {
                 _nom = value;
-                OnPropertyChanged("Nom");
+                OnPropertyChanged();
             }
         }
 
@@ -87,7 +87,7 @@ namespace BidCardCoin.Models
             set
             {
                 _prenom = value;
-                OnPropertyChanged("Prenom");
+                OnPropertyChanged();
             }
         }
 
@@ -97,7 +97,7 @@ namespace BidCardCoin.Models
             set
             {
                 _age = value;
-                OnPropertyChanged("Age");
+                OnPropertyChanged();
             }
         }
 
@@ -107,7 +107,7 @@ namespace BidCardCoin.Models
             set
             {
                 _email = value;
-                OnPropertyChanged("Email");
+                OnPropertyChanged();
             }
         }
 
@@ -117,7 +117,7 @@ namespace BidCardCoin.Models
             set
             {
                 _password = value;
-                OnPropertyChanged("Password");
+                OnPropertyChanged();
             }
         }
 
@@ -127,7 +127,7 @@ namespace BidCardCoin.Models
             set
             {
                 _telephoneMobile = value;
-                OnPropertyChanged("TelephoneMobile");
+                OnPropertyChanged();
             }
         }
 
@@ -137,7 +137,7 @@ namespace BidCardCoin.Models
             set
             {
                 _telephoneFixe = value;
-                OnPropertyChanged("TelephoneFixe");
+                OnPropertyChanged();
             }
         }
 
@@ -147,7 +147,7 @@ namespace BidCardCoin.Models
             set
             {
                 _adresses = value;
-                OnPropertyChanged("Adresses");
+                OnPropertyChanged();
             }
         }
 
