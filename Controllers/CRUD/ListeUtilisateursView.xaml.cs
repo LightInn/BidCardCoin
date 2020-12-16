@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
@@ -18,10 +19,23 @@ namespace BidCardCoin.Vue.CRUD
         private Utilisateur _contextUtilisateur;
         private ObservableCollection<Utilisateur> _utilisateurs;
 
+        private List<Utilisateur> _selectedUsers;
 
-        public ListeUtilisateursView(Window win = null)
+
+        public ListeUtilisateursView(Window win = null, List<Utilisateur> selectedUsers = null)
         {
             InitializeComponent();
+            
+            
+            
+            
+            _selectedUsers = selectedUsers;
+            if (selectedUsers == null)
+            {
+                selectMode.Visibility = Visibility.Collapsed;
+            }
+
+           
 
             _utilisateurs = new ObservableCollection<Utilisateur>(UtilisateurORM.GetAllUtilisateur());
             _contextUtilisateur = new Utilisateur();
@@ -59,6 +73,11 @@ namespace BidCardCoin.Vue.CRUD
                 UtilisateurORM.DeleteUtilisateur(_utilisateurs.ElementAt(ListeUtilisateursGrid.SelectedIndex));
                 _utilisateurs.RemoveAt(ListeUtilisateursGrid.SelectedIndex);
             }
+        }
+
+        private void SelectUser(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }

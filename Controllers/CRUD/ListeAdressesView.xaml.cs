@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
@@ -15,14 +16,25 @@ namespace BidCardCoin.Vue.CRUD
         private string _selectedId;
         private Adresse _contextAdresse;
         private ObservableCollection<Adresse> _adressess;
+        private List<Adresse> _selectedAdresses;
 
-
-        public ListeAdressesView(Window win = null)
+        public ListeAdressesView(Window win = null, List<Adresse> adresses = null)
         {
+           
             InitializeComponent();
+            
+            
+            _selectedAdresses = adresses;
+            if (_selectedAdresses == null)
+            {
+                selectMode.Visibility = Visibility.Collapsed;
+            }
+
+           
 
             _adressess = new ObservableCollection<Adresse>(AdresseORM.GetAllAdresse());
             _contextAdresse = new Adresse();
+
             GenerateDataList();
         }
 
@@ -59,6 +71,17 @@ namespace BidCardCoin.Vue.CRUD
             {
                 AdresseORM.DeleteAdresse(_adressess.ElementAt(ListeAdressesGrid.SelectedIndex));
                 _adressess.RemoveAt(ListeAdressesGrid.SelectedIndex);
+            }
+        }
+
+        private void SelectAdresses(object sender, RoutedEventArgs e)
+        {
+            if (ListeAdressesGrid.SelectedIndex != -1)
+            {
+                foreach (var adress in new List<Adresse>(ListeAdressesGrid.SelectedItems.Cast<Adresse>()))
+                {
+                    _selectedAdresses.Add(adress);
+                }
             }
         }
     }

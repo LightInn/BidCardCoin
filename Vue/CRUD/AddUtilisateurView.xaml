@@ -8,18 +8,18 @@
     <Grid Name="grigrid" Margin="0,0,0.300,0" VerticalAlignment="Top">
         <StackPanel>
             <DockPanel LastChildFill="False" VerticalAlignment="Stretch">
-                <StackPanel>
+                <StackPanel Margin="15">
                     <Label Content="Nom" FontSize="20" Foreground="#F8F8F8" />
                     <TextBox Name="InputNom" Height="20" Width="150" />
                 </StackPanel>
-                <StackPanel>
+                <StackPanel  Margin="15">
                     <Label Content="Prénom" FontSize="20" Foreground="#F8F8F8" />
                     <TextBox Name="InputPrenom" Height="20" Margin="0,0,0.300,0" Width="150" />
                 </StackPanel>
             </DockPanel>
 
 
-            <DockPanel LastChildFill="False" VerticalAlignment="Stretch">
+            <DockPanel LastChildFill="False" VerticalAlignment="Stretch"  Margin="15">
 
                 <Label Content="Age : " FontSize="20" Foreground="#F8F8F8" />
                 <TextBox Name="InputAge" Width="150" />
@@ -27,77 +27,86 @@
 
 
             <DockPanel LastChildFill="False" VerticalAlignment="Stretch">
-                <StackPanel>
+                <StackPanel  Margin="15">
                     <Label Content="Email" FontSize="20" Foreground="#F8F8F8" />
                     <TextBox Name="InputEmail" Height="20" Width="150" />
                 </StackPanel>
-                <StackPanel>
+                <StackPanel  Margin="15">
                     <Label Content="Mot de passe" FontSize="20" Foreground="#F8F8F8" />
                     <PasswordBox Name="InputPassword" Height="20" Margin="0,0,0.300,0" Width="150" />
                 </StackPanel>
             </DockPanel>
 
             <DockPanel LastChildFill="False" VerticalAlignment="Stretch">
-                <StackPanel>
+                <StackPanel  Margin="15">
                     <Label Content="Tel. Mobile" FontSize="20" Foreground="#F8F8F8" />
                     <TextBox Name="InputMobile" Height="20" Width="150" />
-                </StackPanel>
-                <StackPanel>
+                </StackPanel >
+                <StackPanel  Margin="15">
                     <Label Content="Tel. Fixe" FontSize="20" Foreground="#F8F8F8" />
                     <TextBox Name="InputFixe" Height="20" Margin="0,0,0.300,0" Width="150" />
                 </StackPanel>
             </DockPanel>
 
 
-            <DockPanel LastChildFill="False" VerticalAlignment="Stretch">
-                <StackPanel>
+   
+                <DockPanel  Margin="15"  >
                     <Label Content="Identité Verifié" FontSize="20" Foreground="#F8F8F8" />
                     <CheckBox Name="InputIdentity" Height="20" Margin="0,0,0.300,0" Width="150" />
-                </StackPanel>
+                </DockPanel>
 
-                <StackPanel>
+                <DockPanel  Margin="15" >
                     <Label Content="Solvabilité Verifié" FontSize="20" Foreground="#F8F8F8" />
                     <CheckBox Name="InputSolvable" Height="20" Margin="0,0,0.300,0" Width="150" />
-                </StackPanel>
+                </DockPanel  >
 
-                <StackPanel>
+                <DockPanel  Margin="15" >
                     <Label Content="Ressortissant" FontSize="20" Foreground="#F8F8F8" />
                     <CheckBox Name="InputRessortissant" Height="20" Margin="0,0,0.300,0" Width="150" />
-                </StackPanel>
+                </DockPanel>
+         
+
+            <DockPanel VerticalAlignment="Center">
+                <Label Content="Liste de mots clef" FontSize="20" VerticalAlignment="Center"
+                       Foreground="#F8F8F8" />
+                <Button Click="ViewMotsClefs" Margin="15" Style="{DynamicResource ButtonInvisible}">
+                    <Border
+                        CornerRadius="8" Background="#2A2A2C">
+                        <TextBlock Foreground="#249181" FontSize="25">
+                            Editer
+                        </TextBlock>
+                    </Border>
+                </Button>
             </DockPanel>
 
-<DockPanel>
-            <Label Content="Liste de mots clef" FontSize="20"
-                   Foreground="#F8F8F8" />
-            <Button Click="ViewMotsClefs" Margin="15" Style="{DynamicResource ButtonInvisible}">
-                <Border
-                    CornerRadius="8" Background="Gold">
-                    <TextBlock Width="150" Height="80">
-                        voire/edité
-                    </TextBlock>
-                </Border>
-            </Button>
-</DockPanel>
 
-            <Label Content="Liste d'adresses" FontSize="20"
-                   Foreground="#F8F8F8" />
-            <TextBox Name="InputAdresses" Height="20" Margin="0,0,0.300,0" Width="150" />
-
+            <DockPanel VerticalAlignment="Center">
+                <Label Content="Liste d'adresses" FontSize="20" VerticalAlignment="Center"
+                       Foreground="#F8F8F8" />
+                <Button Click="SelectAdresses" Margin="15" Style="{DynamicResource ButtonInvisible}">
+                    <Border
+                        CornerRadius="8" Background="#2A2A2C">
+                        <TextBlock Foreground="#249181" FontSize="25">
+                            Editer
+                        </TextBlock>
+                    </Border>
+                </Button>
+            </DockPanel>
 
             <DockPanel LastChildFill="False" VerticalAlignment="Stretch">
 
                 <Button Click="Cancel" Margin="15" Style="{DynamicResource ButtonInvisible}">
-                    <Border
-                        CornerRadius="8" Background="Aqua">
-                        <TextBlock Width="150">Annuler</TextBlock>
+                    <Border HorizontalAlignment="Center"
+                        CornerRadius="8" Background="#DE4F4E">
+                        <TextBlock Width="170" Foreground="#F8F8F8" FontSize="25" HorizontalAlignment="Center">Annuler</TextBlock>
                     </Border>
                 </Button>
 
                 <Button Click="CreateNewUtilisateur" Margin="15" Style="{DynamicResource ButtonInvisible}">
                     <Border
-                        CornerRadius="8" Background="Aqua">
-                        <TextBlock Width="150">
-                            Ajouter Utilisateur
+                        CornerRadius="8" Background="#249181">
+                        <TextBlock Width="170" Foreground="#F8F8F8" FontSize="25" HorizontalAlignment="Center">
+                            Ajouter
                         </TextBlock>
                     </Border>
                 </Button>

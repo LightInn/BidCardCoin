@@ -21,14 +21,22 @@ namespace BidCardCoin.Vue
 
         private void NavHoverEffectEnter(object o, MouseEventArgs mouseEventArgs)
         {
-            var stack = ((o as Button)?.Content as StackPanel);
-            stack.Background = (SolidColorBrush) new BrushConverter().ConvertFrom("#DE4F4E");
+            var border = ((o as Button)?.Content as Border);
+            border.Background = (SolidColorBrush) new BrushConverter().ConvertFrom("#F8F8F8");
+            border.CornerRadius = new CornerRadius(8);
+            border.BorderThickness = new Thickness(5);
+            border.BorderBrush = (SolidColorBrush) new BrushConverter().ConvertFrom("#249181");
+            border.Margin = new Thickness(15);
         }
 
         private void NavHoverEffectExit(object o, MouseEventArgs mouseEventArgs)
         {
-            var stack = ((o as Button)?.Content as StackPanel);
-            stack.Background = new SolidColorBrush();
+            var border = ((o as Button)?.Content as Border);
+            border.Background = new SolidColorBrush();
+            border.CornerRadius = new CornerRadius(0);
+            border.BorderThickness = new Thickness(0);
+            border.BorderBrush = new SolidColorBrush();
+            border.Margin = new Thickness(0);
         }
 
         /* ------------------------------------------------ CRUD -----------------------------------------------------*/
