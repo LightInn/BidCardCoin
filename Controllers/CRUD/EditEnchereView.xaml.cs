@@ -10,33 +10,46 @@ using bidCardCoin.ORM;
 
 namespace BidCardCoin.Vue.CRUD
 {
-    public partial class AddEnchereView : UserControl
+    public partial class EditEnchereView : UserControl
     {
         private Enchere _enchere;
         private Window _win;
         private Utilisateur _utilisateur;
 
-        public AddEnchereView(Window win = null, Enchere user = null)
+        public EditEnchereView(Window win = null, Enchere enchere = null)
         {
+            _enchere = enchere ?? new Enchere();
             InitializeComponent();
+            GenerateControle();
             _win = win;
-            _utilisateur = null;
-            _enchere = user ?? new Enchere();
+            _utilisateur = _enchere.UtilisateurEnchere;
+           
+        }
+
+        void GenerateControle()
+        {
+            InputPrixProposer.Text = _enchere.PrixProposer.ToString();
+            InputIsAdjuger.IsChecked = _enchere.IsAdjuger;
+            InputDateHeureVente.SelectedDate = _enchere.DateHeureVente;
+            if (_enchere.UtilisateurEnchere == null)
+            {
+                InputOrdreAchat.Text = "ordreAchat1";
+            }
+            else
+            {
+                _utilisateur = _enchere.UtilisateurEnchere;
+            }
+
+            InputLotId.Text = "lot1";
+            InputCommissaireId.Text = "commissaire1";
         }
 
 
-        private void CreateNewEnchere(object sender, RoutedEventArgs e)
+        private void ModifyEnchere(object sender, RoutedEventArgs e)
         {
             if (InputDateHeureVente.SelectedDate != null ||
                 !string.IsNullOrEmpty(InputPrixProposer.Text))
             {
-                var uuid = Guid.NewGuid().ToString();
-
-                Lot lot = new Lot();
-                Commissaire commissaire = new Commissaire();
-                Utilisateur utilisateur = new Utilisateur();
-
-                _enchere.IdEnchere = uuid;
                 _enchere.PrixProposer =
                     int.TryParse(InputPrixProposer.Text, out _) ? int.Parse(InputPrixProposer.Text) : 0;
                 _enchere.IsAdjuger = InputIsAdjuger.IsChecked ?? false;
@@ -48,6 +61,7 @@ namespace BidCardCoin.Vue.CRUD
                     InputOrdreAchat.Text = "ordreAchat1";
                 }
 
+
                 if (string.IsNullOrEmpty(InputLotId.Text))
                 {
                     InputLotId.Text = "lot1";
@@ -57,6 +71,7 @@ namespace BidCardCoin.Vue.CRUD
                 {
                     InputCommissaireId.Text = "commissaire1";
                 }
+
 
                 // Donc ça c'est bon
                 if (!string.IsNullOrEmpty(InputOrdreAchat.Text))
@@ -78,7 +93,7 @@ namespace BidCardCoin.Vue.CRUD
                 _enchere.UtilisateurEnchere = _utilisateur;
 
 
-                EnchereORM.InsertOrAddNewEnchere(_enchere);
+                EnchereORM.UpadateEnchere(_enchere);
                 _win.Close();
             }
             else
@@ -100,7 +115,7 @@ namespace BidCardCoin.Vue.CRUD
             {
                 userstemp.Add(_utilisateur);
             }
-            
+
 
             Window window = new Window
             {
@@ -118,9 +133,7 @@ namespace BidCardCoin.Vue.CRUD
 
             if (userstemp.Count > 0)
             {
-                
                 _utilisateur = userstemp.First();
-                
             }
         }
     }
