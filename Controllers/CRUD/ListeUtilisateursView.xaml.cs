@@ -45,6 +45,16 @@ namespace BidCardCoin.Vue.CRUD
         {
             // ComboBoxColumnAdresse.ItemsSource = _adresses;
             ListeUtilisateursGrid.ItemsSource = _utilisateurs;
+
+            if (_selectedUsers != null)
+            {
+                foreach (var selectedUser in _selectedUsers)
+                {
+                    ListeUtilisateursGrid.SelectedItems.Add(ListeUtilisateursGrid.Items[
+                        _utilisateurs.IndexOf(_utilisateurs.First(user =>
+                            user.IdUtilisateur == selectedUser.IdUtilisateur))]);
+                }
+            }
         }
 
         private void AddUser(object sender, RoutedEventArgs e)
@@ -65,13 +75,6 @@ namespace BidCardCoin.Vue.CRUD
             if (newUser.IdUtilisateur != null)
             {
                 _utilisateurs.Add(newUser);
-                // foreach (var utilisateur in _utilisateurs)
-                // {
-                //     foreach (var adress in utilisateur.Adresses)
-                //     {
-                //         _adresses.Add(adress);
-                //     }
-                // }
             }
         }
 
@@ -86,7 +89,14 @@ namespace BidCardCoin.Vue.CRUD
 
         private void SelectUser(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            if (ListeUtilisateursGrid.SelectedIndex != -1)
+            {
+                _selectedUsers.Clear();
+                foreach (var user in new List<Utilisateur>(ListeUtilisateursGrid.SelectedItems.Cast<Utilisateur>()))
+                {
+                    _selectedUsers.Add(user);
+                }
+            }
         }
 
         private void EditUser(object sender, RoutedEventArgs e)

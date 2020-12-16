@@ -150,7 +150,7 @@ namespace bidCardCoin.ORM
             {
                 utilisateurid = enchere.UtilisateurEnchere.IdUtilisateur;
             }
-            
+
             return new EnchereDAO(enchere.IdEnchere, enchere.PrixProposer, enchere.IsAdjuger, enchere.DateHeureVente,
                 enchere.LotEnchere.IdLot, enchere.CommissaireEnchere.IdCommissaire,
                 ordreachatid, utilisateurid);
@@ -160,6 +160,13 @@ namespace bidCardCoin.ORM
         {
             EnchereDAL.InsertNewEnchere(EnchereToEnchereDAO(enchere));
         }
+
+
+        public static void UpadateEnchere(Enchere enchere)
+        {
+            EnchereDAL.UpdateEnchere(EnchereToEnchereDAO(enchere));
+        }
+
 
         public static void DeleteEnchere(Enchere enchere)
         {

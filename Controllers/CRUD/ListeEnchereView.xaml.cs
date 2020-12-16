@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
@@ -15,25 +16,36 @@ namespace BidCardCoin.Vue.CRUD
         private string _selectedId;
         private Enchere _contextEnchere;
         private ObservableCollection<Enchere> _encheres;
+        private List<Enchere> _selectedEncheres;
 
 
-        public ListeEncheresView(Window win = null)
+        public ListeEncheresView(Window win = null,List<Enchere> selectedEncheres = null)
         {
             InitializeComponent();
 
+            _selectedEncheres = selectedEncheres;
+
+            if (selectedEncheres == null)
+            {
+                selectMode.Visibility = Visibility.Collapsed;
+            }
+            
+            
+            
             _encheres = new ObservableCollection<Enchere>(EnchereORM.GetAllEnchere());
             _contextEnchere = new Enchere();
             GenerateDataList();
+            
         }
 
         private void GenerateDataList()
         {
             ListeEncheresGrid.ItemsSource = _encheres;
+            
+            
         }
 
-        private void ListeEncheresGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-        }
+
 
         private void AddEnchere(object sender, RoutedEventArgs e)
         {
@@ -63,6 +75,29 @@ namespace BidCardCoin.Vue.CRUD
                 EnchereORM.DeleteEnchere(_encheres.ElementAt(ListeEncheresGrid.SelectedIndex));
                 _encheres.RemoveAt(ListeEncheresGrid.SelectedIndex);
             }
+        }
+
+        private void SelectEnchere(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void EditEnchere(object sender, RoutedEventArgs e)
+        {
+            Enchere selectedEnchere = _encheres[ListeEncheresGrid.SelectedIndex];
+
+            Window window = new Window
+            {
+                Title = "Ajouter une Enchere",
+                SizeToContent = SizeToContent.WidthAndHeight,
+                ResizeMode = ResizeMode.NoResize,
+                Background = (SolidColorBrush) new BrushConverter().ConvertFrom("#393C43"),
+                Icon = new BitmapImage(new Uri("pack://application:,,,/ressources/CRUDimg/enchere.png",
+                    UriKind.RelativeOrAbsolute)),
+            };
+            window.Content = new EditEnchereView(window, selectedEnchere);
+            window.ShowDialog();
+           
         }
     }
 }
