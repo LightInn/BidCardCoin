@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:BidCardCoin.Vue.CRUD"
              mc:Ignorable="d">
-    <Grid Name="grigrid" Margin="0,0,0.300,0" VerticalAlignment="Top">
+    <Grid Name="editgrid" Margin="0,0,0.300,0" VerticalAlignment="Top">
         <StackPanel>
             <DockPanel LastChildFill="False" VerticalAlignment="Stretch">
                 <StackPanel Margin="15">
@@ -65,12 +65,12 @@
          
 
             <DockPanel VerticalAlignment="Center">
-                <Label Content="Liste de mots clef" FontSize="20" VerticalAlignment="Center"
+                <Label Content="Liste de mots clef" FontSize="15" VerticalAlignment="Center"
                        Foreground="#F8F8F8" />
                 <Button Click="ViewMotsClefs" Margin="15" Style="{DynamicResource ButtonInvisible}">
                     <Border
                         CornerRadius="8" Background="#2A2A2C">
-                        <TextBlock Foreground="#249181" FontSize="25">
+                        <TextBlock Foreground="#249181" Margin="10,3,10,3" FontSize="15">
                             Editer
                         </TextBlock>
                     </Border>
@@ -79,12 +79,12 @@
 
 
             <DockPanel VerticalAlignment="Center">
-                <Label Content="Liste d'adresses" FontSize="20" VerticalAlignment="Center"
+                <Label Content="Liste d'adresses" FontSize="15" VerticalAlignment="Center"
                        Foreground="#F8F8F8" />
                 <Button Click="SelectAdresses" Margin="15" Style="{DynamicResource ButtonInvisible}">
                     <Border
                         CornerRadius="8" Background="#2A2A2C">
-                        <TextBlock Foreground="#249181" FontSize="25">
+                        <TextBlock Foreground="#249181" Margin="10,3,10,3" FontSize="15">
                             Editer
                         </TextBlock>
                     </Border>
@@ -96,15 +96,15 @@
                 <Button Click="Cancel" Margin="15" Style="{DynamicResource ButtonInvisible}">
                     <Border HorizontalAlignment="Center"
                         CornerRadius="8" Background="#DE4F4E">
-                        <TextBlock Width="170" Foreground="#F8F8F8" FontSize="25" HorizontalAlignment="Center">Annuler</TextBlock>
+                        <TextBlock Width="170" Foreground="#F8F8F8" FontSize="15" Margin="100,3,0,3" HorizontalAlignment="Center">Annuler</TextBlock>
                     </Border>
                 </Button>
 
                 <Button Click="EditUtilisateur" Margin="15" Style="{DynamicResource ButtonInvisible}">
                     <Border
                         CornerRadius="8" Background="#249181">
-                        <TextBlock Width="170" Foreground="#F8F8F8" FontSize="25" HorizontalAlignment="Center">
-                            Ajouter
+                        <TextBlock Width="170" Foreground="#F8F8F8" Margin="100,3,0,3" FontSize="15" HorizontalAlignment="Center">
+                            Modifier
                         </TextBlock>
                     </Border>
                 </Button>

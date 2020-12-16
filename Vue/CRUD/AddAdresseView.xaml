@@ -10,11 +10,11 @@
         <StackPanel>
             <DockPanel LastChildFill="False" VerticalAlignment="Stretch">
                 <StackPanel Margin="15">
-                    <Label Content="Pays" FontSize="20" Foreground="#F8F8F8" />
+                    <Label Content="Pays" FontSize="15" />
                     <TextBox Name="InputPays" Height="20" Width="150" />
                 </StackPanel>
                 <StackPanel Margin="15">
-                    <Label Content="Region" FontSize="20" Foreground="#F8F8F8" />
+                    <Label Content="Region" FontSize="15" />
                     <TextBox Name="InputRegion" Height="20" Margin="0,0,0.300,0" Width="150" />
                 </StackPanel>
             </DockPanel>
@@ -22,18 +22,18 @@
 
             <DockPanel LastChildFill="False" VerticalAlignment="Stretch" Margin="15">
 
-                <Label Content="Ville" FontSize="20" Foreground="#F8F8F8" />
+                <Label Content="Ville" FontSize="15" />
                 <TextBox Name="InputVille" Width="150" />
             </DockPanel>
 
 
             <DockPanel LastChildFill="False" VerticalAlignment="Stretch">
                 <StackPanel Margin="15">
-                    <Label Content="Code Postal" FontSize="20" Foreground="#F8F8F8" />
+                    <Label Content="Code Postal" FontSize="15" />
                     <TextBox Name="InputCodePostal" Height="20" Width="150" />
                 </StackPanel>
                 <StackPanel Margin="15">
-                    <Label Content="Adresse (rue et numero)" FontSize="20" Foreground="#F8F8F8" />
+                    <Label Content="Adresse (rue et numero)" FontSize="15" />
                     <TextBox Name="InputAdresse" Height="20" Margin="0,0,0.300,0" Width="150" />
                 </StackPanel>
             </DockPanel>
@@ -44,14 +44,14 @@
                 <Button Click="Cancel" Margin="15" Style="{DynamicResource ButtonInvisible}">
                     <Border HorizontalAlignment="Center"
                         CornerRadius="8" Background="#DE4F4E">
-                        <TextBlock Width="170" Foreground="#F8F8F8" FontSize="25" HorizontalAlignment="Center">Annuler</TextBlock>
+                        <TextBlock Width="170" Foreground="#F8F8F8" FontSize="15" HorizontalAlignment="Center">Annuler</TextBlock>
                     </Border>
                 </Button>
 
                 <Button Click="CreateNewAdresse" Margin="15" Style="{DynamicResource ButtonInvisible}">
                     <Border
                         CornerRadius="8" Background="#249181">
-                        <TextBlock Width="170" Foreground="#F8F8F8" FontSize="25" HorizontalAlignment="Center">
+                        <TextBlock Width="170" Foreground="#F8F8F8" FontSize="15" HorizontalAlignment="Center">
                             Ajouter
                         </TextBlock>
                     </Border>

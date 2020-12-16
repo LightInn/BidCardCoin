@@ -77,7 +77,6 @@
                 <!--         </DataGridComboBoxColumn> -->
                 <!--     </DataGrid.Columns> -->
                 <!-- </DataGrid> -->
-                
             </DataGrid>
             <!-- <DataGrid ItemsSource="{Binding Adresses}"> -->
             <!--     <DataGrid.Resources> -->
@@ -89,7 +88,6 @@
             <!--         </DataTemplate> -->
             <!--     </DataGrid.Resources> -->
             <!-- </DataGrid> -->
-
             <StackPanel>
                 <Button Style="{DynamicResource ButtonInvisible}" Click="AddUser" VerticalAlignment="Center"
                         Margin="15">
@@ -99,7 +97,6 @@
                             Ajouter
                         </TextBlock>
                     </Border>
-
                 </Button>
                 <Button Style="{DynamicResource ButtonInvisible}" Click="DeleteUser" Margin="15">
                     <Border CornerRadius="15" Width="150" Background="#3E3E42">
@@ -109,8 +106,6 @@
                         </TextBlock>
                     </Border>
                 </Button>
-
-
                 <Button Name="selectMode" Style="{DynamicResource ButtonInvisible}" Click="SelectUser" Margin="15">
                     <Border CornerRadius="15" Width="150" Background="#3E3E42">
                         <TextBlock FontSize="25" Foreground="#007ACC" HorizontalAlignment="Center"
@@ -119,20 +114,15 @@
                         </TextBlock>
                     </Border>
                 </Button>
-                
-                <Button Name="EditMode" Style="{DynamicResource ButtonInvisible}" Click="SelectUser" Margin="15">
+                <Button Name="EditMode" Style="{DynamicResource ButtonInvisible}" Click="EditUser" Margin="15">
                     <Border CornerRadius="15" Width="150" Background="#3E3E42">
                         <TextBlock FontSize="25" Foreground="#007ACC" HorizontalAlignment="Center"
                                    VerticalAlignment="Center">
-                            Selectioner
+                            Editer
                         </TextBlock>
                     </Border>
                 </Button>
             </StackPanel>
-
-
         </DockPanel>
-
     </Grid>
-
 </UserControl>

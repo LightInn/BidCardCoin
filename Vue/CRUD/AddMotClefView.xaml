@@ -9,22 +9,26 @@
         <StackPanel>
 
 
-            <Label Content="Mot Clef" FontSize="20" Foreground="#F8F8F8" />
+            <Label Content="Mot Clef" FontSize="15" Foreground="#F8F8F8"/>
             <TextBox Name="InputMotClef" Height="20" />
 
+            <Button Click="CreateMotClef" Margin="15" Style="{DynamicResource ButtonInvisible}">
+                <Border HorizontalAlignment="Center"
+                        CornerRadius="8" Background="#DE4F4E">
+                    <TextBlock Width="170" Foreground="#F8F8F8" Margin="100,3,0,3" FontSize="15" HorizontalAlignment="Center">
+                        Créer
+                    </TextBlock>
+                </Border>
+            </Button>
 
-            <DockPanel>
-                <Button Click="CreateMotClef">
-                    <Border
-                        CornerRadius="8" Background="Aqua">
-                        <TextBlock>
-                            Ajouter Mot Clef
-                        </TextBlock>
-                    </Border>
-                </Button>
-                <Button>Anuller</Button>
-            </DockPanel>
+            <Button Click="Cancel" Margin="15" Style="{DynamicResource ButtonInvisible}">
+                <Border
+                    CornerRadius="8" Background="#249181">
+                    <TextBlock Width="170" Foreground="#F8F8F8" Margin="100,3,0,3" FontSize="15" HorizontalAlignment="Center">
+                        Annuler
+                    </TextBlock>
+                </Border>
+            </Button>
         </StackPanel>
     </Grid>
-
 </UserControl>

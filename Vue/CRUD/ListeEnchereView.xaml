@@ -9,11 +9,35 @@
     <Grid>
         <DockPanel>
             <DataGrid Name="ListeEncheresGrid" ItemsSource="{Binding}" AutoGenerateColumns="false"
-                      HorizontalAlignment="Left" BorderBrush="Black"
-                      Background="#CCCCCC" SelectionChanged="ListeEncheresGrid_SelectionChanged"
+                      HorizontalAlignment="Left" BorderBrush="#3F3F46" HorizontalGridLinesBrush="#3F3F46"
+                      VerticalGridLinesBrush="#3F3F46"
+                      Background="#2A2A2C" HeadersVisibility="Column"
                       ScrollViewer.CanContentScroll="True"
                       ScrollViewer.VerticalScrollBarVisibility="Auto"
                       ScrollViewer.HorizontalScrollBarVisibility="Auto">
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="FontWeight" Value="Bold" />
+                        <Setter Property="Background" Value="#3E3E42" />
+                        <Setter Property="Foreground" Value="#F1F1F1" />
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+                <DataGrid.CellStyle>
+                    <Style TargetType="{x:Type DataGridCell}">
+                        <Setter Property="Background" Value="#2D2D30" />
+                        <Setter Property="Foreground" Value="#F1F1F1" />
+                        <Setter Property="BorderThickness" Value="0" />
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="#249181" />
+
+                                <Setter Property="BorderBrush"
+                                        Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.CellStyle>
+
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Id Enchere" Binding="{Binding IdEnchere , Mode=TwoWay}" />
                     <DataGridTextColumn Header="Prix Proposer" Binding="{Binding PrixProposer , Mode=TwoWay}" />
@@ -28,17 +52,24 @@
             </DataGrid>
 
             <StackPanel>
-                <Button Style="{DynamicResource ButtonInvisible}" Click="AddEnchere">
-                    <Border CornerRadius="15" Width="30" Background="#DE4F4E">
-                        <TextBlock FontSize="40" Foreground="#ADDB31">+</TextBlock>
-                    </Border>
-
-                </Button>
-                <Button Style="{DynamicResource ButtonInvisible}" Click="DeleteEnchere">
-                    <Border CornerRadius="15" Width="30" Background="#DE4F4E">
-                        <TextBlock FontSize="40" Foreground="#F44336">x</TextBlock>
+                <Button Style="{DynamicResource ButtonInvisible}" Click="AddEnchere" VerticalAlignment="Center"
+                        Margin="15">
+                    <Border CornerRadius="15" Width="150" Background="#3E3E42" VerticalAlignment="Center">
+                        <TextBlock FontSize="25" Foreground="#249181" HorizontalAlignment="Center"
+                                   VerticalAlignment="Center">
+                            Ajouter
+                        </TextBlock>
                     </Border>
                 </Button>
+                <Button Style="{DynamicResource ButtonInvisible}" Click="DeleteEnchere" Margin="15">
+                    <Border CornerRadius="15" Width="150" Background="#3E3E42">
+                        <TextBlock FontSize="25" Foreground="#DE4F4E" HorizontalAlignment="Center"
+                                   VerticalAlignment="Center">
+                            supprimer
+                        </TextBlock>
+                    </Border>
+                </Button>
+                
             </StackPanel>
         </DockPanel>
 

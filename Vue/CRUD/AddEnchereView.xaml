@@ -10,37 +10,37 @@
         <StackPanel>
             <DockPanel LastChildFill="False" VerticalAlignment="Stretch">
                 <StackPanel>
-                    <Label Content="PrixProposer" FontSize="20" Foreground="#F8F8F8" />
+                    <Label Content="PrixProposer" FontSize="15" />
                     <TextBox Name="InputPrixProposer" Height="20" Margin="0,0,0.300,0" Width="150" />
                 </StackPanel>
             </DockPanel>
             
             <DockPanel LastChildFill="False" VerticalAlignment="Stretch">
                 <StackPanel>
-                    <Label Content="DateHeureVente" FontSize="20" Foreground="#F8F8F8" />
+                    <Label Content="DateHeureVente" FontSize="15" Foreground="#F8F8F8" />
                     <DatePicker Name="InputDateHeureVente" Height="20" Width="150" />
                 </StackPanel>
                 <StackPanel>
-                    <Label Content="IsAdjuger" FontSize="20" Foreground="#F8F8F8" />
+                    <Label Content="IsAdjuger" FontSize="15" Foreground="#F8F8F8"/>
                     <CheckBox  Name="InputIsAdjuger" Height="20" Margin="0,0,0.300,0" Width="150" />
                 </StackPanel>
             </DockPanel>
             
             <DockPanel LastChildFill="False" VerticalAlignment="Stretch">
                 <StackPanel>
-                    <Label Content="CommissaireId" FontSize="20" Foreground="#F8F8F8" />
+                    <Label Content="CommissaireId" FontSize="15" Foreground="#F8F8F8"/>
                     <TextBox Name="InputCommissaireId" Height="20" Width="150" />
                 </StackPanel>
                 <StackPanel>
-                    <Label Content="LotId" FontSize="20" Foreground="#F8F8F8" />
+                    <Label Content="LotId" FontSize="15" Foreground="#F8F8F8"/>
                     <TextBox Name="InputLotId" Height="20" Margin="0,0,0.300,0" Width="150" />
                 </StackPanel>
                 <StackPanel>
-                    <Label Content="OrdreAchat" FontSize="20" Foreground="#F8F8F8" />
+                    <Label Content="OrdreAchat" FontSize="15" Foreground="#F8F8F8"/>
                     <TextBox Name="InputOrdreAchat" Height="20" Margin="0,0,0.300,0" Width="150" />
                 </StackPanel>
                 <StackPanel>
-                    <Label Content="Utilisateur" FontSize="20" Foreground="#F8F8F8" />
+                    <Label Content="Utilisateur" FontSize="15" Foreground="#F8F8F8"/>
                     <TextBox Name="InputUtilisateur" Height="20" Margin="0,0,0.300,0" Width="150" />
                 </StackPanel>
             </DockPanel>
