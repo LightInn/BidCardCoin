@@ -4,18 +4,22 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:BidCardCoin.Vue.CRUD"
+             xmlns:models="clr-namespace:BidCardCoin.Models"
              mc:Ignorable="d">
+    
     <Grid>
+
         <DockPanel>
             <DataGrid Name="ListeUtilisateursGrid" ItemsSource="{Binding}" AutoGenerateColumns="false"
-                      HorizontalAlignment="Left" BorderBrush="#3F3F46" HorizontalGridLinesBrush="#3F3F46" VerticalGridLinesBrush="#3F3F46"
+                      HorizontalAlignment="Left" BorderBrush="#3F3F46" HorizontalGridLinesBrush="#3F3F46"
+                      VerticalGridLinesBrush="#3F3F46"
                       Background="#2A2A2C" HeadersVisibility="Column"
                       ScrollViewer.CanContentScroll="True"
                       ScrollViewer.VerticalScrollBarVisibility="Auto"
                       ScrollViewer.HorizontalScrollBarVisibility="Auto">
                 <DataGrid.ColumnHeaderStyle>
                     <Style TargetType="{x:Type DataGridColumnHeader}">
-                        <Setter Property="FontWeight"  Value="Bold" />
+                        <Setter Property="FontWeight" Value="Bold" />
                         <Setter Property="Background" Value="#3E3E42" />
                         <Setter Property="Foreground" Value="#F1F1F1" />
                     </Style>
@@ -27,40 +31,79 @@
                         <Setter Property="BorderThickness" Value="0" />
                         <Style.Triggers>
                             <Trigger Property="IsSelected" Value="True">
-                                <Setter Property="Background" Value="#249181"/>
-                        
-                                <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                                <Setter Property="Background" Value="#249181" />
+
+                                <Setter Property="BorderBrush"
+                                        Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
                             </Trigger>
                         </Style.Triggers>
                     </Style>
                 </DataGrid.CellStyle>
-            
+
                 <DataGrid.Columns>
-                   
+
                     <DataGridTextColumn Header="Prénom" Binding="{Binding Prenom}" Width="170" />
                     <DataGridTextColumn Header="Nom"
-                                        Binding="{Binding Nom, Mode=TwoWay}"  Width="170"/>
-                    
+                                        Binding="{Binding Nom, Mode=TwoWay}" Width="170" />
+
                     <DataGridTextColumn Header="Email"
-                                        Binding="{Binding Email, Mode=TwoWay}" Width="170"/>
-                    <DataGridTextColumn Header="Age" Binding="{Binding Age , Mode=TwoWay}" Width="170"/>
+                                        Binding="{Binding Email, Mode=TwoWay}" Width="170" />
+                    <DataGridTextColumn Header="Age" Binding="{Binding Age , Mode=TwoWay}" Width="170" />
                     <DataGridTextColumn Header="Verifier"
-                                        Binding="{Binding IdentityExist, Mode=TwoWay}" Width="170"/>
+                                        Binding="{Binding IdentityExist, Mode=TwoWay}" Width="170" />
+
+                    <DataGridComboBoxColumn x:Name="ComboBoxColumnAdresse" Header="Adresse(s) de l'utilisateur"
+                                            SelectedValueBinding="{Binding Adresses, Mode=TwoWay}" Width="170" />
+
+
                 </DataGrid.Columns>
+                
+                <!-- <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Path=Adresses}"> -->
+                <!--     <DataGrid.Columns> -->
+                <!--         <DataGridComboBoxColumn Header="Title" SelectedItemBinding="{Binding Adresses}"> -->
+                <!--             <DataGridComboBoxColumn.ElementStyle> -->
+                <!--                 <Style TargetType="ComboBox"> -->
+                <!--                     <Setter Property="ItemsSource" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.Titles}"/> -->
+                <!--                     <Setter Property="IsReadOnly" Value="True"/> -->
+                <!--                 </Style> -->
+                <!--             </DataGridComboBoxColumn.ElementStyle> -->
+                <!--             <DataGridComboBoxColumn.EditingElementStyle> -->
+                <!--                 <Style TargetType="ComboBox"> -->
+                <!--                     <Setter Property="ItemsSource" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.Titles}"/> -->
+                <!--                     <Setter Property="DisplayMemberPath" Value="TitleText" /> -->
+                <!--                 </Style> -->
+                <!--             </DataGridComboBoxColumn.EditingElementStyle> -->
+                <!--         </DataGridComboBoxColumn> -->
+                <!--     </DataGrid.Columns> -->
+                <!-- </DataGrid> -->
+                
             </DataGrid>
+            <!-- <DataGrid ItemsSource="{Binding Adresses}"> -->
+            <!--     <DataGrid.Resources> -->
+            <!--         <DataTemplate x:Key="CompanyDisplayTemplate" DataType="models:Adresse"> -->
+            <!--             <TextBlock Text="{Binding AdresseId}" /> -->
+            <!--         </DataTemplate> -->
+            <!--         <DataTemplate x:Key="CompanyEditingTemplate" DataType="models:Adresse"> -->
+            <!--             <ComboBox SelectedItem="{Binding Adresse}" ItemsSource="{Binding CompanyList}" /> -->
+            <!--         </DataTemplate> -->
+            <!--     </DataGrid.Resources> -->
+            <!-- </DataGrid> -->
 
             <StackPanel>
-                <Button Style="{DynamicResource ButtonInvisible}" Click="AddUser" VerticalAlignment="Center" Margin="15">
+                <Button Style="{DynamicResource ButtonInvisible}" Click="AddUser" VerticalAlignment="Center"
+                        Margin="15">
                     <Border CornerRadius="15" Width="150" Background="#3E3E42" VerticalAlignment="Center">
-                        <TextBlock FontSize="25" Foreground="#249181" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        Ajouter    
+                        <TextBlock FontSize="25" Foreground="#249181" HorizontalAlignment="Center"
+                                   VerticalAlignment="Center">
+                            Ajouter
                         </TextBlock>
                     </Border>
 
                 </Button>
                 <Button Style="{DynamicResource ButtonInvisible}" Click="DeleteUser" Margin="15">
                     <Border CornerRadius="15" Width="150" Background="#3E3E42">
-                        <TextBlock FontSize="25" Foreground="#DE4F4E" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock FontSize="25" Foreground="#DE4F4E" HorizontalAlignment="Center"
+                                   VerticalAlignment="Center">
                             supprimer
                         </TextBlock>
                     </Border>
@@ -69,7 +112,8 @@
 
                 <Button Name="selectMode" Style="{DynamicResource ButtonInvisible}" Click="SelectUser" Margin="15">
                     <Border CornerRadius="15" Width="150" Background="#3E3E42">
-                        <TextBlock FontSize="25" Foreground="#007ACC"  HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock FontSize="25" Foreground="#007ACC" HorizontalAlignment="Center"
+                                   VerticalAlignment="Center">
                             Selectioner
                         </TextBlock>
                     </Border>
