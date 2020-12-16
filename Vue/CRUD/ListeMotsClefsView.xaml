@@ -15,34 +15,26 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-
-
             <StackPanel>
-                <Button Style="{DynamicResource ButtonInvisible}" Click="AddMotClef" VerticalAlignment="Center"
-                        Margin="15">
-                    <Border CornerRadius="15" Width="150" Background="#202225" VerticalAlignment="Center">
-                        <TextBlock FontSize="25" Foreground="#249181" HorizontalAlignment="Center"
-                                   VerticalAlignment="Center">
+                <Button Click="AddMotClef" Margin="15" Style="{DynamicResource ButtonInvisible}">
+                    <Border HorizontalAlignment="Center"
+                            CornerRadius="8" Background="#249181">
+                        <TextBlock Width="170" Foreground="#F8F8F8" Margin="100,3,0,3" FontSize="15"
+                                   HorizontalAlignment="Center">
                             Ajouter
                         </TextBlock>
                     </Border>
-
                 </Button>
-                <Button Style="{DynamicResource ButtonInvisible}" Click="RemoveMotClef" Margin="15">
-                    <Border CornerRadius="15" Width="150" Background="#202225">
-                        <TextBlock FontSize="25" Foreground="#DE4F4E" HorizontalAlignment="Center"
-                                   VerticalAlignment="Center">
+                <Button Click="RemoveMotClef" Margin="15" Style="{DynamicResource ButtonInvisible}">
+                    <Border HorizontalAlignment="Center"
+                            CornerRadius="8" Background="#DE4F4E">
+                        <TextBlock Width="170" Foreground="#F8F8F8" Margin="100,3,0,3" FontSize="15"
+                                   HorizontalAlignment="Center">
                             supprimer
                         </TextBlock>
                     </Border>
                 </Button>
-
-
             </StackPanel>
-
-
         </DockPanel>
-
     </Grid>
-
 </UserControl>

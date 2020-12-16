@@ -9,44 +9,44 @@
         <StackPanel>
             <DockPanel LastChildFill="False" VerticalAlignment="Stretch">
                 <StackPanel>
-                    <Label Content="PrixProposer" FontSize="20" Foreground="#F8F8F8" />
+                    <Label Content="PrixProposer" FontSize="15" Foreground="#F8F8F8" />
                     <TextBox Name="InputPrixProposer" Height="20" Margin="0,0,0.300,0" Width="150" />
                 </StackPanel>
             </DockPanel>
 
             <DockPanel LastChildFill="False" VerticalAlignment="Stretch">
                 <StackPanel>
-                    <Label Content="DateHeureVente" FontSize="20" Foreground="#F8F8F8" />
+                    <Label Content="DateHeureVente" FontSize="15" Foreground="#F8F8F8" />
                     <DatePicker Name="InputDateHeureVente" Height="20" Width="150" />
                 </StackPanel>
                 <StackPanel>
-                    <Label Content="IsAdjuger" FontSize="20" Foreground="#F8F8F8" />
+                    <Label Content="IsAdjuger" FontSize="15" Foreground="#F8F8F8" />
                     <CheckBox Name="InputIsAdjuger" Height="20" Margin="0,0,0.300,0" Width="150" />
                 </StackPanel>
             </DockPanel>
 
             <DockPanel LastChildFill="False" VerticalAlignment="Stretch">
                 <StackPanel>
-                    <Label Content="CommissaireId" FontSize="20" Foreground="#F8F8F8" />
+                    <Label Content="CommissaireId" FontSize="15" Foreground="#F8F8F8" />
                     <TextBox Name="InputCommissaireId" Height="20" Width="150" />
                 </StackPanel>
                 <StackPanel>
-                    <Label Content="LotId" FontSize="20" Foreground="#F8F8F8" />
+                    <Label Content="LotId" FontSize="15" Foreground="#F8F8F8" />
                     <TextBox Name="InputLotId" Height="20" Margin="0,0,0.300,0" Width="150" />
                 </StackPanel>
                 <StackPanel>
-                    <Label Content="OrdreAchat" FontSize="20" Foreground="#F8F8F8" />
+                    <Label Content="OrdreAchat" FontSize="15" Foreground="#F8F8F8" />
                     <TextBox Name="InputOrdreAchat" Height="20" Margin="0,0,0.300,0" Width="150" />
                 </StackPanel>
 
 
                 <DockPanel VerticalAlignment="Center">
-                    <Label Content="Utilisateur" FontSize="20" VerticalAlignment="Center"
+                    <Label Content="Utilisateur" FontSize="15" VerticalAlignment="Center"
                            Foreground="#F8F8F8" />
                     <Button Click="SelectUtilisateur" Margin="15" Style="{DynamicResource ButtonInvisible}">
                         <Border
                             CornerRadius="8" Background="#2A2A2C">
-                            <TextBlock Foreground="#249181" FontSize="25">
+                            <TextBlock Foreground="#F8F8F8" Margin="15" FontSize="15">
                                 Editer
                             </TextBlock>
                         </Border>
@@ -59,16 +59,19 @@
             <DockPanel LastChildFill="False" VerticalAlignment="Stretch">
 
                 <Button Click="Cancel" Margin="15" Style="{DynamicResource ButtonInvisible}">
-                    <Border
-                        CornerRadius="8" Background="Aqua">
-                        <TextBlock Width="150">Annuler</TextBlock>
+                    <Border HorizontalAlignment="Center"
+                            CornerRadius="8" Background="#DE4F4E">
+                        <TextBlock Width="170" Foreground="#F8F8F8" FontSize="15" Margin="100,3,0,3"
+                                   HorizontalAlignment="Center">
+                            Annuler
+                        </TextBlock>
                     </Border>
                 </Button>
-
+                
                 <Button Click="ModifyEnchere" Margin="15" Style="{DynamicResource ButtonInvisible}">
                     <Border
-                        CornerRadius="8" Background="Aqua">
-                        <TextBlock Width="150">
+                        CornerRadius="8" Background="#249181">
+                        <TextBlock Width="170" Foreground="#F8F8F8" FontSize="15" Margin="100,3,0,3">
                             Appliquer
                         </TextBlock>
                     </Border>

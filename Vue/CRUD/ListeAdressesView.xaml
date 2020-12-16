@@ -49,41 +49,36 @@
                 </DataGrid.Columns>
             </DataGrid>
 
-
             <StackPanel>
-                <Button Style="{DynamicResource ButtonInvisible}" Click="AddAdresse" VerticalAlignment="Center"
-                        Margin="15">
-                    <Border CornerRadius="15" Width="150" Background="#3E3E42" VerticalAlignment="Center">
-                        <TextBlock FontSize="25" Foreground="#249181" HorizontalAlignment="Center"
-                                   VerticalAlignment="Center">
+                <Button Click="AddAdresse" Margin="15" Style="{DynamicResource ButtonInvisible}">
+                    <Border HorizontalAlignment="Center"
+                            CornerRadius="8" Background="#249181">
+                        <TextBlock Width="170" Foreground="#F8F8F8" Margin="100,3,0,3" FontSize="15"
+                                   HorizontalAlignment="Center">
                             Ajouter
                         </TextBlock>
                     </Border>
-
                 </Button>
-                <Button Style="{DynamicResource ButtonInvisible}" Click="DeleteAdresse" Margin="15">
-                    <Border CornerRadius="15" Width="150" Background="#3E3E42">
-                        <TextBlock FontSize="25" Foreground="#DE4F4E" HorizontalAlignment="Center"
-                                   VerticalAlignment="Center">
-                            supprimer
+                <Button Click="DeleteAdresse" Margin="15" Style="{DynamicResource ButtonInvisible}">
+                    <Border HorizontalAlignment="Center"
+                            CornerRadius="8" Background="#DE4F4E">
+                        <TextBlock Width="170" Foreground="#F8F8F8" Margin="100,3,0,3" FontSize="15"
+                                   HorizontalAlignment="Center">
+                            Supprimer
                         </TextBlock>
                     </Border>
                 </Button>
-
-
-                <Button Name="selectMode" Style="{DynamicResource ButtonInvisible}" Click="SelectAdresses" Margin="15">
-                    <Border CornerRadius="15" Width="150" Background="#3E3E42">
-                        <TextBlock FontSize="25" Foreground="#007ACC" HorizontalAlignment="Center"
-                                   VerticalAlignment="Center">
-                            Selectioner
+                
+                <Button Name="selectMode" Click="SelectAdresses" Margin="15" Style="{DynamicResource ButtonInvisible}">
+                    <Border HorizontalAlignment="Center"
+                            CornerRadius="8" Background="#249181">
+                        <TextBlock Width="170" Foreground="#F8F8F8" Margin="100,3,0,3" FontSize="15"
+                                   HorizontalAlignment="Center">
+                            Sélectioner
                         </TextBlock>
                     </Border>
                 </Button>
             </StackPanel>
-
-
         </DockPanel>
-
-
     </Grid>
 </UserControl>

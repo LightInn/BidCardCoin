@@ -9,7 +9,7 @@
         <StackPanel>
             <DockPanel LastChildFill="False" VerticalAlignment="Stretch">
                 <StackPanel>
-                    <Label Content="PrixProposer" FontSize="15" />
+                    <Label Content="PrixProposer" FontSize="15" Foreground="#F8F8F8" />
                     <TextBox Name="InputPrixProposer" Height="20" Margin="0,0,0.300,0" Width="150" />
                 </StackPanel>
             </DockPanel>
@@ -48,7 +48,7 @@
                     <Button Click="SelectUtilisateur" Margin="15" Style="{DynamicResource ButtonInvisible}">
                         <Border
                             CornerRadius="8" Background="#2A2A2C">
-                            <TextBlock Foreground="#249181" FontSize="25">
+                            <TextBlock Foreground="#F8F8F8" Margin="15" FontSize="15">
                                 Editer
                             </TextBlock>
                         </Border>
@@ -57,22 +57,25 @@
                 </DockPanel>
 
             </DockPanel>
-
-
+            
             <DockPanel LastChildFill="False" VerticalAlignment="Stretch">
 
                 <Button Click="Cancel" Margin="15" Style="{DynamicResource ButtonInvisible}">
-                    <Border
-                        CornerRadius="8" Background="Aqua">
-                        <TextBlock Width="150">Annuler</TextBlock>
+                    <Border HorizontalAlignment="Center"
+                            CornerRadius="8" Background="#DE4F4E">
+                        <TextBlock Width="170" Foreground="#F8F8F8" Margin="100,3,0,3" FontSize="15"
+                                   HorizontalAlignment="Center">
+                            Annuler
+                        </TextBlock>
                     </Border>
                 </Button>
 
                 <Button Click="CreateNewEnchere" Margin="15" Style="{DynamicResource ButtonInvisible}">
                     <Border
-                        CornerRadius="8" Background="Aqua">
-                        <TextBlock Width="150">
-                            Ajouter Enchere
+                        CornerRadius="8" Background="#249181">
+                        <TextBlock Width="170" Foreground="#F8F8F8" Margin="100,3,0,3" FontSize="15"
+                                   HorizontalAlignment="Center">
+                            Ajouter
                         </TextBlock>
                     </Border>
                 </Button>

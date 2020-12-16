@@ -69,7 +69,7 @@ namespace BidCardCoin.Vue.CRUD
         {
             var window = new Window
             {
-                Title = "Selection adresses",
+                Title = "Selection mots clés",
 
                 SizeToContent = SizeToContent.WidthAndHeight,
                 ResizeMode = ResizeMode.NoResize,
@@ -85,12 +85,12 @@ namespace BidCardCoin.Vue.CRUD
         {
             var window = new Window
             {
-                Title = "Liste des mots Clefs",
+                Title = "Liste des adresses",
 
                 SizeToContent = SizeToContent.WidthAndHeight,
                 ResizeMode = ResizeMode.NoResize,
                 Background = (SolidColorBrush) new BrushConverter().ConvertFrom("#393C43"),
-                Icon = new BitmapImage(new Uri("pack://application:,,,/ressources/CRUDimg/utilisateur.png",
+                Icon = new BitmapImage(new Uri("pack://application:,,,/ressources/CRUDimg/Adresse.png",
                     UriKind.RelativeOrAbsolute))
             };
 

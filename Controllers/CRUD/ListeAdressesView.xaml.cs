@@ -57,7 +57,7 @@ namespace BidCardCoin.Vue.CRUD
                 SizeToContent = SizeToContent.WidthAndHeight,
                 ResizeMode = ResizeMode.NoResize,
                 Background = (SolidColorBrush) new BrushConverter().ConvertFrom("#393C43"),
-                Icon = new BitmapImage(new Uri("pack://application:,,,/ressources/CRUDimg/utilisateur.png",
+                Icon = new BitmapImage(new Uri("pack://application:,,,/ressources/CRUDimg/Adresse.png",
                     UriKind.RelativeOrAbsolute))
             };
             window.Content = new AddAdresseView(window, newAdresse);

@@ -79,7 +79,7 @@ namespace BidCardCoin.Vue.CRUD
         {
             var window = new Window
             {
-                Title = "Selection adresses",
+                Title = "Selection Mots clés",
 
                 SizeToContent = SizeToContent.WidthAndHeight,
                 ResizeMode = ResizeMode.NoResize,
@@ -95,7 +95,7 @@ namespace BidCardCoin.Vue.CRUD
         {
             var window = new Window
             {
-                Title = "Liste des mots Clefs",
+                Title = "Liste des adresses",
 
                 SizeToContent = SizeToContent.WidthAndHeight,
                 ResizeMode = ResizeMode.NoResize,

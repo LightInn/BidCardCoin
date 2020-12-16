@@ -56,52 +56,47 @@
                                         Binding="{Binding UtilisateurEnchere.Prenom , Mode=TwoWay}" MinWidth="100" />
                 </DataGrid.Columns>
             </DataGrid>
-
-
+            
             <StackPanel>
-
-                <Button Style="{DynamicResource ButtonInvisible}" Click="AddEnchere" VerticalAlignment="Center"
-                        Margin="15">
-                    <Border CornerRadius="15" Width="150" Background="#3E3E42" VerticalAlignment="Center">
-                        <TextBlock FontSize="25" Foreground="#249181" HorizontalAlignment="Center"
-                                   VerticalAlignment="Center">
+                <Button Click="AddEnchere" Margin="15" Style="{DynamicResource ButtonInvisible}">
+                    <Border HorizontalAlignment="Center"
+                            CornerRadius="8" Background="#249181">
+                        <TextBlock Width="100" Foreground="#F8F8F8" Margin="60,3,0,3" FontSize="15"
+                                   HorizontalAlignment="Center">
                             Ajouter
                         </TextBlock>
                     </Border>
-
                 </Button>
-                <Button Style="{DynamicResource ButtonInvisible}" Click="DeleteEnchere" Margin="15">
-                    <Border CornerRadius="15" Width="150" Background="#3E3E42">
-                        <TextBlock FontSize="25" Foreground="#DE4F4E" HorizontalAlignment="Center"
-                                   VerticalAlignment="Center">
-                            supprimer
+                <Button Click="DeleteEnchere" Margin="15" Style="{DynamicResource ButtonInvisible}">
+                    <Border HorizontalAlignment="Center"
+                            CornerRadius="8" Background="#DE4F4E">
+                        <TextBlock Width="100" Foreground="#F8F8F8" Margin="60,3,0,3" FontSize="15"
+                                   HorizontalAlignment="Center">
+                            Supprimer
                         </TextBlock>
                     </Border>
                 </Button>
 
-
-                <Button Name="selectMode" Style="{DynamicResource ButtonInvisible}" Click="SelectEnchere" Margin="15">
-                    <Border CornerRadius="15" Width="150" Background="#3E3E42">
-                        <TextBlock FontSize="25" Foreground="#007ACC" HorizontalAlignment="Center"
-                                   VerticalAlignment="Center">
-                            Selectioner
+                <Button Name="editMode" Click="SelectEnchere" Margin="15" Style="{DynamicResource ButtonInvisible}">
+                    <Border HorizontalAlignment="Center"
+                            CornerRadius="8" Background="#3E3E42">
+                        <TextBlock Width="100" Foreground="#F8F8F8" Margin="60,3,0,3" FontSize="15"
+                                   HorizontalAlignment="Center">
+                            Editer
                         </TextBlock>
                     </Border>
                 </Button>
 
-
-                <Button Name="editMode" Style="{DynamicResource ButtonInvisible}" Click="EditEnchere" Margin="15">
-                    <Border CornerRadius="15" Width="150" Background="#3E3E42">
-                        <TextBlock FontSize="25" Foreground="#007ACC" HorizontalAlignment="Center"
-                                   VerticalAlignment="Center">
-                            Modifier
-
+                <Button Name="selectMode" Click="EditEnchere" Margin="15" Style="{DynamicResource ButtonInvisible}">
+                    <Border HorizontalAlignment="Center"
+                            CornerRadius="8" Background="#249181">
+                        <TextBlock Width="100" Foreground="#F8F8F8" Margin="60,3,0,3" FontSize="15"
+                                   HorizontalAlignment="Center">
+                            Sélectioner
                         </TextBlock>
                     </Border>
                 </Button>
-
             </StackPanel>
-
 
         </DockPanel>
 
