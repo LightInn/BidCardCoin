@@ -8,14 +8,15 @@
     <Grid>
         <DockPanel>
             <DataGrid Name="ListeUtilisateursGrid" ItemsSource="{Binding}" AutoGenerateColumns="false"
-                      HorizontalAlignment="Left" BorderBrush="#3F3F46" HorizontalGridLinesBrush="#3F3F46" VerticalGridLinesBrush="#3F3F46"
+                      HorizontalAlignment="Left" BorderBrush="#3F3F46" HorizontalGridLinesBrush="#3F3F46"
+                      VerticalGridLinesBrush="#3F3F46"
                       Background="#2A2A2C" HeadersVisibility="Column"
                       ScrollViewer.CanContentScroll="True"
                       ScrollViewer.VerticalScrollBarVisibility="Auto"
                       ScrollViewer.HorizontalScrollBarVisibility="Auto">
                 <DataGrid.ColumnHeaderStyle>
                     <Style TargetType="{x:Type DataGridColumnHeader}">
-                        <Setter Property="FontWeight"  Value="Bold" />
+                        <Setter Property="FontWeight" Value="Bold" />
                         <Setter Property="Background" Value="#3E3E42" />
                         <Setter Property="Foreground" Value="#F1F1F1" />
                     </Style>
@@ -27,40 +28,46 @@
                         <Setter Property="BorderThickness" Value="0" />
                         <Style.Triggers>
                             <Trigger Property="IsSelected" Value="True">
-                                <Setter Property="Background" Value="#249181"/>
-                        
-                                <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                                <Setter Property="Background" Value="#249181" />
+
+                                <Setter Property="BorderBrush"
+                                        Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
                             </Trigger>
                         </Style.Triggers>
                     </Style>
                 </DataGrid.CellStyle>
-            
+
                 <DataGrid.Columns>
-                   
+
                     <DataGridTextColumn Header="Prénom" Binding="{Binding Prenom}" Width="170" />
                     <DataGridTextColumn Header="Nom"
-                                        Binding="{Binding Nom, Mode=TwoWay}"  Width="170"/>
-                    
+                                        Binding="{Binding Nom, Mode=TwoWay}" Width="170" />
+
                     <DataGridTextColumn Header="Email"
-                                        Binding="{Binding Email, Mode=TwoWay}" Width="170"/>
-                    <DataGridTextColumn Header="Age" Binding="{Binding Age , Mode=TwoWay}" Width="170"/>
-                    <DataGridTextColumn Header="Verifier"
-                                        Binding="{Binding IdentityExist, Mode=TwoWay}" Width="170"/>
+                                        Binding="{Binding Email, Mode=TwoWay}" Width="170" />
+                    <DataGridTextColumn Header="Age" Binding="{Binding Age , Mode=TwoWay}" Width="170" />
+
+                    <DataGridCheckBoxColumn Header="Verifier" IsThreeState="True"  Binding="{Binding IdentityExist, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                            Width="170" />
+
                 </DataGrid.Columns>
             </DataGrid>
 
             <StackPanel>
-                <Button Style="{DynamicResource ButtonInvisible}" Click="AddUser" VerticalAlignment="Center" Margin="15">
+                <Button Style="{DynamicResource ButtonInvisible}" Click="AddUser" VerticalAlignment="Center"
+                        Margin="15">
                     <Border CornerRadius="15" Width="150" Background="#3E3E42" VerticalAlignment="Center">
-                        <TextBlock FontSize="25" Foreground="#249181" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        Ajouter    
+                        <TextBlock FontSize="25" Foreground="#249181" HorizontalAlignment="Center"
+                                   VerticalAlignment="Center">
+                            Ajouter
                         </TextBlock>
                     </Border>
 
                 </Button>
                 <Button Style="{DynamicResource ButtonInvisible}" Click="DeleteUser" Margin="15">
                     <Border CornerRadius="15" Width="150" Background="#3E3E42">
-                        <TextBlock FontSize="25" Foreground="#DE4F4E" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock FontSize="25" Foreground="#DE4F4E" HorizontalAlignment="Center"
+                                   VerticalAlignment="Center">
                             supprimer
                         </TextBlock>
                     </Border>
@@ -69,7 +76,8 @@
 
                 <Button Name="selectMode" Style="{DynamicResource ButtonInvisible}" Click="SelectUser" Margin="15">
                     <Border CornerRadius="15" Width="150" Background="#3E3E42">
-                        <TextBlock FontSize="25" Foreground="#007ACC"  HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock FontSize="25" Foreground="#007ACC" HorizontalAlignment="Center"
+                                   VerticalAlignment="Center">
                             Selectioner
                         </TextBlock>
                     </Border>

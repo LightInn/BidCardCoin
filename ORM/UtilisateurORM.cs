@@ -26,10 +26,9 @@ namespace bidCardCoin.ORM
                 {
                     GetUtilisateurById(user.IdUtilisateur);
                 }
-            
-               
-                    user.Adresses = UtilisateurDictionary[user.IdUtilisateur].Adresses;
-                
+
+
+                user.Adresses = UtilisateurDictionary[user.IdUtilisateur].Adresses;
             }
         }
 
@@ -87,15 +86,19 @@ namespace bidCardCoin.ORM
                 user.IdentityExist, user.ListeMotClef);
         }
 
+
+        static PersonneDAO UtilisateurToPersonneDao(Utilisateur user)
+        {
+            return new PersonneDAO(user.IdPersonne, user.Nom, user.Prenom, user.Age, user.Email, user.Password,
+                user.TelephoneMobile, user.TelephoneFixe, user.Adresses.Select(adress => adress.IdAdresse).ToList());
+        }
+
         public static void AddUtilisateur(Utilisateur user)
         {
             PersonneDAO test = PersonneDAL.SelectPersonneById(user.IdPersonne);
             if (test.IdPersonne == null)
             {
-                PersonneDAL.InsertNewPersonne(new PersonneDAO(user.IdPersonne, user.Nom, user.Prenom, user.Age,
-                    user.Email,
-                    user.Password, user.TelephoneMobile, user.TelephoneMobile,
-                    user.Adresses.Select(adress => adress.IdAdresse).ToList()));
+                PersonneDAL.InsertNewPersonne(UtilisateurToPersonneDao(user));
             }
 
             UtilisateurDAL.InsertNewUtilisateur(UtilisateurToDao(user));
@@ -103,6 +106,7 @@ namespace bidCardCoin.ORM
 
         public static void UpdateUtilisateur(Utilisateur user)
         {
+            PersonneDAL.UpdatePersonne(UtilisateurToPersonneDao(user));
             UtilisateurDAL.UpdateUtilisateur(UtilisateurToDao(user));
         }
 
