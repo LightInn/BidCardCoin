@@ -85,7 +85,19 @@ namespace BidCardCoin.Vue.CRUD
 
         private void SelectUser(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            Utilisateur user = (Utilisateur)sender;
+
+            Window window = new Window
+            {
+                Title = "Modifier un utilisateur",
+                SizeToContent = SizeToContent.WidthAndHeight,
+                ResizeMode = ResizeMode.NoResize,
+                Background = (SolidColorBrush) new BrushConverter().ConvertFrom("#393C43"),
+                Icon = new BitmapImage(new Uri("pack://application:,,,/ressources/CRUDimg/utilisateur.png",
+                    UriKind.RelativeOrAbsolute)),
+            };
+            window.Content = new EditUtilisateurView(window, user);
+            window.ShowDialog();
         }
     }
 }
