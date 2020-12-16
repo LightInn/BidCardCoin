@@ -18,6 +18,7 @@ namespace BidCardCoin.Vue.CRUD
         private string _selectedId;
         private Utilisateur _contextUtilisateur;
         private ObservableCollection<Utilisateur> _utilisateurs;
+        // private ObservableCollection<Adresse> _adresses;
 
         private List<Utilisateur> _selectedUsers;
 
@@ -33,7 +34,7 @@ namespace BidCardCoin.Vue.CRUD
                 selectMode.Visibility = Visibility.Collapsed;
             }
 
-
+            
             _utilisateurs = new ObservableCollection<Utilisateur>(UtilisateurORM.GetAllUtilisateur());
             _contextUtilisateur = new Utilisateur();
             GenerateDataList();
@@ -41,6 +42,7 @@ namespace BidCardCoin.Vue.CRUD
 
         private void GenerateDataList()
         {
+            // ComboBoxColumnAdresse.ItemsSource = _adresses;
             ListeUtilisateursGrid.ItemsSource = _utilisateurs;
         }
 
@@ -62,6 +64,13 @@ namespace BidCardCoin.Vue.CRUD
             if (newUser.IdUtilisateur != null)
             {
                 _utilisateurs.Add(newUser);
+                // foreach (var utilisateur in _utilisateurs)
+                // {
+                //     foreach (var adress in utilisateur.Adresses)
+                //     {
+                //         _adresses.Add(adress);
+                //     }
+                // }
             }
         }
 
