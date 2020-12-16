@@ -36,14 +36,14 @@
                     </Style>
                 </DataGrid.CellStyle>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Pays" Binding="{Binding Pays , Mode=OneWay}" />
+                    <DataGridTextColumn Header="Pays" Binding="{Binding Pays , Mode=TwoWay}" />
                     <DataGridTextColumn Header="Region" Binding="{Binding Region}" />
                     <DataGridTextColumn Header="Ville"
                                         Binding="{Binding Ville, Mode=TwoWay}" />
                     <DataGridTextColumn Header="Code Postal"
-                                        Binding="{Binding CodePostal, Mode=OneWay}" />
+                                        Binding="{Binding CodePostal, Mode=TwoWay}" />
                     <DataGridTextColumn Header="Adresse"
-                                        Binding="{Binding AdresseNb, Mode=twoWay}" />
+                                        Binding="{Binding AdresseNb, Mode=TwoWay}" />
                 </DataGrid.Columns>
             </DataGrid>
 

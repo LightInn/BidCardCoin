@@ -4,8 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:BidCardCoin.Vue.CRUD"
+             xmlns:models="clr-namespace:BidCardCoin.Models"
              mc:Ignorable="d">
+    
     <Grid>
+
         <DockPanel>
             <DataGrid Name="ListeUtilisateursGrid" ItemsSource="{Binding}" AutoGenerateColumns="false"
                       HorizontalAlignment="Left" BorderBrush="#3F3F46" HorizontalGridLinesBrush="#3F3F46"
@@ -47,11 +50,45 @@
                                         Binding="{Binding Email, Mode=TwoWay}" Width="170" />
                     <DataGridTextColumn Header="Age" Binding="{Binding Age , Mode=TwoWay}" Width="170" />
 
+                    <DataGridComboBoxColumn x:Name="ComboBoxColumnAdresse" Header="Adresse(s) de l'utilisateur"
+                                            SelectedValueBinding="{Binding Adresses, Mode=TwoWay}" Width="170" />
+
                     <DataGridCheckBoxColumn Header="Verifier" IsThreeState="True"  Binding="{Binding IdentityExist, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                             Width="170" />
 
+
                 </DataGrid.Columns>
+                
+                <!-- <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Path=Adresses}"> -->
+                <!--     <DataGrid.Columns> -->
+                <!--         <DataGridComboBoxColumn Header="Title" SelectedItemBinding="{Binding Adresses}"> -->
+                <!--             <DataGridComboBoxColumn.ElementStyle> -->
+                <!--                 <Style TargetType="ComboBox"> -->
+                <!--                     <Setter Property="ItemsSource" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.Titles}"/> -->
+                <!--                     <Setter Property="IsReadOnly" Value="True"/> -->
+                <!--                 </Style> -->
+                <!--             </DataGridComboBoxColumn.ElementStyle> -->
+                <!--             <DataGridComboBoxColumn.EditingElementStyle> -->
+                <!--                 <Style TargetType="ComboBox"> -->
+                <!--                     <Setter Property="ItemsSource" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.Titles}"/> -->
+                <!--                     <Setter Property="DisplayMemberPath" Value="TitleText" /> -->
+                <!--                 </Style> -->
+                <!--             </DataGridComboBoxColumn.EditingElementStyle> -->
+                <!--         </DataGridComboBoxColumn> -->
+                <!--     </DataGrid.Columns> -->
+                <!-- </DataGrid> -->
+                
             </DataGrid>
+            <!-- <DataGrid ItemsSource="{Binding Adresses}"> -->
+            <!--     <DataGrid.Resources> -->
+            <!--         <DataTemplate x:Key="CompanyDisplayTemplate" DataType="models:Adresse"> -->
+            <!--             <TextBlock Text="{Binding AdresseId}" /> -->
+            <!--         </DataTemplate> -->
+            <!--         <DataTemplate x:Key="CompanyEditingTemplate" DataType="models:Adresse"> -->
+            <!--             <ComboBox SelectedItem="{Binding Adresse}" ItemsSource="{Binding CompanyList}" /> -->
+            <!--         </DataTemplate> -->
+            <!--     </DataGrid.Resources> -->
+            <!-- </DataGrid> -->
 
             <StackPanel>
                 <Button Style="{DynamicResource ButtonInvisible}" Click="AddUser" VerticalAlignment="Center"
