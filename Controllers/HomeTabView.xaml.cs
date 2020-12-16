@@ -34,12 +34,10 @@ namespace BidCardCoin.Vue
             //
             // Enchere enchere = new Enchere("EnchereTestPOUEEEEET", 10.1, false, DateTime.Now, ordreAchat,lot,commissaire, new Utilisateur());
             // EnchereORM.InsertOrAddNewEnchere(enchere);
+            List<Enchere> list = EnchereORM.GetAllEnchere();
+            var i = 1;
         }
-
-
         /* ------------------------------------------------ NAV -----------------------------------------------------*/
-
-
         private void NavHoverEffectEnter(object o, MouseEventArgs mouseEventArgs)
         {
             var border = ((o as Button)?.Content as Border);

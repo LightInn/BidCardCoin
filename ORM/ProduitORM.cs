@@ -66,13 +66,16 @@ namespace bidCardCoin.ORM
 
             if (initializer)
             {
-                lotProduit = LotORM.GetLotById(LotDAL.SelectLotById(pdao.LotId).IdLot, false);
+                lotProduit = LotORM.GetLotById(pdao.LotId, false);
                 utilisateurProduit =
-                    UtilisateurORM.GetUtilisateurById(
-                        UtilisateurDAL.SelectUtilisateurById(pdao.UtilisateurId).IdUtilisateur, false);
-                stockProduit = StockORM.GetStockById(StockDAL.SelectStockById(pdao.StockId).IdStock, false);
-                enchereGagnante =
-                    EnchereORM.GetEnchereById(EnchereDAL.SelectEnchereById(pdao.EnchereGagnanteId).IdEnchere, false);
+                    UtilisateurORM.GetUtilisateurById(pdao.UtilisateurId, false);
+                stockProduit = StockORM.GetStockById(pdao.StockId, false);
+                if (!string.IsNullOrEmpty(pdao.EnchereGagnanteId))
+                {
+                    enchereGagnante =
+                        EnchereORM.GetEnchereById(pdao.EnchereGagnanteId, false);
+                }
+
                 //todo decomente ici
                 // categorieProduit =
                 //     CategorieORM.GetCategorieById(CategorieDAL.SelectCategorieById(pdao.CategorieId).CategorieId,
@@ -95,7 +98,11 @@ namespace bidCardCoin.ORM
                     produit.UtilisateurProduit
                 }));
                 StockORM.Populate(produit.StockProduit);
-                EnchereORM.Populate(produit.EnchereGagnante);
+                if (!string.IsNullOrEmpty(produit.EnchereGagnante.IdEnchere))
+                {
+                    EnchereORM.Populate(produit.EnchereGagnante);
+                }
+
                 //todo decomenter ici
                 // CategorieORM.Populate(produit.CategorieProduit);
             }

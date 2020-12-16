@@ -15,6 +15,7 @@ namespace BidCardCoin.Vue.CRUD
         private List<string> _listeMotClef;
         private Window _win;
 
+
         public AddAdresseView(Window win = null, Adresse user = null)
         {
             InitializeComponent();
@@ -27,36 +28,21 @@ namespace BidCardCoin.Vue.CRUD
 
         private void CreateNewAdresse(object sender, RoutedEventArgs e)
         {
-            var uuid = Guid.NewGuid().ToString();
             
+                var uuid = Guid.NewGuid().ToString();
+
+                _adresse.IdAdresse = uuid;
+                _adresse.Pays = InputPays.Text;
+                _adresse.Region = InputRegion.Text;
+                _adresse.Ville = InputVille.Text;
+                _adresse.CodePostal = InputCodePostal.Text;
+                _adresse.AdresseNb = InputAdresse.Text;
+                _adresse.Utilisateurs = new List<Utilisateur>();
+
+                AdresseORM.AddAdresse(_adresse);
 
 
-            _adresse.IdAdresse = uuid;
-            _adresse.Pays = InputPays.Text;
-            _adresse.Region = InputRegion.Text;
-            _adresse.Ville = InputVille.Text;
-            _adresse.CodePostal = InputCodePostal.Text;
-            _adresse.AdresseNb = InputAdresse.Text;
-            _adresse.Utilisateurs = new List<Utilisateur>();
-            
-            // _adresse.Utilisateurs = InputPassword;
-            
-            
-
-            
-            
-            
-            // _adresse.IdentityExist = InputIdentity.IsChecked ?? false;
-            // _adresse.IsSolvable = InputSolvable.IsChecked ?? false;
-            // _adresse.IsRessortissant = InputRessortissant.IsChecked ?? false;
-            // _adresse.TelephoneFixe = InputFixe.Text;
-            // _adresse.TelephoneMobile = InputMobile.Text;
-            // _adresse.ListeMotClef = _listeMotClef;
-            // _adresse.Adresses = listeAdresses;
-
-
-            AdresseORM.AddAdresse(_adresse);
-            _win.Close();
+                _win.Close();
         }
 
         private void Cancel(object sender, RoutedEventArgs e)

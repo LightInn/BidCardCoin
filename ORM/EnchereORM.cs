@@ -15,7 +15,12 @@ namespace bidCardCoin.ORM
 
         private static bool EnchereAlreadyInDictionary(string id)
         {
-            return _encheresDictionary.ContainsKey(id);
+            if (!String.IsNullOrEmpty(id))
+            {
+                return _encheresDictionary.ContainsKey(id);
+            }
+
+            return false;
         }
 
         // todo -> liens vers un : Commissaire // Lot // Ordre OrdreAchatEnchere OU Utilisateur
@@ -115,7 +120,10 @@ namespace bidCardCoin.ORM
 
             foreach (var edao in ledao)
             {
-                encheres.Add(GetEnchereById(edao.IdEnchere));
+                if (!string.IsNullOrEmpty(edao.IdEnchere))
+                {
+                    encheres.Add(GetEnchereById(edao.IdEnchere));
+                }
             }
 
             return encheres;
@@ -123,14 +131,39 @@ namespace bidCardCoin.ORM
 
         public static EnchereDAO EnchereToEnchereDAO(Enchere enchere)
         {
+            string utilisateurid;
+            string ordreachatid;
+            if (enchere.OrdreAchatEnchere == null)
+            {
+                ordreachatid = null;
+            }
+            else
+            {
+                ordreachatid = enchere.OrdreAchatEnchere.IdOrdreAchat;
+            }
+
+            if (enchere.UtilisateurEnchere == null)
+            {
+                utilisateurid = null;
+            }
+            else
+            {
+                utilisateurid = enchere.UtilisateurEnchere.IdUtilisateur;
+            }
+            
             return new EnchereDAO(enchere.IdEnchere, enchere.PrixProposer, enchere.IsAdjuger, enchere.DateHeureVente,
                 enchere.LotEnchere.IdLot, enchere.CommissaireEnchere.IdCommissaire,
-                enchere.OrdreAchatEnchere.IdOrdreAchat, enchere.UtilisateurEnchere.IdUtilisateur);
+                ordreachatid, utilisateurid);
         }
 
         public static void InsertOrAddNewEnchere(Enchere enchere)
         {
             EnchereDAL.InsertNewEnchere(EnchereToEnchereDAO(enchere));
+        }
+
+        public static void DeleteEnchere(Enchere enchere)
+        {
+            EnchereDAL.DeleteEnchere(enchere.IdEnchere);
         }
     }
 }
