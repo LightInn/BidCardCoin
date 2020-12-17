@@ -1,22 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace bidCardCoin.DAO
+﻿namespace bidCardCoin.DAO
 {
     public class StockDAO
     {
-        private string _idStock;
-        private string _adresseId;
-
+        public StockDAO()
+        {
+        }
 
         public StockDAO(string idStock, string adresseId)
 
         {
-            this._idStock = idStock;
-            this._adresseId = adresseId;
+            IdStock = idStock;
+            AdresseId = adresseId;
         }
+
+        public string IdStock { get; }
+        public string AdresseId { get; }
     }
 }

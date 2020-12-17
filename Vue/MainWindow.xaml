@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:BidCardCoin"
         mc:Ignorable="d"
         WindowStyle="None"
         AllowsTransparency="True"
@@ -17,7 +16,7 @@
 
         <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="TopBar">
             <DockPanel Background="#202225" MaxHeight="150" VerticalAlignment="Top"
-                       MouseDown="Window_MouseDown" Grid.ColumnSpan="2" Height="35">
+                       MouseDown="Window_MouseDown" Height="35">
                 <DockPanel Width="20" />
                 <Image Source="/ressources/img/logo.png" Width="30" Height="30"
                        RenderOptions.BitmapScalingMode="HighQuality" />
@@ -81,7 +80,6 @@
                         VerticalAlignment="Stretch" Width="60" Height="535">
 
 
-
                         <StackPanel Background="#202225" HorizontalAlignment="Center" VerticalAlignment="Center">
 
                             <Button Style="{DynamicResource ButtonNavStyle}" Padding="0" Cursor="Hand"
@@ -141,7 +139,7 @@
 
 
                 <DockPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                    <Border Background="#FFFFFF" CornerRadius="8 0 0 0">
+                    <Border Background="#F8F8F8" CornerRadius="8 0 0 0">
                         <DockPanel Name="SubView">
 
                             <DockPanel.Background>

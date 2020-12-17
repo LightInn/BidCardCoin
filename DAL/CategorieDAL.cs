@@ -1,8 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using bidCardCoin.DAO;
 using Npgsql;
 
@@ -13,9 +10,10 @@ namespace bidCardCoin.DAL
         // SELECT
         public static CategorieDAO SelectCategorieById(string id)
         {
-            // Selectionne l'categorie a partir de l'id
+            var categorieDao = new CategorieDAO();
+            // Selectionne la categorie a partir de l'id
             var query =
-                "SELECT * FROM public.categorie a where a.\"idCategorie\"= :idCategorieParam";
+                "SELECT * FROM public.categorie a where a.\"idCategorie\"=:idCategorieParam";
             var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
             cmd.Parameters.AddWithValue("idCategorieParam", id);
 
@@ -24,27 +22,20 @@ namespace bidCardCoin.DAL
             {
                 // récup les paramètres principaux
                 var idCategorie = (string) reader["idCategorie"];
+                var categorieId = Convert.IsDBNull(reader["categorieId"]) ? null : (string) reader["categorieId"];
                 var nomCategorie = (string) reader["nomCategorie"];
-                var categorieId = (string) reader["categorieId"];
-                // todo verif
-                if (categorieId == null)
-                {
-                    return new CategorieDAO(idCategorie, nomCategorie);
-                }
-                else
-                {
-                    return new CategorieDAO(idCategorie, categorieId, nomCategorie);
-                }
+                categorieDao = new CategorieDAO(idCategorie, categorieId, nomCategorie);
             }
 
-            return new CategorieDAO();
-        }
+            reader.Close();
 
+            return categorieDao;
+        }
 
         public static List<CategorieDAO> SelectAllCategorie()
         {
             // Selectionné tout les categorie dans la base de donnée
-            List<CategorieDAO> liste = new List<CategorieDAO>();
+            var liste = new List<CategorieDAO>();
 
             var query = "SELECT * FROM public.categorie ORDER BY \"idCategorie\"";
             var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
@@ -53,87 +44,43 @@ namespace bidCardCoin.DAL
             while (reader.Read())
             {
                 var idCategorie = (string) reader["idCategorie"];
+                var categorieId = Convert.IsDBNull(reader["categorieId"]) ? null : (string) reader["categorieId"];
                 var nomCategorie = (string) reader["nomCategorie"];
-                var categorieId = (string) reader["categorieId"];
-                // todo verif
-                if (categorieId == null)
-                {
-                    liste.Add(new CategorieDAO(idCategorie, nomCategorie));
-                }
-                else
-                {
-                    liste.Add(new CategorieDAO(idCategorie, categorieId, nomCategorie));
-                }
+
+                liste.Add(new CategorieDAO(idCategorie, categorieId, nomCategorie));
             }
 
+            reader.Close();
             return liste;
         }
 
-        // INSERT
-        public static void InsertNewCategorie(CategorieDAO categorie)
+        // INSERT & Update 
+        public static void InsertOrAddNewCategorie(CategorieDAO categorie)
         {
             // Inserer categorie dans la bdd
-            CategorieDAO dao = SelectCategorieById(categorie.IdCategorie);
-            if (dao.IdCategorie == null && categorie.IdCategorie != null)
-            {
-                if (categorie.CategorieId == null)
-                {
-                    var query =
-                        "INSERT INTO public.categorie values (:idCategorie,null,:nomCategorie)";
-                    var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
-                    cmd.Parameters.AddWithValue("idCategorie", categorie.IdCategorie);
-                    cmd.Parameters.AddWithValue("categorieId", categorie.CategorieId);
-                    cmd.Parameters.AddWithValue("nomCategorie", categorie.NomCategorie);
-                    cmd.ExecuteNonQuery();
-                }
-                else
-                {
-                    var query =
-                        "INSERT INTO public.categorie values (:idCategorie,:categorieId,:nomCategorie)";
-                    var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
-                    cmd.Parameters.AddWithValue("idCategorie", categorie.IdCategorie);
-                    cmd.Parameters.AddWithValue("categorieId", categorie.CategorieId);
-                    cmd.Parameters.AddWithValue("nomCategorie", categorie.NomCategorie);
-                    cmd.ExecuteNonQuery();
-                }
-            }
-        }
-// UPDATE
-        public static void UpdateCategorie(CategorieDAO categorie)
-        {
-            CategorieDAO dao = SelectCategorieById(categorie.IdCategorie);
-            if (dao.IdCategorie != null && categorie.IdCategorie != null)
-            {
-                if (categorie.CategorieId != null)
-                {
-                    var query =
-                        "UPDATE public.categorie SET (idCategorie= :idCategorie,categorieId= :categorieId, nomCategorie= :nomCategorie)";
-                    var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
-                    cmd.Parameters.AddWithValue("idCategorie", categorie.IdCategorie);
-                    cmd.Parameters.AddWithValue("categorieId", categorie.CategorieId);
-                    cmd.Parameters.AddWithValue("nomCategorie", categorie.NomCategorie);
-                    cmd.ExecuteNonQuery();
-                }
-                else
-                {
-                    var query =
-                        "UPDATE public.categorie SET (idCategorie= :idCategorie, nomCategorie= :nomCategorie)";
-                    var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
-                    cmd.Parameters.AddWithValue("idCategorie", categorie.IdCategorie);
-                    cmd.Parameters.AddWithValue("nomCategorie", categorie.NomCategorie);
-                    cmd.ExecuteNonQuery();
-                }
-            }
+            var query =
+                @"INSERT INTO public.categorie (""idCategorie"",""categorieId"",""nomCategorie"") values 
+(:idCategorie,:categorieId,:nomCategorie) 
+ON CONFLICT ON CONSTRAINT pk_categorie DO UPDATE SET 
+""idCategorie""=:idCategorie,
+""categorieId""=:categorieId,
+""nomCategorie""=:nomCategorie,
+where categorie.""idCategorie""=:idCategorie";
+            var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
+            cmd.Parameters.AddWithValue("idCategorie", categorie.CategorieId);
+            cmd.Parameters.AddWithValue("categorieId", categorie.IdCategorie);
+            cmd.Parameters.AddWithValue("nomCategorie", categorie.NomCategorie);
+            cmd.ExecuteNonQuery();
         }
 
-// DELETE
+        // DELETE
         public static void DeleteCategorie(string categorieId)
         {
             // Supprimer categorie dans la bdd
-            CategorieDAO dao = SelectCategorieById(categorieId);
+            var dao = SelectCategorieById(categorieId);
             if (dao.IdCategorie != null)
             {
-                var query = "DELETE FROM public.categorie WHERE \"idCategorie\"= :idCategorie";
+                var query = "DELETE FROM public.categorie WHERE \"idCategorie\"=:idCategorie";
                 var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
                 cmd.Parameters.AddWithValue("idCategorie", categorieId);
                 cmd.ExecuteNonQuery();

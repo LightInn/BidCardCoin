@@ -1,62 +1,47 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace bidCardCoin.DAO
 {
     public class ProduitDAO
     {
-        private string _idProduit;
-        private string _nomArtiste;
-        private string _nomStyle;
-        private string _nomProduit;
-        private double _prixReserve;
-        private string _referenceCatalogue;
-        private string _descriptionProduit;
-        private bool _isSend;
-        
-        private string _stockId;
-        private string _utilisateurId;
-        private string _lotId;
-        private string _enchereGagnanteId;
+        // public string PhotoId { get; }
 
-        // Sans enchere gagnante
         public ProduitDAO()
         {
         }
 
-        public ProduitDAO(string idProduit, string nomArtiste, string nomStyle, string nomProduit, double prixReserve, string referenceCatalogue, string descriptionProduit, bool isSend, string stockId, string utilisateurId, string lotId)
+        public ProduitDAO(string idProduit, string lotId, string utilisateurId, string stockId,
+            string enchereGagnanteId, List<string> categorieId, string nomArtiste, string nomStyle, string nomProduit,
+            double prixReserve, string referenceCatalogue, string descriptionProduit, bool isSend)
         {
-            _idProduit = idProduit;
-            _nomArtiste = nomArtiste;
-            _nomStyle = nomStyle;
-            _nomProduit = nomProduit;
-            _prixReserve = prixReserve;
-            _referenceCatalogue = referenceCatalogue;
-            _descriptionProduit = descriptionProduit;
-            _isSend = isSend;
-            _stockId = stockId;
-            _utilisateurId = utilisateurId;
-            _lotId = lotId;
+            IdProduit = idProduit;
+            LotId = lotId;
+            UtilisateurId = utilisateurId;
+            StockId = stockId;
+            EnchereGagnanteId = enchereGagnanteId;
+            CategorieId = categorieId;
+            NomArtiste = nomArtiste;
+            NomStyle = nomStyle;
+            NomProduit = nomProduit;
+            PrixReserve = prixReserve;
+            ReferenceCatalogue = referenceCatalogue;
+            DescriptionProduit = descriptionProduit;
+            IsSend = isSend;
+            // this.PhotoId = photoId;
         }
-        
-        // Avec une enchere gagnante 
-        public ProduitDAO(string idProduit, string nomArtiste, string nomStyle, string nomProduit, double prixReserve, string referenceCatalogue, string descriptionProduit, bool isSend, string stockId, string utilisateurId, string lotId, string enchereGagnanteId)
-        {
-            _idProduit = idProduit;
-            _nomArtiste = nomArtiste;
-            _nomStyle = nomStyle;
-            _nomProduit = nomProduit;
-            _prixReserve = prixReserve;
-            _referenceCatalogue = referenceCatalogue;
-            _descriptionProduit = descriptionProduit;
-            _isSend = isSend;
-            _stockId = stockId;
-            _utilisateurId = utilisateurId;
-            _lotId = lotId;
-            _enchereGagnanteId = enchereGagnanteId;
-        }
+
+        public string IdProduit { get; }
+        public string LotId { get; }
+        public string UtilisateurId { get; }
+        public string StockId { get; }
+        public string EnchereGagnanteId { get; }
+        public List<string> CategorieId { get; set; }
+        public string NomArtiste { get; }
+        public string NomStyle { get; }
+        public string NomProduit { get; }
+        public double PrixReserve { get; }
+        public string ReferenceCatalogue { get; }
+        public string DescriptionProduit { get; }
+        public bool IsSend { get; }
     }
 }

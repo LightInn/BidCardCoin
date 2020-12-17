@@ -1,38 +1,33 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Common;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Npgsql;
 
 namespace bidCardCoin.DAL
 {
-    static class DALconnection
+    internal static class DALconnection
     {
-        private static string server;
-        private static string database;
-        private static string uid;
-        private static string password;
-        private static NpgsqlConnection connection;
+        private static string _server;
+        private static string _database;
+        private static string _uid;
+        private static string _password;
+        private static NpgsqlConnection _connection;
 
         public static NpgsqlConnection OpenConnection()
         {
-            if (connection == null)
+            if (_connection == null)
             {
-                server = Environment.GetEnvironmentVariable("SERVER_ENVIRONMENT");
-                database = Environment.GetEnvironmentVariable("DATABASE_ENVIRONMENT");
-                uid = Environment.GetEnvironmentVariable("UID_ENVIRONMENT");
-                password = Environment.GetEnvironmentVariable("PASSWORD_ENVIRONMENT");
-                var connectionString = $"Host={server};Username={uid};Password={password};Database={database};Pooling=false";
+                _server = Environment.GetEnvironmentVariable("SERVER_ENVIRONMENT");
+                _database = Environment.GetEnvironmentVariable("DATABASE_ENVIRONMENT");
+                _uid = Environment.GetEnvironmentVariable("UID_ENVIRONMENT");
+                _password = Environment.GetEnvironmentVariable("PASSWORD_ENVIRONMENT");
+                var connectionString =
+                    $"Host={_server};Username={_uid};Password={_password};Database={_database};Pooling=false";
 
 
-                connection = new NpgsqlConnection(connectionString);
-                connection.Open();
+                _connection = new NpgsqlConnection(connectionString);
+                _connection.Open();
             }
 
-            return connection;
+            return _connection;
         }
     }
 }

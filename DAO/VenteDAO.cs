@@ -1,28 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace bidCardCoin.DAO
 {
     public class VenteDAO
     {
-        private string _idVente;
-        private string _produitId;
-        private string _adresseId;
-        private string _dateDebut;
-
         public VenteDAO()
         {
         }
 
-        public VenteDAO(string idVente, string produitId, string adresseId, string dateDebut)
+        public VenteDAO(string idVente, string lotId, string adresseId, DateTime dateDebut)
         {
-            this._idVente = idVente;
-            this._produitId = produitId;
-            this._adresseId = adresseId;
-            this._dateDebut = dateDebut;
+            IdVente = idVente;
+            LotId = lotId;
+            AdresseId = adresseId;
+            DateDebut = dateDebut;
         }
+
+        public string IdVente { get; }
+        public string LotId { get; }
+        public string AdresseId { get; }
+        public DateTime DateDebut { get; }
     }
 }

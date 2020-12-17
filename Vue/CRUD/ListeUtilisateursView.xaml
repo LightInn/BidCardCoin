@@ -1,0 +1,99 @@
+﻿<UserControl x:Class="BidCardCoin.Vue.CRUD.ListeUtilisateursView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d">
+
+    <Grid>
+
+        <DockPanel>
+            <DataGrid Name="ListeUtilisateursGrid" ItemsSource="{Binding}" AutoGenerateColumns="false"
+                      HorizontalAlignment="Left" BorderBrush="#3F3F46" HorizontalGridLinesBrush="#3F3F46"
+                      VerticalGridLinesBrush="#3F3F46"
+                      Background="#2A2A2C" HeadersVisibility="Column"
+                      ScrollViewer.CanContentScroll="True"
+                      ScrollViewer.VerticalScrollBarVisibility="Auto"
+                      ScrollViewer.HorizontalScrollBarVisibility="Auto">
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="FontWeight" Value="Bold" />
+                        <Setter Property="Background" Value="#3E3E42" />
+                        <Setter Property="Foreground" Value="#F1F1F1" />
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+                <DataGrid.CellStyle>
+                    <Style TargetType="{x:Type DataGridCell}">
+                        <Setter Property="Background" Value="#2D2D30" />
+                        <Setter Property="Foreground" Value="#F1F1F1" />
+                        <Setter Property="BorderThickness" Value="0" />
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="#249181" />
+
+                                <Setter Property="BorderBrush"
+                                        Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.CellStyle>
+
+                <DataGrid.Columns>
+
+                    <DataGridTextColumn Header="Prénom" Binding="{Binding Prenom}" Width="170" />
+                    <DataGridTextColumn Header="Nom"
+                                        Binding="{Binding Nom, Mode=TwoWay}" Width="170" />
+
+                    <DataGridTextColumn Header="Email"
+                                        Binding="{Binding Email, Mode=TwoWay}" Width="170" />
+                    <DataGridTextColumn Header="Age" Binding="{Binding Age , Mode=TwoWay}" Width="170" />
+                    <!-- <DataGridComboBoxColumn x:Name="ComboBoxColumnAdresse" Header="Adresse(s) de l'utilisateur" -->
+                    <!--                         SelectedValueBinding="{Binding Adresses, Mode=TwoWay}" Width="170" /> -->
+                    <DataGridCheckBoxColumn Header="Verifier" IsThreeState="True"
+                                            Binding="{Binding IdentityExist, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                            Width="170" />
+                </DataGrid.Columns>
+            </DataGrid>
+            <StackPanel>
+                <Button Click="AddUser" Margin="15" Style="{DynamicResource ButtonInvisible}">
+                    <Border HorizontalAlignment="Center"
+                            CornerRadius="8" Background="#249181">
+                        <TextBlock Width="100" Foreground="#F8F8F8" Margin="60,3,0,3" FontSize="15"
+                                   HorizontalAlignment="Center">
+                            Ajouter
+                        </TextBlock>
+                    </Border>
+                </Button>
+                <Button Click="DeleteUser" Margin="15" Style="{DynamicResource ButtonInvisible}">
+                    <Border HorizontalAlignment="Center"
+                            CornerRadius="8" Background="#DE4F4E">
+                        <TextBlock Width="100" Foreground="#F8F8F8" Margin="60,3,0,3" FontSize="15"
+                                   HorizontalAlignment="Center">
+                            Supprimer
+                        </TextBlock>
+                    </Border>
+                </Button>
+                
+                <Button Name="EditMode" Click="EditUser" Margin="15" Style="{DynamicResource ButtonInvisible}">
+                    <Border HorizontalAlignment="Center"
+                            CornerRadius="8" Background="#3E3E42">
+                        <TextBlock Width="100" Foreground="#F8F8F8" Margin="60,3,0,3" FontSize="15"
+                                   HorizontalAlignment="Center">
+                            Editer
+                        </TextBlock>
+                    </Border>
+                </Button>
+                
+                <Button Name="selectMode" Click="SelectUser" Margin="15" Style="{DynamicResource ButtonInvisible}">
+                    <Border HorizontalAlignment="Center"
+                            CornerRadius="8" Background="#249181">
+                        <TextBlock Width="100" Foreground="#F8F8F8" Margin="60,3,0,3" FontSize="15"
+                                   HorizontalAlignment="Center">
+                            Sélectioner
+                        </TextBlock>
+                    </Border>
+                </Button>
+            </StackPanel>
+        </DockPanel>
+    </Grid>
+</UserControl>

@@ -1,25 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Effects;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using BidCardCoin.Vue;
-
 
 namespace BidCardCoin
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    ///     Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow
     {
@@ -28,28 +16,24 @@ namespace BidCardCoin
         public MainWindow()
         {
             InitializeComponent();
-            this.BorderThickness = new System.Windows.Thickness(1);
+            BorderThickness = new Thickness(1);
             MaxHeight = SystemParameters.VirtualScreenHeight;
             MaxWidth = SystemParameters.VirtualScreenWidth;
 
-            body.Width = this.Width;
-            nav.Height = this.Height;
+            body.Width = Width;
+            nav.Height = Height;
 
             SubView.Children.Add(new HomeTabView(this));
         }
 
         public void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            body.Width = this.Width;
-            nav.Height = this.Height;
-            if (this.WindowState == WindowState.Maximized)
-            {
-                this.BorderThickness = new System.Windows.Thickness(7);
-            }
+            body.Width = Width;
+            nav.Height = Height;
+            if (WindowState == WindowState.Maximized)
+                BorderThickness = new Thickness(7);
             else
-            {
-                this.BorderThickness = new System.Windows.Thickness(1);
-            }
+                BorderThickness = new Thickness(1);
         }
 
         private void SwitchState()
@@ -59,15 +43,15 @@ namespace BidCardCoin
                 case WindowState.Normal:
                 {
                     WindowState = WindowState.Maximized;
-                    body.Width = this.Width;
-                    nav.Height = this.Height;
+                    body.Width = Width;
+                    nav.Height = Height;
                     break;
                 }
                 case WindowState.Maximized:
                 {
                     WindowState = WindowState.Normal;
-                    body.Width = this.Width;
-                    nav.Height = this.Height;
+                    body.Width = Width;
+                    nav.Height = Height;
                     break;
                 }
             }
@@ -79,18 +63,13 @@ namespace BidCardCoin
             {
                 if (e.ClickCount == 2)
                 {
-                    if ((ResizeMode == ResizeMode.CanResize) ||
-                        (ResizeMode == ResizeMode.CanResizeWithGrip))
-                    {
+                    if (ResizeMode == ResizeMode.CanResize ||
+                        ResizeMode == ResizeMode.CanResizeWithGrip)
                         SwitchState();
-                    }
                 }
                 else
                 {
-                    if (WindowState == WindowState.Maximized)
-                    {
-                        SwitchState();
-                    }
+                    if (WindowState == WindowState.Maximized) SwitchState();
 
                     DragMove();
                 }
@@ -118,14 +97,14 @@ namespace BidCardCoin
 
         private void NavHoverEffectEnter(object o, MouseEventArgs mouseEventArgs)
         {
-            var border = ((o as Button)?.Content as Border);
+            var border = (o as Button)?.Content as Border;
             border.CornerRadius = new CornerRadius(10);
             border.Background = (SolidColorBrush) new BrushConverter().ConvertFrom("#7289DA");
         }
 
         private void NavHoverEffectExit(object o, MouseEventArgs mouseEventArgs)
         {
-            var border = ((o as Button)?.Content as Border);
+            var border = (o as Button)?.Content as Border;
             border.CornerRadius = new CornerRadius(100);
             border.Background = (SolidColorBrush) new BrushConverter().ConvertFrom("#393C43");
         }
@@ -135,42 +114,30 @@ namespace BidCardCoin
 
         public void Tab_Home(object sender, RoutedEventArgs e)
         {
-            if (SubView.Children.Count == 1)
-            {
-                SubView.Children.RemoveAt(0);
-            }
+            if (SubView.Children.Count == 1) SubView.Children.RemoveAt(0);
 
             SubView.Children.Add(new HomeTabView(this));
         }
 
         public void Tab_Achat(object sender, RoutedEventArgs e)
         {
-            if (SubView.Children.Count == 1)
-            {
-                SubView.Children.RemoveAt(0);
-            }
+            if (SubView.Children.Count == 1) SubView.Children.RemoveAt(0);
 
             SubView.Children.Add(new AchatTabView());
         }
 
         public void Tab_Solde(object sender, RoutedEventArgs e)
         {
-            if (SubView.Children.Count == 1)
-            {
-                SubView.Children.RemoveAt(0);
-            }
+            if (SubView.Children.Count == 1) SubView.Children.RemoveAt(0);
 
             SubView.Children.Add(new SoldeTabView());
         }
 
         public void Tab_Wrench(object sender, RoutedEventArgs e)
         {
-            if (SubView.Children.Count == 1)
-            {
-                SubView.Children.RemoveAt(0);
-            }
+            if (SubView.Children.Count == 1) SubView.Children.RemoveAt(0);
 
-            SubView.Children.Add(new WrenchTanView());
+            SubView.Children.Add(new WrenchTanView(this));
         }
     }
 }

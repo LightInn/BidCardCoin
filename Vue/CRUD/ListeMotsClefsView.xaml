@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="BidCardCoin.Vue.CRUD.ListeMotsClefsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d">
+    <Grid>
+        <DockPanel>
+            <ListBox Name="MotsClefsListBox" Margin="20" ItemsSource="{Binding }" Width="150">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding }" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <StackPanel>
+                <Button Click="AddMotClef" Margin="15" Style="{DynamicResource ButtonInvisible}">
+                    <Border HorizontalAlignment="Center"
+                            CornerRadius="8" Background="#249181">
+                        <TextBlock Width="170" Foreground="#F8F8F8" Margin="100,3,0,3" FontSize="15"
+                                   HorizontalAlignment="Center">
+                            Ajouter
+                        </TextBlock>
+                    </Border>
+                </Button>
+                <Button Click="RemoveMotClef" Margin="15" Style="{DynamicResource ButtonInvisible}">
+                    <Border HorizontalAlignment="Center"
+                            CornerRadius="8" Background="#DE4F4E">
+                        <TextBlock Width="170" Foreground="#F8F8F8" Margin="100,3,0,3" FontSize="15"
+                                   HorizontalAlignment="Center">
+                            supprimer
+                        </TextBlock>
+                    </Border>
+                </Button>
+            </StackPanel>
+        </DockPanel>
+    </Grid>
+</UserControl>

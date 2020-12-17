@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="BidCardCoin.Vue.CRUD.AddMotClefView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d">
+    <Grid Name="grigrid" Margin="0,0,0.300,0" VerticalAlignment="Top">
+ 
+        <StackPanel>
+            <Label Content="Mot Clef" FontSize="15" Foreground="#F8F8F8" />
+            <TextBox Name="InputMotClef" Height="20" />
+            <Button Click="CreateMotClef" Margin="15" Style="{DynamicResource ButtonInvisible}">
+                <Border HorizontalAlignment="Center"
+                        CornerRadius="8" Background="#249181">
+                    <TextBlock Width="170" Foreground="#F8F8F8" Margin="100,3,0,3" FontSize="15"
+                               HorizontalAlignment="Center">
+                        Créer
+                    </TextBlock>
+                </Border>
+            </Button>
+            <Button Click="Cancel" Margin="15" Style="{DynamicResource ButtonInvisible}">
+                <Border HorizontalAlignment="Center"
+                        CornerRadius="8" Background="#DE4F4E">
+                    <TextBlock Width="170" Foreground="#F8F8F8" Margin="100,3,0,3" FontSize="15"
+                               HorizontalAlignment="Center">
+                        Annuler
+                    </TextBlock>
+                </Border>
+            </Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

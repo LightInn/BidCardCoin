@@ -1,0 +1,64 @@
+﻿<UserControl x:Class="BidCardCoin.Vue.CRUD.AddAdresseView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <StackPanel>
+            <DockPanel LastChildFill="False" VerticalAlignment="Stretch">
+                <StackPanel Margin="15">
+                    <Label Content="Pays" FontSize="15" Foreground="#F8F8F8"/>
+                    <TextBox Name="InputPays" Height="20" Width="150" />
+                </StackPanel>
+                <StackPanel Margin="15">
+                    <Label Content="Region" FontSize="15" Foreground="#F8F8F8"/>
+                    <TextBox Name="InputRegion" Height="20" Margin="0,0,0.300,0" Width="150" />
+                </StackPanel>
+            </DockPanel>
+
+
+            <DockPanel LastChildFill="False" VerticalAlignment="Stretch" Margin="15">
+
+                <Label Content="Ville" FontSize="15" Foreground="#F8F8F8" />
+                <TextBox Name="InputVille" Width="150" />
+            </DockPanel>
+
+
+            <DockPanel LastChildFill="False" VerticalAlignment="Stretch">
+                <StackPanel Margin="15">
+                    <Label Content="Code Postal" FontSize="15" Foreground="#F8F8F8"/>
+                    <TextBox Name="InputCodePostal" Height="20" Width="150" />
+                </StackPanel>
+                <StackPanel Margin="15">
+                    <Label Content="Adresse (rue et numero)" FontSize="15" Foreground="#F8F8F8"/>
+                    <TextBox Name="InputAdresse" Height="20" Margin="0,0,0.300,0" Width="150" />
+                </StackPanel>
+            </DockPanel>
+
+            <DockPanel LastChildFill="False" VerticalAlignment="Stretch">
+
+                <Button Click="Cancel" Margin="15" Style="{DynamicResource ButtonInvisible}">
+                    <Border HorizontalAlignment="Center"
+                            CornerRadius="8" Background="#DE4F4E">
+                        <TextBlock Width="170" Foreground="#F8F8F8" Margin="100,3,0,3" FontSize="15"
+                                   HorizontalAlignment="Center">
+                            Annuler
+                        </TextBlock>
+                    </Border>
+                </Button>
+
+                <Button Click="CreateNewAdresse" Margin="15" Style="{DynamicResource ButtonInvisible}">
+                    <Border
+                        CornerRadius="8" Background="#249181">
+                        <TextBlock Width="170" Foreground="#F8F8F8" Margin="100,3,0,3" FontSize="15"
+                                   HorizontalAlignment="Center">
+                            Ajouter
+                        </TextBlock>
+                    </Border>
+                </Button>
+            </DockPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

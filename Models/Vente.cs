@@ -1,21 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace BidCardCoin.Models
 {
     public class Vente
     {
-        private string _idVente;
-        private DateTime _dateDebut;
-        private Adresse _adresse;
-        private List<Lot> _listeLot;
-
-        public Vente(string idVente, DateTime dateDebut, Adresse adresse, List<Lot> listeLot)
+        public Vente(string idVente, DateTime dateDebut, Adresse adresseVente, Lot lotVente)
         {
-            this._idVente = idVente;
-            this._dateDebut = dateDebut;
-            this._adresse = adresse;
-            this._listeLot = listeLot;
+            IdVente = idVente;
+            DateDebut = dateDebut;
+            AdresseVente = adresseVente;
+            LotVente = lotVente;
         }
+
+        public string IdVente { get; }
+        public DateTime DateDebut { get; }
+        public Adresse AdresseVente { get; set; }
+        public Lot LotVente { get; set; }
     }
 }

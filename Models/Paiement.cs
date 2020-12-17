@@ -2,19 +2,24 @@
 {
     public class Paiement
     {
-        private string _idPaiement;
-        private Lot _lot;
-        private Utilisateur _utilisateur;
-        private string _typePaiement;
-        private bool _validationPaiement;
-
-        public Paiement(string idPaiement, Utilisateur utilisateur, string typePaiement, bool validationPaiement, Lot lot)
+        public Paiement()
         {
-            this._idPaiement = idPaiement;
-            this._utilisateur = utilisateur;
-            this._typePaiement = typePaiement;
-            this._validationPaiement = validationPaiement;
-            this._lot = lot;
         }
+
+        public Paiement(string idPaiement, Utilisateur utilisateur, string typePaiement, bool validationPaiement,
+            Lot lot)
+        {
+            IdPaiement = idPaiement;
+            UtilisateurPaiement = utilisateur;
+            TypePaiement = typePaiement;
+            ValidationPaiement = validationPaiement;
+            LotPaiement = lot;
+        }
+
+        public string IdPaiement { get; }
+        public Lot LotPaiement { get; set; }
+        public Utilisateur UtilisateurPaiement { get; set; }
+        public string TypePaiement { get; }
+        public bool ValidationPaiement { get; }
     }
 }

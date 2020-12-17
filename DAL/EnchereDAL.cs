@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using bidCardCoin.DAO;
 using Npgsql;
 
@@ -10,7 +7,6 @@ namespace bidCardCoin.DAL
 {
     public static class EnchereDAL
     {
-
         // SELECT ---------------------------------------------------------------------
 
         public static EnchereDAO SelectEnchereById(string id)
@@ -18,9 +14,9 @@ namespace bidCardCoin.DAL
         {
             // Selectionné l'Enchere a partir de l'id
 
-            EnchereDAO dao = new EnchereDAO();
+            var dao = new EnchereDAO();
 
-            var query = "SELECT * FROM public.enchere  where \"idEnchere\" = @id";
+            var query = "SELECT * FROM public.enchere  where \"idEnchere\" =:id";
             var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
             cmd.Parameters.AddWithValue("id", id);
             var reader = cmd.ExecuteReader();
@@ -38,9 +34,12 @@ namespace bidCardCoin.DAL
                     ? (string) reader["utilisateurId"]
                     : (string) reader["ordreAchatId"];
                 dao = Convert.IsDBNull(reader["ordreAchatId"])
-                    ? new EnchereDAO(idEnchere, estAdjuger, prixProposer, dateHeureVente, lotId, commissaireId, sender)
-                    : new EnchereDAO(idEnchere, prixProposer, estAdjuger, dateHeureVente, lotId, commissaireId, sender);
+                    ? new EnchereDAO(idEnchere, prixProposer, estAdjuger, dateHeureVente, lotId, commissaireId, null,
+                        sender)
+                    : new EnchereDAO(idEnchere, prixProposer, estAdjuger, dateHeureVente, lotId, commissaireId, sender,
+                        null);
             }
+
             reader.Close();
             return dao;
         }
@@ -49,7 +48,7 @@ namespace bidCardCoin.DAL
         public static List<EnchereDAO> SelectAllEnchere()
         {
             // Selectionné tout les Enchere dans la base de donnée
-            List<EnchereDAO> liste = new List<EnchereDAO>();
+            var liste = new List<EnchereDAO>();
 
 
             var query = "SELECT * FROM public.enchere ORDER BY \"idEnchere\"";
@@ -69,10 +68,13 @@ namespace bidCardCoin.DAL
                     ? (string) reader["utilisateurId"]
                     : (string) reader["ordreAchatId"];
                 var dao = Convert.IsDBNull(reader["ordreAchatId"])
-                    ? new EnchereDAO(idEnchere, estAdjuger, prixProposer, dateHeureVente, lotId, commissaireId, sender)
-                    : new EnchereDAO(idEnchere, prixProposer, estAdjuger, dateHeureVente, lotId, commissaireId, sender);
+                    ? new EnchereDAO(idEnchere, prixProposer, estAdjuger, dateHeureVente, lotId, commissaireId, null,
+                        sender)
+                    : new EnchereDAO(idEnchere, prixProposer, estAdjuger, dateHeureVente, lotId, commissaireId, sender,
+                        null);
                 liste.Add(dao);
             }
+
             reader.Close();
             return liste;
         }
@@ -85,20 +87,38 @@ namespace bidCardCoin.DAL
             // Inserer Enchere dans la bdd
 
 
-            var query =
-                "INSERT INTO public.enchere (\"idEnchere\", \"prixProposer\", \"estAdjuger\", \"dateHeureVente\", \"ordreAchatId\",\"lotId\", \"commissaireId\", \"utilisateurId\") VALUES (@idEnchere ,@prix ,@adjuger ,@timestamp ,@ordreAchatId ,@lotId ,@commissaireId ,@utilisateurId )";
+            if (enchere.UtilisateurId != null)
+            {
+                var query =
+                    "INSERT INTO public.enchere (\"idEnchere\", \"prixProposer\", \"estAdjuger\", \"dateHeureVente\",\"lotId\", \"commissaireId\", \"utilisateurId\") VALUES (:idEnchere ,:prix ,:adjuger ,:timestamp  ,:lotId ,:commissaireId ,:utilisateurId )";
 
+                var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
+                cmd.Parameters.AddWithValue("idEnchere", enchere.IdEnchere);
+                cmd.Parameters.AddWithValue("prix", enchere.PrixProposer);
+                cmd.Parameters.AddWithValue("adjuger", enchere.EstAdjuger);
+                cmd.Parameters.AddWithValue("timestamp", enchere.DateHeureVente);
+                cmd.Parameters.AddWithValue("lotId", enchere.LotId);
+                cmd.Parameters.AddWithValue("commissaireId", enchere.CommissaireId);
+                cmd.Parameters.AddWithValue("utilisateurId", enchere.UtilisateurId);
 
-            var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
-            cmd.Parameters.AddWithValue("idEnchere", enchere.IdEnchere);
-            cmd.Parameters.AddWithValue("prix", enchere.PrixProposer);
-            cmd.Parameters.AddWithValue("adjuger", enchere.EstAdjuger);
-            cmd.Parameters.AddWithValue("timestamp", enchere.DateHeureVente);
-            cmd.Parameters.AddWithValue("ordreAchatId", enchere.OrdreAchatId);
-            cmd.Parameters.AddWithValue("lotId", enchere.LotId);
-            cmd.Parameters.AddWithValue("commissaireId", enchere.CommissaireId);
-            cmd.Parameters.AddWithValue("utilisateurId", enchere.UtilisateurId);
-            cmd.ExecuteNonQuery();
+                cmd.ExecuteNonQuery();
+            }
+            else
+            {
+                var query =
+                    "INSERT INTO public.enchere (\"idEnchere\", \"prixProposer\", \"estAdjuger\", \"dateHeureVente\",\"lotId\", \"commissaireId\", \"ordreAchatId\") VALUES (:idEnchere ,:prix ,:adjuger ,:timestamp ,:lotId ,:commissaireId ,:ordreAchatId )";
+
+                var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
+                cmd.Parameters.AddWithValue("idEnchere", enchere.IdEnchere);
+                cmd.Parameters.AddWithValue("prix", enchere.PrixProposer);
+                cmd.Parameters.AddWithValue("adjuger", enchere.EstAdjuger);
+                cmd.Parameters.AddWithValue("timestamp", enchere.DateHeureVente);
+                cmd.Parameters.AddWithValue("lotId", enchere.LotId);
+                cmd.Parameters.AddWithValue("commissaireId", enchere.CommissaireId);
+                cmd.Parameters.AddWithValue("ordreAchatId", enchere.OrdreAchatId);
+
+                cmd.ExecuteNonQuery();
+            }
         }
 
 // UPDATE -------------------------------------------------------------------------------
@@ -129,12 +149,11 @@ namespace bidCardCoin.DAL
         {
             // Supprimer Enchere dans la bdd
 
-            var query = "DELETE FROM public.adresse WHERE \"idAdresse\" = @id;";
+            var query = "DELETE FROM public.enchere WHERE \"idEnchere\" = :id;";
 
             var cmd = new NpgsqlCommand(query, DALconnection.OpenConnection());
             cmd.Parameters.AddWithValue("id", id);
             cmd.ExecuteNonQuery();
         }
-        
     }
 }

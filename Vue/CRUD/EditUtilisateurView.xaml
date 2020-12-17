@@ -1,0 +1,118 @@
+﻿<UserControl x:Class="BidCardCoin.Vue.CRUD.EditUtilisateurView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d">
+    <Grid Name="editgrid" Margin="0,0,0.300,0" VerticalAlignment="Top">
+        <StackPanel>
+            <DockPanel LastChildFill="False" VerticalAlignment="Stretch">
+                <StackPanel Margin="15">
+                    <Label Content="Nom" FontSize="20" Foreground="#F8F8F8" />
+                    <TextBox Name="InputNom" Height="20" Width="150" />
+                </StackPanel>
+                <StackPanel Margin="15">
+                    <Label Content="Prénom" FontSize="20" Foreground="#F8F8F8" />
+                    <TextBox Name="InputPrenom" Height="20" Margin="0,0,0.300,0" Width="150" />
+                </StackPanel>
+            </DockPanel>
+
+
+            <DockPanel LastChildFill="False" VerticalAlignment="Stretch" Margin="15">
+
+                <Label Content="Age : " FontSize="20" Foreground="#F8F8F8" />
+                <TextBox Name="InputAge" Width="150" />
+            </DockPanel>
+
+
+            <DockPanel LastChildFill="False" VerticalAlignment="Stretch">
+                <StackPanel Margin="15">
+                    <Label Content="Email" FontSize="20" Foreground="#F8F8F8" />
+                    <TextBox Name="InputEmail" Height="20" Width="150" />
+                </StackPanel>
+                <StackPanel Margin="15">
+                    <Label Content="Mot de passe" FontSize="20" Foreground="#F8F8F8" />
+                    <PasswordBox Name="InputPassword" Height="20" Margin="0,0,0.300,0" Width="150" />
+                </StackPanel>
+            </DockPanel>
+
+            <DockPanel LastChildFill="False" VerticalAlignment="Stretch">
+                <StackPanel Margin="15">
+                    <Label Content="Tel. Mobile" FontSize="20" Foreground="#F8F8F8" />
+                    <TextBox Name="InputMobile" Height="20" Width="150" />
+                </StackPanel>
+                <StackPanel Margin="15">
+                    <Label Content="Tel. Fixe" FontSize="20" Foreground="#F8F8F8" />
+                    <TextBox Name="InputFixe" Height="20" Margin="0,0,0.300,0" Width="150" />
+                </StackPanel>
+            </DockPanel>
+
+            <DockPanel Margin="15">
+                <Label Content="Identité Verifié" FontSize="20" Foreground="#F8F8F8" />
+                <CheckBox Name="InputIdentity" Height="20" Margin="0,0,0.300,0" Width="150" />
+            </DockPanel>
+
+            <DockPanel Margin="15">
+                <Label Content="Solvabilité Verifié" FontSize="20" Foreground="#F8F8F8" />
+                <CheckBox Name="InputSolvable" Height="20" Margin="0,0,0.300,0" Width="150" />
+            </DockPanel>
+
+            <DockPanel Margin="15">
+                <Label Content="Ressortissant" FontSize="20" Foreground="#F8F8F8" />
+                <CheckBox Name="InputRessortissant" Height="20" Margin="0,0,0.300,0" Width="150" />
+            </DockPanel>
+
+
+            <DockPanel VerticalAlignment="Center">
+                <Label Content="Liste de mots clef" FontSize="15" VerticalAlignment="Center"
+                       Foreground="#F8F8F8" />
+                <Button Click="ViewMotsClefs" Margin="15" Style="{DynamicResource ButtonInvisible}">
+                    <Border
+                        CornerRadius="8" Background="#2A2A2C">
+                        <TextBlock Foreground="#249181" Margin="10,3,10,3" FontSize="15">
+                            Editer
+                        </TextBlock>
+                    </Border>
+                </Button>
+            </DockPanel>
+
+
+            <DockPanel VerticalAlignment="Center">
+                <Label Content="Liste d'adresses" FontSize="15" VerticalAlignment="Center"
+                       Foreground="#F8F8F8" />
+                <Button Click="SelectAdresses" Margin="15" Style="{DynamicResource ButtonInvisible}">
+                    <Border
+                        CornerRadius="8" Background="#2A2A2C">
+                        <TextBlock Foreground="#249181" Margin="10,3,10,3" FontSize="15">
+                            Editer
+                        </TextBlock>
+                    </Border>
+                </Button>
+            </DockPanel>
+
+            <DockPanel LastChildFill="False" VerticalAlignment="Stretch">
+
+                <Button Click="Cancel" Margin="15" Style="{DynamicResource ButtonInvisible}">
+                    <Border HorizontalAlignment="Center"
+                            CornerRadius="8" Background="#DE4F4E">
+                        <TextBlock Width="170" Foreground="#F8F8F8" FontSize="15" Margin="100,3,0,3"
+                                   HorizontalAlignment="Center">
+                            Annuler
+                        </TextBlock>
+                    </Border>
+                </Button>
+
+                <Button Click="EditUtilisateur" Margin="15" Style="{DynamicResource ButtonInvisible}">
+                    <Border
+                        CornerRadius="8" Background="#249181">
+                        <TextBlock Width="170" Foreground="#F8F8F8" Margin="100,3,0,3" FontSize="15"
+                                   HorizontalAlignment="Center">
+                            Modifier
+                        </TextBlock>
+                    </Border>
+                </Button>
+            </DockPanel>
+        </StackPanel>
+    </Grid>
+
+</UserControl>

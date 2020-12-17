@@ -4,19 +4,24 @@ namespace BidCardCoin.Models
 {
     public class Estimation
     {
-        private string _idEstimation;
-        private Produit _produit;
-        private Commissaire _commissaire;
-        private DateTime _dateEstimation;
-        private double _prixEstimation;
-
-        public Estimation(string idEstimation, Produit produit, Commissaire commissaire, DateTime dateEstimation, double prixEstimation)
+        public Estimation()
         {
-            this._idEstimation = idEstimation;
-            this._produit = produit;
-            this._commissaire = commissaire;
-            this._dateEstimation = dateEstimation;
-            this._prixEstimation = prixEstimation;
         }
+
+        public Estimation(string idEstimation, Produit produit, Commissaire commissaire, DateTime dateEstimation,
+            double prixEstimation)
+        {
+            IdEstimation = idEstimation;
+            ProduitEstimation = produit;
+            CommissaireEstimation = commissaire;
+            DateEstimation = dateEstimation;
+            PrixEstimation = prixEstimation;
+        }
+
+        public string IdEstimation { get; }
+        public Produit ProduitEstimation { get; set; }
+        public Commissaire CommissaireEstimation { get; set; }
+        public DateTime DateEstimation { get; }
+        public double PrixEstimation { get; }
     }
 }
