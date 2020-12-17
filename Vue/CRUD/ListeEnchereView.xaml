@@ -77,7 +77,7 @@
                     </Border>
                 </Button>
 
-                <Button Name="editMode" Click="SelectEnchere" Margin="15" Style="{DynamicResource ButtonInvisible}">
+                <Button Name="editMode" Click="EditEnchere" Margin="15" Style="{DynamicResource ButtonInvisible}">
                     <Border HorizontalAlignment="Center"
                             CornerRadius="8" Background="#3E3E42">
                         <TextBlock Width="100" Foreground="#F8F8F8" Margin="60,3,0,3" FontSize="15"
@@ -87,7 +87,7 @@
                     </Border>
                 </Button>
 
-                <Button Name="selectMode" Click="EditEnchere" Margin="15" Style="{DynamicResource ButtonInvisible}">
+                <Button Name="selectMode" Click="SelectEnchere" Margin="15" Style="{DynamicResource ButtonInvisible}">
                     <Border HorizontalAlignment="Center"
                             CornerRadius="8" Background="#249181">
                         <TextBlock Width="100" Foreground="#F8F8F8" Margin="60,3,0,3" FontSize="15"
@@ -97,7 +97,6 @@
                     </Border>
                 </Button>
             </StackPanel>
-
         </DockPanel>
 
     </Grid>
