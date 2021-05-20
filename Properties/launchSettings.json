@@ -3,10 +3,10 @@
     "BidCardCoin": {
       "commandName": "Project",
       "environmentVariables": {
-        "PASSWORD_ENVIRONMENT": "dbpassword",
-        "SERVER_ENVIRONMENT": "aranea.me",
-        "UID_ENVIRONMENT": "dbuser",
-        "DATABASE_ENVIRONMENT": "bidcardcoin"
+        "PASSWORD_ENVIRONMENT": "Epsi2021!",
+        "SERVER_ENVIRONMENT": "172.16.2.7",
+        "UID_ENVIRONMENT": "breval_lefloch",
+        "DATABASE_ENVIRONMENT": "breval_lefloch"
       }
     }
   }

@@ -15,10 +15,11 @@ namespace bidCardCoin.DAL
         {
             if (_connection == null)
             {
-                _server = Environment.GetEnvironmentVariable("SERVER_ENVIRONMENT");
-                _database = Environment.GetEnvironmentVariable("DATABASE_ENVIRONMENT");
-                _uid = Environment.GetEnvironmentVariable("UID_ENVIRONMENT");
-                _password = Environment.GetEnvironmentVariable("PASSWORD_ENVIRONMENT");
+                // _server = "127.0.0.1";
+                _server = "172.16.2.7";
+                _database = "breval_lefloch";
+                _uid = "breval_lefloch";
+                _password = "Epsi2021!";
                 var connectionString =
                     $"Host={_server};Username={_uid};Password={_password};Database={_database};Pooling=false";
 
