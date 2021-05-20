@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\Breval Nouveau\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\Breval Nouveau\\.nuget\\packages"
+    ]
+  }
+}
