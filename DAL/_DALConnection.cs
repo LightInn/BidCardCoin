@@ -15,8 +15,8 @@ namespace bidCardCoin.DAL
         {
             if (_connection == null)
             {
-                // _server = "127.0.0.1";
-                _server = "172.16.2.7";
+                _server = "127.0.0.1";
+                // _server = "172.16.2.7";
                 _database = "andy_cinquin";
                 _uid = "andy_cinquin";
                 _password = "Epsi2021!";

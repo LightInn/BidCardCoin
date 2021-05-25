@@ -905,30 +905,29 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Breval Nouveau\\.nuget\\packages\\": {}
+    "C:\\Users\\LightIn_\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Breval Nouveau\\Sync\\Projects\\C#\\BidCardCoin\\BidCardCoin.csproj",
+      "projectUniqueName": "C:\\Users\\LightIn_\\Sync\\Projects\\C#\\BidCardCoin\\BidCardCoin.csproj",
       "projectName": "BidCardCoin",
-      "projectPath": "C:\\Users\\Breval Nouveau\\Sync\\Projects\\C#\\BidCardCoin\\BidCardCoin.csproj",
-      "packagesPath": "C:\\Users\\Breval Nouveau\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Breval Nouveau\\Sync\\Projects\\C#\\BidCardCoin\\obj\\",
+      "projectPath": "C:\\Users\\LightIn_\\Sync\\Projects\\C#\\BidCardCoin\\BidCardCoin.csproj",
+      "packagesPath": "C:\\Users\\LightIn_\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\LightIn_\\Sync\\Projects\\C#\\BidCardCoin\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Breval Nouveau\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\LightIn_\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "projectReferences": {}
         }
       },
@@ -940,6 +939,7 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
+        "targetAlias": "netcoreapp3.1",
         "dependencies": {
           "Npgsql": {
             "target": "Package",
@@ -962,16 +962,32 @@
         "warn": true,
         "downloadDependencies": [
           {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[3.1.10, 3.1.10]"
+          },
+          {
             "name": "Microsoft.AspNetCore.App.Runtime.win-x64",
-            "version": "[3.1.9, 3.1.9]"
+            "version": "[3.1.13, 3.1.13]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[3.1.13, 3.1.13]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[3.1.0, 3.1.0]"
           },
           {
             "name": "Microsoft.NETCore.App.Runtime.win-x64",
-            "version": "[3.1.9, 3.1.9]"
+            "version": "[3.1.13, 3.1.13]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[3.1.0, 3.1.0]"
           },
           {
             "name": "Microsoft.WindowsDesktop.App.Runtime.win-x64",
-            "version": "[3.1.9, 3.1.9]"
+            "version": "[3.1.13, 3.1.13]"
           }
         ],
         "frameworkReferences": {
@@ -982,7 +998,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
       }
     },
     "runtimes": {
